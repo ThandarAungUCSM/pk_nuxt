@@ -63,7 +63,7 @@ export default {
     background-image: url("../assets/mobile/menu-fine.png") !important;
     font-size: 11px;
     width: 24px;
-    height: 24px;
+    height: 17px;
   }
 }
 .navbar-toggler {
@@ -171,7 +171,7 @@ export default {
   right: -10px;
   border: 1px solid #000;
   @media screen and (max-width: 768px) {
-    top: 1px;
+    top: -7px;
     left: 15px;
   }
 }
