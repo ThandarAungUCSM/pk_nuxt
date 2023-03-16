@@ -64,6 +64,10 @@ export default {
       width: 100%;
       background: linear-gradient(180deg, #7161EF 0%, #4632E3 100%);
       padding: 5rem 1rem 2rem 2rem;
+
+      position: unset;
+      bottom: unset;
+      width: unset;
     }
     .foot-title1, .foot-title2 {
       font-weight: 700;
@@ -111,9 +115,9 @@ export default {
     background: #5243CA;
     padding: 0 2rem;
     height: 80px;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
+    // position: absolute;
+    // bottom: 0;
+    // width: 100%;
     @media screen and (max-width: 768px) {
       display: none;
     }

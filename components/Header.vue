@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="header-block">
     <b-navbar toggleable="lg" type="dark" variant="info" class="bg-info1">
       <div class="nav-logo">
         <b-navbar-toggle v-b-toggle.sidebar-1 target="nav-collapse"></b-navbar-toggle>
@@ -33,6 +33,13 @@
         </div>
       </div>
     </b-navbar>
+    <div class="head-css">
+      <div class="each-menu"><span>限時優惠</span></div>
+      <div class="each-menu"><span>全部商品</span></div>
+      <div class="each-menu"><span>日用雜貨</span></div>
+      <div class="each-menu"><span>零食飲料</span></div>
+      <div class="each-menu"><span>玩具公仔</span></div>
+    </div>
   </div>
 </template>
 
@@ -88,13 +95,36 @@ export default {
 }
 </style>
 <style lang="scss" scoped>
-.bg-info1 {
-  background: #FBFBFB !important;
-  height: 80px;
-  padding: 0 67px;
-  @media screen and (max-width: 768px) {
-    padding: 60px 0 0;
-    height: unset;
+.header-block {
+  position: fixed;
+  width: 100%;
+  z-index: 999;
+  .bg-info1 {
+    background: #FBFBFB !important;
+    height: 80px;
+    padding: 0 67px;
+    @media screen and (max-width: 768px) {
+      padding: 60px 0 1rem;
+      height: unset;
+    }
+  }
+  .head-css {
+    background: #7161EF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+    @media screen and (max-width: 768px) {
+      display: none;
+    }
+    .each-menu {
+      font-weight: 700;
+      font-size: 1rem;
+      color: #FFF;
+      width: 170px;
+      text-align: center;
+    }
   }
 }
 .nav-logo {
