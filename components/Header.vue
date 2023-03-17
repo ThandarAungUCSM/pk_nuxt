@@ -2,6 +2,12 @@
   <div class="header-block">
     <b-navbar toggleable="lg" type="dark" variant="info" class="bg-info1">
       <div class="nav-logo">
+        <div class="head-left">
+          <div class="head-price">
+            <img src="../assets/mobile/itemicon_gold.png" class="gold-icon">
+            <span>999,999,999</span>
+          </div>
+        </div>
         <b-navbar-toggle v-b-toggle.sidebar-1 target="nav-collapse"></b-navbar-toggle>
         <b-sidebar id="sidebar-1" title="Sidebar" shadow>
           <div class="px-3 py-2">
@@ -203,11 +209,10 @@ export default {
   }
 }
 .navbar-expand-lg .navbar-toggler {
-  visibility: hidden;
-  display: unset;
+  display: none;
   width: 30%;
   @media screen and (max-width: 768px) {
-    visibility: visible;
+    display: unset;
     width: unset;
   }
 }
@@ -230,6 +235,27 @@ export default {
     @media screen and (max-width: 768px) {
       padding: 60px 0 1rem;
       height: unset;
+    }
+    .head-left {
+      width: 30%;
+      @media screen and (max-width: 768px) {
+        display: none;
+      }
+      .head-price {
+        background: #3E2BDA;
+        border-radius: 32px;
+        font-weight: 500;
+        font-size: 16px;
+        color: #FFF;
+        display: flex;
+        align-items: center;
+        width: 160px;
+      }
+      .gold-icon {
+        width: 30px;
+        height: 30px;
+        margin-right: 1rem;
+      }
     }
   }
   .head-css {
