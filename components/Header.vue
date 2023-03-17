@@ -17,7 +17,96 @@
         </div>
         <div class="nav-header-right">
           <div class="menu-pc">
-            <img class="user-css" alt="user" src="../assets/mobile/fi-rr-user.png" @click="linkToHome" />
+            <!-- <img class="user-css" alt="user" src="../assets/mobile/fi-rr-user.png" @click="linkToHome" /> -->
+            
+            <div class="member-center-part" @mouseleave="mouseLeave" @mouseover="mouseOver">
+              <img
+                class="dropbtn user-css"
+                alt="user"
+                :src="
+                  showmemberData
+                    ? require('../assets/mobile/fi-rr-user.png')
+                    : require('../assets/mobile/fi-rr-user.png')
+                "
+                @click="myFunction"
+              />
+              <div v-if="showmemberData" id="myDropdown" class="dropdown-content"></div>
+              <div v-if="showmemberData && userLogin" class="child-dropdown">
+                <!-- :class="pageName && pageName == 'myTicket' ? 'dropdownContentbg' : ''" -->
+                <NuxtLink
+                  to="/memberCenter"
+                  class="dropdown-item"
+                >
+                  <img class="menu-usercss" alt="user" src="../assets/pc/active-user.png" />
+                  <span>會員資料</span>
+                </NuxtLink>
+                <NuxtLink
+                  to="/myOrder"
+                  class="dropdown-item"
+                >
+                  <img class="menu-usercss" alt="notebook" src="../assets/pc/active-notebook.png" />
+                  <span>兌換清單</span>
+                </NuxtLink>
+                <NuxtLink
+                  to="/myOrder"
+                  class="dropdown-item"
+                >
+                  <img class="menu-usercss" alt="heart" src="../assets/pc/active-heart.png" />
+                  <span>追蹤清單</span>
+                </NuxtLink>
+                <NuxtLink
+                  to="/myOrder"
+                  class="dropdown-item"
+                >
+                  <img class="menu-usercss" alt="shield" src="../assets/pc/active-shield.png" />
+                  <span>遊戲連動</span>
+                </NuxtLink>
+                <NuxtLink
+                  to="/myOrder"
+                  class="dropdown-item"
+                >
+                  <img class="menu-usercss" alt="shield" src="../assets/pc/active-setting.png" />
+                  <span>設定</span>
+                </NuxtLink>
+              </div>
+              <div v-if="showmemberData && !userLogin" class="child-dropdown">
+                <NuxtLink
+                  to="/memberCenter"
+                  class="dropdown-item1"
+                >
+                  <img class="menu-usercss" alt="user" src="../assets/pc/noactive-user.png" />
+                  <span class="noactivetext">會員資料</span>
+                </NuxtLink>
+                <NuxtLink
+                  to="/myOrder"
+                  class="dropdown-item1"
+                >
+                  <img class="menu-usercss" alt="notebook" src="../assets/pc/noactive-notebook.png" />
+                  <span class="noactivetext">兌換清單</span>
+                </NuxtLink>
+                <NuxtLink
+                  to="/myOrder"
+                  class="dropdown-item1"
+                >
+                  <img class="menu-usercss" alt="heart" src="../assets/pc/noactive-heart.png" />
+                  <span class="noactivetext">追蹤清單</span>
+                </NuxtLink>
+                <NuxtLink
+                  to="/myOrder"
+                  class="dropdown-item1"
+                >
+                  <img class="menu-usercss" alt="shield" src="../assets/pc/noactive-shield.png" />
+                  <span class="noactivetext">遊戲連動</span>
+                </NuxtLink>
+                <NuxtLink
+                  to="/myOrder"
+                  class="dropdown-item1"
+                >
+                  <img class="menu-usercss" alt="shield" src="../assets/pc/noactive-setting.png" />
+                  <span class="noactivetext">設定</span>
+                </NuxtLink>
+              </div>
+            </div>
             <img class="user-css" alt="gamepad" src="../assets/mobile/fi-rr-gamepad.png" @click="linkToHome" />
             <img class="user-css" alt="pokerchip" src="../assets/mobile/fi-rr-poker-chip.png" @click="linkToHome" />
             <img class="user-css" alt="headset" src="../assets/mobile/fi-rr-headset.png" @click="linkToHome" />
@@ -49,8 +138,25 @@ export default {
   data() {
     return {
       totalAllQty: 4,
-      showCart: false
+      showCart: false,
+      showmemberData: false,
+      userLogin: true
     }
+  },
+   beforeMount() {
+    // Close the dropdown if the user clicks outside of it
+    window.onclick = function (event) {
+      if (!event.target.matches(".dropbtn")) {
+        const dropdowns = document.getElementsByClassName("dropdown-content");
+        let i;
+        for (i = 0; i < dropdowns.length; i++) {
+          const openDropdown = dropdowns[i];
+          if (openDropdown.classList.contains("show")) {
+            openDropdown.classList.remove("show");
+          }
+        }
+      }
+    };
   },
   methods: {
     linkToHome() {
@@ -59,6 +165,24 @@ export default {
     clickCart() {
       // console.log("clickCart()");
       this.showCart = true;
+    },
+    mouseOver(event) {
+      // if (this.tokenInfo) {
+        this.showmemberData = true;
+      // } // else this.$router.push("/login");
+    },
+    mouseLeave() {
+      console.log('mouse leave');
+      this.showmemberData = false;
+    },
+    myFunction() {
+      // console.log("myFunction() this.tokenInfo=", this.tokenInfo);
+      // if (this.tokenInfo) document.getElementById("myDropdown").classList.toggle("show");
+      // else {
+      //   console.log("goto login");
+      //   this.$router.push("/login");
+      // }
+      document.getElementById("myDropdown").classList.toggle("show");
     },
   }
 }
@@ -163,6 +287,8 @@ export default {
     }
   }
   .menu-pc {
+    display: flex;
+    align-items: center;
     @media screen and (max-width: 768px) {
       display: none;
     }
@@ -170,6 +296,105 @@ export default {
       width: 24px;
       height: 24px;
       margin-left: 12px;
+      cursor: pointer;
+    }
+    .member-center-part {
+      
+    }
+    .dropdown-content,
+    .child-dropdown {
+      // display: none;
+      position: absolute;
+      min-width: 140px; // 160px;
+      overflow: auto;
+      box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+      z-index: 99;
+      border-radius: 5px;
+      background: #fff;
+      // margin-top: 17px; // cart with 8px distant
+      // margin-top: 10px;
+      margin-left: -47px;
+    }
+    .dropdown-content {
+      padding: 15px 0 5px;
+      opacity: 0;
+    }
+    .child-dropdown {
+      padding: 5px 0 5px;
+      margin-top: 17px;
+      opacity: 1;
+    }
+
+    .dropdown-item {
+      padding: 7px 15px;
+      text-decoration: none;
+      display: block;
+      font-weight: 400;
+      font-size: 14px;
+      color: #000;
+
+      display: flex;
+      align-items: center;
+
+      .menu-usercss {
+        width: 1rem;
+        height: 1rem;
+        margin-right: 10px;
+      }
+      .noactivetext {
+        color: #C5C5C5;
+      }
+    }
+    // .dropdown-item:last-child {
+    //   color: #828282;
+    //   padding: 7px 15px;
+    //   text-decoration: none;
+    //   display: block;
+    //   font-size: 0.875rem;
+    //   font-weight: 400;
+    //   border-top: 1px solid #eeeeee;
+    // }
+
+    .dropdown-item:hover {
+      background: #E2DBFF;
+    }
+    .dropdown-item1 {
+      padding: 7px 15px;
+      text-decoration: none;
+      display: block;
+      font-weight: 400;
+      font-size: 14px;
+      color: #000;
+
+      display: flex;
+      align-items: center;
+
+      .menu-usercss {
+        width: 1rem;
+        height: 1rem;
+        margin-right: 10px;
+      }
+      .noactivetext {
+        color: #C5C5C5;
+      }
+    }
+    // .dropdown-item1:last-child {
+    //   color: #828282;
+    //   padding: 7px 15px;
+    //   text-decoration: none;
+    //   display: block;
+    //   font-size: 0.875rem;
+    //   font-weight: 400;
+    //   border-top: 1px solid #eeeeee;
+    // }
+
+    .dropdownContentbg {
+      background: #f7f2e8;
+      color: #4f4f4f;
+      font-weight: 500;
+    }
+    .show {
+      display: block;
     }
   }
 }
