@@ -8,15 +8,89 @@
             <span>999,999,999</span>
           </div>
         </div>
-        <b-navbar-toggle v-b-toggle.sidebar-1 target="nav-collapse"></b-navbar-toggle>
-        <b-sidebar id="sidebar-1" title="Sidebar" shadow>
-          <div class="px-3 py-2">
-            <p>
-              Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis
-              in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-            </p>
-            <b-img src="https://picsum.photos/500/500/?image=54" fluid thumbnail></b-img>
-          </div>
+        <b-navbar-toggle v-b-toggle.sidebar-no-header target="nav-collapse"></b-navbar-toggle>
+        <b-sidebar id="sidebar-no-header" aria-labelledby="sidebar-no-header-title" no-header shadow>
+          <template #default="{ hide }">
+            <div class="p-3">
+              <div class="close-row">
+                <img class="close-css" src="../assets/mobile/close.png" @click="hide" />
+                <span v-if="userLogin" class="logout-css">登出</span>
+                <span v-if="!userLogin" class="logout-css">登入</span>
+              </div>
+              <div class="content-bar">
+                <div v-if="userLogin" class="coin-parent">
+                  <div class="coin-block">
+                    <img src="../assets/mobile/itemicon_gold.png" class="gold-icon">
+                    <div class="txtBox">
+                      <img src="../assets/mobile/rectangle.png" class="rect-icon">
+                      <span class="coin-no">999,999,999</span>
+                      <span class="pk-coin">PK Coin</span>
+                    </div>
+                  </div>
+                  <div class="">
+                    <img class="close-css" alt="menu coin" src="../assets/mobile/menu-coin.png" />
+                  </div>
+                </div>
+                
+                <div class="each-item">
+                  <p :class="userLogin ? 'item-txt' : 'noLog-txt'">我的會員</p>
+                  <img v-if="userLogin" class="arrow-css" src="../assets/mobile/rightArr.png" />
+                  <img v-if="!userLogin" class="arrow-css" src="../assets/mobile/noactiveArr.png" />
+                </div>
+                <div class="each-item">
+                  <p :class="userLogin ? 'item-txt' : 'noLog-txt'">我的代幣</p>
+                  <img v-if="userLogin" class="arrow-css" src="../assets/mobile/rightArr.png" />
+                  <img v-if="!userLogin" class="arrow-css" src="../assets/mobile/noactiveArr.png" />
+                </div>
+                <div class="each-item">
+                  <p :class="userLogin ? 'item-txt' : 'noLog-txt'">遊戲</p>
+                  <img v-if="userLogin" class="arrow-css" src="../assets/mobile/rightArr.png" />
+                  <img v-if="!userLogin" class="arrow-css" src="../assets/mobile/noactiveArr.png" />
+                </div>
+
+                <div class="title-row">
+                  <span class="storeTitle">分類</span>
+                  <h2>
+                  </h2>
+                </div>
+
+                <div class="each-item">
+                  <p class="color-txt">新品上市</p>
+                  <img class="arrow-css" src="../assets/mobile/rightArrActive.png" />
+                </div>
+                <div class="each-item">
+                  <p class="color-txt">限時優惠</p>
+                  <img class="arrow-css" src="../assets/mobile/rightArrActive.png" />
+                </div>
+                <div class="each-item">
+                  <p class="item-txt1">所有商品</p>
+                  <img class="arrow-css" alt="user" src="../assets/mobile/rightArr.png" />
+                </div>
+                <div class="each-item">
+                  <p class="item-txt1">日用雜貨</p>
+                  <img class="arrow-css" alt="user" src="../assets/mobile/rightArr.png" />
+                </div>
+                <div class="each-item">
+                  <p class="item-txt1">零食飲料</p>
+                  <img class="arrow-css" alt="user" src="../assets/mobile/rightArr.png" />
+                </div>
+                <div class="each-item">
+                  <p class="item-txt1">玩具公仔</p>
+                  <img class="arrow-css" alt="user" src="../assets/mobile/rightArr.png" />
+                </div>
+
+                <div class="title-row">
+                  <span class="storeTitle">幫助</span>
+                  <h2>
+                  </h2>
+                </div>
+                <div class="each-item">
+                  <p class="item-txt1">常見問題</p>
+                  <img class="arrow-css" alt="user" src="../assets/mobile/rightArr.png" />
+                </div>
+              </div>
+            </div>
+          </template>
         </b-sidebar>
         <div class="first-col-div">
           <img class="m-logo-css" alt="pk mergent" src="../assets/mobile/PK_Merchant.png" @click="linkToHome" />
@@ -220,6 +294,133 @@ export default {
   @media screen and (max-width: 768px) {
     padding: 0 !important;
     margin-right: 0 !important;
+  }
+}
+.header-block {
+  .b-sidebar {
+    width: 100%;
+  }
+  .p-3 {
+    padding-bottom: 0px !important;
+  }
+  .bg-light {
+    background: #7161EF !important;
+  }
+  .close-row {
+    display: flex;
+    justify-content: space-between;
+
+    padding: 55px 31px 23px 8px;
+    padding: 52px 31px 15px 8px;
+  }
+  .content-bar {
+    padding: 0 2.5rem;
+    .coin-parent {
+      display: flex;
+      align-items: flex-end;
+      margin-bottom: 2rem;
+    }
+    .each-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 5px 0;
+      .item-txt {
+        font-weight: 700;
+        font-size: 20px;
+        color: #FFF;
+        margin-bottom: 0;
+      }
+      .noLog-txt {
+        font-weight: 700;
+        font-size: 20px;
+        color: #897CF2;
+        margin-bottom: 0;
+      }
+      .item-txt1 {
+        font-weight: 400;
+        font-size: 20px;
+        color: #FFF;
+        margin-bottom: 0;
+      }
+      .arrow-css {
+        width: 8px;
+        height: 10px;
+      }
+
+      .color-txt {
+        font-weight: 400;
+        font-size: 20px;
+        color: #FFD02C;
+        margin-bottom: 0;
+      }
+    }
+    .title-row {
+      display: flex;
+      align-items: center;
+      padding: 5px 0;
+      h2 {
+        width: 80%;
+        border-bottom: 2px solid #8C7FF5;
+        border-radius: 2px;
+        line-height: 2px;
+        margin: 0;
+      }
+      .storeTitle {
+        color: #FFF;
+        font-weight: 700;
+        font-size: 1rem;
+        margin-right: 1rem;
+      }
+    }
+  }
+  .coin-block {
+    position: relative;
+    padding-right: 12px;
+    .gold-icon {
+      width: 36px;
+      height: 36px;
+
+      position: relative;
+      margin-left: 12px;
+      margin-bottom: -15px;
+      z-index: 10;
+    }
+    .pk-coin {
+      font-weight: 700;
+      font-size: 12px;
+      color: #FFF;
+
+      position: absolute;
+      display: block;
+      left: 61%;
+    }
+    .txtBox {
+      position: relative;
+      .rect-icon {
+        width: 180px;
+        height: 32px;
+      }
+      .coin-no {
+        font-weight: 500;
+        font-size: 20px;
+        color: #FFF;
+        position: absolute;
+
+        top: 45%;
+        left: 57%;
+        transform: translate(-50%, -50%);
+      }
+    }
+  }
+  .close-css {
+    width: 24px;
+    height: 24px;
+  }
+  .logout-css {
+    font-weight: 400;
+    font-size: 16px;
+    color: #FFF;
   }
 }
 </style>
