@@ -98,6 +98,7 @@ export default {
   //   padding: 0;
   // }
   padding-top: 140px;
+  padding-bottom: 110px;
   @media screen and (max-width: 768px) {
     padding-top: 102px;
   }

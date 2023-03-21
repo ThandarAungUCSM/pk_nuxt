@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="footer-div">
     <div class="footer-block-m">
       <div>
         <p class="foot-title1">關於PK</p>
@@ -55,6 +55,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.footer-div {
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  z-index: 1;
   .footer-block-m {
     display: none;
     @media screen and (max-width: 768px) {
@@ -169,4 +174,5 @@ export default {
       }
     }
   }
+}
 </style>

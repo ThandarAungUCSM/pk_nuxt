@@ -38,14 +38,14 @@
                   <img v-if="!userLogin" class="arrow-css" src="../assets/mobile/noactiveArr.png" />
                 </div>
                 <div class="each-item">
-                  <p :class="userLogin ? 'item-txt' : 'noLog-txt'">我的代幣</p>
-                  <img v-if="userLogin" class="arrow-css" src="../assets/mobile/rightArr.png" />
-                  <img v-if="!userLogin" class="arrow-css" src="../assets/mobile/noactiveArr.png" />
+                  <p class="item-txt">我的代幣</p>
+                  <img class="arrow-css" src="../assets/mobile/rightArr.png" />
+                  <!-- <img v-if="!userLogin" class="arrow-css" src="../assets/mobile/noactiveArr.png" /> -->
                 </div>
                 <div class="each-item">
-                  <p :class="userLogin ? 'item-txt' : 'noLog-txt'">遊戲</p>
-                  <img v-if="userLogin" class="arrow-css" src="../assets/mobile/rightArr.png" />
-                  <img v-if="!userLogin" class="arrow-css" src="../assets/mobile/noactiveArr.png" />
+                  <p class="item-txt">合作遊戲</p>
+                  <img class="arrow-css" src="../assets/mobile/rightArr.png" />
+                  <!-- <img v-if="!userLogin" class="arrow-css" src="../assets/mobile/noactiveArr.png" /> -->
                 </div>
 
                 <div class="title-row">
@@ -97,17 +97,29 @@
         </div>
         <div class="nav-header-right">
           <div class="menu-pc">
-            <!-- <img class="user-css" alt="user" src="../assets/mobile/fi-rr-user.png" @click="linkToHome" /> -->
-            
+            <!-- <img class="user-css" alt="user" src="../assets/mobile/fi-rr-user.png" @click="linkToHome" />
+            <img class="user-css" alt="gamepad" src="../assets/mobile/fi-rr-gamepad.png" @click="linkToHome" />
+            <img class="user-css" alt="pokerchip" src="../assets/mobile/fi-rr-poker-chip.png" @click="linkToHome" /> -->
             <div class="member-center-part" @mouseleave="mouseLeave" @mouseover="mouseOver">
               <img
+                v-if="!showmemberData && userLogin"
                 class="dropbtn user-css"
                 alt="user"
-                :src="
-                  showmemberData
-                    ? require('../assets/mobile/fi-rr-user.png')
-                    : require('../assets/mobile/fi-rr-user.png')
-                "
+                src="../assets/mobile/fi-rr-user.png"
+                @click="myFunction"
+              />
+              <img
+                v-else-if="showmemberData && userLogin"
+                class="dropbtn user-css"
+                alt="user"
+                src="../assets/pc/fi-rr-user-login.png"
+                @click="myFunction"
+              />
+              <img
+                v-else-if="(!showmemberData && !userLogin) || (showmemberData && !userLogin)"
+                class="dropbtn user-css"
+                alt="user"
+                src="../assets/pc/fi-rr-visitor.png"
                 @click="myFunction"
               />
               <div v-if="showmemberData" id="myDropdown" class="dropdown-content"></div>
@@ -148,38 +160,41 @@
                   <img class="menu-usercss" alt="shield" src="../assets/pc/active-setting.png" />
                   <span>設定</span>
                 </NuxtLink>
+                <div class="logout-div">
+                  <span>登出</span>
+                </div>
               </div>
               <div v-if="showmemberData && !userLogin" class="child-dropdown">
                 <NuxtLink
-                  to="/memberCenter"
+                  to="/login"
                   class="dropdown-item1"
                 >
                   <img class="menu-usercss" alt="user" src="../assets/pc/noactive-user.png" />
                   <span class="noactivetext">會員資料</span>
                 </NuxtLink>
                 <NuxtLink
-                  to="/myOrder"
+                  to="/login"
                   class="dropdown-item1"
                 >
                   <img class="menu-usercss" alt="notebook" src="../assets/pc/noactive-notebook.png" />
                   <span class="noactivetext">兌換清單</span>
                 </NuxtLink>
                 <NuxtLink
-                  to="/myOrder"
+                  to="/login"
                   class="dropdown-item1"
                 >
                   <img class="menu-usercss" alt="heart" src="../assets/pc/noactive-heart.png" />
                   <span class="noactivetext">追蹤清單</span>
                 </NuxtLink>
                 <NuxtLink
-                  to="/myOrder"
+                  to="/login"
                   class="dropdown-item1"
                 >
                   <img class="menu-usercss" alt="shield" src="../assets/pc/noactive-shield.png" />
                   <span class="noactivetext">遊戲連動</span>
                 </NuxtLink>
                 <NuxtLink
-                  to="/myOrder"
+                  to="/login"
                   class="dropdown-item1"
                 >
                   <img class="menu-usercss" alt="shield" src="../assets/pc/noactive-setting.png" />
@@ -187,9 +202,52 @@
                 </NuxtLink>
               </div>
             </div>
-            <img class="user-css" alt="gamepad" src="../assets/mobile/fi-rr-gamepad.png" @click="linkToHome" />
-            <img class="user-css" alt="pokerchip" src="../assets/mobile/fi-rr-poker-chip.png" @click="linkToHome" />
-            <img class="user-css" alt="headset" src="../assets/mobile/fi-rr-headset.png" @click="linkToHome" />
+            <div class="member-center-part" @mouseleave="gamepadMouseLeave" @mouseover="gamepadMouseOver">
+              <img
+                :src="
+                  showgamepadData
+                    ? require('../assets/pc/fi-rr-gamepad-active.png')
+                    : require('../assets/mobile/fi-rr-gamepad.png')
+                " class="gamedbtn user-css" alt="gamepad" @click="myGamepad" />
+              <div v-if="showgamepadData" id="gamepadDropdown" class="gamedd-content"></div>
+              <div v-if="showgamepadData" class="child-dropdown">
+                <div class="dropdown-item textcss">
+                  <span>PK合作遊戲</span>
+                </div>
+                <div class="dropdown-item textcss1">
+                  <span>去玩更多遊戲賺更多吧!!</span>
+                </div>
+              </div>
+            </div>
+            <div class="member-center-part" @mouseleave="pokerMouseLeave" @mouseover="pokerMouseOver">
+              <img
+                class="pokerdbtn user-css" alt="pokerchip" 
+                :src="
+                  showpokerData
+                    ? require('../assets/mobile/fi-rr-poker-chip.png')
+                    : require('../assets/mobile/fi-rr-poker-chip.png')" @click="myPokerchip" />
+              <div v-if="showpokerData" id="pokerchipDropdown" class="pokerdd-content"></div>
+              <div v-if="showpokerData" class="child-dropdown">
+                <div class="dropdown-item textcss">
+                  <span>我的代幣</span>
+                </div>
+                <div class="dropdown-item textcss1">
+                  <span>查看PK遊戲幣值比率</span>
+                </div>
+              </div>
+            </div>
+            <div class="member-center-part" @mouseleave="headsetMouseLeave" @mouseover="headsetMouseOver">
+              <img class="headsetdbtn user-css" alt="headset" src="../assets/mobile/fi-rr-headset.png" @click="myHeadset" />
+              <div v-if="showHeadsetData" id="headsetDropdown" class="headsetdd-content"></div>
+              <div v-if="showHeadsetData" class="child-dropdown">
+                <div class="dropdown-item textcss">
+                  <span>聯繫客服</span>
+                </div>
+                <div class="dropdown-item textcss">
+                  <span>常見問題</span>
+                </div>
+              </div>
+            </div>
           </div>
           <b-navbar-nav>
             <b-nav-item v-b-toggle.shopping-cart-header class="cartcss" @click="clickCart">
@@ -219,8 +277,11 @@ export default {
     return {
       totalAllQty: 4,
       showCart: false,
+      userLogin: false,
       showmemberData: false,
-      userLogin: true
+      showgamepadData: false,
+      showpokerData: false,
+      showHeadsetData: false,
     }
   },
    beforeMount() {
@@ -228,6 +289,33 @@ export default {
     window.onclick = function (event) {
       if (!event.target.matches(".dropbtn")) {
         const dropdowns = document.getElementsByClassName("dropdown-content");
+        let i;
+        for (i = 0; i < dropdowns.length; i++) {
+          const openDropdown = dropdowns[i];
+          if (openDropdown.classList.contains("show")) {
+            openDropdown.classList.remove("show");
+          }
+        }
+      } else if (!event.target.matches(".gamedbtn")) {
+        const dropdowns = document.getElementsByClassName("gamedd-content");
+        let i;
+        for (i = 0; i < dropdowns.length; i++) {
+          const openDropdown = dropdowns[i];
+          if (openDropdown.classList.contains("show")) {
+            openDropdown.classList.remove("show");
+          }
+        }
+      } else if (!event.target.matches(".pokerdbtn")) {
+        const dropdowns = document.getElementsByClassName("pokerdd-content");
+        let i;
+        for (i = 0; i < dropdowns.length; i++) {
+          const openDropdown = dropdowns[i];
+          if (openDropdown.classList.contains("show")) {
+            openDropdown.classList.remove("show");
+          }
+        }
+      } else if (!event.target.matches(".headsetdbtn")) {
+        const dropdowns = document.getElementsByClassName("headsetdd-content");
         let i;
         for (i = 0; i < dropdowns.length; i++) {
           const openDropdown = dropdowns[i];
@@ -263,6 +351,33 @@ export default {
       //   this.$router.push("/login");
       // }
       document.getElementById("myDropdown").classList.toggle("show");
+    },
+    myGamepad() {
+      document.getElementById("gamepadDropdown").classList.toggle("show");
+    },
+    myPokerchip() {
+      document.getElementById("pokerchipDropdown").classList.toggle("show");
+    },
+    myHeadset() {
+      document.getElementById("headsetDropdown").classList.toggle("show");
+    },
+    gamepadMouseOver(event) {
+      this.showgamepadData = true;
+    },
+    gamepadMouseLeave() {
+      this.showgamepadData = false;
+    },
+    pokerMouseOver(event) {
+      this.showpokerData = true;
+    },
+    pokerMouseLeave() {
+      this.showpokerData = false;
+    },
+    headsetMouseOver(event) {
+      this.showHeadsetData = true;
+    },
+    headsetMouseLeave() {
+      this.showHeadsetData = false;
     },
   }
 }
@@ -528,7 +643,7 @@ export default {
     .member-center-part {
       
     }
-    .dropdown-content,
+    .dropdown-content, .gamedd-content, .pokerdd-content, .headsetdd-content,
     .child-dropdown {
       // display: none;
       position: absolute;
@@ -542,7 +657,7 @@ export default {
       // margin-top: 10px;
       margin-left: -47px;
     }
-    .dropdown-content {
+    .dropdown-content, .gamedd-content, .pokerdd-content, .headsetdd-content {
       padding: 15px 0 5px;
       opacity: 0;
     }
@@ -614,6 +729,33 @@ export default {
     //   font-weight: 400;
     //   border-top: 1px solid #eeeeee;
     // }
+    .logout-div {
+      width: 140px;
+      height: 22px;
+      border: 1px solid #DBDBDB;
+
+      font-weight: 400;
+      font-size: 10px;
+      color: #7161EF;
+
+      text-align: center;
+      margin: 10px 1rem;
+      cursor: pointer;
+    }
+    .textcss {
+      font-weight: 400;
+      font-size: 14px;
+      color: #000;
+      display: flex;
+      justify-content: center;
+    }
+    .textcss1 {
+      font-weight: 400;
+      font-size: 14px;
+      color: #957FEF;
+      display: flex;
+      justify-content: center;
+    }
 
     .dropdownContentbg {
       background: #f7f2e8;
