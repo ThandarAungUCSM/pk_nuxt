@@ -111,19 +111,30 @@
         <p class="limited-time">年度首檔限時優惠</p>
       </div>
       <div class="right-block">
-        <div>
-          <p class="stage-css">3/4</p>
-        </div>
-        <p class="welcome-back">註冊</p>
+        <div class="right-inner">
+          <div class="row-regi">
+            <img class="back-css" src="../assets/mobile/back-btn.png" @click="backFun(3)" />
+            <p class="welcome-back">註冊</p>
+            <p class="hideright">hi</p>
+          </div>
 
-        <input v-model="account" placeholder="請輸入手機號碼" class="accountCss2" />
+          <input v-model="phoneNo" placeholder="請輸入手機號碼" class="accountCss3" />
 
-        <div class="btn-div">
-          <div class="register-btn" @click="registerFun">下一步</div>
+          <input v-model="dateofBirth" placeholder="1990/04/18" class="accountCss4" />
+          <p class="pwd-valid">請輸入正確生日，以免影響使用權益。</p>
+
+          <div>
+            <div class="gender-group">
+              <p class="gender-css">男</p>
+              <p class="gender-css">女</p>
+              <p class="gender-css">其他</p>
+            </div>
+          </div>
+
+          <div class="btn-div">
+            <div class="register-btn" @click="registerFun">下一步</div>
+          </div>
         </div>
-      </div>
-      <div class="login-div">
-        <span class="tologin" @click="registerFun">登入</span>
       </div>
     </div>
     <div class="mregister-child">
