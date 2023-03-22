@@ -182,19 +182,38 @@
         <p class="limited-time">年度首檔限時優惠</p>
       </div>
       <div class="right-block">
-        <div>
-          <p class="stage-css">4/4</p>
-        </div>
-        <p class="welcome-back">註冊</p>
+        <div class="right-inner">
+          <div class="row-regi">
+            <img class="back-css" src="../assets/mobile/back-btn.png" @click="backFun(3)" />
+            <p class="welcome-back">註冊</p>
+            <p class="hideright">hi</p>
+          </div>
+          
+          <p class="lable1">電子信箱</p>
+          <input v-model="phoneNo" placeholder="example@mail.com" class="accountCss5" />
 
-        <input v-model="account" placeholder="請輸入手機號碼" class="accountCss2" />
+          <p class="lable1">地址</p>
+          <div class="address">
+            <select v-model="cityName" class="member-address-city">
+              <option value="">新北市</option>
+              <option v-for="(city, index) in cityTown" :key="index" :value="city.name">
+                {{ city && city.name }}
+              </option>
+            </select>
+            <select v-model="distinctName" class="member-address-city">
+              <option value="">三重區</option>
+              <option v-for="(city, index) in cityTown" :key="index" :value="city.name">
+                {{ city && city.name }}
+              </option>
+            </select>
+          </div>
+          
+          <input v-model="dateofBirth" placeholder="光復南路三段156巷24號" class="accountCss6" />
 
-        <div class="btn-div">
-          <div class="register-btn" @click="registerFun">下一步</div>
+          <div class="btn-div">
+            <div class="register-btn" @click="registerFun">下一步</div>
+          </div>
         </div>
-      </div>
-      <div class="login-div">
-        <span class="tologin" @click="register">登入</span>
       </div>
     </div>
     <div class="mregister-child">
