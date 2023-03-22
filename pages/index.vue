@@ -21,7 +21,7 @@
       <EachBlock title="玩具公仔" />
     </div>
 
-    <Footer />
+    <Footer page="front" />
   </div>
 </template>
 

@@ -3,7 +3,7 @@
     <div class="top-seller-parent">
       <div class="top-seller-title">
         <span class="topSellerTitle">{{title}}</span>
-        <span class="topSellerSeeMore" @click="gotoDetail">
+        <span class="topSellerSeeMore" @click="gotoCategory">
           <span class="see-text">更多</span>
           <img src="../assets/mobile/seemore.png" alt="" class="seemore" />
         </span>
@@ -55,8 +55,8 @@ export default {
     },
   },
   methods: {
-    gotoDetail() {
-      this.$router.push({ name: "topSeller" });
+    gotoCategory() {
+      this.$router.push({ name: "category" });
     },
   }
 }

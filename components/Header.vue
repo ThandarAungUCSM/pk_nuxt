@@ -1,5 +1,5 @@
 <template>
-  <div class="header-block">
+  <div class="header-block" :class="page && page == 'category' ? 'dropshadow' : ''">
     <b-navbar toggleable="lg" type="dark" variant="info" class="bg-info1">
       <div class="nav-logo">
         <div class="head-left">
@@ -273,6 +273,12 @@
 <script>
 export default {
   name: 'HeaderName',
+  props: {
+    page: {
+      type: String,
+      default: 'page'
+    }
+  },
   data() {
     return {
       totalAllQty: 4,
@@ -540,6 +546,9 @@ export default {
 }
 </style>
 <style lang="scss" scoped>
+.dropshadow {
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.15));
+}
 .header-block {
   position: fixed;
   width: 100%;

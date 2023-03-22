@@ -1,5 +1,5 @@
 <template>
-  <div :class="page && page == 'login' ? 'loginfooter-div' : 'footer-div'">
+  <div :class="page && (page == 'login' || page == 'front' || page == 'category') ? 'loginfooter-div' : 'footer-div'">
     <div v-if="page && page == 'login'" class="loginfooter-block-m">
       <div class="loginfootest-block">
         <div class="m-center">
@@ -89,11 +89,11 @@ export default {
   display: none;
   @media screen and (max-width: 768px) {
     display: block;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
     background: linear-gradient(180deg, #7161EF 0%, #4632E3 100%);
-    padding: 5rem 1rem 2rem 2rem;
+    padding: 3rem 1rem 2rem 2rem;
+    // position: absolute;
+    // bottom: 0;
+    // width: 100%;
 
     position: unset;
     bottom: unset;
@@ -135,6 +135,8 @@ export default {
   display: flex;
   @media screen and (max-width: 768px) {
     margin-top: 2rem;
+    display: flex;
+    align-items: center;
   }
   .fb-css {
     width: 31px;
@@ -149,6 +151,9 @@ export default {
 .footest-block {
   text-align: center;
   margin-top: 5rem;
+  @media screen and (max-width: 768px) {
+    margin-top: 3rem;
+  }
   .footest-txt {
     font-weight: 600;
     font-size: 12px;
