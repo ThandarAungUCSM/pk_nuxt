@@ -56,19 +56,22 @@
         <p class="limited-time">年度首檔限時優惠</p>
       </div>
       <div class="right-block">
-        <div>
-          <p class="stage-css">2/4</p>
-        </div>
-        <p class="welcome-back">註冊</p>
+        <div class="right-inner">
+          <div class="row-regi">
+            <img class="back-css" src="../assets/mobile/back-btn.png" @click="backFun(2)" />
+            <p class="welcome-back">註冊</p>
+            <p class="hideright">hi</p>
+          </div>
 
-        <input v-model="account" placeholder="請輸入帳號" class="accountCss2" />
+          <input v-model="password" placeholder="請輸入新密碼" class="accountCss3" />
+          <p class="pwd-valid">密碼長度為6~16碼，需包含英文字母及數字。</p>
 
-        <div class="btn-div">
-          <div class="register-btn" @click="registerFun">下一步</div>
+          <input v-model="confirmpwd" placeholder="請再輸入相同密碼" class="accountCss2" />
+
+          <div class="btn-div">
+            <div class="register-btn" @click="registerFun">下一步</div>
+          </div>
         </div>
-      </div>
-      <div class="login-div">
-        <span class="tologin" @click="registerFun">登入</span>
       </div>
     </div>
     <div class="mregister-child">
