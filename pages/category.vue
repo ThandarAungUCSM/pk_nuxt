@@ -20,6 +20,9 @@
           </div>
         </div>
       </div>
+      <div class="more-btn">
+        <p class="load-more">載入更多</p>
+      </div>
     </div>
     <Footer page="category" />
   </div>
@@ -178,6 +181,26 @@ export default {
           height: unset;
           position: unset;
         }
+      }
+    }
+  }
+  .more-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 3rem 0 2rem;
+    .load-more {
+      font-weight: 700;
+      font-size: 1rem;
+      color: #957FEF;
+      border: 2px solid #7161EF;
+      border-radius: 49px; 
+      margin-bottom: 0;
+      padding: 10px 4rem; 
+      height: 48px;
+      @media screen and (max-width: 768px) {
+        padding: 5px 4rem;
+        height: 42px;
       }
     }
   }
