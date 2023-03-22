@@ -35,7 +35,9 @@ export default {
         {title: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒", imagePath: require("../assets/mobile/newArrival.png"), price: "$99,999", originalPrice: "99,999", bid: 2},
         {title: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒", imagePath: require("../assets/mobile/newArrival.png"), price: "$99,999", originalPrice: "99,999", bid: 3},
         {title: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒", imagePath: require("../assets/mobile/newArrival.png"), price: "$99,999", originalPrice: "99,999", bid: 4},
-        {title: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒", imagePath: require("../assets/mobile/newArrival.png"), price: "$99,999", originalPrice: "99,999", bid: 5}
+        {title: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒", imagePath: require("../assets/mobile/newArrival.png"), price: "$99,999", originalPrice: "99,999", bid: 5},
+        {title: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒", imagePath: require("../assets/mobile/newArrival.png"), price: "$99,999", originalPrice: "99,999", bid: 6},
+        {title: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒", imagePath: require("../assets/mobile/newArrival.png"), price: "$99,999", originalPrice: "99,999", bid: 7}
       ],
     }
   },
@@ -50,8 +52,15 @@ export default {
 
 <style lang="scss" scoped>
 .category-page {
-  padding: 118px 24px 24px 24px;
+  padding: 156px 81px 24px 81px;
+  @media screen and (max-width: 768px) {
+    padding: 118px 24px 24px 24px;
+  }
   .path-div {
+    margin-left: 0.5%;
+    @media screen and (max-width: 768px) {
+      margin-left: 0;
+    }
     .home-img {
       width: 1rem;
       height: 1rem;
@@ -69,27 +78,31 @@ export default {
   }
   .cate-name {
     font-weight: 700;
-    font-size: 20px;
     color: #000;
-    margin: 1.5rem 0 1rem;
+    font-size: 32px;
+    margin: 1.5rem 0 1rem 0.5%;
+    @media screen and (max-width: 768px) {
+      font-size: 20px;
+      margin: 1.5rem 0 1rem;
+    }
   }
   .category-items {
     display: flex;
-    justify-content: space-between;
     width: 100%;
     flex-wrap: wrap;
     @media screen and (max-width: 768px) {
-      
+      justify-content: space-between;
     }
     .each-item {
-      // cursor: pointer;
-      // width: 20.5%;
-      // border: 1px solid #f8f8f8;
-      // box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
-      // display: inline-block;
-      // margin-right: 24px;
-      // margin-bottom: 1rem;
-      // border-radius: 6px;
+      width: 19%;
+      border: 1px solid #f8f8f8;
+      border-top-left-radius: 6px;
+      border-top-right-radius: 6px;
+      box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
+      display: inline-block;
+      margin: 0 0.5% 2%;
+      border-radius: 6px;
+      cursor: pointer;
       @media screen and (max-width: 768px) {
         width: 47%;
         border: 3px solid #EFEFEF;
@@ -108,8 +121,8 @@ export default {
         }
       }
       .cate-title {
-        color: #4f4f4f;
-        font-weight: normal;
+        color: #3C3C3C;
+        font-weight: 400;
         font-size: 1rem;
         display: block;
 
@@ -124,27 +137,21 @@ export default {
         -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;
         @media screen and (max-width: 768px) {
-          color: #3C3C3C;
-          font-weight: 400;
           font-size: 14px;
-
-          height: 50px;
           line-height: 14px;
         }
       }
       .cate-price {
-        color: #9d8147;
-        font-weight: bold;
+        font-weight: 600;
         font-size: 1rem;
-        font-family: "Roboto", sans-serif;
+        color: #E1460E;
+        position: absolute;
+        bottom: 1rem;
         @media screen and (max-width: 768px) {
-          font-weight: 600;
-          font-size: 1rem;
-
           display: flex;
           align-items: center;
           justify-content: flex-start;
-          color: #E1460E;
+          position: unset;
         }
         .gold-icon {
           @media screen and (max-width: 768px) {
@@ -156,19 +163,20 @@ export default {
         }
       }
       .cate-textdiv {
+        margin: 0;
+        border: 1px solid #f8f8f8;
+        box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
+        border-radius: 6px;
+        
         padding: 10px 12px 16px 12px;
+        height: 150px;
+        position: relative;
         @media screen and (min-width: 1441px) {
-          // width: 11.3em; // comment after using container
-          margin: 0;
-          padding: 7px;
-
-          border: 1px solid #f8f8f8;
-          box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
-          border-radius: 7px;
-          padding: 10px 12px 12px;
         }
         @media screen and (max-width: 768px) {
           padding: 10px 10px 8px;
+          height: unset;
+          position: unset;
         }
       }
     }
