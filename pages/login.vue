@@ -15,13 +15,34 @@
         <p class="forget-pwd">忘記密碼?</p>
 
         <div class="btn-div">
-          <p class="newer-css">新玩家？<span class="register-css">註冊</span></p>
+          <p class="newer-css">新玩家？<span class="register-css" @click="register">註冊</span></p>
+          <div class="register-btn">登入</div>
+        </div>
+      </div>
+    </div>
+    <div class="mlogin-child">
+      <div class="upper-block">
+        <div class="left-block">
+          <p class="big-discount">PK開幕大大大優惠</p>
+          <p class="vis-reality">將虛擬化為現實</p>
+          <p class="limited-time">年度首檔限時優惠</p>
+        </div>
+      </div>
+      <div class="right-block">
+        <p class="welcome-back">歡迎回來</p>
+
+        <input v-model="accNo" placeholder="帳號" class="accountCss1" />
+        <input v-model="password" placeholder="密碼" class="accountCss2" />
+        <p class="forget-pwd">忘記密碼?</p>
+
+        <div class="btn-div">
+          <p class="newer-css">新玩家？<span class="register-css" @click="register">註冊</span></p>
           <div class="register-btn">登入</div>
         </div>
       </div>
     </div>
   </div>
-  <Footer />
+  <Footer :page="pName" />
 </div>
 </template>
 <script>
@@ -31,6 +52,12 @@ export default {
     return{
       accNo: '',
       password: '',
+      pName: 'login'
+    }
+  },
+  methods: {
+    register() {
+      this.$router.push('/register')
     }
   }
 }
@@ -41,7 +68,11 @@ export default {
   min-height: calc(100vh - 80px);
   max-height: calc(100vh - 80px);
   background: linear-gradient(180deg, #6759FF 0%, #957FEF 100%);
-  
+  @media screen and (max-width: 768px) {
+    min-height: unset;
+    max-height: unset;
+    background: #957fef;
+  }
   .login-child {
     display: flex;
     align-items: center;
@@ -49,15 +80,33 @@ export default {
 
     width: 80%;
     margin: 0 auto;
+    @media screen and (max-width: 768px) {
+      display: none;
+    }
+  }
+  .mlogin-child {
+    display: none;
+    @media screen and (max-width: 768px) {
+      display: block;
+      padding-bottom: 5%;
+    }
+  }
+  .upper-block {
+    background: linear-gradient(180deg, #6759FF 0%, #957FEF 100%);
+    padding: 44px 0 0px;
   }
   .left-block {
     border: 2px solid #FFFFFF;
     border-radius: 6px; 
-    width: 55%;
+    width: 65%;
     margin: 4rem 0;
     text-align: center;
     padding-top: 2rem;
     height: 70vh;
+    @media screen and (max-width: 768px) {
+      margin: 0px auto;
+      height: unset;
+    }
     .big-discount, .limited-time {
       font-weight: 700;
       font-size: 20px;
@@ -85,7 +134,10 @@ export default {
     // margin: 0 auto;
     display: flex;
     flex-direction: column;
-
+    @media screen and (max-width: 768px) {
+      width: 90%;
+      margin: -5px auto 0;
+    }
     .welcome-back {
       font-weight: 700;
       font-size: 20px;
