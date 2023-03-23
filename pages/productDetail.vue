@@ -347,17 +347,17 @@ export default {
     }
   }
   .recommend-block {
-    display: none;
+
     @media screen and (max-width: 768px) {
-      display: block;
       padding: 1rem 0px 1rem 10px;
     }
     .recommend-prod {
+      margin: 1rem 0;
       @media screen and (max-width: 768px) {
         font-weight: 700;
         font-size: 16px;
         color: #3C3C3C;
-        margin-bottom: 0;
+        margin: 0;
       }
     }
     .recommend-items {
@@ -369,8 +369,7 @@ export default {
       scrollbar-width: none; 
       overflow-x: scroll;
   
-      margin-left: 67px;
-      width: 96.5%;
+      width: 100%;
       @media screen and (max-width: 768px) {
         display: block;
         overflow: auto;
@@ -379,9 +378,6 @@ export default {
         -ms-overflow-style: none; 
         scrollbar-width: none; 
         overflow-x: scroll;
-
-        margin-left: 0;
-        width: 100%;
       }
       .each-item {
         cursor: pointer;
