@@ -50,8 +50,23 @@
         <img src="../assets/pc/prod2.png" alt="" class="prod-img" />
         <img src="../assets/pc/prod3.png" alt="" class="prod-img" />
       </div>
+      <div class="recommend-block">
+        <p class="recommend-prod">推薦商品</p>
+        <div class="recommend-items">
+          <div v-for="item in items" :key="item.bid" class="each-item" @click="gotoProductDetail(item)">
+            <img :src="item.imagePath" alt="" class="top-seller-img" />
+            <div class="top-seller-textdiv">
+              <span class="top-seller-name">{{ item.title }}</span>
+              <span class="top-seller-price">
+                <img src="../assets/mobile/itemicon_gold.png" class="gold-icon">
+                {{ item.originalPrice }}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <Footer />
+    <Footer page="productDetail" />
   </div>
 </template>
 
@@ -61,7 +76,14 @@ export default {
   name: 'ProductDetail',
   data() {
     return {
-      showArr: 1
+      showArr: 1,
+      items: [
+        {title: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒", imagePath: require("../assets/mobile/newArrival.png"), price: "$99,999", originalPrice: "99,999", bid: 1},
+        {title: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒", imagePath: require("../assets/mobile/newArrival.png"), price: "$99,999", originalPrice: "99,999", bid: 2},
+        {title: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒", imagePath: require("../assets/mobile/newArrival.png"), price: "$99,999", originalPrice: "99,999", bid: 3},
+        {title: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒", imagePath: require("../assets/mobile/newArrival.png"), price: "$99,999", originalPrice: "99,999", bid: 4},
+        {title: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒", imagePath: require("../assets/mobile/newArrival.png"), price: "$99,999", originalPrice: "99,999", bid: 5}
+      ],
     }
   },
   computed: {
@@ -110,6 +132,9 @@ export default {
   align-items: center;
   line-height: 36px;
   margin: auto;
+  @media screen and (max-width: 768px) {
+    margin: 1rem auto;
+  }
 }
 #normalId {
   .el-input-number__decrease,
@@ -149,32 +174,6 @@ export default {
   }
 }
 
-#activeId {
-  .el-input-number__decrease,
-  .el-input-number__increase {
-    color: #fff !important;
-    background: #ceb17d;
-    font-size: 1rem !important;
-    border: 1px solid #ceb17d;
-    top: 0px;
-  }
-  .el-input-number__decrease.is-disabled,
-  .el-input-number__increase.is-disabled {
-    color: #c0c4cc !important;
-    background: #f5f7fa;
-    font-size: 1rem !important;
-    border: 1px solid #bdbdbd;
-    cursor: not-allowed;
-  }
-  .el-input-number__decrease:hover,
-  .el-input-number__increase:hover {
-    color: #ccb170 !important;
-    background: #f7f2e8;
-    font-size: 1rem !important;
-    border: 1px solid #ceb17d;
-    top: 0px;
-  }
-}
 </style>
 
 <style lang="scss" scoped>
@@ -182,38 +181,62 @@ export default {
   padding-top: 156px;
   width: 60%;
   margin: auto auto 96px;
+  @media screen and (max-width: 768px) {
+    padding-top: 100px;
+    width: 100%;
+  }
   .first-row {
     display: flex;
     justify-content: space-between;
     margin-bottom: 64px;
+    @media screen and (max-width: 768px) {
+      flex-direction: column;
+      margin-bottom: 50px;
+    }
     .product-img {
       width: 45%;
+      @media screen and (max-width: 768px) {
+        width: 100%;
+      }
     }
     .prod-data {
       width: 50%;
       margin-top: 50px;
       position: relative;
+      @media screen and (max-width: 768px) {
+        width: 100%;
+        padding: 1rem 0;
+        margin-top: 0;
+      }
       .prod-title {
         font-weight: 400;
         font-size: 20px;
         color: #3C3C3C;
+        @media screen and (max-width: 768px) {
+          padding: 0 1rem;
+        }
       }
       .prod-content {
         font-weight: 400;
         font-size: 16px;
         color: #957FEF;
+        @media screen and (max-width: 768px) {
+          padding: 0 1rem;
+        }
       }
       .prod-price {
         font-weight: 400;
         font-size: 20px;
         color: #E1460E;
+        @media screen and (max-width: 768px) {
+          display: flex;
+          align-items: center;
+          padding: 0 1rem;
+        }
         .gold-icon {
           width: 24px;
           height: 24px;
           @media screen and (max-width: 768px) {
-            width: 18px;
-            height: 18px;
-
             margin-right: 6px;
           }
         }
@@ -222,6 +245,9 @@ export default {
         position: absolute;
         width: 100%;
         bottom: 0;
+        @media screen and (max-width: 768px) {
+          position: unset;
+        }
       }
       .two-btn {
         display: flex;
@@ -252,6 +278,9 @@ export default {
         align-items: center;
         justify-content: center;
         width: 100%;
+        @media screen and (max-width: 768px) {
+          bottom: -30px;
+        }
       }
       .heart-img {
         width: 24px;
@@ -267,35 +296,199 @@ export default {
   }
   .each-row {
     padding-top: 10px;
+    @media screen and (max-width: 768px) {
+      padding: 10px 10px 0;
+    }
   }
   .title-row {
     display: flex;
     align-items: center;
     padding: 5px 0;
+    @media screen and (max-width: 768px) {
+      width: 100%;
+      padding: 5px 0 10px;
+    }
     h2 {
       width: 91%;
       border-bottom: 2px solid #EBE7FF;
       border-radius: 2px;
       line-height: 2px;
       margin: 0;
+      @media screen and (max-width: 768px) {
+        width: 80%;
+      }
     }
     .storeTitle {
       color: #3C3C3C;
       font-weight: 400;
       font-size: 20px;
       width: 9%;
+      @media screen and (max-width: 768px) {
+        font-size: 14px;
+        width: 20%;
+      }
     }
   }
   .prod-img {
     width: 100%;
     max-width: 100%;
     margin-bottom: 5px;
+    @media screen and (max-width: 768px) {
+      margin-bottom: 3px;
+    }
   }
   .prod-description {
     font-weight: 400;
     font-size: 14px;
     color: #3C3C3C;
     margin-bottom: 5px;
+    @media screen and (max-width: 768px) {
+      padding-left: 7px;
+    }
+  }
+  .recommend-block {
+    display: none;
+    @media screen and (max-width: 768px) {
+      display: block;
+      padding: 1rem 0px 1rem 10px;
+    }
+    .recommend-prod {
+      @media screen and (max-width: 768px) {
+        font-weight: 700;
+        font-size: 16px;
+        color: #3C3C3C;
+        margin-bottom: 0;
+      }
+    }
+    .recommend-items {
+      display: block;
+      overflow: auto;
+      white-space: nowrap;
+  
+      -ms-overflow-style: none; 
+      scrollbar-width: none; 
+      overflow-x: scroll;
+  
+      margin-left: 67px;
+      width: 96.5%;
+      @media screen and (max-width: 768px) {
+        display: block;
+        overflow: auto;
+        white-space: nowrap;
+  
+        -ms-overflow-style: none; 
+        scrollbar-width: none; 
+        overflow-x: scroll;
+
+        margin-left: 0;
+        width: 100%;
+      }
+      .each-item {
+        cursor: pointer;
+        width: 20.5%;
+        border: 1px solid #f8f8f8;
+        box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
+        display: inline-block;
+        margin-right: 24px;
+        margin-bottom: 1rem;
+        border-radius: 6px;
+        @media screen and (max-width: 768px) {
+          width: 34%;
+          border: 3px solid #EFEFEF;
+          box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
+          display: inline-block;
+          margin-right: 12px;
+          margin-bottom: 1rem;
+          border-radius: 6px;
+        }
+        .top-seller-img {
+          width: 100%;
+          border-top-left-radius: 7px;
+          border-top-right-radius: 7px;
+          @media screen and (min-width: 1441px) {
+          }
+          @media screen and (max-width: 768px) {
+            border-top-left-radius: 4px;
+            border-top-right-radius: 4px;
+          }
+        }
+        .top-seller-name {
+          color: #4f4f4f;
+          font-weight: normal;
+          font-size: 1rem;
+          display: block;
+  
+          height: 50px;
+          line-height: 25px;
+  
+          display: -webkit-box;
+          overflow: hidden;
+          white-space: normal !important;
+          text-overflow: ellipsis;
+          word-wrap: break-word;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+          @media screen and (max-width: 768px) {
+            color: #3C3C3C;
+            font-weight: 400;
+            font-size: 12px;
+  
+            height: 50px;
+            line-height: 14px;
+          }
+        }
+        .top-seller-price {
+          color: #9d8147;
+          font-weight: bold;
+          font-size: 1rem;
+          font-family: "Roboto", sans-serif;
+          @media screen and (max-width: 768px) {
+            font-weight: 600;
+            font-size: 1rem;
+  
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            color: #E1460E;
+          }
+          .gold-icon {
+            @media screen and (max-width: 768px) {
+              width: 18px;
+              height: 18px;
+  
+              margin-right: 6px;
+            }
+          }
+        }
+        .top-seller-textdiv {
+          padding: 10px 12px 16px 12px;
+          @media screen and (min-width: 1441px) {
+            margin: 0;
+            padding: 7px;
+  
+            border: 1px solid #f8f8f8;
+            box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 7px;
+            padding: 10px 12px 12px;
+          }
+          @media screen and (max-width: 768px) {
+            padding: 10px 10px 8px;
+          }
+        }
+      }
+    }
+    .recommend-items::-webkit-scrollbar {
+      -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+      border-radius: 10px;
+      height: 8px;
+      @media screen and (max-width: 768px) {
+        display: none; 
+      }
+    }
+    .recommend-items::-webkit-scrollbar-thumb {
+      background: #dfdfdf;
+      border-radius: 10px;
+    }
   }
 }
 
