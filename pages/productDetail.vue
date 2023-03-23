@@ -166,10 +166,10 @@ export default {
   }
   .el-input-number__decrease:hover,
   .el-input-number__increase:hover {
-    color: #ccb170 !important;
+    color: #b79ced !important;
     background: #f7f2e8;
     font-size: 1rem !important;
-    border: 1px solid #ceb17d;
+    border: 1px solid #b79ced;
     top: 0px;
   }
 }
