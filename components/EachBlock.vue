@@ -58,6 +58,9 @@ export default {
     gotoCategory() {
       this.$router.push({ name: "category" });
     },
+    gotoProductDetail() {
+      this.$router.push({ name: "productDetail" });
+    }
   }
 }
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <div class="header-block" :class="page && page == 'category' ? 'dropshadow' : ''">
+  <div class="header-block" :class="page && (page == 'category' || page == 'prodDetail') ? 'dropshadow' : ''">
     <b-navbar toggleable="lg" type="dark" variant="info" class="bg-info1">
       <div class="nav-logo">
         <div class="head-left">
