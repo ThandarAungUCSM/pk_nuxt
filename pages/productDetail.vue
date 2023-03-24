@@ -137,18 +137,6 @@ export default {
   font-weight: 700;
   color: #957FEF;
 }
-#collapseProId .el-input__inner {
-  border-radius: 4px !important;
-  border: 1px solid #dcdfe6 !important;
-  color: #333333;
-  font-weight: 500;
-  font-size: 1rem;
-  display: inline-block;
-  height: 36px !important;
-  line-height: 36px !important;
-  padding: 0 15px !important;
-  border-bottom: 1px solid #dcdfe6 !important;
-}
 .el-input-number {
   width: 150px !important;
 
@@ -198,7 +186,6 @@ export default {
     top: 0px;
   }
 }
-
 </style>
 
 <style lang="scss" scoped>
@@ -540,75 +527,6 @@ export default {
       background: #dfdfdf;
       border-radius: 10px;
     }
-  }
-}
-
-.menu-price {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 0 0;
-  .signSize {
-    width: 12px;
-    height: 2px;
-    background: #ccb170;
-  }
-  .common-circle {
-    width: 30px;
-    height: 30px;
-    border-radius: 15px;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .circleMinus {
-    cursor: pointer;
-    background: #fff;
-    border: 1.6px solid #ceb17d;
-    color: #ceb17d;
-    margin-right: 1rem;
-  }
-  .circleMinus1 {
-    cursor: pointer;
-    background: #f2f2f2;
-    border: 1.6px solid #f2f2f2;
-    color: #ccb170;
-    margin-right: 1rem;
-  }
-  .circleMinus2 {
-    cursor: pointer;
-    background: #f2f2f2;
-    border: 1.6px solid #f2f2f2;
-    color: #8f8f8f;
-    margin-right: 1rem;
-  }
-  .circleAdd {
-    cursor: pointer;
-    background: #ceb17d;
-    color: #fff;
-    margin-left: 1rem;
-  }
-  .circleAdd1 {
-    cursor: pointer;
-    background: #fff;
-    border: 1.6px solid #ceb17d;
-    color: #ceb17d;
-    margin-left: 1rem;
-  }
-  .circleAdd2 {
-    cursor: pointer;
-    background: #f2f2f2;
-    border: 1.6px solid #f2f2f2;
-    color: #8f8f8f;
-    margin-left: 1rem;
-  }
-  .plusSign {
-    font-size: 1.2rem;
-  }
-  .count {
-    display: flex;
-    align-items: center;
   }
 }
 </style>

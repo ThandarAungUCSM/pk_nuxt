@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Header />
+    <Header page="prodDetail" @checkAuth="checkAuth" />
     <div class="content-css">
       <div class="banner-block1">
         <Carousel :caro-item="regularBannerBlock1" :current-slide="slide" caro-name="1" />
@@ -26,6 +26,7 @@
 </template>
 
 <script>
+import "element-ui/lib/theme-chalk/index.css";
 export default {
   name: 'IndexPage',
   data() {
@@ -81,11 +82,14 @@ export default {
         }
       ], // Banner2
       currentNo: 1,
-      totalNo: 6
+      totalNo: 6,
+      userLogin: false
     }
   },
   methods: {
-    
+    checkAuth(auth) {
+      this.userLogin = auth
+    },
   }
 }
 </script>
