@@ -1,7 +1,13 @@
 <template>
   <div>
-    <Header page="prodDetail" />
+    <Header page="prodDetail" @checkAuth="checkAuth" />
     <div class="product-page">
+      <div v-if="itemtoCart" class="formobile">
+        <div class="cart-hint">
+          <img src="../assets/mobile/cart-check.png" alt="" class="cart-img" />
+          <p class="txt-cart">已加入購物車</p>
+        </div>
+      </div>
       <div class="first-row">
         <img src="../assets/pc/produ-img.png" alt="" class="product-img" />
         <div id="normalId" class="prod-data">
@@ -18,8 +24,9 @@
               :max="5"
               @change="(currentVal, oldVal) => {updateNum(currentVal, oldVal)}" ></el-input-number>
             <div class="two-btn">
-              <p class="to-cart">加入購物車</p>
-              <p class="buy-now">立即購買</p>
+              <p class="to-cart" @click="addtoCart">加入購物車</p>
+              <p class="buy-now" @click="buyNow">立即購買</p>
+              <loginModal :show="showModal" class="formobile" @close="showModal = false" />
             </div>
           </div>
           <div class="heart-row">
@@ -84,16 +91,34 @@ export default {
         {title: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒", imagePath: require("../assets/mobile/newArrival.png"), price: "$99,999", originalPrice: "99,999", bid: 4},
         {title: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒", imagePath: require("../assets/mobile/newArrival.png"), price: "$99,999", originalPrice: "99,999", bid: 5}
       ],
+      itemtoCart: false,
+      showModal: false
     }
   },
   computed: {
     
   },
   methods: {
+    checkAuth(auth) {
+      this.userLogin = auth
+    },
     updateNum(current, old) {
       console.log('current ', current);
       console.log('old ', old);
-    }
+    },
+    addtoCart() {
+      this.itemtoCart = true;
+      // window.scrollTo(0, 0);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    },
+    buyNow() {
+      if(this.userLogin) {
+        console.log('hi');
+      } else {
+        this.itemtoCart = false;
+        this.showModal = true;
+      }
+    },
   }
 }
 </script>
@@ -184,6 +209,36 @@ export default {
   @media screen and (max-width: 768px) {
     padding-top: 100px;
     width: 100%;
+  }
+  .formobile {
+    display: none;
+    @media screen and (max-width: 768px) {
+      display: block;
+    }
+  }
+  .cart-hint {
+    @media screen and (max-width: 768px) {
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #00FF94;
+    }
+  }
+  .cart-img {
+    @media screen and (max-width: 768px) {
+      width: 20px;
+      height: 20px;
+    }
+  }
+  .txt-cart {
+    @media screen and (max-width: 768px) {
+      font-weight: 400;
+      font-size: 1rem;
+      color: #000;
+      margin-left: 10px;
+      margin-bottom: 0;
+    }
   }
   .first-row {
     display: flex;
