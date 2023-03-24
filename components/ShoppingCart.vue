@@ -17,27 +17,29 @@
           <div class="left-div">
             <p class="tot-text">總計</p>
             <div class="pri-div">
-              <p class="price-text">1,900</p>
+              <p v-if="!emptycart"  class="price-text">1,900</p>
+              <p v-else  class="price-text">0</p>
               <img src="../assets/mobile/itemicon_gold.png" class="gold-icon">
             </div>
           </div>
           <div class="right-div">
-            <b-button size="sm" class="btn-css" @click="hide">前往兌換(3)</b-button>
+            <b-button v-if="!emptycart" size="sm" class="btn-css" @click="hide">前往兌換(3)</b-button>
+            <b-button v-else size="sm" class="empty-btn-css">前往兌換(3)</b-button>
           </div>
         </div>
        </div>
       </template>
       <template #default="{ hide }">
-        <div id="scrollerP">
+        <div id="scrollerP" :class="emptycart ? 'emptybg' : ''">
           <div id="scrollerC">
             <div class="atTop">
-              <div class="px-3 py-3 cart-title">
+              <div v-if="!emptycart" class="px-3 py-3 cart-title">
                 <img class="cartimg" alt="shoppingCart" src="../assets/mobile/shopping-cart.png" />
                 <span class="cart-txt" @click="hide">購物車</span>
               </div>
-              <div class="sele-all-btn">
+              <div class="sele-all-btn" :class="emptycart ? 'sele-all-btn1' : ''">
                 <!-- <p class="select-all-txt" @click="selectAll">全選</p> -->
-                <div class="select-all-txt1">
+                <div :class="emptycart ? 'emptycss' : ''" class="select-all-txt1">
                   <el-checkbox v-model="checkAll" :indeterminate="isIndeterminate" @change="handleCheckAllChange">全選</el-checkbox>
                 </div>
                 <img class="cartimg" alt="shoppingCart" src="../assets/mobile/m-close.png" @click="hide" />
@@ -45,7 +47,7 @@
 
               <!-- <el-checkbox v-model="checkAll" :indeterminate="isIndeterminate" @change="handleCheckAllChange">Check all</el-checkbox> -->
               <!-- <div style="margin: 15px 0;"></div> -->
-              <el-checkbox-group v-model="checkedCities" class="checkGro" @change="handleCheckedCitiesChange">
+              <el-checkbox-group  v-if="!emptycart" v-model="checkedCities" class="checkGro" @change="handleCheckedCitiesChange">
                 <el-checkbox v-for="city in cities" :key="city" :label="city">
                   <div class="collapse-items1">
                     <div class="menu-left">
@@ -75,6 +77,16 @@
                   </div>
                 </el-checkbox>
               </el-checkbox-group>
+
+              <div class="empty-block">
+                <img class="empty-img" alt="shoppingCart" src="../assets/mobile/empty-cart.png" />
+                <p class="empty-text">
+                  車是空的，趕快去買東西吧~
+                </p>
+                <div class="btn-empty">
+                  <p class="empty-btn">去逛逛</p>
+                </div>
+              </div>
             </div>
             
           </div>
@@ -92,6 +104,7 @@ export default {
   props: ["showCart"],
   data() {
     return {
+      emptycart: true,
       selectedCartList: [],
       selectedItem: "",
       showDropdown: false,
@@ -218,6 +231,16 @@ export default {
       border-color: #000 !important;
       border-radius: 12px;  
     }
+    .empty-btn-css {
+      @media screen and (max-width: 768px) {
+        font-weight: 700;
+        font-size: 1rem;
+        color: #FFF;
+        background-color: #E3E3E3 !important;
+        border-color: #E3E3E3 !important;
+        border-radius: 12px; 
+      }
+    }
   }
 }
 </style>
@@ -280,6 +303,11 @@ export default {
   // box-shadow: 0px -1px 3px #e0e0e0;
   // box-shadow: 0px -1px 8px 1px rgba(0, 0, 0, 0.06);
 }
+.emptybg {
+  @media screen and (max-width: 768px) {
+    background: #FFF;
+  }
+}
 .atTop {
   position: fixed;
   width: 100%;
@@ -317,6 +345,56 @@ export default {
       padding: 28px;
     }
   }
+  .sele-all-btn1 {
+    @media screen and (max-width: 768px) {
+      box-shadow: unset !important;
+      padding: 28px;
+    }
+  }
+  .empty-block {
+    @media screen and (max-width: 768px) {
+      display: flex;
+      flex-direction: column;
+      background: #FFF;
+      justify-content: center;
+      align-items: center;
+      padding-top: calc(25vh - 80px);
+    }
+    .empty-img {
+      @media screen and (max-width: 768px) {
+        width: 180px;
+        height: 180px;
+      }
+    }
+    .empty-text {
+      @media screen and (max-width: 768px) {
+        font-weight: 400;
+        font-size: 1rem;
+        color: #B79CED;
+        margin: 2rem 0;
+      }
+    }
+    .btn-empty {
+      @media screen and (max-width: 768px) {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .empty-btn {
+        @media screen and (max-width: 768px) {
+          background: #E9B531;
+          border-radius: 24px;
+          font-weight: 700;
+          font-size: 1rem;
+          color: #FFF;
+          margin-bottom: 0;
+          padding: 0 3rem;
+          height: 36px;
+          line-height: 36px;
+        }
+      }
+    }
+  }
   .select-all-txt, .select-all-txt1 {
     font-weight: 400;
     font-size: 14px;
@@ -331,6 +409,11 @@ export default {
   }
   .select-all-txt1 {
     padding: 3px 1.5rem;
+  }
+  .emptycss {
+    @media screen and (max-width: 768px) {
+      visibility: hidden;
+    }
   }
   .cartimg {
     display: none;
