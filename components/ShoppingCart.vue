@@ -40,7 +40,7 @@
                 <div class="select-all-txt1">
                   <el-checkbox v-model="checkAll" :indeterminate="isIndeterminate" @change="handleCheckAllChange">全選</el-checkbox>
                 </div>
-                <img class="cartimg" alt="shoppingCart" src="../assets/mobile/m-close.png" />
+                <img class="cartimg" alt="shoppingCart" src="../assets/mobile/m-close.png" @click="hide" />
               </div>
 
               <!-- <el-checkbox v-model="checkAll" :indeterminate="isIndeterminate" @change="handleCheckAllChange">Check all</el-checkbox> -->
@@ -163,6 +163,9 @@ export default {
   align-items: center;
   width: 90%;
   margin: auto;
+  @media screen and (max-width: 768px) {
+    width: 98%;
+  }
   .left-div {
     background: #F9F9F9;
     border-radius: 12px;
@@ -170,6 +173,10 @@ export default {
     justify-content: space-between;
     padding: 10px 1rem;
     width: 200px;
+    @media screen and (max-width: 768px) {
+      height: 45px;
+      width: 63%;
+    }
     .tot-text {
       margin-bottom: 0;
       font-weight: 400;
@@ -178,12 +185,18 @@ export default {
     }
     .pri-div {
       display: flex;
+      align-items: center;
       .price-text {
         font-weight: 400;
         font-size: 14px;
         color: #AFAFAF;
         margin-bottom: 0;
         margin-right: 7px;
+        @media screen and (max-width: 768px) {
+          font-weight: 700;
+          font-size: 20px;
+          color: #000;
+        }
       }
       .gold-icon {
         width: 24px;
@@ -192,6 +205,11 @@ export default {
     }
   }
   .right-div {
+    @media screen and (max-width: 768px) {
+      width: 35%;
+      display: flex;
+      justify-content: flex-end;
+    }
     .btn-css {
       font-weight: 700;
       font-size: 1rem;
@@ -402,7 +420,7 @@ export default {
     padding-bottom: 1rem;
     // border-bottom: 2px solid #f9f8f8;
     @media screen and (max-width: 768px) {
-      padding-bottom: 10px;
+      padding-bottom: 0px;
     }
     .orderFalse {
       position: relative;
@@ -538,6 +556,9 @@ export default {
     justify-content: space-between;
     align-items: center;
     padding: 10px 0 0;
+    @media screen and (max-width: 768px) {
+      padding: 0;
+    }
     .gold-price {
       font-weight: 700;
       font-size: 16px;
@@ -671,6 +692,7 @@ export default {
     border-bottom: 3px solid #f9f8f8;
     @media screen and (max-width: 768px) {
       padding: 0 10px;
+      border-bottom: 3px solid #b79ced;
     }
   }
 
@@ -694,6 +716,12 @@ export default {
   .select-all-txt1 {
     .el-checkbox__input {
       display: none;
+    }
+    label {
+      @media screen and (max-width: 768px) {
+        padding: 0 10px;
+        border-bottom: unset;
+      }
     }
   }
 }
@@ -735,6 +763,9 @@ div#shopping-cart-header {
     font-size: 20px;
     font-weight: 700;
     color: #957FEF;
+    @media screen and (max-width: 768px) {
+      font-size: 1rem;
+    }
   }
   .el-input-number {
     width: 130px !important;
@@ -747,6 +778,10 @@ div#shopping-cart-header {
     margin-left: 0;
     @media screen and (max-width: 768px) {
       margin: 1rem auto;
+      margin-left: 0;
+      margin-top: 7px;
+      margin-bottom: 7px;
+      padding-left: 0;
     }
   }
 }
