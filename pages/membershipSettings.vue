@@ -107,7 +107,7 @@
 </template>
 <script>
 export default {
-  name: 'MemberPage',
+  name: 'MemberSetting',
   data() {
     return {
       currentTab: 1
