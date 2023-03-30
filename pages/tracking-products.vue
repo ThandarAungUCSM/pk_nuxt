@@ -70,6 +70,7 @@ export default {
   background: #eae9f4;
   @media screen and (max-width: 768px) {
     padding: 118px 24px 24px 24px;
+    background: #FFF;
   }
   .path-div {
     margin-left: 0.5%;
@@ -84,6 +85,9 @@ export default {
       width: 14px;
       height: 14px;
       visibility: hidden;
+      @media screen and (max-width: 768px) {
+        display: none;
+      }
     }
     .home-txt {
       font-weight: 400;
@@ -114,12 +118,19 @@ export default {
     .noproductimg {
       width: 240px;
       height: 240px;
+      @media screen and (max-width: 768px) {
+        width: 200px;
+        height: 200px;
+      }
     }
     .datanull-text {
       font-weight: 400;
       font-size: 20px;
       color: #B79CED;
-      margin: 2rem;
+      margin: 2rem 0;
+      @media screen and (max-width: 768px) {
+        font-size: 1rem;
+      }
     }
     .goshop-css {
       background: #E9B531;
@@ -132,6 +143,9 @@ export default {
       display: flex;
       align-items: center;
       justify-content: center;
+      @media screen and (max-width: 768px) {
+        font-size: 14px;
+      }
     }
   }
   .category-items {
@@ -215,6 +229,9 @@ export default {
           font-size: 24px;
           color: #E1460E;
           margin-left: 10px;
+          @media screen and (max-width: 768px) {
+            font-size: 1rem;
+          }
         }
       }
       .cate-textdiv {
