@@ -98,7 +98,7 @@
             />
           </div>
           <div class="submit-block">
-            <p class="submit-btn">儲存</p>
+            <p class="submit-btn" @click="saveData">儲存</p>
           </div>
         </div>
       </div>
@@ -120,6 +120,11 @@ export default {
       cityName: '',
       distinctName: '',
       streetText: '光復南路三段156巷24號'
+    }
+  },
+  methods: {
+    saveData() {
+      alert('Success!!')
     }
   }
 }

@@ -276,6 +276,7 @@
 </template>
 
 <script>
+import "element-ui/lib/theme-chalk/index.css";
 export default {
   name: 'HeaderName',
   props: {
@@ -288,7 +289,7 @@ export default {
     return {
       totalAllQty: 4,
       showCart: false,
-      userLogin: false,
+      userLogin: true,
       showmemberData: false,
       showgamepadData: false,
       showpokerData: false,
