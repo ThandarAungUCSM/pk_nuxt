@@ -254,8 +254,8 @@
           <b-navbar-nav>
             <b-nav-item v-b-toggle.shopping-cart-header class="cartcss" @click="clickCart">
               <img class="m-shopping-css" alt="web store logo" src="../assets/mobile/shopping-cart.png" />
-              <div v-show="totalAllQty > 0" class="cart-txt circle">
-                <span>{{ totalAllQty }}</span>
+              <div v-show="updatetotalAllQty > 0" class="cart-txt circle">
+                <span>{{ updatetotalAllQty }}</span>
               </div>
             </b-nav-item>
           </b-navbar-nav>
@@ -277,6 +277,7 @@
 
 <script>
 import "element-ui/lib/theme-chalk/index.css";
+import { mapState, mapActions } from "vuex";
 export default {
   name: 'HeaderName',
   props: {
@@ -288,6 +289,20 @@ export default {
   data() {
     return {
       totalAllQty: 4,
+      cartLists: [
+        {
+          "data": {title: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒", imagePath: require("../assets/mobile/newArrival1.png"), price: "$99,999", originalPrice: "99,999", bid: 1}, "quantity":1
+        },
+        {
+          "data": {title: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒", imagePath: require("../assets/mobile/newArrival1.png"), price: "$99,999", originalPrice: "99,999", bid: 2}, "quantity":2
+        },
+        {
+          "data": {title: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒", imagePath: require("../assets/mobile/newArrival1.png"), price: "$99,999", originalPrice: "99,999", bid: 3}, "quantity":3
+        },
+        {
+          "data": {title: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒", imagePath: require("../assets/mobile/newArrival1.png"), price: "$99,999", originalPrice: "99,999", bid: 4}, "quantity":4
+        }
+      ],
       showCart: false,
       userLogin: true,
       showmemberData: false,
@@ -296,9 +311,18 @@ export default {
       showHeadsetData: false,
     }
   },
+  computed: {
+    ...mapState({
+      updatetotalAllQty: state => state.cart.quantity,
+      updatecartLists: state => state.cart.cartLists,
+    }),
+  },
   created() {
     this.$emit("checkAuth", this.userLogin);
-  },
+
+    this.setCartQty(this.totalAllQty);
+    this.setCartList(this.cartLists);
+  }, 
   beforeMount() {
     // Close the dropdown if the user clicks outside of it
     window.onclick = function (event) {
@@ -342,6 +366,7 @@ export default {
     };
   },
   methods: {
+    ...mapActions("cart", ["setCartQty", "setCartList"]),
     linkToHome() {
       this.$router.push("/");
     },

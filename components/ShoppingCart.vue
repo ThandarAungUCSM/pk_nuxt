@@ -78,7 +78,7 @@
                 </el-checkbox>
               </el-checkbox-group>
 
-              <div class="empty-block">
+              <div class="empty-block" :class="emptycart == false ? 'showData' : ''">
                 <img class="empty-img" alt="shoppingCart" src="../assets/mobile/empty-cart.png" />
                 <p class="empty-text">
                   車是空的，趕快去買東西吧~
@@ -97,14 +97,14 @@
 </template>
 
 <script>
-const cityOptions = ['Shanghai', 'Beijing', 'Guangzhou', 'Shenzhen'];
+// const cityOptions = ['Shanghai', 'Beijing', 'Guangzhou', 'Shenzhen'];
 export default {
   name: "ShoppingCart",
   components: {},
   props: ["showCart"],
   data() {
     return {
-      emptycart: true,
+      emptycart: false,
       selectedCartList: [],
       selectedItem: "",
       showDropdown: false,
@@ -123,7 +123,8 @@ export default {
 
       checkAll: false,
       checkedCities: ['Shanghai', 'Beijing'],
-      cities: cityOptions,
+      // cityOptions: ['Shanghai', 'Beijing', 'Guangzhou', 'Shenzhen'],
+      cities: ['Shanghai', 'Beijing', 'Guangzhou', 'Shenzhen'],
       isIndeterminate: true,
       showArr: 3,
       allSelect: false
@@ -142,7 +143,7 @@ export default {
       
     },
     handleCheckAllChange(val) {
-      this.checkedCities = val ? cityOptions : [];
+      this.checkedCities = val ? this.cities : [];
       this.isIndeterminate = false;
     },
     // selectAll() {
@@ -394,6 +395,9 @@ export default {
         }
       }
     }
+  }
+  .showData {
+    display: none;
   }
   .select-all-txt, .select-all-txt1 {
     font-weight: 400;

@@ -17,11 +17,11 @@
         </div>
       </div>
       <div v-else class="category-items">
-        <div v-for="item in showItems" :key="item.bid" class="each-item">
+        <div v-for="(item, index) in showItems" :key="item.bid" class="each-item">
           <img :src="item.imagePath" alt="" class="cate-img" />
           <div class="overlap-css">
-            <img src="../assets/pc/btn-checkout.png" class="checkout-icon">
-            <img src="../assets/pc/btn-hearted.png" class="hearted-icon">
+            <img src="../assets/pc/btn-checkout.png" class="checkout-icon" @click="addToCart(index, item)">
+            <img src="../assets/pc/btn-hearted.png" class="hearted-icon" @click="removeFromList(index, item)">
           </div>
           <div class="cate-textdiv">
             <span class="cate-title">{{ item.title }}</span>
@@ -39,6 +39,7 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from "vuex";
 export default {
   name: 'TrackingProductsPage',
   data() {
@@ -56,10 +57,26 @@ export default {
     }
   },
   computed: {
-    
+    ...mapGetters("cart", {
+      cartItems: "cartProducts"
+    })
   },
   methods: {
-    
+    ...mapActions("cart", ["addProductToCart"]),
+    removeFromList(position, data) {
+      this.showItems.splice(position, 1)
+      console.log(this.showItems);
+    },
+    addToCart(position, data) {
+      const product = data;
+      this.addProductToCart(product);
+      this.$message({
+        message: "商品成功放入購物車",
+        type: "success",
+        duration: 2000,
+      });
+      this.$forceUpdate();
+    }
   }
 }
 </script>
