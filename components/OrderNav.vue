@@ -53,15 +53,15 @@ export default {
   }
   .activeCss {
     @media screen and (max-width: 768px) {
-      border-bottom: 2px solid #CEB17D;
+      border-bottom: 2px solid #6100FF;
     }
   }
   .paddingCss {
     padding-left: 28px;
     padding-right: 28px;
     @media screen and (max-width: 768px) {
-      padding-left: 0;
-      padding-right: 0;
+      padding-left: 5px;
+      padding-right: 5px;
 
       height: 44px;
       display: flex;
@@ -75,8 +75,8 @@ export default {
       padding-bottom: 5px;
       cursor: pointer;
       @media screen and (max-width: 768px) {
-        font-weight: 500;
-        font-size: 0.875rem;
+        font-weight: 400;
+        font-size: 1rem;
         padding-bottom: 0;
         border-bottom: 0;
       }

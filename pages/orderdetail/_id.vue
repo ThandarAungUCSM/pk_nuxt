@@ -1,6 +1,16 @@
 <template>
   <div>
-    <Header />
+    <Header class="forPC" />
+    <div class="formobile titlem">
+      <div class="pc-back">
+        <img src="../../assets/mobile/btn-return.png" class="back-icon">
+      </div>
+      <div class="title-div">
+        <img src="../../assets/mobile/notebook.png" class="notebook-icon">
+        <span class="setting-title">兌換清單</span>
+      </div>
+      <div class="visibleHidden">hi</div>
+    </div>
     <div class="pc-true">
       <b-container class="orderDetail bg-color">
         <div class="leftdiv">
@@ -18,6 +28,13 @@
               </div>
             </div>
           </div>
+          <div class="m-price1-block">
+            <div class="methods-div">
+              <p class="title-txt">運送資訊</p>
+              <p class="method-txt">宅配到府 </p>
+              <p class="method-txt">包裹查詢碼 - 65416546516316</p>
+            </div>
+          </div>
           <div class="title-block">
             <p class="title-txt">收件資訊</p>
             <div class="detail-content">
@@ -31,7 +48,7 @@
                 <p class="right-facts">09-12345678</p>
                 <p class="right-facts"> 王大明 </p>
                 <p class="right-facts"> 新北市 三重區 光復南路三段156巷24號 </p>
-                <p class="right-facts">宅配到府</p>
+                <p class="right-facts m-hide">宅配到府</p>
               </div>
             </div>
           </div>
@@ -93,6 +110,7 @@
               <img src="../../assets/pc/shipping-icon.png" class="shipping-icon">
             </div>
           </div>
+          <p class="m-delivery-status">*<span>關於配送狀態</span></p>
           <div class="third-row">
             <p class="code-txt">兌換編號 GSDVSD54VFDF</p>
             <div class="copy-div">
@@ -163,11 +181,72 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+.forPC {
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
+}
+.formobile {
+  display: none;
+  @media screen and (max-width: 768px) {
+    display: block;
+  }
+  .pc-back {
+    @media screen and (max-width: 768px) {
+      display: flex;
+    }
+    .back-icon {
+      width: 36px;
+      height: 36px;
+    }
+  }
+  .title-div {
+    text-align: center;
+    padding: 1rem;
+    @media screen and (max-width: 768px) {
+      text-align: left;
+      padding: 0;
+    }
+    .setting-title {
+      font-weight: 400;
+      font-size: 16px;
+      padding-left: 0px;
+      @media screen and (max-width: 768px) {
+        color: #FFF;
+      }
+    }
+    .notebook-icon {
+      width: 24px;
+      height: 24px;
+      margin-right: 7px;
+    }
+  }
+}
+.titlem {
+  @media screen and (max-width: 768px) {
+    background: #7161EF;
+    height: 114px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    padding: 1rem;
+
+    position: fixed;
+    width: 100%;
+    z-index: 999;
+  }
+  .visibleHidden {
+    visibility: hidden;
+  }
+}
 .pc-true {
   display: flex;
   padding-top: 140px;
   background: #eae9f4;
   min-height: 100vh;
+  @media screen and (max-width: 768px) {
+    padding-top: 114px;
+  }
 }
 .orderDetail {
   width: 80%;
@@ -175,9 +254,18 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  @media screen and (max-width: 768px) {
+    width: 100%;
+    margin: auto;
+    flex-direction: column-reverse;
+    padding-left: 0;
+    padding-right: 0;
+  }
   .leftdiv {
     width: 63%;
-    
+    @media screen and (max-width: 768px) {
+      width: 100%;
+    }
     .title {
       padding: 1rem 2rem;
       border-radius: 5px 5px 0 0;
@@ -185,6 +273,9 @@ export default {
       align-items: center;
       margin-bottom: 2px;
       background: #fff;
+      @media screen and (max-width: 768px) {
+        padding: 1rem;
+      }
       .storeName {
         margin-bottom: 0;
         padding-right: 1rem;
@@ -196,17 +287,25 @@ export default {
     .product-block {
       padding: 1.5rem 2rem 0.5rem;
       background: #fff;
+      @media screen and (max-width: 768px) {
+        padding: 10px 1rem;
+      }
       .each-product {
         display: flex;
         align-items: flex-end;
         background: #fff;
         margin-bottom: 1rem;
+        @media screen and (max-width: 768px) {
+        }
         .product-icon {
           width: 64px;
           height: 64px;
         }
         .product-div {
           padding-left: 1rem;
+          @media screen and (max-width: 768px) {
+            padding-left: 10px;
+          }
           .product-text {
             font-weight: 400;
             font-size: 12px;
@@ -220,19 +319,34 @@ export default {
           }
         }
       }
+      .each-product:last-child {
+        @media screen and (max-width: 768px) {
+          margin-bottom: 0;
+        }
+      }
     }
     .title-block {
       background: #FFF;
       margin-top: 7px;
       padding: 1rem 2rem;
+      @media screen and (max-width: 768px) {
+        margin-top: 1px;
+        padding: 1rem;
+      }
       .title-txt {
         font-weight: 400;
         font-size: 1rem;
         color: #2C2C2C;
+        @media screen and (max-width: 768px) {
+          margin-bottom: 5px;
+        }
       }
       .detail-content {
         display: flex;
         .detail-left {
+          @media screen and (max-width: 768px) {
+            display: none;
+          }
           .left-facts {
             font-weight: 400;
             font-size: 12px;
@@ -249,6 +363,14 @@ export default {
             font-size: 12px;
             color: #3C3C3C;
             margin-bottom: 7px;
+            @media screen and (max-width: 768px) {
+              margin-bottom: 4px;
+            }
+          }
+          .m-hide {
+            @media screen and (max-width: 768px) {
+              display: none;
+            }
           }
         }
       }
@@ -257,10 +379,17 @@ export default {
       background: #FFF;
       margin-top: 7px;
       padding: 1rem 2rem;
+      @media screen and (max-width: 768px) {
+        margin-top: 2px;
+        padding: 1rem;
+      }
       .title-txt {
         font-weight: 400;
         font-size: 1rem;
         color: #2C2C2C;
+        @media screen and (max-width: 768px) {
+          margin-bottom: 5px;
+        }
       }
       
       .detail-content {
@@ -278,6 +407,9 @@ export default {
             font-size: 14px;
             color: #000;
             margin-bottom: 7px;
+            @media screen and (max-width: 768px) {
+              margin-bottom: 4px;
+            }
           }
         }
         .detail-right {
@@ -286,12 +418,18 @@ export default {
             font-size: 14px;
             color: #957FEF;
             margin-bottom: 7px;
+            @media screen and (max-width: 768px) {
+              margin-bottom: 4px;
+            }
           }
           .price1-amount {
             font-weight: 600;
             font-size: 16px;
             color: #E1460E;
             margin-bottom: 7px;
+            @media screen and (max-width: 768px) {
+              margin-bottom: 4px;
+            }
           }
         }
       }
@@ -300,6 +438,9 @@ export default {
       background: #FFF;
       margin-top: 7px;
       padding: 1rem 2rem;
+      @media screen and (max-width: 768px) {
+        display: none;
+      }
       .methods-div {
         display: flex;
         align-items: center;
@@ -327,10 +468,51 @@ export default {
         margin-bottom: 2px;
       }
     }
+    .m-price1-block {
+      display: none;
+      @media screen and (max-width: 768px) {
+        display: block;
+        background: #FFF;
+        margin-top: 2px;
+        padding: 1rem;
+      }
+      .methods-div {
+        @media screen and (max-width: 768px) {
+        }
+      }
+      .title-txt {
+        @media screen and (max-width: 768px) {
+          font-weight: 400;
+          font-size: 1rem;
+          color: #2C2C2C;
+          margin-right: 3rem;
+          margin-bottom: 5px;
+        }
+      }
+      .method-txt {
+        font-weight: 400;
+        font-size: 12px;
+        color: #3C3C3C;
+      }
+      .detail-content {
+        display: flex;
+        justify-content: space-between;
+      }
+      .hidee {
+        visibility: hidden;
+      }
+      p {
+        margin-bottom: 2px;
+      }
+    }
     .apply-block {
       background: #FFF;
       margin-top: 7px;
       padding: 10px 2rem;
+      @media screen and (max-width: 768px) {
+        margin-top: 2px;
+        padding: 10px 1rem;
+      }
       .apply-txt {
         font-weight: 400;
         font-size: 1rem;
@@ -345,7 +527,15 @@ export default {
     background: #FFFFFF;
     border-radius: 12px;
     padding: 1rem 1.5rem;
+    @media screen and (max-width: 768px) {
+      width: 100%;
+      padding: 1rem 0 0;
+    }
     .first-row {
+      @media screen and (max-width: 768px) {
+        padding-left: 15px;
+        padding-right: 15px;
+      }
       .calen-icon {
         width: 18px;
         height: 18px;
@@ -362,6 +552,9 @@ export default {
       padding: 1rem 0;
       justify-content: space-between;
       align-items: center;
+      @media screen and (max-width: 768px) {
+        padding: 0 15px;
+      }
       .leftpart {
         .shipping-status {
           font-weight: 400;
@@ -389,6 +582,10 @@ export default {
       display: flex;
       justify-content: space-between;
       padding: 10px 1rem;
+      @media screen and (max-width: 768px) {
+        border-radius: 0;
+        margin-top: 1rem;
+      }
       .code-txt {
         font-weight: 700;
         font-size: 1rem;
@@ -413,6 +610,24 @@ export default {
       font-size: 14px;
       color: #957FEF;
       margin-top: 1rem;
+      @media screen and (max-width: 768px) {
+        display: none;
+      }
+      span {
+        text-decoration: underline;
+      }
+    }
+    .m-delivery-status {
+      display: none;
+      @media screen and (max-width: 768px) {
+        display: block;
+        font-weight: 400;
+        font-size: 14px;
+        color: #957FEF;
+        padding-left: 15px;
+        padding-right: 15px;
+        margin-top: -1rem;
+      }
       span {
         text-decoration: underline;
       }

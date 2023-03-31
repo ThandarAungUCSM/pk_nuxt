@@ -14,6 +14,9 @@
           <img src="../assets/pc/product-img.png" class="product-icon">
           <span class="product-text">山丘藍台灣藍莓 5盒裝 單盒淨重 100公克 ×5 盒...</span>
         </div>
+        <div class="m-four">
+          <p class="btn-row">檢視其他商品</p>
+        </div>
         <div class="third-col">
           <div class="row1">
             <span class="total-exchange">兌換總額 5,000</span>
@@ -71,11 +74,15 @@ export default {
     margin-bottom: 0rem;
     padding-left: 0;
     padding-right: 0;
+    border-bottom: 5px solid #6e00fa;
   }
   .order-product {
     background: #FFFFFF;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
     border-radius: 12px;
+    @media screen and (max-width: 768px) {
+      border-radius: 0;
+    }
     .product-title {
       display: flex;
       justify-content: space-between;
@@ -89,6 +96,9 @@ export default {
       background: #E3D5FF;
       border-top-left-radius: 12px;
       border-top-right-radius: 12px;
+      @media screen and (max-width: 768px) {
+        border-radius: 0;
+      }
       .order-number {
         color: #2C2C2C;
         font-weight: 400;
@@ -100,9 +110,17 @@ export default {
       align-items: center;
       justify-content: space-between;
       padding: 14px 2rem 14px 1.5rem;
+      @media screen and (max-width: 768px) {
+        padding: 14px 1.5rem 14px 1.5rem;
+        flex-direction: column;
+        align-items: flex-start;
+      }
       cursor: pointer;
       .first-col {
-
+        @media screen and (max-width: 768px) {
+          padding-bottom: 1rem;
+          width: 100%;
+        }
         .calen-icon {
           width: 18px;
           height: 18px;
@@ -115,6 +133,11 @@ export default {
         }
       }
       .second-col {
+        @media screen and (max-width: 768px) {
+          display: flex;
+          align-items: flex-start;
+          width: 100%;
+        }
         .product-icon {
           width: 64px;
           height: 64px;
@@ -126,12 +149,41 @@ export default {
           margin-left: 7px;
         }
       }
+      .m-four {
+        display: none;
+        @media screen and (max-width: 768px) {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border: 1px solid #B38BFF;
+          border-radius: 12px;
+          width: 100%;
+          margin: 1rem 0;
+          height: 25px;
+        }
+        .btn-row {
+          font-weight: 400;
+          font-size: 12px;
+          color: #A97BFF;
+          margin-bottom: 0;
+        }
+      }
       .third-col {
+        @media screen and (max-width: 768px) {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          flex-direction: row-reverse;
+          width: 100%;
+        }
         .row1 {
           display: flex;
           align-items: center;
           justify-content: flex-end;
           margin-bottom: 5px;
+          @media screen and (max-width: 768px) {
+            margin-bottom: 0;
+          }
           .total-exchange {
             font-weight: 500;
             font-size: 16px;

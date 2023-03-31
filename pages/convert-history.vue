@@ -1,7 +1,17 @@
 <template>
   <div>
     <div>
-      <Header />
+      <Header class="forPC" />
+      <div class="formobile titlem">
+        <div class="pc-back">
+          <img src="../assets/mobile/btn-return.png" class="back-icon">
+        </div>
+        <div class="title-div">
+          <img src="../assets/mobile/notebook.png" class="notebook-icon">
+          <span class="setting-title">兌換清單</span>
+        </div>
+        <div class="visibleHidden">hi</div>
+      </div>
       <div class="order-parent">
         <b-container class="orderPage">
           <OrderNav :orders="orders" @changeIndex="changeIndex"></OrderNav>
@@ -137,15 +147,76 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+.forPC {
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
+}
+.formobile {
+  display: none;
+  @media screen and (max-width: 768px) {
+    display: block;
+  }
+  .pc-back {
+    @media screen and (max-width: 768px) {
+      display: flex;
+    }
+    .back-icon {
+      width: 36px;
+      height: 36px;
+    }
+  }
+  .title-div {
+    text-align: center;
+    padding: 1rem;
+    @media screen and (max-width: 768px) {
+      text-align: left;
+      padding: 0;
+    }
+    .setting-title {
+      font-weight: 400;
+      font-size: 16px;
+      padding-left: 0px;
+      @media screen and (max-width: 768px) {
+        color: #FFF;
+      }
+    }
+    .notebook-icon {
+      width: 24px;
+      height: 24px;
+      margin-right: 7px;
+    }
+  }
+}
+.titlem {
+  @media screen and (max-width: 768px) {
+    background: #7161EF;
+    height: 114px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    padding: 1rem;
+
+    position: fixed;
+    width: 100%;
+    z-index: 999;
+  }
+  .visibleHidden {
+    visibility: hidden;
+  }
+}
 .order-parent {
   background: #eae9f4;
   padding-top: 156px;
   padding-bottom: 70px;
   min-height: calc(100vh - 80px);
+  @media screen and (max-width: 768px) {
+    padding-top: 114px;
+  }
 }
 .orderPage {
   @media screen and (max-width: 768px) {
-    padding-top: 47px;
+    padding-top: 0px;
     width: 100%;
     max-width: 100%;
     padding-left: 0;
@@ -153,7 +224,7 @@ export default {
   }
   .m-pad {
     @media screen and (max-width: 768px) {
-      margin-top: 44px;
+      padding-top: 44px;
     }
   }
 }
