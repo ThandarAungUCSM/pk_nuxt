@@ -63,7 +63,7 @@ export default {
     },
     loginProcess() {
       if(this.accNo === 'firefly' && this.password === '123456') {
-        // alert('Success !!')
+        alert('Success !!')
         this.updateLogin(true);
         this.$router.push('/')
       }
