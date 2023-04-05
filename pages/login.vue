@@ -16,7 +16,7 @@
 
         <div class="btn-div">
           <p class="newer-css">新玩家？<span class="register-css" @click="register">註冊</span></p>
-          <div class="register-btn" @click="loginProcess">登入</div>
+          <div class="ss register-btn" @click="loginProcess">登入</div>
         </div>
       </div>
     </div>
