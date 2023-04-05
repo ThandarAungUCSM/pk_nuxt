@@ -17,14 +17,14 @@
           <div class="left-div">
             <p class="tot-text" @click="hide">總計</p>
             <div class="pri-div">
-              <p v-if="!emptycart"  class="price-text">1,900</p>
+              <p v-if="!emptycart" class="price-text">{{totalPrice}}</p>
               <p v-else  class="price-text">0</p>
               <img src="../assets/mobile/itemicon_gold.png" class="gold-icon">
             </div>
           </div>
           <div class="right-div">
-            <b-button v-if="!emptycart" size="sm" class="btn-css" @click="gotoPage('convert')">前往兌換(3)</b-button>
-            <b-button v-else size="sm" class="empty-btn-css">前往兌換(3)</b-button>
+            <b-button v-if="emptycart === false" size="sm" class="btn-css" @click="gotoPage('convert')">前往兌換({{checkedCities.length}})</b-button>
+            <b-button v-else size="sm" class="empty-btn-css">前往兌換({{checkedCities.length}})</b-button>
           </div>
         </div>
        </div>
@@ -33,13 +33,13 @@
         <div id="scrollerP" :class="emptycart ? 'emptybg' : ''">
           <div id="scrollerC">
             <div class="atTop">
-              <div v-if="!emptycart" class="px-3 py-3 cart-title">
+              <div v-if="emptycart === false" class="px-3 py-3 cart-title">
                 <img class="cartimg" alt="shoppingCart" src="../assets/mobile/shopping-cart.png" />
                 <span class="cart-txt" @click="hide">購物車</span>
               </div>
-              <div class="sele-all-btn" :class="emptycart ? 'sele-all-btn1' : ''">
+              <div class="sele-all-btn" :class="emptycart === true ? 'sele-all-btn1' : ''">
                 <!-- <p class="select-all-txt" @click="selectAll">全選</p> -->
-                <div id="allId" :class="emptycart ? 'emptycss' : ''" class="select-all-txt1">
+                <div id="allId" :class="emptycart === true ? 'emptycss' : ''" class="select-all-txt1">
                   <el-checkbox v-model="checkAll" :indeterminate="isIndeterminate" @change="handleCheckAllChange">全選</el-checkbox>
                 </div>
                 <img class="cartimg" alt="shoppingCart" src="../assets/mobile/m-close.png" @click="hide" />
@@ -47,9 +47,9 @@
 
               <!-- <el-checkbox v-model="checkAll" :indeterminate="isIndeterminate" @change="handleCheckAllChange">Check all</el-checkbox> -->
               <!-- <div style="margin: 15px 0;"></div> -->
-              <el-checkbox-group v-if="!emptycart" id="eachId" v-model="checkedCities" class="checkGro" @change="handleCheckedCitiesChange">
-                <div v-for="city in cities" :key="city" class="row-div">
-                  <el-checkbox :label="city">
+              <el-checkbox-group v-if="emptycart === false" id="eachId" v-model="checkedCities" class="checkGro" @change="handleCheckedEachChange">
+                <div v-for="(eachproduct, idx) in allProducts" :key="idx" class="row-div">
+                  <el-checkbox :label="eachproduct">
                   </el-checkbox>
                   <div class="collapse-items1">
                     <div class="menu-left">
@@ -61,18 +61,18 @@
                           <p class="common-menu-name">
                             奶油椰子口味玉米脆條 (造句包)
                           </p>
-                          <span class="deleteBtn">
+                          <span class="deleteBtn" @click="doRemoveItem(eachproduct)">
                             <img class="deleteimg" src="../assets/pc/trash.png" />
                           </span>
                         </div>
                         <div id="shoppingId" class="menu-price">
                           <el-input-number
-                            v-model="showArr"
+                            v-model="showArr[idx]"
                             :min="1"
                             :max="5"
-                            @change="(currentVal, oldVal) => {updateNum(currentVal, oldVal)}" ></el-input-number>
+                            @change="(currentVal, oldVal) => {handleChange(currentVal, oldVal, eachproduct)}" ></el-input-number>
                           <div class="row-price">
-                            <span class="gold-price">100</span>
+                            <span class="gold-price">{{eachproduct.price}}</span>
                             <img src="../assets/mobile/itemicon_gold.png" class="gold-icon">
                           </div>
                         </div>
@@ -101,14 +101,14 @@
 </template>
 
 <script>
-// const cityOptions = ['Shanghai', 'Beijing', 'Guangzhou', 'Shenzhen'];
+import { mapActions } from "vuex";
 export default {
   name: "ShoppingCart",
   components: {},
   props: ["showCart"],
   data() {
     return {
-      emptycart: false,
+      emptycart: true,
       selectedCartList: [],
       selectedItem: "",
       showDropdown: false,
@@ -126,16 +126,23 @@ export default {
       fineUpdate: null,
 
       checkAll: false,
-      checkedCities: ['Shanghai', 'Beijing'],
-      // cityOptions: ['Shanghai', 'Beijing', 'Guangzhou', 'Shenzhen'],
-      cities: ['Shanghai', 'Beijing', 'Guangzhou', 'Shenzhen'],
+      checkedCities: [],
+      allProducts: [
+        {name: 'Shanghai', price: 100, max: 5, quantity: 2, bid: 1},
+        {name: 'Beijing', price: 200, max: 5, quantity: 3, bid: 2},
+        {name: 'Guangzhou', price: 1400, max: 5, quantity: 5, bid: 3},
+        {name: 'Shenzhen', price: 100, max: 5, quantity: 5, bid: 4}
+      ],
       isIndeterminate: true,
-      showArr: 3,
-      allSelect: false
+      allSelect: false,
+      totalPrice: 0
     };
   },
   computed: {
-    
+    showArr() {
+      const temp = this.allProducts.map(n => n.quantity)
+      return temp;
+    }
   },
   watch: {
   },
@@ -143,36 +150,53 @@ export default {
     
   },
   methods: {
+    ...mapActions("cart", ["removeProductFromCart"]),
     hide() {
-      
+    },
+    doRemoveItem(product) {
+      // console.log("doRemoveItem(bid=", product.bid, ")");
+      // this.removeProductFromCart(product.bid);
+      // this.$emit("deleteItem", this.selecttype, product);
+      const temp = [...this.allProducts];
+      for(let i = 0; i < temp.length; i++) {
+        if(temp[i].bid === product.bid) {
+          const temp1 = this.allProducts.splice(i, 1);
+          console.log(temp1)
+        }
+      }
     },
     gotoPage(val) {
       this.$router.push(val);
     },
     handleCheckAllChange(val) {
-      this.checkedCities = val ? this.cities : [];
+      this.checkedCities = val ? this.allProducts : [];
       this.isIndeterminate = false;
+      this.calculatePrice();
     },
-    // selectAll() {
-    //   if(this.checkedCities.length === this.cities.length) {
-    //     this.allSelect = false
-    //     this.checkAll = false
-    //     // this.checkedCities = [];
-    //   } else {
-    //     this.allSelect = true
-    //     this.checkAll = true
-    //     this.checkedCities = this.cityOptions;
-    //   }
-    // },
-    handleCheckedCitiesChange(value) {
+    handleCheckedEachChange(value) {
       const checkedCount = value.length;
-      this.checkAll = checkedCount === this.cities.length;
-      this.isIndeterminate = checkedCount > 0 && checkedCount < this.cities.length;
+      this.checkAll = checkedCount === this.allProducts.length;
+      this.isIndeterminate = checkedCount > 0 && checkedCount < this.allProducts.length;
+      this.calculatePrice();
     },
-    updateNum(current, old) {
+    handleChange(current, old, value) {
       console.log('current ', current);
       console.log('old ', old);
+      console.log('current ', value);
+      const temp = this.allProducts.map(n => {
+        if(n.name === value.name) {
+          n.quantity = current
+        }
+        return temp;
+      })
+      this.calculatePrice();
     },
+    calculatePrice() {
+      this.totalPrice = 0
+      for(let i = 0; i < this.checkedCities.length; i++) {
+        this.totalPrice +=this.checkedCities[i].price * this.checkedCities[i].quantity;
+      }
+    }
   },
 };
 </script>
@@ -208,9 +232,12 @@ export default {
       display: flex;
       align-items: center;
       .price-text {
-        font-weight: 400;
-        font-size: 14px;
-        color: #AFAFAF;
+        // font-weight: 400;
+        // font-size: 14px;
+        // color: #AFAFAF;
+        font-weight: 700;
+        font-size: 20px;
+        color: #000;
         margin-bottom: 0;
         margin-right: 7px;
         @media screen and (max-width: 768px) {
@@ -240,13 +267,13 @@ export default {
       border-radius: 12px;  
     }
     .empty-btn-css {
+      background-color: #E3E3E3 !important;
+      border-color: #E3E3E3 !important;
+      border-radius: 12px;
+      color: #FFF;
+      font-weight: 700;
+      font-size: 1rem;
       @media screen and (max-width: 768px) {
-        font-weight: 700;
-        font-size: 1rem;
-        color: #FFF;
-        background-color: #E3E3E3 !important;
-        border-color: #E3E3E3 !important;
-        border-radius: 12px; 
       }
     }
   }
@@ -257,6 +284,7 @@ export default {
   position: relative;
   min-height: 100%;
   overflow: hidden;
+  background: #FFF;
   @media screen and (max-width: 768px) {
     position: unset;
   }
@@ -332,7 +360,7 @@ export default {
       display: none;
     }
     .cartimg {
-      width: 21px;
+      width: 25px;
     }
     .cart-txt {
       color: #000;
@@ -352,53 +380,59 @@ export default {
     @media screen and (max-width: 768px) {
       padding: 28px;
     }
+    .cartimg {
+      width: 24px;
+      width: 24px;
+      @media screen and (max-width: 768px) {
+      }
+    }
   }
   .sele-all-btn1 {
+    box-shadow: unset !important;
+    padding: 28px;
     @media screen and (max-width: 768px) {
-      box-shadow: unset !important;
-      padding: 28px;
     }
   }
   .empty-block {
+    display: flex;
+    flex-direction: column;
+    background: #FFF;
+    justify-content: center;
+    align-items: center;
+    padding-top: calc(25vh - 80px);
     @media screen and (max-width: 768px) {
-      display: flex;
-      flex-direction: column;
-      background: #FFF;
-      justify-content: center;
-      align-items: center;
-      padding-top: calc(25vh - 80px);
     }
     .empty-img {
+      width: 180px;
+      height: 180px;
       @media screen and (max-width: 768px) {
-        width: 180px;
-        height: 180px;
       }
     }
     .empty-text {
+      font-weight: 400;
+      font-size: 1rem;
+      color: #B79CED;
+      margin: 2rem 0;
       @media screen and (max-width: 768px) {
-        font-weight: 400;
-        font-size: 1rem;
-        color: #B79CED;
-        margin: 2rem 0;
       }
     }
     .btn-empty {
+      display: flex;
+      justify-content: center;
+      align-items: center;
       @media screen and (max-width: 768px) {
-        display: flex;
-        justify-content: center;
-        align-items: center;
       }
       .empty-btn {
+        background: #E9B531;
+        border-radius: 24px;
+        font-weight: 700;
+        font-size: 1rem;
+        color: #FFF;
+        margin-bottom: 0;
+        padding: 0 3rem;
+        height: 36px;
+        line-height: 36px;
         @media screen and (max-width: 768px) {
-          background: #E9B531;
-          border-radius: 24px;
-          font-weight: 700;
-          font-size: 1rem;
-          color: #FFF;
-          margin-bottom: 0;
-          padding: 0 3rem;
-          height: 36px;
-          line-height: 36px;
         }
       }
     }
@@ -422,16 +456,8 @@ export default {
     padding: 3px 1.5rem;
   }
   .emptycss {
+    visibility: hidden;
     @media screen and (max-width: 768px) {
-      visibility: hidden;
-    }
-  }
-  .cartimg {
-    display: none;
-    @media screen and (max-width: 768px) {
-      display: block;
-      width: 24px;
-      width: 24px;
     }
   }
 }
@@ -849,8 +875,16 @@ export default {
   }
 
   .el-checkbox__label {
+    font-weight: 400;
+    font-size: 14px;
+    color: #000;
     padding-left: 0;
     width: 100%;
+  }
+  .el-checkbox__input.is-checked+.el-checkbox__label {
+    font-weight: 400;
+    font-size: 14px;
+    color: #000;
   }
 }
 #eachId {
@@ -966,6 +1000,18 @@ div#shopping-cart-header {
 
     margin-top: 4px;
   }
+  .el-input-number__decrease:hover,
+  .el-input-number__increase:hover {
+    color: #b79ced !important;
+    background: #f7f2e8;
+    font-size: 1rem !important;
+    border: 1px solid #b79ced;
+    top: 0px;
+    @media screen and (max-width: 768px) {
+      color: #FFF !important;
+      background: #b79ced;
+    }
+  }
   .el-input-number__decrease.is-disabled,
   .el-input-number__increase.is-disabled {
     color: #DBDBDB !important;
@@ -977,14 +1023,6 @@ div#shopping-cart-header {
     width: 33px;
     height: 33px;
     border-radius: 16.5px;
-  }
-  .el-input-number__decrease:hover,
-  .el-input-number__increase:hover {
-    color: #b79ced !important;
-    background: #f7f2e8;
-    font-size: 1rem !important;
-    border: 1px solid #b79ced;
-    top: 0px;
   }
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
   <div>
     <b-carousel
-      v-if="caroName == 1"
+      v-if="caroName === 1"
       id="bannerId1" v-model="activeSlide"
       class="m-css"
       :interval="4000"
@@ -17,7 +17,7 @@
       <b-carousel-slide v-for="item in caroItem" :key="item.id" :img-src="item.mimg" class="caro-high1"></b-carousel-slide>
     </b-carousel>
     <b-carousel
-      v-if="caroName == 2"
+      v-if="caroName === 2"
       id="bannerId1" v-model="activeSlide"
       class="m-css"
       :interval="4000"

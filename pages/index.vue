@@ -4,12 +4,12 @@
     <Header page="prodDetail" :auth-data='authVal' />
     <div class="content-css">
       <div class="banner-block1">
-        <Carousel :caro-item="regularBannerBlock1" :current-slide="slide" caro-name="1" />
+        <Carousel :caro-item="regularBannerBlock1" :current-slide="slide" :caro-name="1" />
         <img class="banner-btn" alt="mobile banner" src="../assets/mobile/btnNewsList.png" />
       </div>
 
       <div class="banner-block2">
-        <Carousel :caro-item="regularBannerBlock2" :current-slide="slide" caro-name="2" />
+        <Carousel :caro-item="regularBannerBlock2" :current-slide="slide" :caro-name="2" />
         <div class="indicate-block">
           <div class="indicator-css">{{currentNo}}/{{totalNo}}</div>
         </div>
