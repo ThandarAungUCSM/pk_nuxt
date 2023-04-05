@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Header class="forPC" />
+    <Header class="forPC" :auth-data='userLogin' @checkAuth="checkAuth" />
     <div class="membership-userinfo">
       <div class="member-content">
         <div class="formobile titlem">
@@ -119,13 +119,17 @@ export default {
       cityTown: [{name: 'aaaaa'}, {name: 'bbbbb'}, {name: 'ccccc'}, {name: 'ddddd'}, {name: 'eeeee'}],
       cityName: '',
       distinctName: '',
-      streetText: '光復南路三段156巷24號'
+      streetText: '光復南路三段156巷24號',
+      userLogin: false
     }
   },
   methods: {
     saveData() {
       alert('Success!!')
-    }
+    },
+    checkAuth(auth) {
+      this.userLogin = auth
+    },
   }
 }
 </script>

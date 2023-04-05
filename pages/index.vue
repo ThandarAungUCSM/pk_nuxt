@@ -1,6 +1,7 @@
 <template>
   <div>
-    <Header page="prodDetail" @checkAuth="checkAuth" />
+    <!-- @checkAuth="checkAuth" -->
+    <Header page="prodDetail" :auth-data='authVal' />
     <div class="content-css">
       <div class="banner-block1">
         <Carousel :caro-item="regularBannerBlock1" :current-slide="slide" caro-name="1" />
@@ -14,8 +15,8 @@
         </div>
       </div>
 
-      <EachBlock title="新品上市" />
       <EachBlock title="限時優惠" />
+      <EachBlock title="全部商品" />
       <EachBlock title="日用雜貨" />
       <EachBlock title="零食飲料" />
       <EachBlock title="玩具公仔" />
@@ -26,7 +27,8 @@
 </template>
 
 <script>
-import "element-ui/lib/theme-chalk/index.css";
+import "element-ui/lib/theme-chalk/index.css"; 
+import { mapGetters } from "vuex";
 export default {
   name: 'IndexPage',
   data() {
@@ -86,6 +88,11 @@ export default {
       userLogin: false
     }
   },
+  computed: {
+    ...mapGetters("user", {
+      authVal: "userLogin"
+    })
+  },
   methods: {
     checkAuth(auth) {
       this.userLogin = auth
@@ -97,7 +104,7 @@ export default {
 <style lang="scss" scoped>
 
 .content-css {
-  // padding: 0 67px;
+  // padding: 0 81px;
   // @media screen and (max-width: 768px) {
   //   padding: 0;
   // }
@@ -110,9 +117,13 @@ export default {
 .banner-block1 {
   position: relative;
 
-  padding: 0 67px;
+  padding: 0 81px;
+  margin-left: 0.5%;
+  margin-right: 0.5%;
   @media screen and (max-width: 768px) {
     padding: 0;
+    margin-left: 0;
+    margin-right: 0;
   }
   .banner-btn {
     // display: none;
@@ -135,11 +146,15 @@ export default {
   padding: 0;
   margin-top: 1rem;
 
-  padding: 0 67px;
+  padding: 0 81px;
+  margin-left: 0.5%;
+  margin-right: 0.5%;
   @media screen and (max-width: 768px) {
     background: #E1E1E1;
     padding: 2.5rem 1rem 1rem;
     margin-top: 0;
+    margin-left: 0;
+    margin-right: 0;
   }
   .indicate-block {
     background: rgba(36, 36, 36, 0.7);

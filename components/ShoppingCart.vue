@@ -15,7 +15,7 @@
        <div class="d-flex bg-dark text-light align-items-center px-3 py-2">
         <div class="bottom-css">
           <div class="left-div">
-            <p class="tot-text">總計</p>
+            <p class="tot-text" @click="hide">總計</p>
             <div class="pri-div">
               <p v-if="!emptycart"  class="price-text">1,900</p>
               <p v-else  class="price-text">0</p>
@@ -23,7 +23,7 @@
             </div>
           </div>
           <div class="right-div">
-            <b-button v-if="!emptycart" size="sm" class="btn-css" @click="hide">前往兌換(3)</b-button>
+            <b-button v-if="!emptycart" size="sm" class="btn-css" @click="gotoPage('convert')">前往兌換(3)</b-button>
             <b-button v-else size="sm" class="empty-btn-css">前往兌換(3)</b-button>
           </div>
         </div>
@@ -48,34 +48,36 @@
               <!-- <el-checkbox v-model="checkAll" :indeterminate="isIndeterminate" @change="handleCheckAllChange">Check all</el-checkbox> -->
               <!-- <div style="margin: 15px 0;"></div> -->
               <el-checkbox-group  v-if="!emptycart" v-model="checkedCities" class="checkGro" @change="handleCheckedCitiesChange">
-                <el-checkbox v-for="city in cities" :key="city" :label="city">
-                  <div class="collapse-items1">
-                    <div class="menu-left">
-                      <div class="orderFalse">
-                        <img class="menu-img" src="../assets/pc/product.png" />
-                      </div>
-                      <div class="menu-txt">
-                        <div class="title-row">
-                          <p class="common-menu-name">
-                            奶油椰子口味玉米脆條 (造句包)
-                          </p>
-                          <span class="deleteBtn">
-                            <img class="deleteimg" src="../assets/pc/trash.png" />
-                          </span>
+                <!-- <div v-for="city in cities" :key="city"> -->
+                  <el-checkbox v-for="city in cities" :key="city" :label="city">
+                    <div class="collapse-items1">
+                      <div class="menu-left">
+                        <div class="orderFalse">
+                          <img class="menu-img" src="../assets/pc/product.png" />
                         </div>
-                        <div id="shoppingId" class="menu-price">
-                          <el-input-number
-                            v-model="showArr"
-                            :min="1"
-                            :max="5"
-                            @change="(currentVal, oldVal) => {updateNum(currentVal, oldVal)}" ></el-input-number>
-                          <span class="gold-price">100</span>
-                          <img src="../assets/mobile/itemicon_gold.png" class="gold-icon">
+                        <div class="menu-txt">
+                          <div class="title-row">
+                            <p class="common-menu-name">
+                              奶油椰子口味玉米脆條 (造句包)
+                            </p>
+                            <span class="deleteBtn">
+                              <img class="deleteimg" src="../assets/pc/trash.png" />
+                            </span>
+                          </div>
+                          <div id="shoppingId" class="menu-price">
+                            <el-input-number
+                              v-model="showArr"
+                              :min="1"
+                              :max="5"
+                              @change="(currentVal, oldVal) => {updateNum(currentVal, oldVal)}" ></el-input-number>
+                            <span class="gold-price">100</span>
+                            <img src="../assets/mobile/itemicon_gold.png" class="gold-icon">
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                </el-checkbox>
+                  </el-checkbox>
+                <!-- </div> -->
               </el-checkbox-group>
 
               <div class="empty-block" :class="emptycart == false ? 'showData' : ''">
@@ -141,6 +143,9 @@ export default {
   methods: {
     hide() {
       
+    },
+    gotoPage(val) {
+      this.$router.push(val);
     },
     handleCheckAllChange(val) {
       this.checkedCities = val ? this.cities : [];
@@ -824,8 +829,11 @@ export default {
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
 }
 .bg-dark {
-  height: 85px;
+  // height: 85px;
   background: #FFFFFF !important;
+}
+.b-sidebar-backdrop {
+  opacity: 0.1;
 }
 .btn-sm {
   border-radius: 5px;

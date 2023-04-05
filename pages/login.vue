@@ -16,7 +16,7 @@
 
         <div class="btn-div">
           <p class="newer-css">新玩家？<span class="register-css" @click="register">註冊</span></p>
-          <div class="register-btn">登入</div>
+          <div class="register-btn" @click="loginProcess">登入</div>
         </div>
       </div>
     </div>
@@ -37,7 +37,7 @@
 
         <div class="btn-div">
           <p class="newer-css">新玩家？<span class="register-css" @click="register">註冊</span></p>
-          <div class="register-btn">登入</div>
+          <div class="register-btn" @click="loginProcess">登入</div>
         </div>
       </div>
     </div>
@@ -46,6 +46,7 @@
 </div>
 </template>
 <script>
+import { mapActions } from "vuex";
 export default {
   name: 'MyLogin',
   data() {
@@ -56,8 +57,16 @@ export default {
     }
   },
   methods: {
+    ...mapActions("user", ["updateLogin"]),
     register() {
       this.$router.push('/register')
+    },
+    loginProcess() {
+      if(this.accNo === 'firefly' && this.password === '123456') {
+        // alert('Success !!')
+        this.updateLogin(true);
+        this.$router.push('/')
+      }
     }
   }
 }
@@ -192,6 +201,7 @@ export default {
         font-weight: 400;
         font-size: 1rem;
         color: #957FEF;
+        cursor: pointer;
       }
       .register-btn {
         background: #E9B531;
@@ -200,6 +210,7 @@ export default {
         font-weight: 700;
         font-size: 20px;
         color: #FFF;
+        cursor: pointer;
 
         display: flex;
         justify-content: center;

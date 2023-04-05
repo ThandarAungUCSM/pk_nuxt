@@ -3,7 +3,7 @@
     <div class="top-seller-parent">
       <div class="top-seller-title">
         <span class="topSellerTitle">{{title}}</span>
-        <span class="topSellerSeeMore" @click="gotoCategory">
+        <span class="topSellerSeeMore" @click="gotoCategory(title, showItems)">
           <span class="see-text">更多</span>
           <img src="../assets/mobile/seemore.png" alt="" class="seemore" />
         </span>
@@ -40,23 +40,33 @@ export default {
         {title: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒", imagePath: require("../assets/mobile/newArrival.png"), price: "$99,999", originalPrice: "99,999", bid: 2},
         {title: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒", imagePath: require("../assets/mobile/newArrival.png"), price: "$99,999", originalPrice: "99,999", bid: 3},
         {title: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒", imagePath: require("../assets/mobile/newArrival.png"), price: "$99,999", originalPrice: "99,999", bid: 4},
-        {title: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒", imagePath: require("../assets/mobile/newArrival.png"), price: "$99,999", originalPrice: "99,999", bid: 5}
+        {title: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒", imagePath: require("../assets/mobile/newArrival.png"), price: "$99,999", originalPrice: "99,999", bid: 5},
+        {title: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒", imagePath: require("../assets/mobile/newArrival.png"), price: "$99,999", originalPrice: "99,999", bid: 6},
+        {title: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒", imagePath: require("../assets/mobile/newArrival.png"), price: "$99,999", originalPrice: "99,999", bid: 7},
+        {title: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒", imagePath: require("../assets/mobile/newArrival.png"), price: "$99,999", originalPrice: "99,999", bid: 8},
+        {title: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒", imagePath: require("../assets/mobile/newArrival.png"), price: "$99,999", originalPrice: "99,999", bid: 9},
+        {title: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒", imagePath: require("../assets/mobile/newArrival.png"), price: "$99,999", originalPrice: "99,999", bid: 10}
       ],
-      showLess: true 
+      showLess: true
     }
   },
   computed: {
     showItems() {
-      if (this.items.length < 6) {
-        return this.items;
-      } else {
-        return this.showLess ? this.items.slice(0, 5) : this.items;
-      }
+      // if (this.items.length < 6) {
+      //   return this.items;
+      // } else {
+      //   return this.showLess ? this.items.slice(0, 5) : this.items;
+      // }
+      return this.items;
     },
   },
   methods: {
-    gotoCategory() {
-      this.$router.push({ name: "category" });
+    gotoCategory(title, lists) {
+      // this.$router.push({ name: "category" });
+      this.$router.push({
+        path: "category",
+        query: { cateName: title, prodLists: JSON.stringify(lists) },
+      });
     },
     gotoProductDetail() {
       this.$router.push({ name: "productDetail" });
@@ -126,6 +136,9 @@ export default {
 
       margin-left: 67px;
       width: 96.5%;
+
+      margin-left: calc(81px + 0.5%);
+      width: 95.2%;
       @media screen and (max-width: 768px) {
         display: block;
         overflow: auto;

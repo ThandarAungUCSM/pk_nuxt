@@ -15,11 +15,11 @@
               <div class="p-3">
                 <div class="close-row">
                   <img class="close-css" src="../assets/mobile/close.png" @click="hide" />
-                  <span v-if="userLogin" class="logout-css">登出</span>
-                  <span v-if="!userLogin" class="logout-css">登入</span>
+                  <span v-if="authData" class="logout-css">登出</span>
+                  <span v-if="!authData" class="logout-css">登入</span>
                 </div>
                 <div class="content-bar">
-                  <div v-if="userLogin" class="coin-parent">
+                  <div v-if="authData" class="coin-parent">
                     <div class="coin-block">
                       <img src="../assets/mobile/itemicon_gold.png" class="gold-icon">
                       <div class="txtBox">
@@ -34,19 +34,19 @@
                   </div>
                   
                   <div class="each-item">
-                    <p :class="userLogin ? 'item-txt' : 'noLog-txt'">我的會員</p>
-                    <img v-if="userLogin" class="arrow-css" src="../assets/mobile/rightArr.png" />
-                    <img v-if="!userLogin" class="arrow-css" src="../assets/mobile/noactiveArr.png" />
+                    <p :class="authData ? 'item-txt' : 'noLog-txt'">我的會員</p>
+                    <img v-if="authData" class="arrow-css" src="../assets/mobile/rightArr.png" />
+                    <img v-if="!authData" class="arrow-css" src="../assets/mobile/noactiveArr.png" />
                   </div>
                   <div class="each-item">
-                    <p class="item-txt">我的代幣</p>
+                    <p class="item-txt" @click="gotoPage('myWallet')">我的代幣</p>
                     <img class="arrow-css" src="../assets/mobile/rightArr.png" />
-                    <!-- <img v-if="!userLogin" class="arrow-css" src="../assets/mobile/noactiveArr.png" /> -->
+                    <!-- <img v-if="!authData" class="arrow-css" src="../assets/mobile/noactiveArr.png" /> -->
                   </div>
                   <div class="each-item">
                     <p class="item-txt">合作遊戲</p>
                     <img class="arrow-css" src="../assets/mobile/rightArr.png" />
-                    <!-- <img v-if="!userLogin" class="arrow-css" src="../assets/mobile/noactiveArr.png" /> -->
+                    <!-- <img v-if="!authData" class="arrow-css" src="../assets/mobile/noactiveArr.png" /> -->
                   </div>
 
                   <div class="title-row">
@@ -104,52 +104,52 @@
             <img class="user-css" alt="pokerchip" src="../assets/mobile/fi-rr-poker-chip.png" @click="linkToHome" /> -->
             <div class="member-center-part" @mouseleave="mouseLeave" @mouseover="mouseOver">
               <img
-                v-if="!showmemberData && userLogin"
+                v-if="!showmemberData && authData"
                 class="dropbtn user-css"
                 alt="user"
                 src="../assets/mobile/fi-rr-user.png"
                 @click="myFunction"
               />
               <img
-                v-else-if="showmemberData && userLogin"
+                v-else-if="showmemberData && authData"
                 class="dropbtn user-css"
                 alt="user"
                 src="../assets/pc/fi-rr-user-login.png"
                 @click="myFunction"
               />
               <img
-                v-else-if="(!showmemberData && !userLogin) || (showmemberData && !userLogin)"
+                v-else-if="(!showmemberData && !authData) || (showmemberData && !authData)"
                 class="dropbtn user-css"
                 alt="user"
                 src="../assets/pc/fi-rr-visitor.png"
                 @click="myFunction"
               />
               <div v-if="showmemberData" id="myDropdown" class="dropdown-content"></div>
-              <div v-if="showmemberData && userLogin" class="child-dropdown">
+              <div v-if="showmemberData && authData" class="child-dropdown">
                 <!-- :class="pageName && pageName == 'myTicket' ? 'dropdownContentbg' : ''" -->
                 <NuxtLink
-                  to="/memberCenter"
+                  to="/membershipUserinfo"
                   class="dropdown-item"
                 >
                   <img class="menu-usercss" alt="user" src="../assets/pc/active-user.png" />
                   <span>會員資料</span>
                 </NuxtLink>
                 <NuxtLink
-                  to="/myOrder"
+                  to="/convert-history"
                   class="dropdown-item"
                 >
                   <img class="menu-usercss" alt="notebook" src="../assets/pc/active-notebook.png" />
                   <span>兌換清單</span>
                 </NuxtLink>
                 <NuxtLink
-                  to="/myOrder"
+                  to="/tracking-products"
                   class="dropdown-item"
                 >
                   <img class="menu-usercss" alt="heart" src="../assets/pc/active-heart.png" />
                   <span>追蹤清單</span>
                 </NuxtLink>
                 <NuxtLink
-                  to="/myOrder"
+                  to="/myGame"
                   class="dropdown-item"
                 >
                   <img class="menu-usercss" alt="shield" src="../assets/pc/active-shield.png" />
@@ -166,7 +166,7 @@
                   <span>登出</span>
                 </div>
               </div>
-              <div v-if="showmemberData && !userLogin" class="child-dropdown">
+              <div v-if="showmemberData && !authData" class="child-dropdown">
                 <NuxtLink
                   to="/login"
                   class="dropdown-item1"
@@ -231,7 +231,7 @@
               <div v-if="showpokerData" id="pokerchipDropdown" class="pokerdd-content"></div>
               <div v-if="showpokerData" class="child-dropdown">
                 <div class="dropdown-item textcss">
-                  <span>我的代幣</span>
+                  <span @click="gotoPage('myWallet')">我的代幣</span>
                 </div>
                 <div class="dropdown-item textcss1">
                   <span>查看PK遊戲幣值比率</span>
@@ -266,7 +266,7 @@
       </div>
     </b-navbar>
     <div class="head-css">
-      <div class="each-menu"><span>限時優惠</span></div>
+      <div class="each-menu"><span @click="gotoPage('category')">限時優惠</span></div>
       <div class="each-menu"><span>全部商品</span></div>
       <div class="each-menu"><span>日用雜貨</span></div>
       <div class="each-menu"><span>零食飲料</span></div>
@@ -277,13 +277,17 @@
 
 <script>
 import "element-ui/lib/theme-chalk/index.css";
-import { mapState, mapActions } from "vuex";
+import { mapState, mapActions, mapGetters } from "vuex";
 export default {
   name: 'HeaderName',
   props: {
     page: {
       type: String,
       default: 'page'
+    },
+    authData: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
@@ -304,7 +308,7 @@ export default {
         }
       ],
       showCart: false,
-      userLogin: true,
+      // userLogin: false,
       showmemberData: false,
       showgamepadData: false,
       showpokerData: false,
@@ -316,9 +320,17 @@ export default {
       updatetotalAllQty: state => state.cart.quantity,
       updatecartLists: state => state.cart.cartLists,
     }),
+    ...mapGetters("cart", {
+      cartItems: "cartProducts"
+    }),
+    ...mapGetters("user", {
+      authVal: "userLogin"
+    })
   },
   created() {
-    this.$emit("checkAuth", this.userLogin);
+    // this.$emit("checkAuth", this.userLogin);
+    this.$emit("checkAuth", this.authVal);
+    console.log(this.authVal)
 
     this.setCartQty(this.totalAllQty);
     this.setCartList(this.cartLists);
@@ -419,6 +431,9 @@ export default {
     headsetMouseLeave() {
       this.showHeadsetData = false;
     },
+    gotoPage(val) {
+      this.$router.push(val)
+    }
   }
 }
 </script>
@@ -492,6 +507,7 @@ export default {
         font-size: 20px;
         color: #FFF;
         margin-bottom: 0;
+        cursor: pointer;
       }
       .noLog-txt {
         font-weight: 700;
@@ -640,6 +656,7 @@ export default {
       color: #FFF;
       width: 170px;
       text-align: center;
+      cursor: pointer;
     }
   }
 }
@@ -727,6 +744,7 @@ export default {
 
       display: flex;
       align-items: center;
+      cursor: pointer;
 
       .menu-usercss {
         width: 1rem;
@@ -828,6 +846,7 @@ export default {
     width: unset;
   }
   .m-logo-css {
+    cursor: pointer;
     @media screen and (max-width: 768px) {
       width: 165px;
       height: 20px;

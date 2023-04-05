@@ -4,12 +4,12 @@
     <div class="category-page">
       <div class="path-div">
         <img src="../assets/mobile/fi-rr-home.png" alt="" class="home-img" />
-        <span class="home-txt">首頁</span>
+        <span class="home-txt" @click="gotoPage">首頁</span>
         <span class="cate-txt"> / 分類名稱</span>
       </div>
-      <p class="cate-name">分類名稱</p>
-      <div class="category-items">
-        <div v-for="item in showItems" :key="item.bid" class="each-item">
+      <p class="cate-name">{{cateName}}</p>
+      <div v-if="prodLists" class="category-items" >
+        <div v-for="item in prodLists" :key="item.bid" class="each-item">
           <img :src="item.imagePath" alt="" class="cate-img" />
           <div class="cate-textdiv">
             <span class="cate-title">{{ item.title }}</span>
@@ -45,10 +45,19 @@ export default {
     }
   },
   computed: {
-    
+    cateName () {
+      console.log("this.cateName=", this.$route.query.cateName);
+      return this.$route.query.cateName;
+    },
+    prodLists () {
+      console.log("this.prodLists=", JSON.parse(this.$route.query.prodLists));
+      return JSON.parse(this.$route.query.prodLists);
+    }
   },
   methods: {
-    
+    gotoPage() {
+      this.$router.push('/');
+    }
   }
 }
 </script>
@@ -72,7 +81,8 @@ export default {
       font-weight: 400;
       font-size: 12px;
       color: #957FEF;
-    }
+      cursor: pointer;
+    } 
     .cate-txt {
       font-weight: 400;
       font-size: 12px;

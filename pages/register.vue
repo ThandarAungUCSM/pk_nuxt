@@ -11,7 +11,7 @@
         <div class="right-inner">
           <p class="welcome-back">註冊</p>
 
-          <input v-model="account" placeholder="請輸入帳號" class="accountCss2" />
+          <input v-model="myaccount" placeholder="請輸入帳號" class="accountCss2" />
 
           <div class="btn-div">
             <div class="register-btn" @click="registerFun">下一步</div>
@@ -37,7 +37,7 @@
         </div>
         <p class="welcome-back">註冊</p>
 
-        <input v-model="password" placeholder="請輸入帳號" class="accountCss2" />
+        <input v-model="mypassword" placeholder="請輸入帳號" class="accountCss2" />
 
         <div class="btn-div">
           <div class="register-btn" @click="registerFun">下一步</div>
@@ -63,10 +63,10 @@
             <p class="hideright">hi</p>
           </div>
 
-          <input v-model="password" placeholder="請輸入新密碼" class="accountCss3" />
+          <input v-model="mypassword" placeholder="請輸入新密碼" class="accountCss3" />
           <p class="pwd-valid">密碼長度為6~16碼，需包含英文字母及數字。</p>
 
-          <input v-model="confirmpwd" placeholder="請再輸入相同密碼" class="accountCss2" />
+          <input v-model="myconfirmpwd" placeholder="請再輸入相同密碼" class="accountCss2" />
 
           <div class="btn-div">
             <div class="register-btn" @click="registerFun">下一步</div>
@@ -92,10 +92,10 @@
           <p class="hideright">hi</p>
         </div>
 
-        <input v-model="password" placeholder="請輸入新密碼" class="accountCss3" />
+        <input v-model="mypassword" placeholder="請輸入新密碼" class="accountCss3" />
         <p class="pwd-valid">密碼長度為6~16碼，需包含英文字母及數字。</p>
 
-        <input v-model="confirmpwd" placeholder="請再輸入相同密碼" class="accountCss2" />
+        <input v-model="myconfirmpwd" placeholder="請再輸入相同密碼" class="accountCss2" />
 
         <div class="btn-div">
           <div class="register-btn" @click="registerFun">下一步</div>
@@ -118,16 +118,19 @@
             <p class="hideright">hi</p>
           </div>
 
-          <input v-model="phoneNo" placeholder="請輸入手機號碼" class="accountCss3" />
+          <input
+            v-model="phoneNo" type="tel" name="mobile" pattern="[0-9]{4} [0-9]{3} [0-9]{3}" maxlength="12" placeholder="請輸入手機號碼" class="accountCss3" required
+            oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');"
+          />
 
           <input v-model="dateofBirth" placeholder="1990/04/18" class="accountCss4" />
           <p class="pwd-valid">請輸入正確生日，以免影響使用權益。</p>
 
           <div>
             <div class="gender-group">
-              <p class="gender-css">男</p>
-              <p class="gender-css">女</p>
-              <p class="gender-css">其他</p>
+              <p class="gender-css" @click="selectGender('Male')">男</p>
+              <p class="gender-css" @click="selectGender('Female')">女</p>
+              <p class="gender-css" @click="selectGender('other')">其他</p>
             </div>
           </div>
 
@@ -155,16 +158,17 @@
           <p class="hideright">hi</p>
         </div>
 
-        <input v-model="phoneNo" placeholder="請輸入手機號碼" class="accountCss3" />
+        <input v-model="phoneNo" type="number" name="mobile" pattern="[0-9]{4} [0-9]{3} [0-9]{3}" maxlength="12" placeholder="請輸入手機號碼" class="accountCss3" required />
+        <!-- if (!(/^1[34578]\d{9}$/.test(this.list.mobile))) { -->
 
         <input v-model="dateofBirth" placeholder="1990/04/18" class="accountCss4" />
         <p class="pwd-valid">請輸入正確生日，以免影響使用權益。</p>
 
         <div>
           <div class="gender-group">
-            <p class="gender-css">男</p>
-            <p class="gender-css">女</p>
-            <p class="gender-css">其他</p>
+            <p class="gender-css" @click="selectGender('Male')">男</p>
+            <p class="gender-css" @click="selectGender('Female')">女</p>
+            <p class="gender-css" @click="selectGender('other')">其他</p>
           </div>
         </div>
 
@@ -190,7 +194,7 @@
           </div>
           
           <p class="lable1">電子信箱</p>
-          <input v-model="phoneNo" placeholder="example@mail.com" class="accountCss5" />
+          <input v-model="myemail" placeholder="example@mail.com" class="accountCss5" />
 
           <p class="lable1">地址</p>
           <div class="address">
@@ -208,7 +212,7 @@
             </select>
           </div>
           
-          <input v-model="dateofBirth" placeholder="光復南路三段156巷24號" class="accountCss6" />
+          <input v-model="myaddress" placeholder="光復南路三段156巷24號" class="accountCss6" />
 
           <div class="btn-div">
             <div class="register-btn" @click="registerFun">下一步</div>
@@ -235,7 +239,7 @@
         </div>
         
         <p class="lable1">電子信箱</p>
-        <input v-model="phoneNo" placeholder="example@mail.com" class="accountCss5" />
+        <input v-model="myemail" placeholder="example@mail.com" class="accountCss5" />
 
         <p class="lable1">地址</p>
         <div class="address">
@@ -253,7 +257,7 @@
           </select>
         </div>
         
-        <input v-model="dateofBirth" placeholder="光復南路三段156巷24號" class="accountCss6" />
+        <input v-model="myaddress" placeholder="光復南路三段156巷24號" class="accountCss6" />
 
         <div class="btn-div">
           <div class="register-btn" @click="registerFun">下一步</div>
@@ -384,13 +388,16 @@ export default {
   name: 'MyRegister',
   data() {
     return{
-      account: '',
+      myaccount: '',
       pName: 'login',
       step: 1,
-      password: '',
-      confirmpwd: '',
+      mypassword: '',
+      myconfirmpwd: '',
       phoneNo: '',
       dateofBirth: '',
+      myaddress: '',
+      genderData: '',
+      myemail: '',
       cityTown: [{name: 'aaaaa'}, {name: 'bbbbb'}, {name: 'ccccc'}, {name: 'ddddd'}, {name: 'eeeee'}],
       cityName: '',
       distinctName: '',
@@ -399,11 +406,29 @@ export default {
   },
   methods: {
     registerFun() {
-      if(this.step === 1 || this.step === 2 || this.step === 3 || this.step === 4 || this.step === 5) {
+      if(this.step === 1 && this.myaccount && this.myaccount !== '') {
+        // alert('go to step2 ')
         this.step++;
+      } else if(this.step === 2 && (this.mypassword !== '' && this.myconfirmpwd !== '' && (this.mypassword === this.myconfirmpwd))) {
+        // alert('go to step3')
+        this.step++;
+      } else if(this.step === 3 && this.phoneNo !== '' && this.dateofBirth !== '' && this.genderData !== '') {
+        // alert('go to step4')
+        this.step++;
+      } else if(this.step === 4 && this.myemail !== '' && this.cityName !== '' && this.distinctName !== '' && this.myaddress !== '') {
+        // alert('go to step5')
+        this.step++;
+      } else if(this.step === 5) {
+        // alert('go to step6')
+        this.step++;
+      } else if(this.step === 6 && this.verifycode !== '') {
+        this.$router.push('/')
       }
       // this.$router.push('/register')
     }, 
+    selectGender(val) {
+      this.genderData = val
+    },
     loginFun() {
       this.$router.push('/login')
     }
@@ -589,6 +614,7 @@ export default {
       height: 42px;
       width: 30%;
       text-align: center;
+      cursor: pointer;
     }
     .accountCss2, .accountCss3, .accountCss4, .accountCss5, .accountCss6 {
       font-weight: 500;
@@ -659,6 +685,7 @@ export default {
         width: 90%;
         width: 100%;
         margin: 0 auto;
+        cursor: pointer;
       }
       .register-btn2 {
         background: #E4D4AB;
@@ -674,6 +701,7 @@ export default {
         width: 90%;
         width: 100%;
         margin: 0 auto;
+        cursor: pointer;
       }
       .register-btn1 {
         background: #E9B531;
@@ -689,6 +717,7 @@ export default {
         width: 90%;
         width: 100%;
         margin: 4rem auto 1.5rem;
+        cursor: pointer;
       }
       .resend-css {
         font-weight: 400;
@@ -750,4 +779,20 @@ export default {
     color: #FFF;
   }
 }
+</style>
+
+<style>
+  /* Chrome, Safari, Edge, Opera */
+  /* input[type=number]::-webkit-inner-spin-button,
+  input[type=number]::-webkit-outer-spin-button
+  {
+      -webkit-appearance: none;
+      margin: 0;
+  } */
+
+  /* Firefox */
+  /* input[type=number]
+  {
+      -moz-appearance: textfield;
+  } */
 </style>
