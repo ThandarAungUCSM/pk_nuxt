@@ -310,6 +310,7 @@ export default {
   left: 0;
   bottom: 0;
   right: -20px;
+  overflow-x: hidden;
   overflow-y: scroll;
   @media screen and (max-width: 768px) {
     position: unset;
