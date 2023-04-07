@@ -12,7 +12,7 @@
         <div v-for="item in prodLists" :key="item.bid" class="each-item">
           <img :src="item.imagePath" alt="" class="cate-img" />
           <div class="cate-textdiv">
-            <span class="cate-title">{{ item.title }}</span>
+            <span class="cate-title">{{ item.name }}</span>
             <span class="cate-price">
               <img src="../assets/mobile/itemicon_gold.png" class="gold-icon">
               {{ item.originalPrice }}

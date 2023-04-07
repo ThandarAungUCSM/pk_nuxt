@@ -15,14 +15,14 @@
           <p class="prod-content">藍莓是一種深藍色的小果實，是近年來越來越受歡迎的農產品之一。藍莓味道鮮美，並且擁有豐富的營養價值，含有豐富的維生素C、維生素K、維生素E和膳食纖維等多種營養成分。此外，藍莓還含有豐富的抗氧化物質，能夠幫助抵禦自由基對身體的損害，對保持身體健康有很大的幫助。</p>
           <span class="prod-price">
             <img src="../assets/mobile/itemicon_gold.png" class="gold-icon">
-            <span>99,999</span>
+            <span>{{totalPrice}}</span>
           </span>
           <div class="bottom-block">
             <el-input-number
               v-model="showArr"
               :min="1"
               :max="5"
-              @change="(currentVal, oldVal) => {updateNum(currentVal, oldVal)}" ></el-input-number>
+              @change="(currentVal, oldVal) => {updateNum(currentVal, oldVal, productData)}" ></el-input-number>
             <div class="two-btn">
               <p class="to-cart" @click="addtoCart">加入購物車</p>
               <p class="buy-now" @click="buyNow">立即購買</p>
@@ -30,7 +30,8 @@
             </div>
           </div>
           <div class="heart-row">
-            <img src="../assets/pc/heart.png" alt="" class="heart-img" />
+            <img v-if="redheart" src="../assets/pc/heart.png" alt="" class="heart-img" @click="redheart = !redheart" />
+            <img v-else src="../assets/pc/white-heart.png" alt="" class="heart-img" @click="redheart = !redheart" />
             <span class="to-tracklist">加入追蹤清單</span>
           </div>
         </div>
@@ -60,7 +61,7 @@
       <div class="recommend-block">
         <p class="recommend-prod">推薦商品</p>
         <div class="recommend-items">
-          <div v-for="item in items" :key="item.bid" class="each-item" @click="gotoProductDetail(item)">
+          <div v-for="item in recommendItems" :key="item.bid" class="each-item" @click="gotoProductDetail(item)">
             <img :src="item.imagePath" alt="" class="top-seller-img" />
             <div class="top-seller-textdiv">
               <span class="top-seller-name">{{ item.title }}</span>
@@ -78,13 +79,14 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
 import "element-ui/lib/theme-chalk/index.css";
 export default {
   name: 'ProductDetail',
   data() {
     return {
       showArr: 1,
-      items: [
+      recommendItems: [
         {title: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒", imagePath: require("../assets/mobile/newArrival.png"), price: "$99,999", originalPrice: "99,999", bid: 1},
         {title: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒", imagePath: require("../assets/mobile/newArrival.png"), price: "$99,999", originalPrice: "99,999", bid: 2},
         {title: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒", imagePath: require("../assets/mobile/newArrival.png"), price: "$99,999", originalPrice: "99,999", bid: 3},
@@ -92,24 +94,49 @@ export default {
         {title: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒", imagePath: require("../assets/mobile/newArrival.png"), price: "$99,999", originalPrice: "99,999", bid: 5}
       ],
       itemtoCart: false,
-      showModal: false
+      showModal: false,
+      totalPrice: 0,
+      redheart: true,
+      tempProduct: {},
+      currentVal: 1
     }
   },
   computed: {
-    
+    productData() {
+      console.log("this.prodLists=", JSON.parse(this.$route.query.item));
+      return JSON.parse(this.$route.query.item);
+    },
+  },
+  created() {
+    this.tempProduct = JSON.parse(this.$route.query.item);
+    this.totalPrice = this.tempProduct.price * 1;
   },
   methods: {
+    ...mapActions("cart", ["addProductToCart"]),
     checkAuth(auth) {
       this.userLogin = auth
     },
-    updateNum(current, old) {
+    updateNum(current, old, val) {
       console.log('current ', current);
       console.log('old ', old);
+      this.currentVal = current
+      this.totalPrice = val.price * current;
     },
     addtoCart() {
       this.itemtoCart = true;
       // window.scrollTo(0, 0);
       window.scrollTo({ top: 0, behavior: "smooth" });
+
+      this.productData.max = 5;
+      this.productData.quantity = this.currentVal;
+      const product = this.productData;
+      this.addProductToCart(JSON.stringify(product));
+      this.$message({
+        message: "Add to Cart Success",
+        type: "success",
+        duration: 2000,
+      });
+      this.$forceUpdate();
     },
     buyNow() {
       if(this.userLogin) {
@@ -156,7 +183,7 @@ export default {
     background: #b79ced;
     font-size: 1rem !important;
     border: 1px solid #b79ced;
-    top: 0px;
+    top: 3px;
 
     width: 36px;
     height: 36px;
@@ -304,6 +331,7 @@ export default {
           justify-content: center;
           align-items: center;
           margin-bottom: 0;
+          cursor: pointer;
         }
         .to-cart {
           background: #7161EF;

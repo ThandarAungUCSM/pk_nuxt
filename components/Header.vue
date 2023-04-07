@@ -293,20 +293,6 @@ export default {
   data() {
     return {
       totalAllQty: 4,
-      cartLists: [
-        {
-          "data": {title: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒", imagePath: require("../assets/mobile/newArrival1.png"), price: "$99,999", originalPrice: "99,999", bid: 1}, "quantity":1
-        },
-        {
-          "data": {title: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒", imagePath: require("../assets/mobile/newArrival1.png"), price: "$99,999", originalPrice: "99,999", bid: 2}, "quantity":2
-        },
-        {
-          "data": {title: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒", imagePath: require("../assets/mobile/newArrival1.png"), price: "$99,999", originalPrice: "99,999", bid: 3}, "quantity":3
-        },
-        {
-          "data": {title: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒", imagePath: require("../assets/mobile/newArrival1.png"), price: "$99,999", originalPrice: "99,999", bid: 4}, "quantity":4
-        }
-      ],
       showCart: false,
       // userLogin: false,
       showmemberData: false,
@@ -333,7 +319,6 @@ export default {
     console.log(this.authVal)
 
     this.setCartQty(this.totalAllQty);
-    this.setCartList(this.cartLists);
   }, 
   beforeMount() {
     // Close the dropdown if the user clicks outside of it

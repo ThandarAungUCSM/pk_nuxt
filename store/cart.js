@@ -1,17 +1,37 @@
 const state = () => {
   return {
     quantity: null,
-    cartLists: []
+    cartLists: [
+      {name: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒1", imagePath: require("../assets/mobile/newArrival.png"),  max: 5, quantity: 2, price: "99999", originalPrice: "99,999", bid: 1},
+      {name: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒1", imagePath: require("../assets/mobile/newArrival.png"),  max: 5, quantity: 3, price: "99999", originalPrice: "99,999", bid: 2},
+      {name: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒1", imagePath: require("../assets/mobile/newArrival.png"),  max: 5, quantity: 1, price: "99999", originalPrice: "99,999", bid: 3},
+      {name: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒1", imagePath: require("../assets/mobile/newArrival.png"),  max: 5, quantity: 2, price: "99999", originalPrice: "99,999", bid: 4},
+      
+    ]
   };
 };
 
 const actions = {
+  // tracking-products
+  // addProductToCart({ state, commit }, product) {
+  //   if (product != null) {
+  //     const cartItem = state.cartLists.find(item => item.bid === product.bid);
+  //     if(!cartItem) {
+  //       commit("pushProductToCart", product);
+  //     } 
+  //   }
+  // },
+
+  // productDetail
   addProductToCart({ state, commit }, product) {
     if (product != null) {
-      const cartItem = state.cartLists.find(item => item.bid === product.bid);
+      const temp = JSON.parse(product)
+      const cartItem = state.cartLists.find(item => item.bid === temp.bid);
       if(!cartItem) {
-        commit("pushProductToCart", product);
-      } 
+        commit("pushProductToCart", temp);
+      } else {
+        commit("incrementProductQuantity", temp);
+      }
     }
   },
   setCartQty({ commit }, data) {
@@ -29,14 +49,43 @@ const actions = {
     //   }
     // }
   },
+
+  incProductQty({ state, commit }, product) {
+    console.log("[Action] incProductQty() product.name=", product.name);
+    if (product != null) {
+      const cartItem = state.cartLists.find(item => item.bid === product.bid);
+      console.log("cartItem.name=", cartItem.name);
+      if (cartItem) {
+        commit("incrementProductQuantity", product);
+      }
+    }
+  },
+  decProductQty({ state, commit }, product) {
+    console.log("[Action] decProductQty() product.name=", product.name);
+    if (product != null) {
+      const cartItem = state.cartLists.find(item => item.bid === product.bid);
+      console.log("cartItem.name=", cartItem.name);
+      if (cartItem) {
+        commit("decrementProductQuantity", product);
+      }
+    }
+  }
+
 };
 
 const mutations = {
+  // tracking-products
+  // pushProductToCart(state, product) {
+  //   state.cartLists.push({
+  //     data: product,
+  //     quantity: state.quantity+1,
+  //   });
+  //   state.quantity+=1
+  // },
+
+  // productDetail
   pushProductToCart(state, product) {
-    state.cartLists.push({
-      data: product,
-      quantity: state.quantity+1,
-    });
+    state.cartLists.push( product );
     state.quantity+=1
   },
   "SET_QTY"(state, data) {
@@ -44,6 +93,16 @@ const mutations = {
   },
   "SET_CART_LIST"(state, data) {
     state.cartLists = data;
+  },
+  incrementProductQuantity(state, product) {
+    console.log("cart incrementProductQuantity(product.name=", product.name, ")");
+    const cartItem = state.cartLists.find(item => item.bid === product.bid);
+    cartItem.quantity++;
+  },
+  decrementProductQuantity(state, product) {
+    console.log("cart decrementItemQuantity(product.name=", product.name, ")");
+    const cartItem = state.cartLists.find(item => item.bid === product.bid);
+    if (cartItem.quantity > 1) cartItem.quantity--;
   },
 };
 
