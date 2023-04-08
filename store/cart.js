@@ -41,13 +41,13 @@ const actions = {
     commit("SET_CART_LIST", data);
   },
   removeProductFromCart({ state, commit }, bid) {
-    // console.log("[Action] removeProductFromCart() bid=", bid);
-    // if (bid != null) {
-    //   const cartItem = state.items.find(item => item.data.bid === bid);
-    //   if (cartItem) {
-    //     commit("popProductFromCart", cartItem);
-    //   }
-    // }
+    console.log("[Action] removeProductFromCart() bid=", bid);
+    if (bid != null) {
+      const cartItem = state.cartLists.find(item => item.bid === bid);
+      if (cartItem) {
+        commit("popProductFromCart", cartItem);
+      }
+    }
   },
 
   incProductQty({ state, commit }, product) {
@@ -103,6 +103,12 @@ const mutations = {
     console.log("cart decrementItemQuantity(product.name=", product.name, ")");
     const cartItem = state.cartLists.find(item => item.bid === product.bid);
     if (cartItem.quantity > 1) cartItem.quantity--;
+  },
+  popProductFromCart(state, item) {
+    console.log("cart popProductFromCart(item=", item, ")");
+    const index = state.cartLists.indexOf(item);
+    console.log("cart popProductFromCart(index=", index, ")");
+    if (index > -1) state.cartLists.splice(index, 1);
   },
 };
 

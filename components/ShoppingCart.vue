@@ -169,16 +169,16 @@ export default {
     hide() {
     },
     doRemoveItem(product) {
-      // console.log("doRemoveItem(bid=", product.bid, ")");
-      // this.removeProductFromCart(product.bid);
-      // this.$emit("deleteItem", this.selecttype, product);
-      const temp = [...this.cartItems];
-      for(let i = 0; i < temp.length; i++) {
-        if(temp[i].bid === product.bid) {
-          const temp1 = this.cartItems.splice(i, 1);
-          console.log(temp1)
-        }
-      }
+      console.log("doRemoveItem(bid=", product.bid, ")");
+      this.removeProductFromCart(product.bid);
+      this.$emit("deleteItem", this.selecttype, product);
+      // const temp = [...this.cartItems];
+      // for(let i = 0; i < temp.length; i++) {
+      //   if(temp[i].bid === product.bid) {
+      //     const temp1 = this.cartItems.splice(i, 1);
+      //     console.log(temp1)
+      //   }
+      // }
     },
     gotoPage(val) {
       this.$router.push(val);
@@ -489,7 +489,7 @@ export default {
 
   margin-top: 100px;
   @media screen and (max-width: 768px) {
-    margin-top: 1px;
+    margin-top: 70px;
   }
 }
 .checkGrop1 {

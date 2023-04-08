@@ -17,13 +17,13 @@
             <img src="../assets/mobile/itemicon_gold.png" class="gold-icon">
             <span>{{totalPrice}}</span>
           </span>
-          <div class="bottom-block">
+          <div id="mProductId" class="bottom-block">
             <el-input-number
               v-model="showArr"
               :min="1"
               :max="5"
               @change="(currentVal, oldVal) => {updateNum(currentVal, oldVal, productData)}" ></el-input-number>
-            <div class="two-btn">
+            <div class="two-btn product-count">
               <p class="to-cart" @click="addtoCart">加入購物車</p>
               <p class="buy-now" @click="buyNow">立即購買</p>
               <loginModal :show="showModal" class="formobile" @close="showModal = false" />
@@ -75,6 +75,13 @@
       </div>
     </div>
     <Footer page="productDetail" />
+    <div id="mscrollshowId" class="upder-footer">
+      <div class="two-btn product-count">
+        <p class="to-cart" @click="addtoCart">加入購物車</p>
+        <p class="buy-now" @click="buyNow">立即購買</p>
+        <loginModal :show="showModal" class="formobile" @close="showModal = false" />
+      </div>
+    </div>
   </div>
 </template>
 
@@ -106,6 +113,22 @@ export default {
       console.log("this.prodLists=", JSON.parse(this.$route.query.item));
       return JSON.parse(this.$route.query.item);
     },
+  },
+  mounted() {
+    if(typeof window !== "undefined") {
+      window.addEventListener("scroll", () => {
+        const element = document.getElementById("mProductId");
+        const y = element.getBoundingClientRect().top;
+        if(y < -3) {
+          const showdiv = document.getElementById("mscrollshowId");
+          showdiv.classList.add('mshowBottom')
+        } else if(y > 1) {
+          const showdiv = document.getElementById("mscrollshowId");
+          showdiv.classList.remove('mshowBottom')
+        }
+
+      });
+    }
   },
   created() {
     this.tempProduct = JSON.parse(this.$route.query.item);
@@ -139,12 +162,13 @@ export default {
       this.$forceUpdate();
     },
     buyNow() {
-      if(this.userLogin) {
-        console.log('hi');
-      } else {
-        this.itemtoCart = false;
-        this.showModal = true;
-      }
+      // if(this.userLogin) {
+      //   console.log('hi');
+      // } else {
+      //   this.itemtoCart = false;
+      //   this.showModal = true;
+      // }
+      this.$router.push({name: 'convert'})
     },
   }
 }
@@ -316,28 +340,6 @@ export default {
         bottom: 0;
         @media screen and (max-width: 768px) {
           position: unset;
-        }
-      }
-      .two-btn {
-        display: flex;
-        margin-top: 12px;
-        .to-cart, .buy-now {
-          font-weight: 700;
-          font-size: 1rem;
-          color: #FFF;
-          width: 50%;
-          height: 48px;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          margin-bottom: 0;
-          cursor: pointer;
-        }
-        .to-cart {
-          background: #7161EF;
-        }
-        .buy-now {
-          background: #E9B531;
         }
       }
       .heart-row {
@@ -555,6 +557,58 @@ export default {
       background: #dfdfdf;
       border-radius: 10px;
     }
+  }
+}
+.upder-footer {
+  display: none;
+  @media screen and (max-width: 768px) {
+    display: block;
+  }
+}
+.mshowBottom {
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+
+  visibility: hidden;
+  opacity: 0.5;
+  animation-name: bottomToTop7;
+  animation-duration: 0.1s;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards; 
+}
+@keyframes bottomToTop7 {
+  0% {
+    visibility: hidden;
+    opacity: 0.5;
+    transform: translateY(20px);
+  }
+  100% {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+.two-btn {
+  display: flex;
+  margin-top: 12px;
+  .to-cart, .buy-now {
+    font-weight: 700;
+    font-size: 1rem;
+    color: #FFF;
+    width: 50%;
+    height: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 0;
+    cursor: pointer;
+  }
+  .to-cart {
+    background: #7161EF;
+  }
+  .buy-now {
+    background: #E9B531;
   }
 }
 </style>
