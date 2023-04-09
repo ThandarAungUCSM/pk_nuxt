@@ -2,7 +2,7 @@
   <div>
     <Header class="forPC" />
     <div class="formobile titlem">
-      <div class="pc-back">
+      <div class="pc-back" @click="backBtn">
         <img src="../../assets/mobile/btn-return.png" class="back-icon">
       </div>
       <div class="title-div">
@@ -176,6 +176,9 @@ export default {
     refundProcess(order) {
       console.log("refundProcess(", order, ")");
       this.$router.push({ name: "refund", query: { id: order.orderId, no: order.orderNo } });
+    },
+    backBtn() {
+      this.$router.go(-1)
     },
   },
 };

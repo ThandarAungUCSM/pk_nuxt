@@ -32,6 +32,7 @@ export default {
 .order-nav {
   display: flex;
   width: 60%;
+  min-width: 565px;
   margin: 0 auto;
   justify-content: center;
   color: #dbdada;
@@ -42,6 +43,7 @@ export default {
   z-index: 10;
   @media screen and (max-width: 768px) {
     width: 100%;
+    min-width: unset;
     padding: 1.5rem 1rem;
     justify-content: space-between;
     background: #FFF;

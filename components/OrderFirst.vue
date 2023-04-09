@@ -63,6 +63,7 @@ export default {
 // $size-lg: 992px;
 .order-first {
   width: 80%;
+  min-width: 100%;
   margin: 0 auto;
   margin-bottom: 1rem;
   @media screen and (max-width: 1080px) {
@@ -70,6 +71,7 @@ export default {
   }
   @media screen and (max-width: 768px) {
     width: 100%;
+    min-width: unset;
     max-width: 100%;
     margin-bottom: 0rem;
     padding-left: 0;

@@ -3,7 +3,7 @@
     <div>
       <Header class="forPC" />
       <div class="formobile titlem">
-        <div class="pc-back">
+        <div class="pc-back" @click="backBtn">
           <img src="../assets/mobile/btn-return.png" class="back-icon">
         </div>
         <div class="title-div">
@@ -133,6 +133,9 @@ export default {
   // },
   // fetchOnServer: false,
   methods: {
+    backBtn() {
+      // this.$router.go(-1)
+    },
     delay(time) {
       return new Promise(resolve => setTimeout(resolve, time));
     },
@@ -215,9 +218,11 @@ export default {
   }
 }
 .orderPage {
+  min-width: 997px;
   @media screen and (max-width: 768px) {
     padding-top: 0px;
     width: 100%;
+    min-width: unset;
     max-width: 100%;
     padding-left: 0;
     padding-right: 0;
