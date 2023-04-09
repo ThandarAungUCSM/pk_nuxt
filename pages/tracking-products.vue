@@ -39,33 +39,41 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from "vuex";
+import { mapState, mapActions, mapGetters } from "vuex";
 export default {
   name: 'TrackingProductsPage',
   data() {
     return {
-      showItems: [
-        {title: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒", imagePath: require("../assets/mobile/newArrival1.png"), price: "$99,999", originalPrice: "99,999", bid: 1},
-        {title: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒", imagePath: require("../assets/mobile/newArrival1.png"), price: "$99,999", originalPrice: "99,999", bid: 2},
-        {title: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒", imagePath: require("../assets/mobile/newArrival1.png"), price: "$99,999", originalPrice: "99,999", bid: 3},
-        {title: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒", imagePath: require("../assets/mobile/newArrival1.png"), price: "$99,999", originalPrice: "99,999", bid: 4},
-        {title: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒", imagePath: require("../assets/mobile/newArrival1.png"), price: "$99,999", originalPrice: "99,999", bid: 5},
-        {title: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒", imagePath: require("../assets/mobile/newArrival1.png"), price: "$99,999", originalPrice: "99,999", bid: 6},
-        {title: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒", imagePath: require("../assets/mobile/newArrival1.png"), price: "$99,999", originalPrice: "99,999", bid: 7}
-      ],
+      // showItems: [
+      //   {title: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒", imagePath: require("../assets/mobile/newArrival1.png"), price: "$99,999", originalPrice: "99,999", bid: 1},
+      //   {title: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒", imagePath: require("../assets/mobile/newArrival1.png"), price: "$99,999", originalPrice: "99,999", bid: 2},
+      //   {title: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒", imagePath: require("../assets/mobile/newArrival1.png"), price: "$99,999", originalPrice: "99,999", bid: 3},
+      //   {title: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒", imagePath: require("../assets/mobile/newArrival1.png"), price: "$99,999", originalPrice: "99,999", bid: 4},
+      //   {title: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒", imagePath: require("../assets/mobile/newArrival1.png"), price: "$99,999", originalPrice: "99,999", bid: 5},
+      //   {title: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒", imagePath: require("../assets/mobile/newArrival1.png"), price: "$99,999", originalPrice: "99,999", bid: 6},
+      //   {title: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒", imagePath: require("../assets/mobile/newArrival1.png"), price: "$99,999", originalPrice: "99,999", bid: 7},
+      //   {title: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒", imagePath: require("../assets/mobile/newArrival1.png"), price: "$99,999", originalPrice: "99,999", bid: 8},
+      //   {title: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒", imagePath: require("../assets/mobile/newArrival1.png"), price: "$99,999", originalPrice: "99,999", bid: 9},
+      //   {title: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒", imagePath: require("../assets/mobile/newArrival1.png"), price: "$99,999", originalPrice: "99,999", bid: 10}
+      // ],
       productData: true
     }
   },
   computed: {
+    ...mapState({
+      showItems: state => state.track.trackingLists
+    }),
     ...mapGetters("cart", {
       cartItems: "cartProducts"
     })
   },
   methods: {
     ...mapActions("cart", ["addProductToCart"]),
+    ...mapActions("track", ["removeProductFromTracking"]),
     removeFromList(position, data) {
-      this.showItems.splice(position, 1)
-      console.log(this.showItems);
+      // this.showItems.splice(position, 1)
+      // this.removeProductFromTracking(data.bid);
+      // this.$forceUpdate();
     },
     addToCart(position, data) {
       const product = data;

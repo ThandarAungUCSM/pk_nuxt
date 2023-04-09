@@ -134,7 +134,7 @@ export default {
   // fetchOnServer: false,
   methods: {
     backBtn() {
-      // this.$router.go(-1)
+      this.$router.go(-1)
     },
     delay(time) {
       return new Promise(resolve => setTimeout(resolve, time));

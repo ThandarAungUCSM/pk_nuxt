@@ -33,14 +33,14 @@
         </div>
         <img class="rightarr-icon" src="../assets/mobile/rightarr-blue.png" />
       </div>
-      <div class="each-menu-row" @click="gotoPage('tracking-product')">
+      <div class="each-menu-row" @click="gotoPage('tracking-products')">
         <div class="left-side">
           <img class="menu-usercss" alt="heart" src="../assets/pc/active-heart.png" />
           <span class="menu-text">追蹤清單</span>
         </div>
         <img class="rightarr-icon" src="../assets/mobile/rightarr-blue.png" />
       </div>
-      <div class="each-menu-row" @click="gotoPage('myGame')">
+      <div class="each-menu-row" @click="gotoPage('game-connection')">
         <div class="left-side">
           <img class="menu-usercss" alt="shield" src="../assets/pc/active-shield.png" />
           <span class="menu-text">遊戲連動</span>
@@ -76,6 +76,7 @@ export default {
       if (window) {
         const windowWidth = window.innerWidth;
         if (windowWidth > 768) {
+          if(location.pathname === '/member')
           this.$router.push('/')
         }
       }
