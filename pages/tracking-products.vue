@@ -77,9 +77,13 @@ export default {
     },
     addToCart(position, data) {
       const product = data;
-      this.addProductToCart(product);
+      product.max = 5;
+      product.quantity = 1;
+      this.addProductToCart(JSON.stringify(product));
+
+      // message: "商品成功放入購物車",
       this.$message({
-        message: "商品成功放入購物車",
+        message: "AddtoCart Success!!",
         type: "success",
         duration: 2000,
       });
