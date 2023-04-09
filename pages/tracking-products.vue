@@ -72,8 +72,8 @@ export default {
     ...mapActions("track", ["removeProductFromTracking"]),
     removeFromList(position, data) {
       // this.showItems.splice(position, 1)
-      // this.removeProductFromTracking(data.bid);
-      // this.$forceUpdate();
+      this.removeProductFromTracking(data.bid);
+      this.$forceUpdate();
     },
     addToCart(position, data) {
       const product = data;
