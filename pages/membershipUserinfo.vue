@@ -4,7 +4,7 @@
     <div class="membership-userinfo">
       <div class="member-content">
         <div class="formobile titlem">
-          <div class="pc-back">
+          <div class="pc-back" @click="backBtn">
             <img src="../assets/mobile/btnReturnBlack.png" class="back-icon">
           </div>
           <div class="title-div">
@@ -53,13 +53,13 @@
             </div>
             <div class="gender-row">
               <div>
-                <p class="gen-select">男</p>
+                <p :class="genderCode == 'male' ? 'gen-btn' : 'gen-select'" @click="selectGender('male')">男</p>
               </div>
               <div>
-                <p class="gen-select">女</p>
+                <p :class="genderCode == 'female' ? 'gen-btn' : 'gen-select'" @click="selectGender('female')">女</p>
               </div>
               <div>
-                <p class="gen-btn">其他</p>
+                <p :class="genderCode == 'other' ? 'gen-btn' : 'gen-select'" @click="selectGender('other')">其他</p>
               </div>
             </div>
           </div>
@@ -75,18 +75,28 @@
           <div class="address-block">
             <span class="email-txt">地址</span>
             <div class="address">
-              <select v-model="cityName" class="member-address-city">
-                <option value="">新北市</option>
-                <option v-for="(city, index) in cityTown" :key="index" :value="city.name">
-                  {{ city && city.name }}
-                </option>
-              </select>
-              <select v-model="distinctName" class="member-address-city">
-                <option value="">三重區</option>
-                <option v-for="(city, index) in cityTown" :key="index" :value="city.name">
-                  {{ city && city.name }}
-                </option>
-              </select>
+              <el-select v-model="cityName" class="member-address-city" placeholder="新北市">
+                <el-option
+                  v-for="(city, index) in cityTown"
+                  :key="index"
+                  :label="city.label"
+                  :value="city.name">
+                </el-option>
+              </el-select>
+              
+              <el-select
+                v-model="district"
+                class="member-address-city"
+                style="margin-left: 20px;"
+                placeholder="三重區">
+                <el-option
+                  v-for="(city) in cityTown"
+                  :key="city.value"
+                  :label="city.label"
+                  :value="city.name">
+                </el-option>
+              </el-select>
+              
             </div>
           </div>
           <div class="street-block">
@@ -107,29 +117,174 @@
   </div>
 </template>
 <script>
+import { mapGetters } from "vuex";
 export default {
   name: 'MemberUserinfo',
   data() {
     return {
       currentTab: 1,
-      nameText: '王大明',
-      phoneNo: '0966-330-678',
-      birthDay: '1990/02/18',
-      emailText: 'example@gmail.com',
-      cityTown: [{name: 'aaaaa'}, {name: 'bbbbb'}, {name: 'ccccc'}, {name: 'ddddd'}, {name: 'eeeee'}],
-      cityName: '',
-      distinctName: '',
-      streetText: '光復南路三段156巷24號',
-      userLogin: false
+      // nameText: '王大明',
+      // phoneNo: '0966-330-678',
+      // birthDay: '1990/02/18',
+      // emailText: 'example@gmail.com',
+      // cityName: '',
+      // district: '',
+      // genderCode: 'other',
+      // streetText: '光復南路三段156巷24號',
+      cityTown: [{name: 'aaaaa', label: 'aaaaa'}, {name: 'bbbbb', label: 'bbbbb'}, {name: 'ccccc', label: 'ccccc'}],
+      userLogin: false,
     }
+  },
+  computed: {
+    ...mapGetters("user", {
+      profile: "storeProfile",
+    }),
+    nameText: {
+      get() {
+        console.log(this.$store.state);
+        return this.$store.state.user.profile && this.$store.state.user.profile.name;
+      },
+      set(value) {
+        console.log(value);
+        this.$store.commit("user/UPDATE_NAME", value);
+      },
+    },
+    phoneNo: {
+      get() {
+        return this.$store.state.user.profile && this.$store.state.user.profile.mobile;
+      },
+      set(value) {
+        this.$store.commit("user/UPDATE_MOBILE", value);
+      },
+    },
+    birthDay: {
+      get() {
+        return this.$store.state.user.profile && this.$store.state.user.profile.birthDay;
+      },
+      set(value) {
+        this.$store.commit("user/UPDATE_BIRTHDAY", value);
+      },
+    },
+    emailText: {
+      get() {
+        return this.$store.state.user.profile && this.$store.state.user.profile.email;
+      },
+      set(value) {
+        this.$store.commit("user/UPDATE_EMAIL", value);
+      },
+    },
+    cityName: {
+      get() {
+        return this.$store.state.user.profile && this.$store.state.user.profile.cityName;
+      },
+      set(value) {
+        this.$store.commit("user/UPDATE_CITY_NAME", value);
+      },
+    },
+    district: {
+      get() {
+        return this.$store.state.user.profile && this.$store.state.user.profile.district;
+      },
+      set(value) {
+        this.$store.commit("user/UPDATE_DISTRICT", value);
+      },
+    },
+    genderCode: {
+      get() {
+        return this.$store.state.user.profile && this.$store.state.user.profile.genderCode;
+      },
+      set(value) {
+        this.$store.commit("user/UPDATE_GENDER", value);
+      },
+    },
+    streetText: {
+      get() {
+        return this.$store.state.user.profile && this.$store.state.user.profile.street;
+      },
+      set(value) {
+        this.$store.commit("user/UPDATE_STREET", value);
+      },
+    },
   },
   methods: {
     saveData() {
       alert('Success!!')
+      // this.updateMemberProfile();
+    },
+    async updateMemberProfile() {
+      console.log("updateMemberProfile()");
+      const accessToken = this.$store.getters.accessToken;
+      console.log("this.nameText=", this.nameText);
+      console.log("this.phoneNo=", this.phoneNo);
+      console.log("this.birthDay=", this.birthDay);
+      console.log("this.emailText=", this.emailText);
+      console.log("this.cityName=", this.cityName);
+      console.log("this.district=", this.district);
+      console.log("this.genderCode=", this.genderCode);
+      console.log("this.streetText=", this.streetText);
+      // let cityName = this.cityTown[this.selectCityIndex].name;
+      // let district = this.cityTown[this.selectCityIndex].townshipsList[this.selectTownIndex].name;
+      if (this.profile != null) {
+        // const profileId = this.profile.profileId;
+        // const appMemberShipCardNumber = this.profile.appMemberShipCardNumber;
+        // const mobileCountryNumber = this.profile.mobileCountryNumber;
+        // const marriage = this.profile.marriage;
+        // const profession = this.profile.profession;
+        // const postcode = this.profile.postcode;
+        // const nationalityCode = this.profile.nationalityCode;
+        const mobile = this.phoneNo;
+        const nameText = this.nameText;
+        const genderCode = this.genderCode;
+        const birthDay = this.birthDay;
+        const email = this.emailText;
+        const cityName = this.cityName;
+        const district = this.district;
+        const street = this.streetText;
+        const rs = await this.$api17.updateMemberProfile(
+          accessToken,
+          // profileId,
+          // appMemberShipCardNumber,
+          // mobileCountryNumber,
+          // marriage,
+          // profession,
+          // postcode,
+          // nationalityCode,
+          mobile,
+          nameText,
+          genderCode,
+          birthDay,
+          email,
+          cityName,
+          district,
+          street,
+        );
+        if (rs.code === 1000) {
+          const data = rs.data;
+          console.log("updateMemberProfile() data=", data);
+          const rs2 = await this.$api17.getMemberProfile(accessToken);
+          if (rs2.code === 1000) {
+            const userData = rs2.data;
+            console.log("userData=", userData);
+            this.setUserProfile(userData);
+          } else {
+            console.error('Error');
+          }
+        } else {
+          console.error(" updateMemberProfile() ...");
+        }
+      } else {
+        console.error("profile=null");
+      }
     },
     checkAuth(auth) {
       this.userLogin = auth
     },
+    selectGender(val) {
+      this.genderCode = val
+    },
+    backBtn() {
+      this.$router.push('/member')
+    }
   }
 }
 </script>
@@ -260,6 +415,7 @@ export default {
             // padding: 0 2rem;
             max-width: 80px;
             width: 80px;
+            cursor: pointer;
           }
           .gen-btn {
             font-weight: 400;
@@ -276,6 +432,7 @@ export default {
             // padding: 0 2rem;
             max-width: 80px;
             width: 80px;
+            cursor: pointer;
           }
         }
       }
@@ -319,13 +476,13 @@ export default {
         .member-address-city {
           width: 48%;
           font-weight: 400;
-          font-size: 1rem;
+          font-size: 1rem !important;
           color: #858585;
           background: #FAF7FF;
           backdrop-filter: blur(1.5px);
           border-radius: 6px;
           border: none;
-          padding-left: 10px;
+          // padding-left: 10px;
           height: 60px;
           min-height: 60px;
 
@@ -378,5 +535,15 @@ export default {
     width: 24px;
     height: 24px;
   }
+}
+</style>
+<style lang="scss">
+.el-input--suffix .el-input__inner {
+  background: #FAF7FF;
+  height: 60px;
+  border: none;
+}
+.el-select-dropdown__item.hover, .el-select-dropdown__item:hover {
+  background: #FAF7FF;
 }
 </style>

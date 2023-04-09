@@ -34,7 +34,9 @@
                   </div>
                   
                   <div class="each-item">
-                    <p :class="authData ? 'item-txt' : 'noLog-txt'">我的會員</p>
+                    <!-- <p :class="authData ? 'item-txt' : 'noLog-txt'">我的會員</p> -->
+                    <p v-if="authData" :class="authData ? 'item-txt' : 'noLog-txt'">我的會員</p>
+                    <p v-else :class="authData ? 'item-txt' : 'noLog-txt'" @click="gotoPage('member')">我的會員</p>
                     <img v-if="authData" class="arrow-css" src="../assets/mobile/rightArr.png" />
                     <img v-if="!authData" class="arrow-css" src="../assets/mobile/noactiveArr.png" />
                   </div>
