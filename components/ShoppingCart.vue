@@ -151,6 +151,14 @@ export default {
     }
   },
   watch: {
+    cartItems(val1, val2) {
+      console.log("xxxxxx value changed", val1, val2);
+      if(val1.length > 0) {
+        this.emptycart = false
+      } else {
+        this.emptycart = true
+      }
+    }
   },
   created() {
     console.log("cartItems created: ", this.cartItems);
