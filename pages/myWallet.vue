@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Header :auth-data='userLogin' @checkAuth="checkAuth" />
+    <Header />
     <div class="currency-page">
       <div class="content-block">
         <div class="left-div">
@@ -90,13 +90,9 @@ export default {
   data() {
     return {
       hideData: false,
-      userLogin: false
     }
   },
   methods: {
-    checkAuth(auth) {
-      this.userLogin = auth
-    },
   }
 }
 </script>

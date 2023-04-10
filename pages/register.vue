@@ -11,7 +11,7 @@
         <div class="right-inner">
           <p class="welcome-back">註冊</p>
 
-          <input v-model="myaccount" placeholder="請輸入帳號" class="accountCss2" />
+          <input v-model="myaccount" placeholder="請輸入帳號" onfocus="this.placeholder=''" class="accountCss2" />
 
           <div class="btn-div">
             <div class="register-btn" @click="registerFun">下一步</div>
@@ -37,7 +37,7 @@
         </div>
         <p class="welcome-back">註冊</p>
 
-        <input v-model="mypassword" placeholder="請輸入帳號" class="accountCss2" />
+        <input v-model="mypassword" placeholder="請輸入帳號" onfocus="this.placeholder=''" class="accountCss2" />
 
         <div class="btn-div">
           <div class="register-btn" @click="registerFun">下一步</div>
@@ -63,10 +63,10 @@
             <p class="hideright">hi</p>
           </div>
 
-          <input v-model="mypassword" placeholder="請輸入新密碼" class="accountCss3" />
+          <input v-model="mypassword" placeholder="請輸入新密碼" onfocus="this.placeholder=''" class="accountCss3" />
           <p class="pwd-valid">密碼長度為6~16碼，需包含英文字母及數字。</p>
 
-          <input v-model="myconfirmpwd" placeholder="請再輸入相同密碼" class="accountCss2" />
+          <input v-model="myconfirmpwd" placeholder="請再輸入相同密碼" onfocus="this.placeholder=''" class="accountCss2" />
 
           <div class="btn-div">
             <div class="register-btn" @click="registerFun">下一步</div>
@@ -92,10 +92,10 @@
           <p class="hideright">hi</p>
         </div>
 
-        <input v-model="mypassword" placeholder="請輸入新密碼" class="accountCss3" />
+        <input v-model="mypassword" placeholder="請輸入新密碼" onfocus="this.placeholder=''" class="accountCss3" />
         <p class="pwd-valid">密碼長度為6~16碼，需包含英文字母及數字。</p>
 
-        <input v-model="myconfirmpwd" placeholder="請再輸入相同密碼" class="accountCss2" />
+        <input v-model="myconfirmpwd" placeholder="請再輸入相同密碼" onfocus="this.placeholder=''" class="accountCss2" />
 
         <div class="btn-div">
           <div class="register-btn" @click="registerFun">下一步</div>
@@ -119,18 +119,18 @@
           </div>
 
           <input
-            v-model="phoneNo" type="tel" name="mobile" pattern="[0-9]{4} [0-9]{3} [0-9]{3}" maxlength="12" placeholder="請輸入手機號碼" class="accountCss3" required
+            v-model="phoneNo" type="tel" name="mobile" pattern="[0-9]{4} [0-9]{3} [0-9]{3}" maxlength="12" placeholder="請輸入手機號碼" onfocus="this.placeholder=''" class="accountCss3" required
             oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');"
           />
 
-          <input v-model="dateofBirth" placeholder="1990/04/18" class="accountCss4" />
+          <input v-model="dateofBirth" placeholder="1990/04/18" onfocus="this.placeholder=''" class="accountCss4" />
           <p class="pwd-valid">請輸入正確生日，以免影響使用權益。</p>
 
           <div>
             <div class="gender-group">
-              <p class="gender-css" @click="selectGender('Male')">男</p>
-              <p class="gender-css" @click="selectGender('Female')">女</p>
-              <p class="gender-css" @click="selectGender('other')">其他</p>
+              <p :class="genderData === 'Male' ? 'active-gen' : 'gender-css'" @click="selectGender('Male')">男</p>
+              <p :class="genderData === 'Female' ? 'active-gen' : 'gender-css'" @click="selectGender('Female')">女</p>
+              <p :class="genderData === 'other' ? 'active-gen' : 'gender-css'" @click="selectGender('other')">其他</p>
             </div>
           </div>
 
@@ -161,14 +161,14 @@
         <input v-model="phoneNo" type="number" name="mobile" pattern="[0-9]{4} [0-9]{3} [0-9]{3}" maxlength="12" placeholder="請輸入手機號碼" class="accountCss3" required />
         <!-- if (!(/^1[34578]\d{9}$/.test(this.list.mobile))) { -->
 
-        <input v-model="dateofBirth" placeholder="1990/04/18" class="accountCss4" />
+        <input v-model="dateofBirth" placeholder="1990/04/18" onfocus="this.placeholder=''" class="accountCss4" />
         <p class="pwd-valid">請輸入正確生日，以免影響使用權益。</p>
 
         <div>
           <div class="gender-group">
-            <p class="gender-css" @click="selectGender('Male')">男</p>
-            <p class="gender-css" @click="selectGender('Female')">女</p>
-            <p class="gender-css" @click="selectGender('other')">其他</p>
+            <p :class="genderData === 'Male' ? 'active-gen' : 'gender-css'" @click="selectGender('Male')">男</p>
+            <p :class="genderData === 'Female' ? 'active-gen' : 'gender-css'" @click="selectGender('Female')">女</p>
+            <p :class="genderData === 'other' ? 'active-gen' : 'gender-css'" @click="selectGender('other')">其他</p>
           </div>
         </div>
 
@@ -188,13 +188,13 @@
       <div class="right-block">
         <div class="right-inner">
           <div class="row-regi">
-            <img class="back-css" src="../assets/mobile/back-btn.png" @click="backFun(3)" />
+            <img class="back-css" src="../assets/mobile/back-btn.png" @click="backFun(4)" />
             <p class="welcome-back">註冊</p>
             <p class="hideright">hi</p>
           </div>
           
           <p class="lable1">電子信箱</p>
-          <input v-model="myemail" placeholder="example@mail.com" class="accountCss5" />
+          <input v-model="myemail" placeholder="example@mail.com" onfocus="this.placeholder=''" class="accountCss5" />
 
           <p class="lable1">地址</p>
           <div class="address">
@@ -212,7 +212,7 @@
             </select>
           </div>
           
-          <input v-model="myaddress" placeholder="光復南路三段156巷24號" class="accountCss6" />
+          <input v-model="myaddress" placeholder="光復南路三段156巷24號" onfocus="this.placeholder=''" class="accountCss6" />
 
           <div class="btn-div">
             <div class="register-btn" @click="registerFun">下一步</div>
@@ -233,13 +233,13 @@
           <p class="stage-css">4/4</p>
         </div>
         <div class="row-regi">
-          <img class="back-css" src="../assets/mobile/back-btn.png" @click="backFun(3)" />
+          <img class="back-css" src="../assets/mobile/back-btn.png" @click="backFun(4)" />
           <p class="welcome-back">註冊</p>
           <p class="hideright">hi</p>
         </div>
         
         <p class="lable1">電子信箱</p>
-        <input v-model="myemail" placeholder="example@mail.com" class="accountCss5" />
+        <input v-model="myemail" placeholder="example@mail.com" onfocus="this.placeholder=''" class="accountCss5" />
 
         <p class="lable1">地址</p>
         <div class="address">
@@ -257,7 +257,7 @@
           </select>
         </div>
         
-        <input v-model="myaddress" placeholder="光復南路三段156巷24號" class="accountCss6" />
+        <input v-model="myaddress" placeholder="光復南路三段156巷24號" onfocus="this.placeholder=''" class="accountCss6" />
 
         <div class="btn-div">
           <div class="register-btn" @click="registerFun">下一步</div>
@@ -270,30 +270,39 @@
       <div class="right-block1">
         <div class="right-inner">
           <div class="row-regi">
-            <img class="back-css" src="../assets/mobile/back-btn.png" @click="backFun(3)" />
+            <img class="back-css" src="../assets/mobile/back-btn.png" @click="backFun(5)" />
             <p class="welcome-back">會員服務條款</p>
             <p class="hideright">hi</p>
           </div>
 
-          <p class="termofservice">
-            會員條款
-            歡迎您加入我們的電商平台會員！為了保障您的權益與維護平台的秩序，請您務必詳細閱讀以下條款：
-            一、平台會員的註冊
-            1.申請加入平台會員時，請確保您所提供的個人資訊均真實有效，且需保證不會因為任何原因而對第三方造成損害。
-            2.您需要保證註冊時填寫的資訊與您本人真實身份一致。若您提供虛假資訊，平台有權隨時終止您的會員資格。
-            3.平台有權根據實際需要暫停或終止向會員提供部分或全部服務，且不承擔任何賠償責任。
-            4.會員需保管好自己的帳號和密碼，不得將帳號和密碼洩露給第三方使用。如因疏忽或其他原因造成帳號或密碼遭到盜用，會員需立即通知平台，以保障自己的權益。
-            二、交易流程
-            1.平台只是交易的中介平台，不對買賣雙方的行為承擔任何擔保、擔保、代理、擔保或其他類似的責任。
-            2.會員需對在平台上的交易行為負責。在平台上進行交易時，會員應確保交易物品的真實性和合法性，且不得有欺詐行為。
-            3.在交易過程中，會員需嚴格遵守平台的相關規定，如有違反，平台有權終止會員資格。
-            4.買賣雙方達成交易後，平台將按照約定的方式處理款項，並提供相關的物流跟踪信息。
-            5.如果買賣雙方違反交易協議或有其他違法行為，平台有權介入調解，但不對交易結果承擔任何責任。
-            三、智慧財產權保護
-            1.平台尊重並保護知識產權，會員在平台上傳輸的內容不得侵犯他人
+          <p id="scrollId" class="termofservice" @scroll="onScroll">
+            會員條款 <br>
+            歡迎您加入我們的電商平台會員！為了保障您的權益與維護平台的秩序，請您務必詳細閱 <br>
+            讀以下條款： <br>
+            一、平台會員的註冊 <br>
+            1.申請加入平台會員時，請確保您所提供的個人資訊均真實有效，且需保證不會因為任何 <br>
+            原因而對第三方造成損害。 <br>
+            2.您需要保證註冊時填寫的資訊與您本人真實身份一致。若您提供虛假資訊，平台有權隨 <br>
+            時終止您的會員資格。 <br>
+            3.平台有權根據實際需要暫停或終止向會員提供部分或全部服務，且不承擔任何賠償責 <br>
+            任。 <br>
+            4.會員需保管好自己的帳號和密碼，不得將帳號和密碼洩露給第三方使用。如因疏忽或其 <br>
+            他原因造成帳號或密碼遭到盜用，會員需立即通知平台，以保障自己的權益。 <br>
+            二、交易流程 <br>
+            1.平台只是交易的中介平台，不對買賣雙方的行為承擔任何擔保、擔保、代理、擔保或其 <br>
+            他類似的責任。 <br>
+            2.會員需對在平台上的交易行為負責。在平台上進行交易時，會員應確保交易物品的真實 <br>
+            性和合法性，且不得有欺詐行為。 <br>
+            3.在交易過程中，會員需嚴格遵守平台的相關規定，如有違反，平台有權終止會員資格。 <br>
+            4.買賣雙方達成交易後，平台將按照約定的方式處理款項，並提供相關的物流跟踪信息。 <br>
+            5.如果買賣雙方違反交易協議或有其他違法行為，平台有權介入調解，但不對交易結果承<br>
+            擔任何責任。 <br>
+            三、智慧財產權保護 <br>
+            1.平台尊重並保護知識產權，會員在平台上傳輸的內容不得侵犯他人<br>
           </p>
           <div class="btn-div">
-            <div class="register-btn2" @click="registerFun">我已閱讀並同意</div>
+            <div v-if="activeBtn" class="registerActive" @click="registerFun">我已閱讀並同意</div>
+            <div v-else class="register-btn2">我已閱讀並同意</div>
           </div>
         </div>
       </div>
@@ -309,30 +318,31 @@
       <div class="lower-block">
         <div class="right-block">
           <div class="row-regi">
-            <img class="back-css" src="../assets/mobile/back-btn.png" @click="backFun(2)" />
+            <img class="back-css" src="../assets/mobile/back-btn.png" @click="backFun(5)" />
             <p class="welcome-back">會員服務條款</p>
             <p class="hideright">hi</p>
           </div>
 
-          <p class="termofservice">
-            會員條款
-            歡迎您加入我們的電商平台會員！為了保障您的權益與維護平台的秩序，請您務必詳細閱讀以下條款：
-            一、平台會員的註冊
-            1.申請加入平台會員時，請確保您所提供的個人資訊均真實有效，且需保證不會因為任何原因而對第三方造成損害。
-            2.您需要保證註冊時填寫的資訊與您本人真實身份一致。若您提供虛假資訊，平台有權隨時終止您的會員資格。
-            3.平台有權根據實際需要暫停或終止向會員提供部分或全部服務，且不承擔任何賠償責任。
-            4.會員需保管好自己的帳號和密碼，不得將帳號和密碼洩露給第三方使用。如因疏忽或其他原因造成帳號或密碼遭到盜用，會員需立即通知平台，以保障自己的權益。
-            二、交易流程
-            1.平台只是交易的中介平台，不對買賣雙方的行為承擔任何擔保、擔保、代理、擔保或其他類似的責任。
-            2.會員需對在平台上的交易行為負責。在平台上進行交易時，會員應確保交易物品的真實性和合法性，且不得有欺詐行為。
-            3.在交易過程中，會員需嚴格遵守平台的相關規定，如有違反，平台有權終止會員資格。
-            4.買賣雙方達成交易後，平台將按照約定的方式處理款項，並提供相關的物流跟踪信息。
-            5.如果買賣雙方違反交易協議或有其他違法行為，平台有權介入調解，但不對交易結果承擔任何責任。
-            三、智慧財產權保護
-            1.平台尊重並保護知識產權，會員在平台上傳輸的內容不得侵犯他人
+          <p class="termofservice" @scroll="onScroll">
+            會員條款<br>
+            歡迎您加入我們的電商平台會員！為了保障您的權益與維護平台的秩序，請您務必詳細閱讀以下條款：<br>
+            一、平台會員的註冊<br>
+            1.申請加入平台會員時，請確保您所提供的個人資訊均真實有效，且需保證不會因為任何原因而對第三方造成損害。<br>
+            2.您需要保證註冊時填寫的資訊與您本人真實身份一致。若您提供虛假資訊，平台有權隨時終止您的會員資格。<br>
+            3.平台有權根據實際需要暫停或終止向會員提供部分或全部服務，且不承擔任何賠償責任。<br>
+            4.會員需保管好自己的帳號和密碼，不得將帳號和密碼洩露給第三方使用。如因疏忽或其他原因造成帳號或密碼遭到盜用，會員需立即通知平台，以保障自己的權益。<br>
+            二、交易流程<br>
+            1.平台只是交易的中介平台，不對買賣雙方的行為承擔任何擔保、擔保、代理、擔保或其他類似的責任。<br>
+            2.會員需對在平台上的交易行為負責。在平台上進行交易時，會員應確保交易物品的真實性和合法性，且不得有欺詐行為。<br>
+            3.在交易過程中，會員需嚴格遵守平台的相關規定，如有違反，平台有權終止會員資格。<br>
+            4.買賣雙方達成交易後，平台將按照約定的方式處理款項，並提供相關的物流跟踪信息。<br>
+            5.如果買賣雙方違反交易協議或有其他違法行為，平台有權介入調解，但不對交易結果承擔任何責任。<br>
+            三、智慧財產權保護<br>
+            1.平台尊重並保護知識產權，會員在平台上傳輸的內容不得侵犯他人<br>
           </p>
           <div class="btn-div">
-            <div class="register-btn2" @click="registerFun">我已閱讀並同意</div>
+            <div v-if="activeBtn" class="registerActive" @click="registerFun">我已閱讀並同意</div>
+            <div v-else class="register-btn2">我已閱讀並同意</div>
           </div>
         </div>
       </div>
@@ -349,7 +359,7 @@
         <div class="right-inner">
           <p class="welcome-back">驗證電話號碼</p>
 
-          <input v-model="verifycode" placeholder="請輸入驗證碼" class="accountCss4" />
+          <input v-model="verifycode" placeholder="請輸入驗證碼" onfocus="this.placeholder=''" class="accountCss4" />
           <p class="pwd-valid">您若有拒收企業簡訊，將有可能導致無法收到驗證碼。</p>
 
           <div class="btn-div">
@@ -370,7 +380,7 @@
       <div class="right-block">
         <p class="welcome-back">驗證電話號碼</p>
 
-        <input v-model="verifycode" placeholder="請輸入驗證碼" class="accountCss4" />
+        <input v-model="verifycode" placeholder="請輸入驗證碼" onfocus="this.placeholder=''" class="accountCss4" />
         <p class="pwd-valid">您若有拒收企業簡訊，將有可能導致無法收到驗證碼。</p>
 
         <div class="btn-div">
@@ -384,6 +394,7 @@
 </div>
 </template>
 <script>
+import { mapActions } from "vuex";
 export default {
   name: 'MyRegister',
   data() {
@@ -401,10 +412,12 @@ export default {
       cityTown: [{name: 'aaaaa'}, {name: 'bbbbb'}, {name: 'ccccc'}, {name: 'ddddd'}, {name: 'eeeee'}],
       cityName: '',
       distinctName: '',
-      verifycode: ''
+      verifycode: '',
+      activeBtn: false
     }
   },
   methods: {
+    ...mapActions("user", ["updateLogin"]),
     registerFun() {
       if(this.step === 1 && this.myaccount && this.myaccount !== '') {
         // alert('go to step2 ')
@@ -422,6 +435,8 @@ export default {
         // alert('go to step6')
         this.step++;
       } else if(this.step === 6 && this.verifycode !== '') {
+        // go to front page with login state
+        this.updateLogin(true);
         this.$router.push('/')
       }
       // this.$router.push('/register')
@@ -431,6 +446,16 @@ export default {
     },
     loginFun() {
       this.$router.push('/login')
+    },
+    backFun(val) {
+      this.step = (val - 1)
+    },
+    onScroll ({ target: { scrollTop, clientHeight, scrollHeight }}) {
+      if (scrollTop + clientHeight >= scrollHeight) {
+        this.activeBtn = true
+      } else {
+        this.activeBtn = false
+      }
     }
   }
 }
@@ -550,6 +575,7 @@ export default {
       .back-css {
         width: 18px;
         height: 18px;
+        cursor: pointer;
       }
       .hideright {
         visibility: hidden;
@@ -579,6 +605,7 @@ export default {
       padding-left: 10px;
       height: 60px;
       min-height: 60px;
+      outline-color: transparent;
     }
     .welcome-back {
       font-weight: 700;
@@ -607,14 +634,31 @@ export default {
     .gender-css {
       font-weight: 400;
       font-size: 20px;
-      color: #7161EF;
       margin-bottom: 0;
-      border: 2px solid #7161EF;
       border-radius: 12px;
-      height: 42px;
+      height: 40px;
       width: 30%;
-      text-align: center;
+      border: 2px solid #7161EF;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       cursor: pointer;
+      color: #7161EF;
+    }
+    .active-gen {
+      font-weight: 400;
+      font-size: 20px;
+      margin-bottom: 0;
+      border-radius: 12px;
+      height: 40px;
+      width: 30%;
+      border: 2px solid #7161EF;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      color: #FFF;
+      background: #7161EF;
     }
     .accountCss2, .accountCss3, .accountCss4, .accountCss5, .accountCss6 {
       font-weight: 500;
@@ -653,7 +697,7 @@ export default {
       margin: 1rem auto 4rem;
     }
     .termofservice {
-      font-weight: 300;
+      font-weight: 500;
       font-size: 14px;
 
       color: #6A5CFD;
@@ -663,9 +707,15 @@ export default {
       padding: 1rem;
       margin-top: 1rem;
       margin-bottom: 1.5rem;
+
+      height: 423px;
+      overflow: auto;
       @media screen and (max-width: 768px) {
         padding: 10px;
       }
+    }
+    .termofservice::-webkit-scrollbar {
+      display: none;
     }
     .btn-div {
       width: 90%;
@@ -689,6 +739,22 @@ export default {
       }
       .register-btn2 {
         background: #E4D4AB;
+        border-radius: 24px;
+        height: 56px;
+        font-weight: 700;
+        font-size: 20px;
+        color: #FFF;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 90%;
+        width: 100%;
+        margin: 0 auto;
+        cursor: pointer;
+      }
+      .registerActive {
+        background: #E9B531;
         border-radius: 24px;
         height: 56px;
         font-weight: 700;
@@ -734,6 +800,7 @@ export default {
   }
   .right-block1 {
     width: 50%;
+    min-width: 646px;
     margin: auto;
     .right-inner {
       padding: 2rem 2rem 1.5rem;

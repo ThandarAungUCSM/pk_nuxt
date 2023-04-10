@@ -19,28 +19,28 @@
             <img class="user-css" alt="pokerchip" src="../assets/mobile/fi-rr-poker-chip.png" @click="linkToHome" /> -->
             <div class="member-center-part" @mouseleave="mouseLeave" @mouseover="mouseOver">
               <img
-                v-if="!showmemberData && authData"
+                v-if="!showmemberData && authVal"
                 class="dropbtn user-css"
                 alt="user"
                 src="../assets/mobile/fi-rr-user.png"
                 @click="myFunction"
               />
               <img
-                v-else-if="showmemberData && authData"
+                v-else-if="showmemberData && authVal"
                 class="dropbtn user-css"
                 alt="user"
                 src="../assets/pc/fi-rr-user-login.png"
                 @click="myFunction"
               />
               <img
-                v-else-if="(!showmemberData && !authData) || (showmemberData && !authData)"
+                v-else-if="(!showmemberData && !authVal) || (showmemberData && !authVal)"
                 class="dropbtn user-css"
                 alt="user"
                 src="../assets/pc/fi-rr-visitor.png"
                 @click="myFunction"
               />
               <div v-if="showmemberData" id="myDropdown" class="dropdown-content"></div>
-              <div v-if="showmemberData && authData" class="child-dropdown">
+              <div v-if="showmemberData && authVal" class="child-dropdown">
                 <!-- :class="pageName && pageName == 'myTicket' ? 'dropdownContentbg' : ''" -->
                 <NuxtLink
                   to="/membershipUserinfo"
@@ -81,7 +81,7 @@
                   <span>登出</span>
                 </div>
               </div>
-              <div v-if="showmemberData && !authData" class="child-dropdown">
+              <div v-if="showmemberData && !authVal" class="child-dropdown">
                 <NuxtLink
                   to="/login"
                   class="dropdown-item1"
@@ -186,11 +186,11 @@
           <div class="p-3">
             <div class="close-row">
               <img class="close-css" src="../assets/mobile/close.png" @click="hide" />
-              <span v-if="authData" class="logout-css">登出</span>
-              <span v-if="!authData" class="logout-css">登入</span>
+              <span v-if="authVal" class="logout-css">登出</span>
+              <span v-if="!authVal" class="logout-css">登入</span>
             </div>
             <div class="content-bar">
-              <div v-if="authData" class="coin-parent">
+              <div v-if="authVal" class="coin-parent">
                 <div class="coin-block">
                   <img src="../assets/mobile/itemicon_gold.png" class="gold-icon">
                   <div class="txtBox">
@@ -205,21 +205,21 @@
               </div>
               
               <div class="each-item">
-                <!-- <p :class="authData ? 'item-txt' : 'noLog-txt'">我的會員</p> -->
-                <p v-if="authData" :class="authData ? 'item-txt' : 'noLog-txt'">我的會員</p>
-                <p v-else :class="authData ? 'item-txt' : 'noLog-txt'" @click="gotoPage('member')">我的會員</p>
-                <img v-if="authData" class="arrow-css" src="../assets/mobile/rightArr.png" />
-                <img v-if="!authData" class="arrow-css" src="../assets/mobile/noactiveArr.png" />
+                <!-- <p :class="authVal ? 'item-txt' : 'noLog-txt'">我的會員</p> -->
+                <p v-if="authVal" :class="authVal ? 'item-txt' : 'noLog-txt'">我的會員</p>
+                <p v-else :class="authVal ? 'item-txt' : 'noLog-txt'" @click="gotoPage('member')">我的會員</p>
+                <img v-if="authVal" class="arrow-css" src="../assets/mobile/rightArr.png" />
+                <img v-if="!authVal" class="arrow-css" src="../assets/mobile/noactiveArr.png" />
               </div>
               <div class="each-item">
                 <p class="item-txt" @click="gotoPage('myWallet')">我的代幣</p>
                 <img class="arrow-css" src="../assets/mobile/rightArr.png" />
-                <!-- <img v-if="!authData" class="arrow-css" src="../assets/mobile/noactiveArr.png" /> -->
+                <!-- <img v-if="!authVal" class="arrow-css" src="../assets/mobile/noactiveArr.png" /> -->
               </div>
               <div class="each-item">
                 <p class="item-txt">合作遊戲</p>
                 <img class="arrow-css" src="../assets/mobile/rightArr.png" />
-                <!-- <img v-if="!authData" class="arrow-css" src="../assets/mobile/noactiveArr.png" /> -->
+                <!-- <img v-if="!authVal" class="arrow-css" src="../assets/mobile/noactiveArr.png" /> -->
               </div>
 
               <div class="title-row">
@@ -286,10 +286,6 @@ export default {
     page: {
       type: String,
       default: 'page'
-    },
-    authData: {
-      type: Boolean,
-      default: false
     }
   },
   data() {
@@ -305,7 +301,8 @@ export default {
   },
   computed: {
     ...mapState({
-      updatetotalAllQty: state => state.cart.quantity,
+      // updatetotalAllQty: state => state.cart.quantity,
+      updatetotalAllQty: state => state.cart.cartLists.length,
       updatecartLists: state => state.cart.cartLists,
     }),
     ...mapGetters("cart", {

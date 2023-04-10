@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- @checkAuth="checkAuth" -->
-    <Header page="prodDetail" :auth-data='authVal' />
+    <Header page="prodDetail" />
     <div class="content-css">
       <div class="banner-block1">
         <Carousel :caro-item="regularBannerBlock1" :current-slide="slide" :caro-name="1" @activeSlide="activeSlide" />
@@ -28,7 +28,6 @@
 
 <script>
 import "element-ui/lib/theme-chalk/index.css"; 
-import { mapGetters } from "vuex";
 export default {
   name: 'IndexPage',
   data() {
@@ -88,9 +87,6 @@ export default {
     }
   },
   computed: {
-    ...mapGetters("user", {
-      authVal: "userLogin"
-    })
   },
   methods: {
     checkAuth(auth) {

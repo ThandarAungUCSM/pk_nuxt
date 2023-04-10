@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Header :auth-data='userLogin' @checkAuth="checkAuth" />
+    <Header />
     <div v-if="showGames == false" class="game-page">
       <div class="game-container">
         <img src="../assets/pc/game-banner.png" class="pc-game-banner">
@@ -62,8 +62,7 @@ export default {
         {title: "MYISTAL 米茲塔爾", imagePath: require("../assets/pc/game3.png"), category: '類別', id: 11},
         {title: "MYISTAL 米茲塔爾", imagePath: require("../assets/pc/game3.png"), category: '類別', id: 12},
       ],
-      showGames: false,
-      userLogin: false
+      showGames: false
     }
   },
   created() {
@@ -86,10 +85,7 @@ export default {
           this.showGames = false;
         }
       }
-    },
-    checkAuth(auth) {
-      this.userLogin = auth
-    },
+    }
   }
 }
 </script>
