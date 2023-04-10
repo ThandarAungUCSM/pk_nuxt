@@ -9,93 +9,6 @@
           </div>
         </div>
         <b-navbar-toggle v-b-toggle.sidebar-no-header target="nav-collapse"></b-navbar-toggle>
-        <div class="menu-sidebar">
-          <b-sidebar id="sidebar-no-header" aria-labelledby="sidebar-no-header-title" no-header shadow>
-            <template #default="{ hide }">
-              <div class="p-3">
-                <div class="close-row">
-                  <img class="close-css" src="../assets/mobile/close.png" @click="hide" />
-                  <span v-if="authData" class="logout-css">登出</span>
-                  <span v-if="!authData" class="logout-css">登入</span>
-                </div>
-                <div class="content-bar">
-                  <div v-if="authData" class="coin-parent">
-                    <div class="coin-block">
-                      <img src="../assets/mobile/itemicon_gold.png" class="gold-icon">
-                      <div class="txtBox">
-                        <img src="../assets/mobile/rectangle.png" class="rect-icon">
-                        <span class="coin-no">999,999,999</span>
-                        <span class="pk-coin">PK Coin</span>
-                      </div>
-                    </div>
-                    <div class="">
-                      <img class="close-css" alt="menu coin" src="../assets/mobile/menu-coin.png" />
-                    </div>
-                  </div>
-                  
-                  <div class="each-item">
-                    <!-- <p :class="authData ? 'item-txt' : 'noLog-txt'">我的會員</p> -->
-                    <p v-if="authData" :class="authData ? 'item-txt' : 'noLog-txt'">我的會員</p>
-                    <p v-else :class="authData ? 'item-txt' : 'noLog-txt'" @click="gotoPage('member')">我的會員</p>
-                    <img v-if="authData" class="arrow-css" src="../assets/mobile/rightArr.png" />
-                    <img v-if="!authData" class="arrow-css" src="../assets/mobile/noactiveArr.png" />
-                  </div>
-                  <div class="each-item">
-                    <p class="item-txt" @click="gotoPage('myWallet')">我的代幣</p>
-                    <img class="arrow-css" src="../assets/mobile/rightArr.png" />
-                    <!-- <img v-if="!authData" class="arrow-css" src="../assets/mobile/noactiveArr.png" /> -->
-                  </div>
-                  <div class="each-item">
-                    <p class="item-txt">合作遊戲</p>
-                    <img class="arrow-css" src="../assets/mobile/rightArr.png" />
-                    <!-- <img v-if="!authData" class="arrow-css" src="../assets/mobile/noactiveArr.png" /> -->
-                  </div>
-
-                  <div class="title-row">
-                    <span class="storeTitle">分類</span>
-                    <h2>
-                    </h2>
-                  </div>
-
-                  <div class="each-item">
-                    <p class="color-txt">新品上市</p>
-                    <img class="arrow-css" src="../assets/mobile/rightArrActive.png" />
-                  </div>
-                  <div class="each-item">
-                    <p class="color-txt">限時優惠</p>
-                    <img class="arrow-css" src="../assets/mobile/rightArrActive.png" />
-                  </div>
-                  <div class="each-item">
-                    <p class="item-txt1">所有商品</p>
-                    <img class="arrow-css" alt="user" src="../assets/mobile/rightArr.png" />
-                  </div>
-                  <div class="each-item">
-                    <p class="item-txt1">日用雜貨</p>
-                    <img class="arrow-css" alt="user" src="../assets/mobile/rightArr.png" />
-                  </div>
-                  <div class="each-item">
-                    <p class="item-txt1">零食飲料</p>
-                    <img class="arrow-css" alt="user" src="../assets/mobile/rightArr.png" />
-                  </div>
-                  <div class="each-item">
-                    <p class="item-txt1">玩具公仔</p>
-                    <img class="arrow-css" alt="user" src="../assets/mobile/rightArr.png" />
-                  </div>
-
-                  <div class="title-row">
-                    <span class="storeTitle">幫助</span>
-                    <h2>
-                    </h2>
-                  </div>
-                  <div class="each-item">
-                    <p class="item-txt1">常見問題</p>
-                    <img class="arrow-css" alt="user" src="../assets/mobile/rightArr.png" />
-                  </div>
-                </div>
-              </div>
-            </template>
-          </b-sidebar>
-        </div>
         <div class="first-col-div">
           <img class="m-logo-css" alt="pk mergent" src="../assets/mobile/PK_Merchant.png" @click="linkToHome" />
         </div>
@@ -267,6 +180,93 @@
         </div>
       </div>
     </b-navbar>
+    <div class="menu-sidebar">
+      <b-sidebar id="sidebar-no-header" aria-labelledby="sidebar-no-header-title" no-header shadow>
+        <template #default="{ hide }">
+          <div class="p-3">
+            <div class="close-row">
+              <img class="close-css" src="../assets/mobile/close.png" @click="hide" />
+              <span v-if="authData" class="logout-css">登出</span>
+              <span v-if="!authData" class="logout-css">登入</span>
+            </div>
+            <div class="content-bar">
+              <div v-if="authData" class="coin-parent">
+                <div class="coin-block">
+                  <img src="../assets/mobile/itemicon_gold.png" class="gold-icon">
+                  <div class="txtBox">
+                    <img src="../assets/mobile/rectangle.png" class="rect-icon">
+                    <span class="coin-no">999,999,999</span>
+                    <span class="pk-coin">PK Coin</span>
+                  </div>
+                </div>
+                <div class="">
+                  <img class="close-css" alt="menu coin" src="../assets/mobile/menu-coin.png" />
+                </div>
+              </div>
+              
+              <div class="each-item">
+                <!-- <p :class="authData ? 'item-txt' : 'noLog-txt'">我的會員</p> -->
+                <p v-if="authData" :class="authData ? 'item-txt' : 'noLog-txt'">我的會員</p>
+                <p v-else :class="authData ? 'item-txt' : 'noLog-txt'" @click="gotoPage('member')">我的會員</p>
+                <img v-if="authData" class="arrow-css" src="../assets/mobile/rightArr.png" />
+                <img v-if="!authData" class="arrow-css" src="../assets/mobile/noactiveArr.png" />
+              </div>
+              <div class="each-item">
+                <p class="item-txt" @click="gotoPage('myWallet')">我的代幣</p>
+                <img class="arrow-css" src="../assets/mobile/rightArr.png" />
+                <!-- <img v-if="!authData" class="arrow-css" src="../assets/mobile/noactiveArr.png" /> -->
+              </div>
+              <div class="each-item">
+                <p class="item-txt">合作遊戲</p>
+                <img class="arrow-css" src="../assets/mobile/rightArr.png" />
+                <!-- <img v-if="!authData" class="arrow-css" src="../assets/mobile/noactiveArr.png" /> -->
+              </div>
+
+              <div class="title-row">
+                <span class="storeTitle">分類</span>
+                <h2>
+                </h2>
+              </div>
+
+              <div class="each-item">
+                <p class="color-txt">新品上市</p>
+                <img class="arrow-css" src="../assets/mobile/rightArrActive.png" />
+              </div>
+              <div class="each-item">
+                <p class="color-txt">限時優惠</p>
+                <img class="arrow-css" src="../assets/mobile/rightArrActive.png" />
+              </div>
+              <div class="each-item">
+                <p class="item-txt1">所有商品</p>
+                <img class="arrow-css" alt="user" src="../assets/mobile/rightArr.png" />
+              </div>
+              <div class="each-item">
+                <p class="item-txt1">日用雜貨</p>
+                <img class="arrow-css" alt="user" src="../assets/mobile/rightArr.png" />
+              </div>
+              <div class="each-item">
+                <p class="item-txt1">零食飲料</p>
+                <img class="arrow-css" alt="user" src="../assets/mobile/rightArr.png" />
+              </div>
+              <div class="each-item">
+                <p class="item-txt1">玩具公仔</p>
+                <img class="arrow-css" alt="user" src="../assets/mobile/rightArr.png" />
+              </div>
+
+              <div class="title-row">
+                <span class="storeTitle">幫助</span>
+                <h2>
+                </h2>
+              </div>
+              <div class="each-item">
+                <p class="item-txt1">常見問題</p>
+                <img class="arrow-css" alt="user" src="../assets/mobile/rightArr.png" />
+              </div>
+            </div>
+          </div>
+        </template>
+      </b-sidebar>
+    </div>
     <div class="head-css">
       <div class="each-menu"><span @click="gotoPage('category')">限時優惠</span></div>
       <div class="each-menu"><span>全部商品</span></div>
@@ -602,8 +602,8 @@ export default {
     height: 80px;
     padding: 0 67px;
     @media screen and (max-width: 768px) {
-      padding: 60px 0 1rem;
-      height: unset;
+      padding: 0;
+      height: 66px;
     }
     .head-left {
       width: 30%;
@@ -652,7 +652,7 @@ export default {
   justify-content: space-between;
   width: 100%;
   @media screen and (max-width: 768px) {
-    padding: 0 1.5rem 0 1rem;
+    padding: 0 1.4rem 0 1rem;
   }
 }
 .nav-link {

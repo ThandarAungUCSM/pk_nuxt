@@ -113,7 +113,8 @@ export default {
   padding-top: 140px;
   padding-bottom: 110px;
   @media screen and (max-width: 768px) {
-    padding-top: 102px;
+    padding-top: 66px;
+    padding-bottom: 66px;
   }
 }
 .banner-block1 {

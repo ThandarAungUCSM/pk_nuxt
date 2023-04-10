@@ -39,7 +39,6 @@
       :interval="4000"
       controls
       indicators
-      background="#ababab"
       img-width="1024"
       img-height="160"
       style="text-shadow: 1px 1px 2px #333;"

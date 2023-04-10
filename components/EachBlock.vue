@@ -185,7 +185,7 @@ export default {
       // flex-wrap: wrap;
 
       display: block;
-      overflow: auto;
+      // overflow: auto;
       white-space: nowrap;
 
       -ms-overflow-style: none; 
@@ -337,13 +337,14 @@ export default {
       -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
       border-radius: 10px;
       height: 8px;
+
+      display: none; 
       @media screen and (max-width: 768px) {
-        display: none; 
       }
     }
-    .top-seller-items::-webkit-scrollbar-thumb {
-      background: #dfdfdf;
-      border-radius: 10px;
-    }
+    // .top-seller-items::-webkit-scrollbar-thumb {
+    //   background: #dfdfdf;
+    //   border-radius: 10px;
+    // }
   }
 </style>
