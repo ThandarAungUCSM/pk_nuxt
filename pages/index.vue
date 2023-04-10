@@ -4,14 +4,14 @@
     <Header page="prodDetail" :auth-data='authVal' />
     <div class="content-css">
       <div class="banner-block1">
-        <Carousel :caro-item="regularBannerBlock1" :current-slide="slide" :caro-name="1" />
+        <Carousel :caro-item="regularBannerBlock1" :current-slide="slide" :caro-name="1" @activeSlide="activeSlide" />
         <img class="banner-btn" alt="mobile banner" src="../assets/mobile/btnNewsList.png" />
       </div>
 
       <div class="banner-block2">
         <Carousel :caro-item="regularBannerBlock2" :current-slide="slide" :caro-name="2" />
         <div class="indicate-block">
-          <div class="indicator-css">{{currentNo}}/{{totalNo}}</div>
+          <div class="indicator-css">{{currentNo+1}}/{{regularBannerBlock2.length}}</div>
         </div>
       </div>
 
@@ -83,8 +83,7 @@ export default {
           "id": 3
         }
       ], // Banner2
-      currentNo: 1,
-      totalNo: 6,
+      currentNo: 0,
       userLogin: false
     }
   },
@@ -97,6 +96,9 @@ export default {
     checkAuth(auth) {
       this.userLogin = auth
     },
+    activeSlide(val) {
+      this.currentNo = val
+    }
   }
 }
 </script>

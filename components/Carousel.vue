@@ -78,6 +78,12 @@ export default {
   computed: {
     
   },
+  watch: {
+    activeSlide(val1, val2) {
+      // console.log("xxxxxx current slide changed", val1, val2);
+      this.$emit("activeSlide", val1);
+    },
+  },
   created() {
     this.activeSlide = this.currentSlide;
   },
