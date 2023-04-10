@@ -4,7 +4,7 @@
     <div class="membership-page">
       <div class="member-content">
         <div class="formobile titlem">
-          <div class="pc-back">
+          <div class="pc-back" @click="backBtn">
             <img src="../assets/mobile/btn-return.png" class="back-icon">
           </div>
           <div class="title-div">
@@ -112,6 +112,11 @@ export default {
     return {
       currentTab: 1
     }
+  },
+  methods: {
+    backBtn() {
+      this.$router.go(-1)
+    },
   }
 }
 </script>

@@ -158,7 +158,7 @@
                   <span>遊戲連動</span>
                 </NuxtLink>
                 <NuxtLink
-                  to="/myOrder"
+                  to="/membershipSettings"
                   class="dropdown-item"
                 >
                   <img class="menu-usercss" alt="shield" src="../assets/pc/active-setting.png" />
