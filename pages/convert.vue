@@ -106,7 +106,7 @@
               <div class="title-row">
                 <div class="left-title">
                   <img class="dollar-icon" src="../assets/pc/dollar.png" />
-                  <span class="shipping-text">使用遊戲幣 {{activeId}}</span>
+                  <span class="shipping-text">使用遊戲幣</span>
                 </div>
                 <div class="right-title">
                   <img class="minus-icon" src="../assets/pc/minus-black.png" />
@@ -252,10 +252,10 @@
                   </div>
                   <div class="coupon-right">
                     <p class="cou-rightxt">請選擇優惠券或輸入優惠代碼</p>
-                    <img class="right-icon" src="../assets/pc/right-arr.png" />
+                    <img id="show-modal" class="right-icon" src="../assets/pc/right-arr.png" @click="showModal = true" />
                   </div>
                 </div>
-                
+                <convertModal v-if="showModal" :show="showModal" @close="showModal = false" />
               </div>
             </div>
             <div id="oneRadioId" class="third-row">
@@ -280,7 +280,7 @@
                   <img class="minus-icon" src="../assets/pc/minus-black.png" />
                 </div>
               </div>
-              <div class="each-row">
+              <div class="each-row" @click="gotoPage()">
                 <div class="orderFalse">
                   <img class="menu-img" src="../assets/pc/product.png" />
                 </div>
@@ -295,7 +295,7 @@
                   </div>
                 </div>
               </div>
-              <div class="each-row">
+              <div class="each-row" @click="gotoPage()">
                 <div class="orderFalse">
                   <img class="menu-img" src="../assets/pc/product1.png" />
                 </div>
@@ -310,7 +310,7 @@
                   </div>
                 </div>
               </div>
-              <div class="each-row">
+              <div class="each-row" @click="gotoPage()">
                 <div class="orderFalse">
                   <img class="menu-img" src="../assets/pc/product2.png" />
                 </div>
@@ -342,13 +342,17 @@ export default {
       oneData: 0,
       ifData: true,
       checkClick: false,
-      activeId: 0
+      activeId: 0,
+      showModal: false
     }
   },
   methods: {
     toCheck(val) {
       this.checkClick = true
       this.activeId = val
+    },
+    gotoPage() {
+      this.$router.push('convertCart')
     }
   }
 }
@@ -725,6 +729,7 @@ export default {
             .right-icon {
               width: 7px;
               height: 14px;
+              cursor: pointer;
             }
             .cou-rightxt {
               font-weight: 500;

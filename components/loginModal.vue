@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="loginId">
     <transition name="modal">
       <div v-if="show" class="modal-mask">
         <div class="modal-wrapper">
@@ -39,7 +39,7 @@ export default {
     }
   },
   created() {
-    alert('show')
+    alert(this.show)
   },
   methods: {
     register() {
@@ -49,73 +49,75 @@ export default {
 }
 </script>
 <style lang="scss">
-.modal-mask {
-  position: fixed;
-  z-index: 9998;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(57, 47, 134, 0.62);
-  backdrop-filter: blur(3px);
-  display: table;
-  transition: opacity 0.3s ease;
-}
+#loginId {
+  .modal-mask {
+    position: fixed;
+    z-index: 9998;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(57, 47, 134, 0.62);
+    backdrop-filter: blur(3px);
+    display: table;
+    transition: opacity 0.3s ease;
+  }
 
-.modal-wrapper {
-  display: table-cell;
-  vertical-align: middle;
-}
+  .modal-wrapper {
+    display: table-cell;
+    vertical-align: middle;
+  }
 
-.modal-container {
-  width: 300px;
-  margin: 0px auto;
-  padding: 20px 30px;
-  background: #F2F1F7;
-  border-radius: 12px;
-  box-shadow: 0px 4px 4px rgba(33, 66, 116, 0.25);
-  transition: all 0.3s ease;
-  font-family: Helvetica, Arial, sans-serif;
+  .modal-container {
+    width: 300px;
+    margin: 0px auto;
+    padding: 20px 30px;
+    background: #F2F1F7;
+    border-radius: 12px;
+    box-shadow: 0px 4px 4px rgba(33, 66, 116, 0.25);
+    transition: all 0.3s ease;
+    font-family: Helvetica, Arial, sans-serif;
 
-  width: 90%;
+    width: 90%;
 
-}
+  }
 
-.modal-header h3 {
-  margin-top: 0;
-  color: #42b983;
-}
+  .modal-header h3 {
+    margin-top: 0;
+    color: #42b983;
+  }
 
-.modal-body {
-  margin: 0;
-  padding: 5px 0 1rem;
-}
+  .modal-body {
+    margin: 0;
+    padding: 5px 0 1rem;
+  }
 
-.modal-default-button {
-  float: right;
-}
+  .modal-default-button {
+    float: right;
+  }
 
-/*
- * The following styles are auto-applied to elements with
- * transition="modal" when their visibility is toggled
- * by Vue.js.
- *
- * You can easily play with the modal transition by editing
- * these styles.
- */
+  /*
+  * The following styles are auto-applied to elements with
+  * transition="modal" when their visibility is toggled
+  * by Vue.js.
+  *
+  * You can easily play with the modal transition by editing
+  * these styles.
+  */
 
-.modal-enter {
-  opacity: 0;
-}
+  .modal-enter {
+    opacity: 0;
+  }
 
-.modal-leave-active {
-  opacity: 0;
-}
+  .modal-leave-active {
+    opacity: 0;
+  }
 
-.modal-enter .modal-container,
-.modal-leave-active .modal-container {
-  -webkit-transform: scale(1.1);
-  transform: scale(1.1);
+  .modal-enter .modal-container,
+  .modal-leave-active .modal-container {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+  }
 }
 
 </style>
