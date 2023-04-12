@@ -32,6 +32,20 @@
 <script>
 export default {
   props: ["show"],
+  data() {
+    return {
+      accNo: '',
+      password: ''
+    }
+  },
+  created() {
+    alert('show')
+  },
+  methods: {
+    register() {
+
+    }
+  }
 }
 </script>
 <style lang="scss">

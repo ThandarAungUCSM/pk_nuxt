@@ -106,28 +106,103 @@
               <div class="title-row">
                 <div class="left-title">
                   <img class="dollar-icon" src="../assets/pc/dollar.png" />
-                  <span class="shipping-text">使用遊戲幣</span>
+                  <span class="shipping-text">使用遊戲幣 {{activeId}}</span>
                 </div>
                 <div class="right-title">
                   <img class="minus-icon" src="../assets/pc/minus-black.png" />
                 </div>
               </div>
               <div v-if="ifData" class="items-block">
-                <div class="name-block">
+                <div v-if="checkClick && activeId == 1" class="check-block" @click="toCheck(1)">
+                  <div class="check-inner" >
+                    <div class="check-left">
+                      <img class="ordergame-icon" src="../assets/pc/order-game1.png" />
+                      <div class="name-div">
+                        <p class="game-name">MYISTAL 米茲塔爾</p>
+                        <p class="currency-name">幣值名稱 156,015</p>
+                      </div>
+                    </div>
+                    <img class="check-icon" src="../assets/pc/check-btn.png" />
+                  </div>
+                  <div class="">
+                    <div class="withdrawn-div">
+                      <p class="withdrawn-name">將提領之數額</p>
+                      <p class="withdrawn-name">256,000</p>
+                    </div>
+                    <div class="equal-block">
+                      <p class="equal-sign">=</p>
+                    </div>
+                    <div class="withdrawn-div">
+                      <p class="withdrawn-name">換算後等值PK幣</p>
+                      <p class="currency-pk">1,900</p>
+                    </div>
+                  </div>
+                </div>
+                <div v-else class="name-block" @click="toCheck(1)">
                   <img class="ordergame-icon" src="../assets/pc/order-game1.png" />
                   <div class="name-div">
                     <p class="game-name">MYISTAL 米茲塔爾</p>
                     <p class="currency-name">幣值名稱 156,015</p>
                   </div>
                 </div>
-                <div class="name-block">
+                <div v-if="checkClick && activeId == 2" class="check-block" @click="toCheck(2)">
+                  <div class="check-inner" >
+                    <div class="check-left">
+                      <img class="ordergame-icon" src="../assets/pc/order-game1.png" />
+                      <div class="name-div">
+                        <p class="game-name">MYISTAL 米茲塔爾</p>
+                        <p class="currency-name">幣值名稱 156,015</p>
+                      </div>
+                    </div>
+                    <img class="check-icon" src="../assets/pc/check-btn.png" />
+                  </div>
+                  <div class="">
+                    <div class="withdrawn-div">
+                      <p class="withdrawn-name">將提領之數額</p>
+                      <p class="withdrawn-name">256,000</p>
+                    </div>
+                    <div class="equal-block">
+                      <p class="equal-sign">=</p>
+                    </div>
+                    <div class="withdrawn-div">
+                      <p class="withdrawn-name">換算後等值PK幣</p>
+                      <p class="currency-pk">1,900</p>
+                    </div>
+                  </div>
+                </div>
+                <div v-else class="name-block" @click="toCheck(2)">
                   <img class="ordergame-icon" src="../assets/pc/order-game1.png" />
                   <div class="name-div">
                     <p class="game-name">MYISTAL 米茲塔爾</p>
                     <p class="currency-name">幣值名稱 156,015</p>
                   </div>
                 </div>
-                <div class="name-block">
+                <div v-if="checkClick && activeId == 3" class="check-block" @click="toCheck(3)">
+                  <div class="check-inner" >
+                    <div class="check-left">
+                      <img class="ordergame-icon" src="../assets/pc/order-game1.png" />
+                      <div class="name-div">
+                        <p class="game-name">MYISTAL 米茲塔爾</p>
+                        <p class="currency-name">幣值名稱 156,015</p>
+                      </div>
+                    </div>
+                    <img class="check-icon" src="../assets/pc/check-btn.png" />
+                  </div>
+                  <div class="">
+                    <div class="withdrawn-div">
+                      <p class="withdrawn-name">將提領之數額</p>
+                      <p class="withdrawn-name">256,000</p>
+                    </div>
+                    <div class="equal-block">
+                      <p class="equal-sign">=</p>
+                    </div>
+                    <div class="withdrawn-div">
+                      <p class="withdrawn-name">換算後等值PK幣</p>
+                      <p class="currency-pk">1,900</p>
+                    </div>
+                  </div>
+                </div>
+                <div v-else class="name-block" @click="toCheck(3)">
                   <img class="ordergame-icon" src="../assets/pc/order-game1.png" />
                   <div class="name-div">
                     <p class="game-name">MYISTAL 米茲塔爾</p>
@@ -265,11 +340,16 @@ export default {
     return {
       radioData: 12,
       oneData: 0,
-      ifData: true
+      ifData: true,
+      checkClick: false,
+      activeId: 0
     }
   },
   methods: {
-    
+    toCheck(val) {
+      this.checkClick = true
+      this.activeId = val
+    }
   }
 }
 </script>
@@ -468,9 +548,62 @@ export default {
               border: 1px solid #E7E7E7;
               margin-bottom: 10px;
             }
+            .check-block {
+              background: #FFFFFF;
+              border: 2px solid #7161EF;
+              box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.15);
+              padding-bottom: 10px;
+              margin-bottom: 10px;
+              .check-inner {
+                margin-bottom: 10px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                .check-left {
+                  display: flex;
+                  align-items: center;
+                }
+              }
+            }
             .ordergame-icon{
               width: 58px;
               height: 58px;
+            }
+            .check-icon {
+              width: 24px;
+              height: 1rem;
+              margin-right: 17px;
+            }
+            .equal-block {
+              display: flex;
+              align-items: center;
+              justify-content: flex-end;
+              padding-right: 33px;
+              height: 5px;
+            }
+            .equal-sign {
+              font-weight: 500;
+              font-size: 14px;
+              color: #B9B9B9;
+              transform: rotate(-90deg);
+              margin-bottom: 0;
+            }
+            .withdrawn-div {
+              display: flex;
+              justify-content: space-between;
+              margin: 0 33px 0 74px;
+              .withdrawn-name {
+                font-weight: 400;
+                font-size: 14px;
+                color: #957FEF;
+                margin-bottom: 0;
+              }
+              .currency-pk {
+                font-weight: 500;
+                font-size: 14px;
+                color: #FF8A65;
+                margin-bottom: 0;
+              }
             }
             .name-div {
               padding-left: 1rem;
