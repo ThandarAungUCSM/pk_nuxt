@@ -364,33 +364,16 @@
                     <span class="shipping-text">使用遊戲幣</span>
                   </div>
                   <div class="right-title">
-                    <span class="ship-name1">米茲塔爾</span>
+                    <span class="game-connect">尚未有連動的遊戲錢包</span>
                   </div>
                 </div>
-                <div class="right-div">
-                  <img id="show-modal" class="right-icon" src="../assets/pc/right-arr.png" @click="showModal = true" />
-                </div>
-                
-                <div class="m-bus-row1">
-                  <div class="left-title">
-                    <span class="shipping-text1">將提領</span>
-                  </div>
-                  <div class="right-title">
-                    <span class="ship-name2">256,000</span>
-                  </div>
-                </div>
-                <div class="m-bus-row1">
-                  <div class="left-title">
-                    <span class="shipping-text1">換算後等值PK幣</span>
-                  </div>
-                  <div class="right-title">
-                    <span class="ship-name2">1,900</span>
+                <div class="m-bus-row2">
+                  <div class="connect-btn" @click="$router.push('/')">
+                    <span class="connectgame-txt">前往連動</span>
                   </div>
                 </div>
               </div>
             </div>
-
-            
             <div v-else class="show-m">
               <div class="bg-m">
                 <div class="m-bus-row">
@@ -497,7 +480,7 @@ export default {
       activeId: 0,
       showModal: false,
 
-      connectedGame: false
+      connectedGame: true
     }
   },
   methods: {
@@ -1089,6 +1072,38 @@ export default {
             }
             .right-title {
               margin-right: 23px;
+            }
+            .game-connect {
+              font-weight: 500;
+              font-size: 14px;
+              color: #957FEF;
+            }
+          }
+          .m-bus-row2 {
+            display: flex;
+            justify-content: flex-end;
+            padding: 1rem 1rem 5px 2rem;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+            @media screen and (max-width: 768px) {
+              padding-top: 0;
+              padding-bottom: 0;
+              margin-right: 23px;
+            }
+            .connect-btn {
+              background: #7161EF;
+              box-shadow: 0px 3px 7px rgba(113, 97, 239, 0.5);
+              border-radius: 24px;
+              width: 100px;
+              height: 24px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              .connectgame-txt {
+                font-weight: 700;
+                font-size: 12px;
+                color: #FFF;
+              }
             }
           }
           .m-bus-row1 {
