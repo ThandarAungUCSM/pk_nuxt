@@ -222,7 +222,7 @@
             </div>
           </div>
           <div class="right-block">
-            <div>
+            <div class="hide-m">
               <div class="price-block">
                 <p class="price-title">兌換詳情</p>
                 <div class="price-row">
@@ -243,7 +243,7 @@
                 </div>
               </div>
             </div>
-            <div>
+            <div class="hide-m">
               <div class="price-block">
                 <div class="price-row">
                   <div class="coupon-left">
@@ -258,7 +258,7 @@
                 <convertModal v-if="showModal" :show="showModal" @close="showModal = false" />
               </div>
             </div>
-            <div id="oneRadioId" class="third-row">
+            <div id="oneRadioId" class="third-row hide-m">
               <el-radio-group v-model="oneData">
                 <el-radio :label="3" class="facts">
                   <div class="policy-css">
@@ -267,7 +267,7 @@
                 </el-radio>
               </el-radio-group>
             </div>
-            <div class="price-block1">
+            <div class="price-block1 hide-m">
               <p class="price-title">確認兌換</p>
             </div>
             <div class="cart-block">
@@ -326,11 +326,163 @@
                 </div>
               </div>
             </div>
+            <div class="show-m">
+              <div class="price-block">
+                <div class="price-row">
+                  <div class="coupon-left">
+                    <img class="star-icon" src="../assets/pc/star-icon.png" />
+                    <p class="coupon-txt">優惠券</p>
+                  </div>
+                  <div class="coupon-right">
+                    <p class="cou-rightxt">請選擇優惠券或輸入優惠代碼</p>
+                    <img id="show-modal" class="right-icon" src="../assets/pc/right-arr.png" @click="showModal = true" />
+                  </div>
+                </div>
+                <convertModal v-if="showModal" :show="showModal" @close="showModal = false" />
+              </div>
+            </div>
+            <div class="show-m">
+              <div class="bg-m">
+                <div class="m-bus-row">
+                  <div class="left-title">
+                    <img class="shipping-icon" src="../assets/pc/school-bus.png" />
+                    <span class="shipping-text">寄送方式</span>
+                  </div>
+                  <div class="right-title">
+                    <span class="ship-name">7-11超商取貨-OX門市$1,500</span>
+                  </div>
+                </div>
+                <div class="right-div">
+                  <img id="show-modal" class="right-icon" src="../assets/pc/right-arr.png" @click="showModal = true" />
+                </div>
+              </div>
+            </div>
+            <div v-if="!connectedGame" class="show-m">
+              <div class="bg-m">
+                <div class="m-bus-row">
+                  <div class="left-title">
+                    <span class="shipping-text">使用遊戲幣</span>
+                  </div>
+                  <div class="right-title">
+                    <span class="ship-name1">米茲塔爾</span>
+                  </div>
+                </div>
+                <div class="right-div">
+                  <img id="show-modal" class="right-icon" src="../assets/pc/right-arr.png" @click="showModal = true" />
+                </div>
+                
+                <div class="m-bus-row1">
+                  <div class="left-title">
+                    <span class="shipping-text1">將提領</span>
+                  </div>
+                  <div class="right-title">
+                    <span class="ship-name2">256,000</span>
+                  </div>
+                </div>
+                <div class="m-bus-row1">
+                  <div class="left-title">
+                    <span class="shipping-text1">換算後等值PK幣</span>
+                  </div>
+                  <div class="right-title">
+                    <span class="ship-name2">1,900</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            
+            <div v-else class="show-m">
+              <div class="bg-m">
+                <div class="m-bus-row">
+                  <div class="left-title">
+                    <span class="shipping-text">使用遊戲幣</span>
+                  </div>
+                  <div class="right-title">
+                    <span class="ship-name1">米茲塔爾</span>
+                  </div>
+                </div>
+                <div class="right-div">
+                  <img id="show-modal" class="right-icon" src="../assets/pc/right-arr.png" @click="showModal = true" />
+                </div>
+                
+                <div class="m-bus-row1">
+                  <div class="left-title">
+                    <span class="shipping-text1">將提領</span>
+                  </div>
+                  <div class="right-title">
+                    <span class="ship-name2">256,000</span>
+                  </div>
+                </div>
+                <div class="m-bus-row1">
+                  <div class="left-title">
+                    <span class="shipping-text1">換算後等值PK幣</span>
+                  </div>
+                  <div class="right-title">
+                    <span class="ship-name2">1,900</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="show-m">
+              <div class="bg-m">
+                <div class="m-bus-row">
+                  <div class="left-title">
+                    <span class="shipping-text">兌換詳情</span>
+                  </div>
+                </div>
+                <div class="m-bus-row1">
+                  <div class="left-title">
+                    <span class="shipping-text2">小計</span>
+                  </div>
+                  <div class="right-title">
+                    <span class="ship-name3">1,900</span>
+                  </div>
+                </div>
+                <div class="m-bus-row1">
+                  <div class="left-title">
+                    <span class="shipping-text2">運費</span>
+                  </div>
+                  <div class="right-title">
+                    <span class="ship-name3">0</span>
+                  </div>
+                </div>
+                <div class="m-bus-row1">
+                  <div class="left-title">
+                    <span class="shipping-text2">使用優惠券-NKUUD</span>
+                  </div>
+                  <div class="right-title">
+                    <span class="ship-name3">0</span>
+                  </div>
+                </div>
+                <div class="m-bus-row1">
+                  <div class="left-title">
+                    <span class="shipping-text">合計</span>
+                  </div>
+                  <div class="right-title">
+                    <span class="ship-name4">0</span>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
-    <Footer page="productDetail" />
+    <div class="bottom-css">
+      <div class="left-div">
+        <p class="tot-text">總計</p>
+        <div class="pri-div">
+          <!-- <p v-if="!emptycart" class="price-text">hh</p> -->
+          <p class="price-text">0</p>
+          <img src="../assets/mobile/itemicon_gold.png" class="gold-icon">
+        </div>
+      </div>
+      <div class="right-div">
+        <!-- <b-button v-if="emptycart === false" size="sm" class="btn-css">前往兌換(0))</b-button> -->
+        <b-button size="sm" class="empty-btn-css">確認兌換</b-button>
+      </div>
+    </div>
+    <Footer page="productDetail" class="forPC" />
   </div>
 </template>
 <script>
@@ -343,7 +495,9 @@ export default {
       ifData: true,
       checkClick: false,
       activeId: 0,
-      showModal: false
+      showModal: false,
+
+      connectedGame: false
     }
   },
   methods: {
@@ -361,15 +515,28 @@ export default {
 .order-list {
   padding-top: 140px;
   background: #eae9f4;
+  @media screen and (max-width: 768px) {
+    padding-top: 70px; 
+  }
   .orderList-content {
     width: 80%;
     margin: 0 auto;
     padding-bottom: 7rem;
+    @media screen and (max-width: 768px) {
+      width: 100%;
+    }
     .exchange {
       font-weight: 400;
       font-size: 24px;
       color: #000;
       margin: 1rem 0 6px;
+      @media screen and (max-width: 768px) {
+        margin: 0;
+        padding: 1rem;
+        background: #FFF;
+        font-weight: 500;
+        font-size: 20px;
+      }
     }
     .one-row {
       display: flex;
@@ -377,6 +544,9 @@ export default {
       .left-block {
         width: 53%;
         margin-top: 10px;
+        @media screen and (max-width: 768px) {
+          display: none;
+        }
         .Lupper-block {
           background: #FFF;
           margin-bottom: 1rem;
@@ -668,11 +838,19 @@ export default {
       }
       .right-block {
         width: 42%;
+        @media screen and (max-width: 768px) {
+          width: 100%; 
+        }
         .price-block {
           background: #FFFFFF;
           border-radius: 12px;
           padding: 1rem 2rem;
           margin-top: 10px;
+          @media screen and (max-width: 768px) {
+            border-radius: 0;
+            margin-top: 5px;
+            padding: 1rem 1rem 1rem 2rem;
+          }
           .price-title {
             font-weight: 500;
             font-size: 14px;
@@ -737,6 +915,10 @@ export default {
               color: #B79CED;
               margin-bottom: 0;
               margin-right: 1rem;
+              @media screen and (max-width: 768px) {
+                font-weight: 400;
+                font-size: 16px;
+              }
             }
           }
         }
@@ -781,6 +963,10 @@ export default {
           background: #FFF;
           margin-top: 44px;
           padding-bottom: 33px;
+          @media screen and (max-width: 768px) {
+            margin-top: 3px;
+            padding-bottom: 12px;
+          }
           .title-row {
             display: flex;
             align-items: center;
@@ -814,6 +1000,9 @@ export default {
             background: #F5F2FF;
             backdrop-filter: blur(3px);
             margin: 0 1rem 3px;
+            @media screen and (max-width: 768px) {
+              margin: 0 5px 3px;
+            }
             .orderFalse {
               position: relative;
               text-align: center;
@@ -827,6 +1016,10 @@ export default {
                 background: #FFFFFF;
                 border-radius: 12px;
                 filter: drop-shadow(0px 2px 10px rgba(0, 0, 0, 0.1));
+                @media screen and (max-width: 768px) {
+                  width: 57px;
+                  height: 57px;
+                }
               }
             }
             .each-right {
@@ -838,6 +1031,9 @@ export default {
                 font-weight: 400;
                 font-size: 14px;
                 color: #151515;
+                @media screen and (max-width: 768px) {
+                  margin-bottom: 10px;
+                }
               }
               .each-brow {
                 display: flex;
@@ -867,8 +1063,184 @@ export default {
             }
           }
         }
+        .hide-m {
+          @media screen and (max-width: 768px) {
+            display: none;
+          }
+        }
+        .show-m {
+          display: none;
+          @media screen and (max-width: 768px) {
+            display: block;
+          }
+          .bg-m {
+            background: #FFF;
+            margin-top: 5px;
+            padding-bottom: 1rem;
+          }
+          .m-bus-row {
+            display: flex;
+            padding: 1rem 1rem 5px 2rem;
+            justify-content: space-between;
+            .ship-name {
+              font-weight: 500;
+              font-size: 14px;
+              color: #2C2C2C;
+            }
+            .right-title {
+              margin-right: 23px;
+            }
+          }
+          .m-bus-row1 {
+            display: flex;
+            padding: 1rem 1rem 5px 2rem;
+            justify-content: space-between;
+            @media screen and (max-width: 768px) {
+              padding-top: 0;
+              padding-bottom: 0;
+              margin-right: 23px;
+            }
+            .ship-name1 {
+              font-weight: 500;
+              font-size: 14px;
+              color: #000;
+            }
+            .ship-name2 {
+              font-weight: 500;
+              font-size: 14px;
+              color: #E1460E;
+            }
+            .ship-name3 {
+              font-weight: 400;
+              font-size: 14px;
+              color: #957FEF;
+            }
+            .ship-name4 {
+              font-weight: 600;
+              font-size: 16px;
+              color: #E1460E;
+            }
+          }
+          .right-div {
+            display: flex;
+            justify-content: flex-end;
+            padding-right: 1rem;
+            .right-icon {
+              width: 7px;
+              height: 14px;
+              cursor: pointer;
+            }
+          }
+          .shipping-icon {
+            width: 14px;
+            height: 14px;
+          }
+          
+          .shipping-text {
+            font-weight: 500;
+            font-size: 14px;
+            color: #000;
+          }
+          .shipping-text1 {
+            font-weight: 400;
+            font-size: 14px;
+            color: #E1460E;
+          }
+          .shipping-text2 {
+            font-weight: 500;
+            font-size: 12px;
+            color: #957FEF;
+          }
+        }
       }
     }
+  }
+}
+.bottom-css {
+  display: none;
+  @media screen and (max-width: 768px) {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: auto;
+    width: 100%;
+    height: 82px;
+    background: #7161EF;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
+  }
+  .left-div {
+    @media screen and (max-width: 768px) {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 1rem;
+      height: 45px;
+      width: 63%;
+      width: 225px;
+      background: #F9F9F9;
+      border-radius: 12px;
+    }
+    .tot-text {
+      margin-bottom: 0;
+      font-weight: 400;
+      font-size: 14px;
+      color: #AFAFAF;
+    }
+    .pri-div {
+      display: flex;
+      align-items: center;
+      .price-text {
+        // font-weight: 400;
+        // font-size: 14px;
+        // color: #AFAFAF;
+        font-weight: 700;
+        font-size: 20px;
+        color: #000;
+        margin-bottom: 0;
+        margin-right: 7px;
+        @media screen and (max-width: 768px) {
+          font-weight: 700;
+          font-size: 20px;
+          color: #000;
+        }
+      }
+      .gold-icon {
+        width: 24px;
+        height: 24px;
+      }
+    }
+  }
+  .right-div {
+    @media screen and (max-width: 768px) {
+      width: 35%;
+      display: flex;
+      justify-content: flex-end;
+    }
+    .btn-css {
+      font-weight: 700;
+      font-size: 1rem;
+      color: #FFF;
+      background-color: #000 !important;
+      border-color: #000 !important;
+      border-radius: 12px;  
+    }
+    .empty-btn-css {
+      @media screen and (max-width: 768px) {
+        border-color: #000 !important;
+        border-radius: 12px;
+        color: #FFF;
+        font-weight: 700;
+        font-size: 1rem;
+        background: #000;
+        border-radius: 12px;
+        height: 45px;
+        width: 368px;
+      }
+    }
+  }
+}
+.forPC {
+  @media screen and (max-width: 768px) {
+    display: none;
   }
 }
 </style>
