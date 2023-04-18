@@ -31,7 +31,10 @@
                       <p class="hide-text1">hi</p>
                       <div class="right-inner">
                         <p class="hide-text2">hi</p>
-                        <p class="circle-css"></p>
+                        <p v-if="!(isCheck[0])" class="circle-css" @click="checkFunc(0)"></p>
+                        <p v-else class="circle-color-css" @click="checkFunc(0)">
+                          <img class="correct-check" src="../assets/mobile/check-white.png" />
+                        </p>
                         <p class="rule-use">使用規則</p>
                       </div>
                       <img class="ellipse-icon1" src="../assets/pc/active-ellipse.png" />
@@ -50,7 +53,10 @@
                       <p class="hide-text1">hi</p>
                       <div class="right-inner">
                         <p class="hide-text2">hi</p>
-                        <p class="circle-css"></p>
+                        <p v-if="!isCheck[1]" class="circle-css" @click="checkFunc(1)"></p>
+                        <p v-else class="circle-color-css" @click="checkFunc(1)">
+                          <img class="correct-check" src="../assets/mobile/check-white.png" />
+                        </p>
                         <p class="rule-use">使用規則</p>
                       </div>
                       <img class="ellipse-icon1" src="../assets/pc/active-ellipse.png" />
@@ -134,13 +140,17 @@ export default {
   props: ["show"],
   data() {
     return {
-      couponCode: ''
+      couponCode: '',
+      isCheck: [false, false]
     }
   },
   created() {
   },
   methods: {
-    
+    checkFunc(val) {
+      this.isCheck[val] = !this.isCheck[val];
+      this.$forceUpdate();
+    }
   }
 }
 </script>
@@ -350,6 +360,22 @@ export default {
         height: 30px;
         margin-top: 8px;
         margin-bottom: 8px;
+      }
+      .circle-color-css {
+        background: #7161ef;
+        border: 1px solid #7161EF;
+        border-radius: 22px;
+        width: 30px;
+        height: 30px;
+        margin-top: 8px;
+        margin-bottom: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .correct-check {
+          width: 18px;
+          height: 18px;
+        }
       }
       .btn-css {
         background: #7161EF;
