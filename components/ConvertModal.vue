@@ -7,9 +7,15 @@
             <div class="modal-body">
               <slot name="body">
                 <div class="title-row">
-                  <p class="hide-text">hi</p>
+                  <p class="hide-text pc-css">hi</p>
+                  <img class="return-css mobile-css" src="../assets/mobile/btn-return1.png" @click="$emit('close')" />
                   <p class="title-text">選擇優惠券</p>
-                  <img class="close-icon" src="../assets/pc/close-icon.png" @click="$emit('close')" />
+                  <img class="close-icon pc-css" src="../assets/pc/close-icon.png" @click="$emit('close')" />
+                  <p class="hide-text mobile-css">hi</p>
+                </div>
+                <div class="coupon-block mobile-css">
+                  <input v-model="couponCode" type="text" class="coupon-code" onfocus="this.placeholder=''" placeholder="輸入優惠券代碼" />
+                  <p class="useBtn">使用</p>
                 </div>
                 <div class="parent-block">
                   <div class="each-block">
@@ -108,9 +114,12 @@
                     </div>
                   </div>
                 </div>
-                <div class="coupon-block">
+                <div class="coupon-block pc-css">
                   <input v-model="couponCode" type="text" class="coupon-code" onfocus="this.placeholder=''" placeholder="輸入優惠券代碼" />
                   <p class="useBtn">使用</p>
+                </div>
+                <div class="m-bottom mobile-css">
+                  <span>確認</span>
                 </div>
               </slot>
             </div>
@@ -165,6 +174,13 @@ export default {
 
     background: #FFFFFF;
     border-radius: 42px;
+    @media screen and (max-width: 768px) {
+      width: 100%;
+      border-radius: 0;
+      padding-left: 0;
+      padding-right: 0;
+      padding-top: 0;
+    }
   }
   
   .modal-header h3 {
@@ -174,6 +190,11 @@ export default {
   
   .modal-body {
     padding: 5px 0 1rem;
+    @media screen and (max-width: 768px) {
+      padding-top: 0;
+      overflow-y: auto;
+      overflow-y: scroll;
+    }
   }
   
   .modal-default-button {
@@ -210,6 +231,13 @@ export default {
   display: flex;
   justify-content: space-between;
   margin-bottom: 22px;
+  @media screen and (max-width: 768px) {
+    align-items: center;
+    padding-top: 25px;
+    box-shadow: 0px -1px 11px rgba(0, 0, 0, 0.1);
+    padding-left: 5%;
+    padding-right: 5%;
+  }
   .title-text {
     font-weight: 400;
     font-size: 20px;
@@ -226,7 +254,42 @@ export default {
   width: 30px;
   margin-bottom: 0;
 }
+.pc-css {
+  @media screen and (max-width: 768px) {
+    display: none !important;
+  }
+}
+.mobile-css {
+  display: none;
+  @media screen and (max-width: 768px) {
+    display: block;
+  }
+}
+.return-css {
+  width: 18px;
+  height: 18px;
+}
+.m-bottom {
+  background: #7161EF;
+  height: 48px;
+  font-weight: 700;
+  font-size: 1rem;
+  color: #FFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 999;
+}
 .parent-block {
+  @media screen and (max-width: 768px) {
+    margin-top: 0;
+    
+    height: calc(100vh - 173px);
+    overflow-y: scroll;
+  }
   .each-block {
     border: 1px solid #000000;
     box-shadow: 0px 4px 0px #957FEF;
@@ -234,6 +297,11 @@ export default {
     justify-content: space-between;
     height: 90px;
     margin-bottom: 14px;
+
+    @media screen and (max-width: 768px) {
+      margin-left: 3px;
+      margin-right: 3px;
+    }
     .each-left {
       display: flex;
       align-items: center;
@@ -342,6 +410,12 @@ export default {
   justify-content: space-between;
   margin-top: 2rem;
   margin: 2rem 2px 1rem;
+  @media screen and (max-width: 768px) {
+    margin: 1.5rem 0 0;
+    justify-content: space-evenly;
+    padding-bottom: 1.5rem ;
+    border-bottom: 3px solid #e1e1e1;
+  }
   .coupon-code {
     font-weight: 400;
     font-size: 14px;
@@ -355,6 +429,10 @@ export default {
     height: 36px;
     min-height: 36px;
     margin: auto;
+    @media screen and (max-width: 768px) {
+      width: 68%;
+      margin: unset;
+    }
   }
   .coupon-code:focus {
     outline: none;
@@ -374,6 +452,10 @@ export default {
     color: #957FEF;
     margin-bottom: 0;
     padding: 0 1rem;
+    @media screen and (max-width: 768px) {
+      width: 20%;
+      text-align: center;
+    }
   }
 }
 </style>

@@ -334,7 +334,8 @@
                     <p class="coupon-txt">優惠券</p>
                   </div>
                   <div class="coupon-right">
-                    <p class="cou-rightxt">請選擇優惠券或輸入優惠代碼</p>
+                    <p v-if="!toselect" class="cou-rightxt">請選擇優惠券或輸入優惠代碼</p>
+                    <p v-else class="cou-rightxt1">折$5 PK幣</p>
                     <img id="show-modal" class="right-icon" src="../assets/pc/right-arr.png" @click="showModal = true" />
                   </div>
                 </div>
@@ -342,18 +343,22 @@
               </div>
             </div>
             <div class="show-m">
-              <div class="bg-m">
+              <div class="bg-mo">
                 <div class="m-bus-row">
                   <div class="left-title">
                     <img class="shipping-icon" src="../assets/pc/school-bus.png" />
                     <span class="shipping-text">寄送方式</span>
                   </div>
                   <div class="right-title">
-                    <span class="ship-name">7-11超商取貨-OX門市$1,500</span>
+                    <span v-if="!toselect" class="ship-name-txt1">請選擇配送方式</span>
+                    <span v-else class="ship-name">7-11超商取貨-OX門市$1,500</span>
                   </div>
                 </div>
-                <div class="right-div">
+                <div class="right-divm">
                   <img id="show-modal" class="right-icon" src="../assets/pc/right-arr.png" @click="showModal = true" />
+                </div>
+                <div class="visible-hide">
+                  hide
                 </div>
               </div>
             </div>
@@ -375,20 +380,24 @@
               </div>
             </div>
             <div v-else class="show-m">
-              <div class="bg-m">
+              <div class="bg-mo">
                 <div class="m-bus-row">
                   <div class="left-title">
                     <span class="shipping-text">使用遊戲幣</span>
                   </div>
                   <div class="right-title">
-                    <span class="ship-name1">米茲塔爾</span>
+                    <span v-if="!toselect" class="ship-name-txt1">請選擇兌換用遊戲幣</span>
+                    <span v-else class="ship-name1">米茲塔爾</span>
                   </div>
                 </div>
-                <div class="right-div">
+                <div class="right-divm">
                   <img id="show-modal" class="right-icon" src="../assets/pc/right-arr.png" @click="showModal = true" />
                 </div>
+                <div v-if="!toselect" class="visible-hide">
+                  hide
+                </div>
                 
-                <div class="m-bus-row1">
+                <div v-if="toselect" class="m-bus-row1">
                   <div class="left-title">
                     <span class="shipping-text1">將提領</span>
                   </div>
@@ -396,7 +405,7 @@
                     <span class="ship-name2">256,000</span>
                   </div>
                 </div>
-                <div class="m-bus-row1">
+                <div v-if="toselect" class="m-bus-row1">
                   <div class="left-title">
                     <span class="shipping-text1">換算後等值PK幣</span>
                   </div>
@@ -442,7 +451,7 @@
                     <span class="shipping-text">合計</span>
                   </div>
                   <div class="right-title">
-                    <span class="ship-name4">0</span>
+                    <span class="ship-name4">1,900</span>
                   </div>
                 </div>
               </div>
@@ -456,13 +465,15 @@
         <p class="tot-text">總計</p>
         <div class="pri-div">
           <!-- <p v-if="!emptycart" class="price-text">hh</p> -->
-          <p class="price-text">0</p>
+          <p class="price-text">1,900</p>
           <img src="../assets/mobile/itemicon_gold.png" class="gold-icon">
         </div>
       </div>
       <div class="right-div">
-        <!-- <b-button v-if="emptycart === false" size="sm" class="btn-css">前往兌換(0))</b-button> -->
-        <b-button size="sm" class="empty-btn-css">確認兌換</b-button>
+        <b-button v-if="!filledUp" size="sm" class="nfilledup-btn-css">兌換(3)</b-button>
+        <b-button v-else-if="filledUp && enoughCoins && !allfilled" size="sm" class="allfill-btn-css">兌換(3)</b-button>
+        <b-button v-else-if="filledUp && !enoughCoins" size="sm" class="nenough-btn-css">額度不足</b-button>
+        <b-button v-else size="sm" class="allfill-btn-css">確認兌換</b-button>
       </div>
     </div>
     <Footer page="productDetail" class="forPC" />
@@ -480,7 +491,11 @@ export default {
       activeId: 0,
       showModal: false,
 
-      connectedGame: true
+      connectedGame: true,
+      filledUp: true,
+      enoughCoins: true,
+      allfilled: true,
+      toselect: true
     }
   },
   methods: {
@@ -903,6 +918,15 @@ export default {
                 font-size: 16px;
               }
             }
+            .cou-rightxt1 {
+              @media screen and (max-width: 768px) {
+                font-weight: 400;
+                font-size: 16px;
+                color: #2c2c2c;
+                margin-bottom: 0;
+                margin-right: 1rem;
+              }
+            }
           }
         }
         .third-row {
@@ -1061,6 +1085,16 @@ export default {
             margin-top: 5px;
             padding-bottom: 1rem;
           }
+          .bg-mo {
+            background: #FFF;
+            margin-top: 5px;
+            padding-bottom: 1rem;
+            position: relative;
+            .visible-hide {
+              visibility: hidden;
+              height: 43px;
+            }
+          }
           .m-bus-row {
             display: flex;
             padding: 1rem 1rem 5px 2rem;
@@ -1069,6 +1103,11 @@ export default {
               font-weight: 500;
               font-size: 14px;
               color: #2C2C2C;
+            }
+            .ship-name-txt1 {
+              color: #B79CED;
+              font-weight: 500;
+              font-size: 14px;
             }
             .right-title {
               margin-right: 23px;
@@ -1140,6 +1179,20 @@ export default {
             display: flex;
             justify-content: flex-end;
             padding-right: 1rem;
+            .right-icon {
+              width: 7px;
+              height: 14px;
+              cursor: pointer;
+            }
+          }
+          .right-divm {
+            display: flex;
+            justify-content: flex-end;
+            padding-right: 1rem;
+            @media screen and (max-width: 768px) {
+              position: absolute;
+              right: 0;
+            }
             .right-icon {
               width: 7px;
               height: 14px;
@@ -1238,7 +1291,7 @@ export default {
       border-color: #000 !important;
       border-radius: 12px;  
     }
-    .empty-btn-css {
+    .allfill-btn-css {
       @media screen and (max-width: 768px) {
         border-color: #000 !important;
         border-radius: 12px;
@@ -1246,6 +1299,45 @@ export default {
         font-weight: 700;
         font-size: 1rem;
         background: #000;
+        border-radius: 12px;
+        height: 45px;
+        width: 368px;
+      }
+    }
+    .nfilledup-btn-css {
+      @media screen and (max-width: 768px) {
+        border-color: #614EF3 !important;
+        border-radius: 12px;
+        color: #9B90F0;
+        font-weight: 700;
+        font-size: 1rem;
+        background: #614EF3;
+        border-radius: 12px;
+        height: 45px;
+        width: 368px;
+      }
+    }
+    .filledup-btn-css {
+      @media screen and (max-width: 768px) {
+        border-color: #614EF3 !important;
+        border-radius: 12px;
+        color: #9B90F0;
+        font-weight: 700;
+        font-size: 1rem;
+        background: #614EF3;
+        border-radius: 12px;
+        height: 45px;
+        width: 368px;
+      }
+    }
+    .nenough-btn-css {
+      @media screen and (max-width: 768px) {
+        border-color: #614EF3 !important;
+        border-radius: 12px;
+        color: #FFF;
+        font-weight: 700;
+        font-size: 1rem;
+        background: #EF6161;
         border-radius: 12px;
         height: 45px;
         width: 368px;
