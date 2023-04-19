@@ -474,8 +474,8 @@
       <div class="right-div">
         <b-button v-if="!filledUp" size="sm" class="nfilledup-btn-css">兌換(3)</b-button>
         <b-button v-else-if="filledUp && enoughCoins && !allfilled" size="sm" class="allfill-btn-css">兌換(3)</b-button>
-        <b-button v-else-if="filledUp && !enoughCoins" size="sm" class="nenough-btn-css">額度不足</b-button>
-        <b-button v-else size="sm" class="allfill-btn-css">確認兌換</b-button>
+        <b-button v-else-if="filledUp && !enoughCoins" size="sm" class="nenough-btn-css" @click="gotoPage('nocoin')">額度不足</b-button>
+        <b-button v-else size="sm" class="allfill-btn-css" @click="gotoPage">確認兌換</b-button>
       </div>
     </div>
     <Footer page="productDetail" class="forPC" />
@@ -507,8 +507,12 @@ export default {
       this.checkClick = true
       this.activeId = val
     },
-    gotoPage() {
-      this.$router.push('convertCart')
+    gotoPage(val) {
+      if(val && val === 'nocoin') {
+        this.$router.push({name: 'convertCart', query: {item: val}})
+      } else {
+        this.$router.push('convertCart')
+      }
     }
   }
 }

@@ -1,13 +1,16 @@
 <template>
   <div>
-    <Header />
+    <Header class="forPC" />
     <div id="" class="convertCart">
-      <div class="first-row">
+      <div class="" :class="!enoughtCoin ? 'nocoin-row' : 'first-row'">
         <div class="convertCart-block">
-          <img class="convert-icon" src="../assets/pc/convert-cart.png" />
-          <div>
-            <p class="order-sent">訂單送出~</p>
-            <p class="more-info">詳情可至兌換清單查看更多資訊</p>
+          <img v-if="!enoughtCoin" class="convert-icon" src="../assets/mobile/nocoin.png" />
+          <img v-else class="convert-icon" src="../assets/pc/convert-cart.png" />
+          <div class="m-css">
+            <p v-if="!enoughtCoin" class="order-sent">訂單送出失敗</p>
+            <p v-else class="order-sent">訂單送出~</p>
+            <p v-if="!enoughtCoin" class="more-info">請檢查網路連線是否正常</p>
+            <p v-else class="more-info">詳情可至兌換清單查看更多資訊</p>
             <div class="btn-group">
               <p class="btn1">
                 回商城
@@ -17,6 +20,14 @@
               </p>
             </div>
           </div>
+        </div>
+        <div class="btn-group1">
+          <p class="btn1">
+            回商城
+          </p>
+          <p class="btn1 btn2" :class="!enoughtCoin ? 'hidebtn' : ''">
+            兌換清單
+          </p>
         </div>
       </div>
       <div class="top-seller-parent">
@@ -61,6 +72,14 @@ export default {
         {name: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒1", imagePath: require("../assets/mobile/newArrival.png"), price: "99999", originalPrice: "99,999", bid: 9},
         {name: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒1", imagePath: require("../assets/mobile/newArrival.png"), price: "99999", originalPrice: "99,999", bid: 10}
       ],
+      enoughtCoin: true
+    }
+  },
+  created() {
+    if(this.$route.query && this.$route.query.item) {
+      this.enoughtCoin = false
+    } else {
+      this.enoughtCoin = true
     }
   },
   methods: {
@@ -68,53 +87,118 @@ export default {
   }
 }
 </script>
+<style lang="scss">
+.forPC {
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
+}
+</style>
 <style lang="scss" scoped>
 .convertCart {
   padding-top: 140px;
+  @media screen and (max-width: 768px) {
+    padding-top: 0;
+  }
   .first-row {
     background: #7161EF;
     border-radius: 0 0 24px 24px;
-    .convertCart-block {
-      display: flex;
-      justify-content: space-around;
-      align-items: flex-end;
-      width: 30%;
-      margin: auto;
-      padding: 1rem 0;
-      .convert-icon {
-        width: 200px;
-        width: 200px;
+  }
+  .nocoin-row {
+    background: #EF6A61;
+    border-radius: 0 0 24px 24px;
+  }
+  .convertCart-block {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    width: 30%;
+    margin: auto;
+    padding: 1rem 0;
+    @media screen and (max-width: 768px) {
+      width: 100%;
+      padding: 4rem 39px 2rem;
+      justify-content: unset;
+    }
+    .convert-icon {
+      width: 200px;
+      @media screen and (max-width: 768px) {
+        width: 120px;
       }
-      .order-sent {
+    }
+    .m-css {
+      @media screen and (max-width: 768px) {
+        margin-left: 19px;
+      }
+    }
+    .order-sent {
+      font-weight: 700;
+      font-size: 36px;
+      color: #FFF;
+      margin-bottom: 0;
+      @media screen and (max-width: 768px) {
+        font-size: 20px;
+      }
+    }
+    .more-info {
+      font-weight: 400;
+      font-size: 14px;
+      color: #FFF;
+      margin-bottom: 24px;
+      @media screen and (max-width: 768px) {
+        font-size: 12px;
+      }
+    }
+    .btn-group {
+      display: flex;
+      @media screen and (max-width: 768px) {
+        display: none;
+      }
+      .btn1 {
+        border: 1px solid #FFFFFF;
+        border-radius: 12px;
         font-weight: 700;
-        font-size: 36px;
+        font-size: 1rem;
         color: #FFF;
+        height: 44px;
+        line-height: 44px;
+        width: 136px;
+        text-align: center;
         margin-bottom: 0;
       }
-      .more-info {
-        font-weight: 400;
-        font-size: 14px;
-        color: #FFF;
-        margin-bottom: 24px;
+      .btn2 {
+        margin-left: 29px;
       }
-      .btn-group {
-        display: flex;
-        .btn1 {
-          border: 1px solid #FFFFFF;
-          border-radius: 12px;
-          font-weight: 700;
-          font-size: 1rem;
-          color: #FFF;
-          height: 44px;
-          line-height: 44px;
-          width: 136px;
-          text-align: center;
-          margin-bottom: 0;
-        }
-        .btn2 {
-          margin-left: 29px;
-        }
+    }
+  }
+  .btn-group1 {
+    display: none;
+    @media screen and (max-width: 768px) {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 31px 1rem;
+    }
+    .btn1 {
+      border: 1px solid #FFFFFF;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 1rem;
+      color: #FFF;
+      height: 44px;
+      line-height: 44px;
+      width: 136px;
+      text-align: center;
+      margin-bottom: 0;
+    }
+    .btn2 {
+      margin-left: 29px;
+      @media screen and (max-width: 768px) {
+        margin-left: 0;
       }
+    }
+    .hidebtn {
+      visibility: hidden;
     }
   }
   
@@ -129,7 +213,7 @@ export default {
       padding: 3rem 120px 2rem;
       @media screen and (max-width: 768px) {
         padding: 0;
-        height: 45px;
+        height: 60px;
         align-items: center;
 
         width: 90%;
@@ -191,7 +275,7 @@ export default {
         overflow-x: scroll;
 
         margin-left: auto;
-        width: 95%;
+        width: 98%;
       }
       .each-item {
         cursor: pointer;
@@ -208,11 +292,11 @@ export default {
         //   border-radius: 0;
         // }
         @media screen and (max-width: 768px) {
-          width: 34%;
+          width: 35%;
           border: 3px solid #EFEFEF;
           box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
           display: inline-block;
-          margin-right: 12px;
+          margin-right: 8px;
           margin-bottom: 1rem;
           border-radius: 6px;
         }
@@ -336,6 +420,4 @@ export default {
     // }
   }
 }
-</style>
-<style lang="scss">
 </style>
