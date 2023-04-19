@@ -8,7 +8,7 @@
               <slot name="body">
                 <div class="title-row">
                   <img class="return-css" src="../assets/mobile/btn-return1.png" @click="$emit('close')" />
-                  <p class="title-text">運送方式</p>
+                  <p class="title-text">選擇遊戲幣</p>
                   <img class="return-css hide-text" src="../assets/mobile/btn-return1.png" @click="$emit('close')" />
                 </div>
                 <div class="items-block">
