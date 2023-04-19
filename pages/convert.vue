@@ -341,6 +341,7 @@
                 </div>
                 <convertModal v-if="showModal" :show="showModal" @close="showModal = false" />
                 <convertServiceModal v-if="showServiceModal" :show="showServiceModal" @close="showServiceModal = false" />
+                <convertWalletModal v-if="showWalletModal" :show="showWalletModal" @close="showWalletModal = false" />
               </div>
             </div>
             <div class="show-m">
@@ -392,7 +393,7 @@
                   </div>
                 </div>
                 <div class="right-divm">
-                  <img id="show-modal" class="right-icon" src="../assets/pc/right-arr.png" @click="showModal = true" />
+                  <img id="show-modal" class="right-icon" src="../assets/pc/right-arr.png" @click="showWalletModal = true" />
                 </div>
                 <div v-if="!toselect" class="visible-hide">
                   hide
@@ -492,6 +493,7 @@ export default {
       activeId: 0,
       showModal: false,
       showServiceModal: false,
+      showWalletModal: false,
 
       connectedGame: true,
       filledUp: true,

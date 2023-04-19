@@ -40,8 +40,15 @@
                               <p class="home-delivery">全家</p>
                               <p class="expected-date">預計2~3個工作天配達</p>
                             </div>
+                            <div v-if="radioData == 6" class="location-btn3">
+                              <img class="location" src="../assets/pc/location.png" />
+                              <p class="location-text">選擇門市</p>
+                            </div>
                           </div>
                         </div>
+                      </div>
+                      <div v-if="radioData == 6" class="btn-css3">
+                        <p class="confirm-btn">確認</p>
                       </div>
                     </el-radio>
                     <el-radio :label="9" class="facts">
@@ -52,8 +59,15 @@
                               <p class="home-delivery">OK Mart</p>
                               <p class="expected-date">預計2~3個工作天配達</p>
                             </div>
+                            <div v-if="radioData == 9" class="location-btn3">
+                              <img class="location" src="../assets/pc/location.png" />
+                              <p class="location-text">選擇門市</p>
+                            </div>
                           </div>
                         </div>
+                      </div>
+                      <div v-if="radioData == 9" class="btn-css3">
+                        <p class="confirm-btn">確認</p>
                       </div>
                     </el-radio>
                     <el-radio :label="12" class="facts">
@@ -208,6 +222,9 @@ export default {
   .el-radio {
     margin-right: 0px !important;
     background: #FFF;
+  }
+  .el-radio.is-checked {
+    border: 2px solid #7161EF;
   }
 
   .el-radio__inner {
