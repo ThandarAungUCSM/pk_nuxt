@@ -7,7 +7,250 @@
         <div class="one-row">
           <div class="left-block">
             <div class="Lupper-block">
-              <div class="title-row">
+              <el-collapse v-model="activeNames" @change="handleChange">
+                <el-collapse-item name="1" class="p-item">
+                  <template slot="title">
+                    <img class="shipping-icon" src="../assets/pc/school-bus.png" />
+                    <span class="shipping-text">寄送方式</span>
+                  </template>
+                  <div>
+                    <el-radio-group v-model="radioData">
+                      <el-radio :label="3" class="facts">
+                        <div>
+                          <div class="shipp-method">
+                            <img class="shipping1" src="../assets/pc/shipping-icon1.png" />
+                            <div class="shiip-txt">
+                              <div>
+                                <p class="home-delivery">宅配到府</p>
+                                <p class="expected-date">預計2~3個工作天配達</p>
+                                <p v-if="cityName !== '' && cityTown !== ''"> {{cityName}} {{district}}</p>
+                              </div>
+                              <div v-if="radioData == 3" class="location-btn3" @click="locationFunc">
+                                <img class="location" src="../assets/pc/location.png" />
+                                <p class="location-text">選擇門市</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div v-if="radioData == 3 && !showLocation" class="ship-block-btn">
+                          <div v-if="cityName !== '' && cityTown !== ''" class="btn1-css3" @click="confirmFunc">
+                            <p class="confirm-btn">確認</p>
+                          </div>
+                          <div v-else class="btn-css3">
+                            <p class="confirm-btn">確認</p>
+                          </div>
+                        </div>
+                        <div v-else-if="radioData == 3 && showLocation" class="locale-info1">
+                          <div class="name1-block">
+                            <span class="name1-txt">姓名</span>
+                            <input
+                              v-model="nameText"
+                              type="text"
+                              placeholder="王大明"
+                              class="name-input"
+                              onfocus="this.placeholder=''"
+                            />
+                          </div>
+                          <div class="phone-block">
+                            <span class="name1-txt">手機號碼</span>
+                            <input
+                              v-model="phoneNo"
+                              type="text"
+                              placeholder="範例：0966330678"
+                              class="phone-input"
+                              onfocus="this.placeholder=''"
+                            />
+                          </div>
+                          <div class="address-block">
+                            <span class="email-txt">地址</span>
+                            <div class="address">
+                              <el-select v-model="cityName" class="member-address-city" placeholder="新北市">
+                                <el-option
+                                  v-for="(city, index) in cityTown"
+                                  :key="index"
+                                  :label="city.label"
+                                  :value="city.name">
+                                </el-option>
+                              </el-select>
+                              
+                              <el-select
+                                v-model="district"
+                                class="member-address-city"
+                                style="margin-left: 20px;"
+                                placeholder="三重區">
+                                <el-option
+                                  v-for="(city) in cityTown"
+                                  :key="city.value"
+                                  :label="city.label"
+                                  :value="city.name">
+                                </el-option>
+                              </el-select>
+                              
+                            </div>
+                          </div>
+                          <div class="street-block">
+                            <input
+                              v-model="streetText"
+                              type="text"
+                              placeholder="範例：光復南路三段156巷24號"
+                              class="address-input"
+                            />
+                          </div>
+                          <div class="btn-block">
+                            <p class="btn1" @click="nochoiceRadioFunc">確認</p>
+                            <p class="btn2" @click="backLocation">取消</p>
+                          </div>
+                        </div>
+                      </el-radio>
+                      <el-radio :label="6" class="facts">
+                        <div class="shipp-method">
+                          <img class="shipping1" src="../assets/pc/shipping-icon2.png" />
+                          <div class="shiip-txt">
+                            <div>
+                              <p class="home-delivery">宅配到府</p>
+                              <p class="expected-date">預計2~3個工作天配達</p>
+                            </div>
+                            <div v-if="radioData == 6" class="location-btn3">
+                              <img class="location" src="../assets/pc/location.png" />
+                              <p class="location-text">選擇門市</p>
+                            </div>
+                          </div>
+                        </div>
+                        <div v-if="radioData == 6" class="ship-block-btn">
+                          <div class="btn-css3">
+                            <p class="confirm-btn">確認</p>
+                          </div>
+                        </div>
+                      </el-radio>
+                      <el-radio :label="9" class="facts">
+                        <div class="shipp-method">
+                          <img class="shipping1" src="../assets/pc/shipping-icon3.png" />
+                          <div class="shiip-txt">
+                            <div>
+                              <p class="home-delivery">宅配到府</p>
+                              <p class="expected-date">預計2~3個工作天配達</p>
+                            </div>
+                            <div v-if="radioData == 9" class="location-btn3">
+                              <img class="location" src="../assets/pc/location.png" />
+                              <p class="location-text">選擇門市</p>
+                            </div>
+                          </div>
+                        </div>
+                        <div v-if="radioData == 9" class="ship-block-btn">
+                          <div class="btn-css3">
+                            <p class="confirm-btn">確認</p>
+                          </div>
+                        </div>
+                      </el-radio>
+                      <el-radio :label="12" class="facts">
+                        <div>
+                          <div class="shipp-method">
+                            <img class="shipping1" src="../assets/pc/shipping-icon4.png" />
+                            <div class="shiip-txt">
+                              <div>
+                                <p class="home-delivery">宅配到府</p>
+                                <p class="expected-date">預計2~3個工作天配達</p>
+                              </div>
+                              <div v-if="radioData == 12" class="receive-block">
+                                <p v-if="cityName !== '' && district !== ''" class="receive-info-title">{{cityName}} {{district}}</p>
+                                <p v-else class="receive-info-title">收件資訊</p>
+                                <div class="info-group">
+                                  <div class="left-info">
+                                    <p class="left-text">收件人</p>
+                                    <p class="left-text">電話</p>
+                                    <p class="left-text">地址</p>
+                                  </div>
+                                  <div class="right-info">
+                                    <p v-if="nameText !== ''" class="right-text">{{nameText}}</p>
+                                    <p v-else class="right-text">王大明</p>
+                                    <p v-if="phoneNo !== ''" class="right-text">{{phoneNo}}</p>
+                                    <p v-else class="right-text">0912345678</p>
+                                    <p v-if="streetText !== ''" class="right-text">{{streetText}}</p>
+                                    <p v-else class="right-text">新北市 三重區 復興北路87巷</p>
+                                  </div>
+                                </div>
+                                <div class="location-btn" @click="locationFunc">
+                                  <img class="location" src="../assets/pc/location.png" />
+                                  <p class="location-text">修改地址</p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- <div v-if="radioData == 12" class="btn-css">
+                          <p class="confirm-btn">確認</p>
+                        </div> -->
+                      </el-radio>
+                    </el-radio-group>
+                    <div v-if="radioData == 12 && !showLocation" class="btn-css">
+                      <p class="confirm-btn">確認</p>
+                    </div>
+                    <div v-else-if="radioData == 12 && showLocation" class="locale-info">
+                      <div class="name1-block">
+                        <span class="name-txt">姓名</span>
+                        <input
+                          v-model="nameText"
+                          type="text"
+                          placeholder="王大明"
+                          class="name-input"
+                          onfocus="this.placeholder=''"
+                        />
+                      </div>
+                      <div class="phone-block">
+                        <span class="name-txt">手機號碼</span>
+                        <input
+                          v-model="phoneNo"
+                          type="text"
+                          placeholder="範例：0966330678"
+                          class="phone-input"
+                          onfocus="this.placeholder=''"
+                        />
+                      </div>
+                      <div class="address-block">
+                        <span class="email-txt">地址</span>
+                        <div class="address">
+                          <el-select v-model="cityName" class="member-address-city" placeholder="新北市">
+                            <el-option
+                              v-for="(city, index) in cityTown"
+                              :key="index"
+                              :label="city.label"
+                              :value="city.name">
+                            </el-option>
+                          </el-select>
+                          
+                          <el-select
+                            v-model="district"
+                            class="member-address-city"
+                            style="margin-left: 20px;"
+                            placeholder="三重區">
+                            <el-option
+                              v-for="(city) in cityTown"
+                              :key="city.value"
+                              :label="city.label"
+                              :value="city.name">
+                            </el-option>
+                          </el-select>
+                          
+                        </div>
+                      </div>
+                      <div class="street-block">
+                        <input
+                          v-model="streetText"
+                          type="text"
+                          placeholder="範例：光復南路三段156巷24號"
+                          class="address-input"
+                        />
+                      </div>
+                      <div class="btn-block">
+                        <p class="btn1" @click="nochoiceRadioFunc">確認</p>
+                        <p class="btn2" @click="backLocation">取消</p>
+                      </div>
+                    </div>
+                  </div>
+                </el-collapse-item>
+              </el-collapse>
+
+              <!-- <div class="title-row">
                 <div class="left-title">
                   <img class="shipping-icon" src="../assets/pc/school-bus.png" />
                   <span class="shipping-text">寄送方式</span>
@@ -15,175 +258,133 @@
                 <div class="right-title">
                   <img class="minus-icon" src="../assets/pc/minus-black.png" />
                 </div>
-              </div>
-              <div>
-                <el-radio-group v-model="radioData">
-                  <el-radio :label="3" class="facts">
-                    <div>
-                      <div class="shipp-method">
-                        <img class="shipping1" src="../assets/pc/shipping-icon1.png" />
-                        <div class="shiip-txt">
-                          <div>
-                            <p class="home-delivery">宅配到府</p>
-                            <p class="expected-date">預計2~3個工作天配達</p>
-                          </div>
-                          <div v-if="radioData == 3" class="location-btn3">
-                            <img class="location" src="../assets/pc/location.png" />
-                            <p class="location-text">選擇門市</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div v-if="radioData == 3" class="ship-block-btn">
-                      <div class="btn-css3">
-                        <p class="confirm-btn">確認</p>
-                      </div>
-                    </div>
-                  </el-radio>
-                  <el-radio :label="6" class="facts">
-                    <div class="shipp-method">
-                      <img class="shipping1" src="../assets/pc/shipping-icon2.png" />
-                      <div class="shiip-txt">
-                        <div>
-                          <p class="home-delivery">宅配到府</p>
-                          <p class="expected-date">預計2~3個工作天配達</p>
-                        </div>
-                        <div v-if="radioData == 6" class="location-btn3">
-                          <img class="location" src="../assets/pc/location.png" />
-                          <p class="location-text">選擇門市</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div v-if="radioData == 6" class="ship-block-btn">
-                      <div class="btn-css3">
-                        <p class="confirm-btn">確認</p>
-                      </div>
-                    </div>
-                  </el-radio>
-                  <el-radio :label="9" class="facts">
-                    <div class="shipp-method">
-                      <img class="shipping1" src="../assets/pc/shipping-icon3.png" />
-                      <div class="shiip-txt">
-                        <div>
-                          <p class="home-delivery">宅配到府</p>
-                          <p class="expected-date">預計2~3個工作天配達</p>
-                        </div>
-                        <div v-if="radioData == 9" class="location-btn3">
-                          <img class="location" src="../assets/pc/location.png" />
-                          <p class="location-text">選擇門市</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div v-if="radioData == 9" class="ship-block-btn">
-                      <div class="btn-css3">
-                        <p class="confirm-btn">確認</p>
-                      </div>
-                    </div>
-                  </el-radio>
-                  <el-radio :label="12" class="facts">
-                    <div>
-                      <div class="shipp-method">
-                        <img class="shipping1" src="../assets/pc/shipping-icon4.png" />
-                        <div class="shiip-txt">
-                          <div>
-                            <p class="home-delivery">宅配到府</p>
-                            <p class="expected-date">預計2~3個工作天配達</p>
-                          </div>
-                          <div v-if="radioData == 12" class="receive-block">
-                            <p class="receive-info-title">收件資訊</p>
-                            <div class="info-group">
-                              <div class="left-info">
-                                <p class="left-text">收件人</p>
-                                <p class="left-text">電話</p>
-                                <p class="left-text">地址</p>
-                              </div>
-                              <div class="right-info">
-                                <p class="right-text">王大明</p>
-                                <p class="right-text">0912345678</p>
-                                <p class="right-text">新北市 三重區 復興北路87巷</p>
-                              </div>
-                            </div>
-                            <div class="location-btn" @click="locationFunc">
-                              <img class="location" src="../assets/pc/location.png" />
-                              <p class="location-text">修改地址</p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <!-- <div v-if="radioData == 12" class="btn-css">
-                      <p class="confirm-btn">確認</p>
-                    </div> -->
-                  </el-radio>
-                </el-radio-group>
-                <div v-if="radioData == 12 && !showLocation" class="btn-css">
-                  <p class="confirm-btn">確認</p>
-                </div>
-                <div v-else-if="radioData == 12 && showLocation" class="locale-info">
-                  <div class="name1-block">
-                    <span class="name-txt">姓名</span>
-                    <input
-                      v-model="nameText"
-                      type="text"
-                      placeholder="王大明"
-                      class="name-input"
-                      onfocus="this.placeholder=''"
-                    />
-                  </div>
-                  <div class="phone-block">
-                    <span class="name-txt">手機號碼</span>
-                    <input
-                      v-model="phoneNo"
-                      type="text"
-                      placeholder="範例：0966330678"
-                      class="phone-input"
-                      onfocus="this.placeholder=''"
-                    />
-                  </div>
-                  <div class="address-block">
-                    <span class="email-txt">地址</span>
-                    <div class="address">
-                      <el-select v-model="cityName" class="member-address-city" placeholder="新北市">
-                        <el-option
-                          v-for="(city, index) in cityTown"
-                          :key="index"
-                          :label="city.label"
-                          :value="city.name">
-                        </el-option>
-                      </el-select>
-                      
-                      <el-select
-                        v-model="district"
-                        class="member-address-city"
-                        style="margin-left: 20px;"
-                        placeholder="三重區">
-                        <el-option
-                          v-for="(city) in cityTown"
-                          :key="city.value"
-                          :label="city.label"
-                          :value="city.name">
-                        </el-option>
-                      </el-select>
-                      
-                    </div>
-                  </div>
-                  <div class="street-block">
-                    <input
-                      v-model="streetText"
-                      type="text"
-                      placeholder="範例：光復南路三段156巷24號"
-                      class="address-input"
-                    />
-                  </div>
-                  <div class="btn-block">
-                    <p class="btn1" @click="nochoiceRadioFunc">確認</p>
-                    <p class="btn2" @click="backLocation">取消</p>
-                  </div>
-                </div>
-              </div>
+              </div> -->
             </div>
             <div class="Llower-block">
-              <div class="title-row">
+              <el-collapse v-model="activeWallet" @change="walletChange">
+                <el-collapse-item name="1" class="p-item">
+                  <template slot="title">
+                    <img class="dollar-icon" src="../assets/pc/dollar.png" />
+                    <span class="shipping-text">使用遊戲幣</span>
+                  </template>
+                  <div v-if="ifData" class="items-block">
+                    <div v-if="checkClick && activeId == 1" class="check-block" @click="toCheck(1)">
+                      <div class="check-inner" >
+                        <div class="check-left">
+                          <img class="ordergame-icon" src="../assets/pc/order-game1.png" />
+                          <div class="name-div">
+                            <p class="game-name">MYISTAL 米茲塔爾</p>
+                            <p class="currency-name">幣值名稱 156,015</p>
+                          </div>
+                        </div>
+                        <img class="check-icon" src="../assets/pc/check-btn.png" />
+                      </div>
+                      <div class="">
+                        <div class="withdrawn-div">
+                          <p class="withdrawn-name">將提領之數額</p>
+                          <p class="withdrawn-name">256,000</p>
+                        </div>
+                        <div class="equal-block">
+                          <p class="equal-sign">=</p>
+                        </div>
+                        <div class="withdrawn-div">
+                          <p class="withdrawn-name">換算後等值PK幣</p>
+                          <p class="currency-pk">1,900</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div v-else class="name-block" @click="toCheck(1)">
+                      <img class="ordergame-icon" src="../assets/pc/order-game1.png" />
+                      <div class="name-div">
+                        <p class="game-name">MYISTAL 米茲塔爾</p>
+                        <p class="currency-name">幣值名稱 156,015</p>
+                      </div>
+                    </div>
+                    <div v-if="checkClick && activeId == 2" class="check-block" @click="toCheck(2)">
+                      <div class="check-inner" >
+                        <div class="check-left">
+                          <img class="ordergame-icon" src="../assets/pc/order-game1.png" />
+                          <div class="name-div">
+                            <p class="game-name">MYISTAL 米茲塔爾</p>
+                            <p class="currency-name">幣值名稱 156,015</p>
+                          </div>
+                        </div>
+                        <img class="check-icon" src="../assets/pc/check-btn.png" />
+                      </div>
+                      <div class="">
+                        <div class="withdrawn-div">
+                          <p class="withdrawn-name">將提領之數額</p>
+                          <p class="withdrawn-name">256,000</p>
+                        </div>
+                        <div class="equal-block">
+                          <p class="equal-sign">=</p>
+                        </div>
+                        <div class="withdrawn-div">
+                          <p class="withdrawn-name">換算後等值PK幣</p>
+                          <p class="currency-pk">1,900</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div v-else class="name-block" @click="toCheck(2)">
+                      <img class="ordergame-icon" src="../assets/pc/order-game1.png" />
+                      <div class="name-div">
+                        <p class="game-name">MYISTAL 米茲塔爾</p>
+                        <p class="currency-name">幣值名稱 156,015</p>
+                      </div>
+                    </div>
+                    <div v-if="checkClick && activeId == 3" class="check-block" @click="toCheck(3)">
+                      <div class="check-inner" >
+                        <div class="check-left">
+                          <img class="ordergame-icon" src="../assets/pc/order-game1.png" />
+                          <div class="name-div">
+                            <p class="game-name">MYISTAL 米茲塔爾</p>
+                            <p class="currency-name">幣值名稱 156,015</p>
+                          </div>
+                        </div>
+                        <img class="check-icon" src="../assets/pc/check-btn.png" />
+                      </div>
+                      <div class="">
+                        <div class="withdrawn-div">
+                          <p class="withdrawn-name">將提領之數額</p>
+                          <p class="withdrawn-name">256,000</p>
+                        </div>
+                        <div class="equal-block">
+                          <p class="equal-sign">=</p>
+                        </div>
+                        <div class="withdrawn-div">
+                          <p class="withdrawn-name">換算後等值PK幣</p>
+                          <p class="currency-pk">1,900</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div v-else class="name-block" @click="toCheck(3)">
+                      <img class="ordergame-icon" src="../assets/pc/order-game1.png" />
+                      <div class="name-div">
+                        <p class="game-name">MYISTAL 米茲塔爾</p>
+                        <p class="currency-name">幣值名稱 156,015</p>
+                      </div>
+                    </div>
+                    <div class="currency-block-btn">
+                      <div v-if="!selectWallet" class="currency-div">
+                        <p class="confirm-currency">確認</p>
+                      </div>
+                      <div v-else class="currency1-div" @click="walletCollapse">
+                        <p class="confirm-currency">確認</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div v-else class="nodata-block">
+                    <div class="nameno-block">
+                      <img class="convertempty-icon" src="../assets/pc/convert-empty.png" />
+                      <div class="nameno-div">
+                        <p class="empty-name">尚未有連動的遊戲錢包</p>
+                        <p class="currency-btn" @click="$router.push('myGame')">前往連動</p>
+                      </div>
+                    </div>
+                  </div>
+                </el-collapse-item>
+              </el-collapse>
+              <!-- <div class="title-row">
                 <div class="left-title">
                   <img class="dollar-icon" src="../assets/pc/dollar.png" />
                   <span class="shipping-text">使用遊戲幣</span>
@@ -191,119 +392,7 @@
                 <div class="right-title">
                   <img class="minus-icon" src="../assets/pc/minus-black.png" />
                 </div>
-              </div>
-              <div v-if="ifData" class="items-block">
-                <div v-if="checkClick && activeId == 1" class="check-block" @click="toCheck(1)">
-                  <div class="check-inner" >
-                    <div class="check-left">
-                      <img class="ordergame-icon" src="../assets/pc/order-game1.png" />
-                      <div class="name-div">
-                        <p class="game-name">MYISTAL 米茲塔爾</p>
-                        <p class="currency-name">幣值名稱 156,015</p>
-                      </div>
-                    </div>
-                    <img class="check-icon" src="../assets/pc/check-btn.png" />
-                  </div>
-                  <div class="">
-                    <div class="withdrawn-div">
-                      <p class="withdrawn-name">將提領之數額</p>
-                      <p class="withdrawn-name">256,000</p>
-                    </div>
-                    <div class="equal-block">
-                      <p class="equal-sign">=</p>
-                    </div>
-                    <div class="withdrawn-div">
-                      <p class="withdrawn-name">換算後等值PK幣</p>
-                      <p class="currency-pk">1,900</p>
-                    </div>
-                  </div>
-                </div>
-                <div v-else class="name-block" @click="toCheck(1)">
-                  <img class="ordergame-icon" src="../assets/pc/order-game1.png" />
-                  <div class="name-div">
-                    <p class="game-name">MYISTAL 米茲塔爾</p>
-                    <p class="currency-name">幣值名稱 156,015</p>
-                  </div>
-                </div>
-                <div v-if="checkClick && activeId == 2" class="check-block" @click="toCheck(2)">
-                  <div class="check-inner" >
-                    <div class="check-left">
-                      <img class="ordergame-icon" src="../assets/pc/order-game1.png" />
-                      <div class="name-div">
-                        <p class="game-name">MYISTAL 米茲塔爾</p>
-                        <p class="currency-name">幣值名稱 156,015</p>
-                      </div>
-                    </div>
-                    <img class="check-icon" src="../assets/pc/check-btn.png" />
-                  </div>
-                  <div class="">
-                    <div class="withdrawn-div">
-                      <p class="withdrawn-name">將提領之數額</p>
-                      <p class="withdrawn-name">256,000</p>
-                    </div>
-                    <div class="equal-block">
-                      <p class="equal-sign">=</p>
-                    </div>
-                    <div class="withdrawn-div">
-                      <p class="withdrawn-name">換算後等值PK幣</p>
-                      <p class="currency-pk">1,900</p>
-                    </div>
-                  </div>
-                </div>
-                <div v-else class="name-block" @click="toCheck(2)">
-                  <img class="ordergame-icon" src="../assets/pc/order-game1.png" />
-                  <div class="name-div">
-                    <p class="game-name">MYISTAL 米茲塔爾</p>
-                    <p class="currency-name">幣值名稱 156,015</p>
-                  </div>
-                </div>
-                <div v-if="checkClick && activeId == 3" class="check-block" @click="toCheck(3)">
-                  <div class="check-inner" >
-                    <div class="check-left">
-                      <img class="ordergame-icon" src="../assets/pc/order-game1.png" />
-                      <div class="name-div">
-                        <p class="game-name">MYISTAL 米茲塔爾</p>
-                        <p class="currency-name">幣值名稱 156,015</p>
-                      </div>
-                    </div>
-                    <img class="check-icon" src="../assets/pc/check-btn.png" />
-                  </div>
-                  <div class="">
-                    <div class="withdrawn-div">
-                      <p class="withdrawn-name">將提領之數額</p>
-                      <p class="withdrawn-name">256,000</p>
-                    </div>
-                    <div class="equal-block">
-                      <p class="equal-sign">=</p>
-                    </div>
-                    <div class="withdrawn-div">
-                      <p class="withdrawn-name">換算後等值PK幣</p>
-                      <p class="currency-pk">1,900</p>
-                    </div>
-                  </div>
-                </div>
-                <div v-else class="name-block" @click="toCheck(3)">
-                  <img class="ordergame-icon" src="../assets/pc/order-game1.png" />
-                  <div class="name-div">
-                    <p class="game-name">MYISTAL 米茲塔爾</p>
-                    <p class="currency-name">幣值名稱 156,015</p>
-                  </div>
-                </div>
-                <div class="currency-block-btn">
-                  <div class="currency-div">
-                    <p class="confirm-currency">確認</p>
-                  </div>
-                </div>
-              </div>
-              <div v-else class="nodata-block">
-                <div class="nameno-block">
-                  <img class="convertempty-icon" src="../assets/pc/convert-empty.png" />
-                  <div class="nameno-div">
-                    <p class="empty-name">尚未有連動的遊戲錢包</p>
-                    <p class="currency-btn">前往連動</p>
-                  </div>
-                </div>
-              </div>
+              </div> -->
             </div>
           </div>
           <div class="right-block">
@@ -591,14 +680,36 @@ export default {
       phoneNo: '',
       cityName: '',
       district: '',
-      streetText: '光復南路三段156巷24號',
+      streetText: '',
       cityTown: [{name: 'aaaaa', label: 'aaaaa'}, {name: 'bbbbb', label: 'bbbbb'}, {name: 'ccccc', label: 'ccccc'}],
+      activeNames: ['1'],
+      activeWallet: ['1'],
+      selectWallet: false
     }
   },
   methods: {
+    handleChange(val) {
+      console.log(val);
+    },
+    walletChange(val) {
+      console.log(val);
+    },
     toCheck(val) {
-      this.checkClick = true
-      this.activeId = val
+      if(this.activeId === val) {
+        this.checkClick = false
+        this.activeId = 0
+        this.selectWallet = false
+      } else {
+        this.checkClick = true
+        this.activeId = val
+        this.selectWallet = true
+      }
+    },
+    walletCollapse() {
+      this.checkClick = false
+      this.activeId = 0
+      this.selectWallet = false
+      this.activeWallet = []
     },
     gotoPage(val) {
       if(val && val === 'nocoin') {
@@ -616,6 +727,10 @@ export default {
     nochoiceRadioFunc() {
       this.radioData = 7
       this.showLocation = false
+      this.activeNames = []
+    },
+    confirmFunc() {
+      this.activeNames = []
     }
   }
 }
@@ -659,7 +774,7 @@ export default {
         .Lupper-block {
           background: #FFF;
           margin-bottom: 1rem;
-          padding-bottom: 1rem;
+          // padding-bottom: 1rem;
           .title-row {
             display: flex;
             align-items: center;
@@ -667,22 +782,22 @@ export default {
             padding: 1rem 2rem 2rem 2.5rem;
             .left-title {
               // display: flex;
-              .shipping-icon {
-                width: 14px;
-                height: 14px;
-              }
-              .shipping-text {
-                font-weight: 500;
-                font-size: 14px;
-                color: #000;
-                margin-left: 7px;
-              }
             }
             .right-title {
               .minus-icon {
                 width: 12px;
               }
             }
+          }
+          .shipping-icon {
+            width: 14px;
+            height: 14px;
+          }
+          .shipping-text {
+            font-weight: 500;
+            font-size: 14px;
+            color: #000;
+            margin-left: 7px;
           }
           .facts {
             font-weight: 400;
@@ -704,12 +819,13 @@ export default {
               font-weight: 400;
               font-size: 14px;
               color: #2C2C2C;
+              margin-bottom: 10px;
             }
             .expected-date {
               font-weight: 400;
               font-size: 14px;
               color: #EF7B61;
-              margin-bottom: 0;
+              margin-bottom: 10px;
             }
             .receive-block {
               margin-top: 1.2rem;
@@ -779,6 +895,14 @@ export default {
               margin-right: calc(8rem + 14px);
               cursor: pointer;
             }
+            .btn1-css3 {
+              background: #7161EF;
+              border-radius: 6px;
+              width: 80px;
+              height: 36px;
+              margin-right: calc(8rem + 14px);
+              cursor: pointer;
+            }
           }
           .btn-css {
             background: #7161EF;
@@ -800,161 +924,173 @@ export default {
           .locale-info {
             width: 65%;
             margin: auto;
-            .name1-block, .phone-block {
-              background: #FAF6FF;
-              backdrop-filter: blur(1.5px);
-              height: 56px;
-              padding: 5px 1rem;
-              margin-top: 1rem;
-            }
-            .name-txt {
-              font-weight: 400;
-              font-size: 14px;
-              color: #9D9D9D;
+          }
+          .locale-info1 {
+            width: 97%;
+            margin: auto;
+          }
+          .name1-block, .phone-block {
+            background: #FAF6FF;
+            backdrop-filter: blur(1.5px);
+            height: 56px;
+            padding: 5px 1rem;
+            margin-top: 1rem;
+          }
+          .name-txt {
+            font-weight: 400;
+            font-size: 14px;
+            color: #9D9D9D;
+            width: 100%;
+            display: block;
+          }
+          .name1-txt {
+            font-weight: 400;
+            font-size: 14px;
+            color: #9D9D9D;
+            width: 100%;
+            display: block;
+            margin-bottom: 7px;
+          }
+          input:focus {
+            outline: none;
+          }
+          .name-input {
+            font-weight: 400;
+            font-size: 14px;
+            color: #957FEF;
+            border: none;
+            width: 100%;
+            background: none;
+            padding: 0;
+          }
+          .phone-input {
+            font-weight: 400;
+            font-size: 1rem;
+            color: #957FEF;
+            border: none;
+            width: 100%;
+            background: none;
+            padding: 0;
+          }
+          .address-input {
+            font-weight: 400;
+            font-size: 1rem;
+            color: #7161EF;
+            border: none;
+            width: 100%;
+            background: none;
+            padding: 0;
+          }
+          .name-input::placeholder {
+            font-weight: 400;
+            font-size: 14px;
+            color: #957FEF;
+            border: none;
+            width: 100%;
+            background: none;
+            padding: 0;
+          }
+          .phone-input::placeholder {
+            font-weight: 400;
+            font-size: 1rem;
+            color: #957FEF;
+            border: none;
+            width: 100%;
+            background: none;
+            padding: 0;
+          }
+          .address-input::placeholder {
+            font-weight: 400;
+            font-size: 1rem;
+            color: #7161EF;
+            border: none;
+            width: 100%;
+            background: none;
+            padding: 0;
+          }
+          .address-block {
+            margin-top: 10px;
+            .address {
+              display: flex;
+              justify-content: space-between;
               width: 100%;
-              display: block;
-            }
-            input:focus {
-              outline: none;
-            }
-            .name-input {
-              font-weight: 400;
-              font-size: 14px;
-              color: #957FEF;
-              border: none;
-              width: 100%;
-              background: none;
-              padding: 0;
-            }
-            .phone-input {
-              font-weight: 400;
-              font-size: 1rem;
-              color: #957FEF;
-              border: none;
-              width: 100%;
-              background: none;
-              padding: 0;
-            }
-            .address-input {
-              font-weight: 400;
-              font-size: 1rem;
-              color: #7161EF;
-              border: none;
-              width: 100%;
-              background: none;
-              padding: 0;
-            }
-            .name-input::placeholder {
-              font-weight: 400;
-              font-size: 14px;
-              color: #957FEF;
-              border: none;
-              width: 100%;
-              background: none;
-              padding: 0;
-            }
-            .phone-input::placeholder {
-              font-weight: 400;
-              font-size: 1rem;
-              color: #957FEF;
-              border: none;
-              width: 100%;
-              background: none;
-              padding: 0;
-            }
-            .address-input::placeholder {
-              font-weight: 400;
-              font-size: 1rem;
-              color: #7161EF;
-              border: none;
-              width: 100%;
-              background: none;
-              padding: 0;
-            }
-            .address-block {
               margin-top: 10px;
-              .address {
-                display: flex;
-                justify-content: space-between;
-                width: 100%;
-                margin-top: 10px;
-              }
-              .member-address-city {
-                width: 48%;
-                font-weight: 400;
-                font-size: 1rem !important;
-                color: #7161FE;
-                background: #FAF7FF;
-                backdrop-filter: blur(1.5px);
-                border-radius: 6px;
-                border: none;
-                // padding-left: 10px;
-                height: 60px;
-                min-height: 60px;
-
-                background-image: url('../assets/pc/angle-down.png');
-                background-repeat: no-repeat;
-                background-position: calc(100% - 12px) center;
-                background-size: 16px;
-              }
-              .member-address-city::placeholder {
-                color: red;
-              }
-              select:focus {
-                outline: none;
-              }
-              select {
-                appearance: none;
-                -moz-appearance: none;
-                -webkit-appearance: none;
-                padding-right: 1rem;
-              }
-              .email-txt {
-                font-weight: 400;
-                font-size: 16px;
-                color: #858585;
-              }
             }
-            .street-block {
+            .member-address-city {
+              width: 48%;
+              font-weight: 400;
+              font-size: 1rem !important;
+              color: #7161FE;
               background: #FAF7FF;
               backdrop-filter: blur(1.5px);
-              height: 56px;
-              line-height: 56px;
-              padding-left: 10px;
-              margin-top: 10px;
-              @media screen and (max-width: 768px) {
-                margin-top: 1rem;
-              }
+              border-radius: 6px;
+              border: none;
+              // padding-left: 10px;
+              height: 60px;
+              min-height: 60px;
+
+              background-image: url('../assets/pc/angle-down.png');
+              background-repeat: no-repeat;
+              background-position: calc(100% - 12px) center;
+              background-size: 16px;
             }
-            .btn-block {
+            .member-address-city::placeholder {
+              color: red;
+            }
+            select:focus {
+              outline: none;
+            }
+            select {
+              appearance: none;
+              -moz-appearance: none;
+              -webkit-appearance: none;
+              padding-right: 1rem;
+            }
+            .email-txt {
+              font-weight: 400;
+              font-size: 16px;
+              color: #858585;
+            }
+          }
+          .street-block {
+            background: #FAF7FF;
+            backdrop-filter: blur(1.5px);
+            height: 56px;
+            line-height: 56px;
+            padding-left: 10px;
+            margin-top: 10px;
+            @media screen and (max-width: 768px) {
+              margin-top: 1rem;
+            }
+          }
+          .btn-block {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 2rem;
+            margin-bottom: 4rem;
+            .btn1, .btn2 {
+              border-radius: 6px;
+              margin-bottom: 0;
+              font-weight: 700;
+              font-size: 14px;
+              width: 80px;
+              height: 36px;
               display: flex;
               align-items: center;
               justify-content: center;
-              margin-top: 2rem;
-              margin-bottom: 4rem;
-              .btn1, .btn2 {
-                border-radius: 6px;
-                margin-bottom: 0;
-                font-weight: 700;
-                font-size: 14px;
-                width: 80px;
-                height: 36px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                margin-left: 8px;
-                cursor: pointer;
-              }
-              .btn1 {
-                background: #7161EF;
-                border: 2px solid #7161EF;
-                color: #FFF;
-              }
-              .btn2 {
-                background: #FFF;
-                border: 2px solid #7161EF;
-                color: #7161EF;
-              }
+              margin-left: 8px;
+              cursor: pointer;
+            }
+            .btn1 {
+              background: #7161EF;
+              border: 2px solid #7161EF;
+              color: #FFF;
+            }
+            .btn2 {
+              background: #FFF;
+              border: 2px solid #7161EF;
+              color: #7161EF;
             }
           }
         }
@@ -966,22 +1102,22 @@ export default {
             justify-content: space-between;
             padding: 1rem 2rem 2rem 2.5rem;
             .left-title {
-              .dollar-icon {
-                width: 8px;
-                height: 14px;
-              }
-              .shipping-text {
-                font-weight: 500;
-                font-size: 14px;
-                color: #000;
-                margin-left: 7px;
-              }
             }
             .right-title {
               .minus-icon {
                 width: 12px;
               }
             }
+          }
+          .dollar-icon {
+            width: 8px;
+            height: 14px;
+          }
+          .shipping-text {
+            font-weight: 500;
+            font-size: 14px;
+            color: #000;
+            margin-left: 7px;
           }
           .items-block {
             padding: 0 4rem 2rem 6rem;
@@ -1014,8 +1150,7 @@ export default {
               align-items: center;
               justify-content: center;
               margin: 30px auto 0;
-              .currency-div {
-                background: #B2ADD7;
+              .currency-div, .currency1-div {
                 border-radius: 6px; 
                 width: 80px;
                 height: 36px;
@@ -1031,6 +1166,12 @@ export default {
                   align-items: center;
                   justify-content: center;
                 }
+              }
+              .currency-div {
+                background: #B2ADD7;
+              }
+              .currency1-div {
+                background: #7161EF;
               }
             }
             .ordergame-icon{
@@ -1125,6 +1266,7 @@ export default {
                 display: flex;
                 justify-content: center;
                 align-items: center;
+                cursor: pointer;
               }
             }
           }
@@ -1280,22 +1422,23 @@ export default {
               height: 1rem;
             }
             .left-title {
-              .shipping-icon {
-                width: 14px;
-                height: 14px;
-              }
-              .shipping-text {
-                font-weight: 400;
-                font-size: 14px;
-                color: #000;
-                margin-left: 7px;
-              }
+              
             }
             .right-title {
               .minus-icon {
                 width: 12px;
               }
             }
+          }
+          .shipping-icon {
+            width: 14px;
+            height: 14px;
+          }
+          .shipping-text {
+            font-weight: 400;
+            font-size: 14px;
+            color: #000;
+            margin-left: 7px;
           }
           .each-row {
             display: flex;
@@ -1649,6 +1792,70 @@ export default {
 </style>
 <style lang="scss">
 #orderlistId {
+  .p-item {
+    .el-icon-arrow-right:before {
+      // color: #ceb17d;
+      // content: "\002B";
+      // font-size: 21px;
+
+      background-image: url("../assets/pc/plus-black.png");
+      background-size: 12px 12px;
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      content: "";
+    }
+    i.el-collapse-item__arrow.el-icon-arrow-right.is-active:before {
+      // color: #ceb17d;
+      // content: '\002D';
+      // content: "\2212";
+      // font-size: 21px;
+
+      background-image: url("../assets/pc/minus-black.png");
+      background-size: 18px 18px;
+      display: inline-block;
+      width: 12px;
+      height: 2px;
+      content: "";
+    }
+    .el-collapse-item__arrow {
+      margin: 0 0 0 auto;
+      transition: transform 0.3s;
+      font-weight: 100;
+      @media screen and (max-width: 768px) {
+        margin: 0 -1px 0 auto;
+      }
+    }
+    .el-collapse-item__arrow.is-active {
+      transform: rotate(0deg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .el-collapse-item__header {
+      // display: flex;
+      // align-items: center;
+      height: 48px;
+      line-height: 48px;
+      background-color: #fff;
+      color: #1a1a1a;
+      cursor: pointer;
+      border-bottom: 0 solid #ebeef5;
+      font-size: 16px;
+      font-weight: 600;
+      transition: border-bottom-color 0.3s;
+      outline: 0;
+      // padding: 1rem 2rem 2rem 2.5rem;
+      padding-right: 2rem;
+      padding-left: 2.5rem;
+    }
+  }
+  .el-collapse {
+    border-bottom: 0px solid #ebeef5;
+  }
+  .el-collapse-item__wrap {
+    border-bottom: 0px solid #ebeef5;
+  }
   .el-radio__input.is-checked .el-radio__inner {
     border: 1px solid #7161EF !important;
     background: #7161EF !important;
