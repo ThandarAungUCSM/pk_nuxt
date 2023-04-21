@@ -43,7 +43,7 @@
           <img src="../assets/mobile/connectedGame.png" class="successgame-icon">
           <span class="success-text">PUBG 絕地求生</span>
         </div>
-        <p class="return-btn">返回</p>
+        <p class="return-btn" @click="$router.push('connectedGame')">返回</p>
       </div>
     </div>
   </div>
@@ -237,6 +237,7 @@ export default {
     align-items: center;
     justify-content: center;
     width: 100%;
+    cursor: pointer;
   }
 }
 .accountCss1, .accountCss2 {

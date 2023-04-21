@@ -1,6 +1,6 @@
 <template>
   <Transition name="modal">
-    <div v-if="show" class="modal-mask" id="connectedGameId">
+    <div v-if="show" id="connectedGameId" class="modal-mask">
       <div class="modal-wrapper">
         <div class="homedeliqrmodal-container">
           <div class="homedeliqrmodal-body">
@@ -21,7 +21,7 @@
                     <span class="red-txt">取消連動</span>
                   </div>
                   <div class="pupple-btn">
-                    <span class="pupple-txt" @click="$emit('close')">關閉</span>
+                    <span class="pupple-txt" @click="closeGame">關閉</span>
                   </div>
                 </el-carousel-item>
               </el-carousel>
@@ -41,12 +41,11 @@
                     <span class="red-txt">取消連動</span>
                   </div>
                   <div class="pupple-btn">
-                    <span class="pupple-txt" @click="$emit('close')">關閉</span>
+                    <span class="pupple-txt" @click="closeGame">關閉</span>
                   </div>
                 </el-carousel-item>
               </el-carousel>
             </slot>
-              
           </div>
         </div>
       </div>
@@ -55,6 +54,7 @@
 </template>
 <script>
 export default {
+  props: ["show", "sendtoPopup", "currentSlide"],
   data() {
     return {
       items: [1, 2 , 3],
@@ -63,7 +63,6 @@ export default {
       activeSlide: 0
     };
   },
-  props: ["show", "sendtoPopup", "currentSlide"],
   methods: {
     activeCarousel(activeIndex, oldActiveIndex) {
       this.currentIndex = activeIndex
@@ -73,6 +72,9 @@ export default {
     },
     gotoLogin() {
       this.$router.push('gameLogin')
+    },
+    closeGame() {
+      this.$emit('close');
     }
   }
 }
@@ -99,6 +101,9 @@ export default {
     opacity: 0.75;
     line-height: 300px;
     margin: 0;
+  }
+  .el-carousel__indicators {
+    display: none;
   }
 
   .el-carousel__arrow--left {
@@ -196,6 +201,7 @@ export default {
       font-weight: 400;
       font-size: 12px;
       color: #957FEF;
+      cursor: pointer;
     }
   }
 
