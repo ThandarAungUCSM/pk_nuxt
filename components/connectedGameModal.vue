@@ -71,7 +71,7 @@ export default {
       this.$emit("activemSlide", activeIndex);
     },
     gotoLogin() {
-      this.$router.push('gameLogin')
+      this.$router.push('/gameLogin')
     },
     closeGame() {
       this.$emit('close');
