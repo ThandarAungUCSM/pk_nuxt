@@ -40,7 +40,7 @@
         </div>
         <img class="rightarr-icon" src="../assets/mobile/rightarr-blue.png" />
       </div>
-      <div class="each-menu-row" @click="gotoPage('game-connection')">
+      <div class="each-menu-row" @click="gotoPage('connectedGame')">
         <div class="left-side">
           <img class="menu-usercss" alt="shield" src="../assets/pc/active-shield.png" />
           <span class="menu-text">遊戲連動</span>

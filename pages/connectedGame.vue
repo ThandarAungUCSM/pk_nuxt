@@ -4,9 +4,9 @@
     <div class="game-content">
       <div class="banner-block">
         <div class="banner-block2">
-          <Carousel :caro-item="regularBannerBlock2" :current-slide="slide" :caro-name="2" />
+          <Carousel :caro-item="regularBannerBlock2" :current-slide="currentSlide" :caro-name="2" @activeSlide="activeSlide" />
           <div class="indicate-block">
-            <div class="indicator-css">{{currentNo}}/{{totalNo}}</div>
+            <div class="indicator-css">{{currentSlide+1}}/{{regularBannerBlock2.length}}</div>
           </div>
         </div>
         <div class="pc-back" @click="backBtn">
@@ -17,30 +17,15 @@
         <p :class="activeTab === 1 ? 'active-tab' : 'noactive-tab'" @click="clickTab(1)">已連動遊戲</p>
         <p :class="activeTab === 2 ? 'active-tab' : 'noactive-tab'" @click="clickTab(2)">未連結的遊戲</p>
       </div>
+      <connectedGameModal v-if="showModal" :show="showModal" :current-slide="currentmodalSlide" :sendto-popup="sendtoPopup" @activemSlide="activemSlide" @close="showModal = false" />
       <div v-if="activeTab === 1" class="tab-content">
-        <div class="each-row">
-          <img src="../assets/pc/game11.png" class="game-icon">
-          <p class="game-name">MYISTAL 米茲塔爾</p>
+        <div v-for="item in connectedData" :key="item.id" class="each-row" @click="showPopup(connectedData, item)">
+          <img :src="item.img" class="game-icon">
+          <p class="game-name">{{item.title}}</p>
           <div class="green-btn">
-            <span class="green-text">已連動</span>
+            <span class="green-text">{{item.situation}}</span>
           </div>
-          <p class="time-text">連動時間:2023.03.06</p>
-        </div>
-        <div class="each-row">
-          <img src="../assets/pc/game22.png" class="game-icon">
-          <p class="game-name">Maple Story 楓之谷R</p>
-          <div class="green-btn">
-            <span class="green-text">已連動</span>
-          </div>
-          <p class="time-text">連動時間:2023.02.18</p>
-        </div>
-        <div class="each-row">
-          <img src="../assets/pc/game33.png" class="game-icon">
-          <p class="game-name">League Of Lagends英雄聯盟</p>
-          <div class="green-btn">
-            <span class="green-text">已連動</span>
-          </div>
-          <p class="time-text">連動時間:2023.06.21</p>
+          <p class="time-text">連動時間:{{item.lockingTime}}</p>
         </div>
       </div>
       <div v-if="activeTab === 2" class="tab-content">
@@ -90,9 +75,10 @@ export default {
   data() {
     return {
       activeTab: 1,
-      slide: 0,
-      currentNo: 1,
-      totalNo: 6,
+      currentSlide: 0,
+      currentmodalSlide: 0,
+      showModal: false,
+      sendtoPopup: [],
       regularBannerBlock2: [
         {
           "title": "3月全站_38女神節1T",
@@ -117,6 +103,27 @@ export default {
           "id": 3
         }
       ], 
+      connectedData: [
+        {
+          "title": "MYISTAL 米茲塔爾",
+          "situation": "已連動",
+          "lockingTime": "2023.03.06",
+          "img": require("../assets/pc/game11.png"),
+          "id": 1
+        }, {
+          "title": "Maple Story 楓之谷R",
+          "situation": "已連動",
+          "lockingTime": "2023.02.18",
+          "img": require("../assets/pc/game22.png"),
+          "id": 2
+        }, {
+          "title": "League Of Lagends英雄聯盟",
+          "situation": "已連動",
+          "lockingTime": "2023.06.21",
+          "img": require("../assets/pc/game33.png"),
+          "id": 3
+        }
+      ]
     }
   },
   methods: {
@@ -125,12 +132,24 @@ export default {
     },
     backBtn() {
       this.$router.push('/member')
+    },
+    activeSlide(val) {
+      this.currentSlide = val
+    },
+    activemSlide(val) {
+      this.currentmodalSlide = val
+    },
+    showPopup(val, eachval) {
+      this.sendtoPopup = val
+      this.currentmodalSlide = eachval.id
+      this.showModal = true
     }
   }
 }
 </script>
 <style lang="scss" scoped>
 .forPC {
+  z-index: 111 !important;
   @media screen and (max-width: 768px) {
     display: none;
   }
