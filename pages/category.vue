@@ -5,7 +5,7 @@
       <div class="path-div">
         <img src="../assets/mobile/fi-rr-home.png" alt="" class="home-img" />
         <span class="home-txt" @click="gotoPage">首頁</span>
-        <span class="cate-txt"> / 分類名稱</span>
+        <span class="cate-txt"> / {{cateName}}</span>
       </div>
       <p class="cate-name">{{cateName}}</p>
       <div v-if="prodLists" class="category-items" >
