@@ -105,6 +105,9 @@ export default {
         color: #2C2C2C;
         font-weight: 400;
         font-size: 14px;
+        @media screen and (max-width: 768px) {
+          font-size: 1rem;
+        }
       }
     }
     .product-content {

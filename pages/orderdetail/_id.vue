@@ -45,8 +45,11 @@
                 <p class="left-facts">配送方式：</p>
               </div>
               <div class="detail-right">
-                <p class="right-facts">09-12345678</p>
-                <p class="right-facts"> 王大明 </p>
+                <p class="right-facts pctrue">09-12345678</p>
+                <p class="right-facts pctrue"> 王大明 </p>
+
+                <p class="right-facts mobiletrue"> 王大明 </p>
+                <p class="right-facts mobiletrue">09-12345678</p>
                 <p class="right-facts"> 新北市 三重區 光復南路三段156巷24號 </p>
                 <p class="right-facts m-hide">宅配到府</p>
               </div>
@@ -69,7 +72,7 @@
               </div>
             </div>
           </div>
-          <div class="price1-block">
+          <!-- <div class="price1-block">
             <div class="methods-div">
               <p class="title-txt">兌換資訊</p>
               <span class="method-txt">統一編號/管理室代收/電話連絡方式</span>
@@ -88,7 +91,7 @@
                 <p class="price1-amount">108,900</p>
               </div>
             </div>
-          </div>
+          </div> -->
           <div class="apply-block">
             <p class="apply-txt">申請退貨退款</p>
           </div>
@@ -347,6 +350,7 @@ export default {
       .detail-content {
         display: flex;
         .detail-left {
+          width: 20%;
           @media screen and (max-width: 768px) {
             display: none;
           }
@@ -400,7 +404,7 @@ export default {
         justify-content: space-between;
         .detail-left {
           .price1-txt {
-            font-weight: 400;
+            font-weight: 500;
             font-size: 12px;
             color: #957FEF;
             margin-bottom: 7px;
@@ -469,6 +473,17 @@ export default {
       }
       p {
         margin-bottom: 2px;
+      }
+    }
+    .pctrue {
+      @media screen and (max-width: 768px) {
+        display: none;
+      }
+    }
+    .mobiletrue {
+      display: none;
+      @media screen and (max-width: 768px) {
+        display: block;
       }
     }
     .m-price1-block {
@@ -564,6 +579,10 @@ export default {
           font-size: 12px;
           color: #957FEF;
           margin-bottom: 0;
+          display: none;
+          @media screen and (max-width: 768px) {
+            display: block;
+          }
         }
         .shipping-result {
           font-weight: 400;
@@ -625,7 +644,7 @@ export default {
       @media screen and (max-width: 768px) {
         display: block;
         font-weight: 400;
-        font-size: 14px;
+        font-size: 10px;
         color: #957FEF;
         padding-left: 15px;
         padding-right: 15px;
