@@ -153,19 +153,17 @@ export default {
         margin: 0 auto;
       }
       .topSellerTitle {
+        font-weight: 700;
+        font-size: 24px;
+        color: #3C3C3C;
         @media screen and (max-width: 768px) {
-          color: #3C3C3C;
-          font-weight: 700;
           font-size: 1rem;
         }
       }
       .topSellerSeeMore {
-        color: #ceb17d;
-        font-weight: 500;
-        font-size: 0.875rem;
-        cursor: pointer;
         display: flex;
         align-items: center;
+        cursor: pointer;
       }
       .see-text {
         padding-right: 5px;
@@ -245,12 +243,12 @@ export default {
           }
         }
         .top-seller-name {
-          color: #4f4f4f;
-          font-weight: normal;
-          font-size: 1rem;
+          color: #3C3C3C;
+          font-weight: 400;
+          font-size: 20px;
           display: block;
 
-          height: 50px;
+          height: 100px;
           line-height: 25px;
 
           display: -webkit-box;
@@ -261,10 +259,7 @@ export default {
           -webkit-line-clamp: 2;
           -webkit-box-orient: vertical;
           @media screen and (max-width: 768px) {
-            color: #3C3C3C;
-            font-weight: 400;
             font-size: 12px;
-
             height: 50px;
             line-height: 14px;
           }
