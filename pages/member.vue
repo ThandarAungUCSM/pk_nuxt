@@ -19,35 +19,35 @@
     </div>
     <img src="../assets/mobile/fake-banner.png" class="banner-icon">
     <div class="menu-block">
-      <div class="each-menu-row" @click="gotoPage('membershipUserinfo')">
+      <div class="each-menu-row" @click="gotoPage('/membershipUserinfo')">
         <div class="left-side">
           <img class="menu-usercss" alt="user" src="../assets/pc/active-user.png" />
           <span class="menu-text">會員資料</span>
         </div>
         <img class="rightarr-icon" src="../assets/mobile/rightarr-blue.png" />
       </div>
-      <div class="each-menu-row" @click="gotoPage('convert-history')">
+      <div class="each-menu-row" @click="gotoPage('/convert-history')">
         <div class="left-side">
           <img class="menu-usercss" alt="notebook" src="../assets/pc/active-notebook.png" />
           <span class="menu-text">兌換清單</span>
         </div>
         <img class="rightarr-icon" src="../assets/mobile/rightarr-blue.png" />
       </div>
-      <div class="each-menu-row" @click="gotoPage('tracking-products')">
+      <div class="each-menu-row" @click="gotoPage('/tracking-products')">
         <div class="left-side">
           <img class="menu-usercss" alt="heart" src="../assets/pc/active-heart.png" />
           <span class="menu-text">追蹤清單</span>
         </div>
         <img class="rightarr-icon" src="../assets/mobile/rightarr-blue.png" />
       </div>
-      <div class="each-menu-row" @click="gotoPage('connectedGame')">
+      <div class="each-menu-row" @click="gotoPage('/connectedGame')">
         <div class="left-side">
           <img class="menu-usercss" alt="shield" src="../assets/pc/active-shield.png" />
           <span class="menu-text">遊戲連動</span>
         </div>
         <img class="rightarr-icon" src="../assets/mobile/rightarr-blue.png" />
       </div>
-      <div class="each-menu-row" @click="gotoPage('membershipSettings')">
+      <div class="each-menu-row" @click="gotoPage('/membershipSettings')">
         <div class="left-side">
           <img class="menu-usercss" alt="shield" src="../assets/pc/active-setting.png" />
           <span class="menu-text">設定</span>
