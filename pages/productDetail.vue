@@ -546,16 +546,16 @@ export default {
       }
     }
     .recommend-items::-webkit-scrollbar {
-      -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
-      border-radius: 10px;
-      height: 8px;
+      // -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+      // border-radius: 10px;
+      // height: 8px;
       @media screen and (max-width: 768px) {
         display: none; 
       }
     }
     .recommend-items::-webkit-scrollbar-thumb {
-      background: #dfdfdf;
-      border-radius: 10px;
+      // background: #dfdfdf;
+      // border-radius: 10px;
     }
   }
 }

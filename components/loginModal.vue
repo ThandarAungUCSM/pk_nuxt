@@ -39,7 +39,7 @@ export default {
     }
   },
   created() {
-    alert(this.show)
+    // alert(this.show)
   },
   methods: {
     register() {
