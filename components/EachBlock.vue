@@ -270,9 +270,9 @@ export default {
           }
         }
         .top-seller-price {
-          color: #9d8147;
+          color: #E1460E;
           font-weight: bold;
-          font-size: 1rem;
+          font-size: 24px;
           font-family: "Roboto", sans-serif;
           @media screen and (max-width: 768px) {
             font-weight: 600;

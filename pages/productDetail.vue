@@ -506,7 +506,7 @@ export default {
           }
         }
         .top-seller-price {
-          color: #9d8147;
+          color: #E1460E;
           font-weight: bold;
           font-size: 1rem;
           font-family: "Roboto", sans-serif;

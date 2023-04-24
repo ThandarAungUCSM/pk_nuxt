@@ -354,7 +354,7 @@ export default {
   padding: 0 1rem;
 }
 .footer-price {
-  color: #9d8147;
+  color: #E1460E;
   font-weight: bold;
   font-size: 1rem;
 }
@@ -539,7 +539,7 @@ export default {
     position: relative;
     text-align: center;
     font-weight: 700;
-    color: #9d8147;
+    color: #E1460E;
     cursor: pointer;
   }
   .select-item::after {
@@ -676,8 +676,8 @@ export default {
             }
           }
           .meal-delivery {
-            color: #9d8147;
-            border: 2px solid #ceb17d;
+            color: #E1460E;
+            border: 2px solid #E1460E;
   
             background: #ffffff;
             box-sizing: border-box;
