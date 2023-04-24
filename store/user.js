@@ -1,6 +1,7 @@
 const state = () => {
   return {
     loginState: false,
+    loginData: {name: 'firefly', password: '123456'},
     profile: {name: '王大明', mobile: '0966-330-678', birthDay: '1990/02/18', email: 'example@gmail.com', cityName: '新北市', district: '三重區', genderCode: 'other', street: '光復南路三段156巷24號'},
   };
 };
@@ -15,6 +16,9 @@ const actions = {
     console.log("setUserProfile(data=", data, ")");
     commit("SET_USER_PROFILE", data);
   },
+  updatePassword({ commit }, data) {
+    commit("UPDATE_PASSWORD", data)
+  }
 };
 
 const mutations = {
@@ -50,6 +54,9 @@ const mutations = {
   "UPDATE_STREET"(state, value) {
     state.profile.street = value;
   },
+  "UPDATE_PASSWORD"(state, value) {
+    state.loginData.password = value
+  }
 };
 
 const getters = {
@@ -59,6 +66,9 @@ const getters = {
   storeProfile(state) {
     return state.profile;
   },
+  userNamePassword(state) {
+    return state.loginData;
+  }
 };
 
 export default {

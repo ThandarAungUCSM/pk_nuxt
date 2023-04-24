@@ -46,13 +46,13 @@
                 <span :class="currentTab == 6 ? 'active-setext' : 'setting-txt'">申請刪除帳號</span>
               </div>
             </div>
-            <div class="left-block formobile">
+            <div v-if="!showBlock" class="left-block formobile">
               <div class="each-row">
                 <div class="left-row">
                   <img src="../assets/pc/active-shield.png" class="setting-icon">
                   <span class="setting-txt">更改密碼</span>
                 </div>
-                <img src="../assets/mobile/rightArrow.png" class="arrow-icon" @click="currentTab = 1">
+                <img src="../assets/mobile/rightArrow.png" class="arrow-icon" @click="showEachBlock(1)">
               </div>
               <div class="each-row">
                 <div class="left-row">
@@ -90,14 +90,61 @@
                 <img src="../assets/mobile/rightArrow.png" class="arrow-icon" @click="currentTab = 6">
               </div>
             </div>
+            <div v-else class="left-block formobile">
+              <div v-if="currentTab == 1">
+                <div class="pwd-div">
+                  <p class="old-pwd">請輸入舊密碼</p>
+                  <input v-model="userPassword" type="password" class="pwd-css" />
+                </div>
+                <div class="pwd-div">
+                  <p class="old-pwd">請輸入新密碼</p>
+                  <input v-model="currentPassword" type="password" class="pwd-css" />
+                </div>
+                <div class="pwd-div">
+                  <p class="old-pwd">請再輸入相同密碼</p>
+                  <input v-model="confirmPassword" type="password" class="pwd-css" />
+                </div>
+                <div class="confirm-block">
+                  <div v-if="!updateConfirm" class="update-btn">
+                    <span class="confirm-text">確認變更</span>
+                  </div>
+                  <div v-else class="confirm-btn" @click="saveUpdate">
+                    <span class="confirm-text">確認變更</span>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
           <div class="member-right">
-            <div v-if="currentTab == 1"><span>change password</span></div>
-            <div v-if="currentTab == 2"><span>language</span></div>
-            <div v-if="currentTab == 3"><span>PK Rules</span></div>
-            <div v-if="currentTab == 4"><span>User Guideline</span></div>
-            <div v-if="currentTab == 5"><span>Privacy Policy</span></div>
-            <div v-if="currentTab == 6"><span>Apply to determinate Account</span></div>
+            <div class="tocenter">
+              <div v-if="currentTab == 1">
+                <div class="pwd-div">
+                  <p class="old-pwd">請輸入舊密碼</p>
+                  <input v-model="userPassword" type="password" class="pwd-css" />
+                </div>
+                <div class="pwd-div">
+                  <p class="old-pwd">請輸入新密碼</p>
+                  <input v-model="currentPassword" type="password" class="pwd-css" />
+                </div>
+                <div class="pwd-div">
+                  <p class="old-pwd">請再輸入相同密碼</p>
+                  <input v-model="confirmPassword" type="password" class="pwd-css" />
+                </div>
+                <div class="confirm-block">
+                  <div v-if="!updateConfirm" class="update-btn">
+                    <span class="confirm-text">確認變更</span>
+                  </div>
+                  <div v-else class="confirm-btn" @click="saveUpdate">
+                    <span class="confirm-text">確認變更</span>
+                  </div>
+                </div>
+              </div>
+              <div v-if="currentTab == 2"><span>language</span></div>
+              <div v-if="currentTab == 3"><span>PK Rules</span></div>
+              <div v-if="currentTab == 4"><span>User Guideline</span></div>
+              <div v-if="currentTab == 5"><span>Privacy Policy</span></div>
+              <div v-if="currentTab == 6"><span>Apply to determinate Account</span></div>
+            </div>
           </div>
         </div>
       </div>
@@ -106,17 +153,67 @@
   </div>
 </template>
 <script>
+import { mapGetters, mapActions } from 'vuex'
 export default {
   name: 'MemberSetting',
   data() {
     return {
-      currentTab: 1
+      currentTab: 1,
+      userName: '',
+      userPassword: '',
+      currentPassword: '',
+      confirmPassword: '',
+      updateConfirm: false,
+      showBlock: false
+    }
+  },
+  computed: {
+    ...mapGetters('user', {
+      userData: 'userNamePassword'
+    })
+  },
+  watch: {
+    userPassword(val) {
+      if(this.userPassword !== '') {
+        if(this.currentPassword !== '' && this.confirmPassword !== '' && (this.currentPassword === this.confirmPassword)) {
+          this.updateConfirm = true
+        }
+      }
+    },
+    currentPassword(val) {
+      if(this.currentPassword !== '') {
+        if(this.userPassword !== '' && this.confirmPassword !== '' && (this.currentPassword === this.confirmPassword)) {
+          this.updateConfirm = true
+        }
+      }
+    },
+    confirmPassword(val) {
+      if(this.confirmPassword !== '') {
+        if(this.userPassword !== '' && this.currentPassword !== '' && (this.currentPassword === this.confirmPassword)) {
+          this.updateConfirm = true
+        }
+      }
+    }
+  },
+  created() {
+    if(this.userData) {
+      this.userName = this.userData.name
+      this.userPassword = this.userData.password
     }
   },
   methods: {
+    ...mapActions('user', ['updatePassword']),
     backBtn() {
       this.$router.go(-1)
     },
+    saveUpdate() {
+      this.updatePassword(this.confirmPassword);
+      alert('password success changed')
+    },
+    showEachBlock(val) {
+      this.currentTab = val
+      this.showBlock = true
+    }
   }
 }
 </script>
@@ -191,7 +288,7 @@ export default {
         width: 100%;
       }
       .member-left {
-        margin-right: 3rem;
+        width: 248px;
         @media screen and (max-width: 768px) {
           margin-right: 0;
           width: 100%;
@@ -235,8 +332,18 @@ export default {
         }
       }
       .member-right {
+        margin: auto;
         @media screen and (max-width: 768px) {
           display: none;
+        }
+        .tocenter {
+          background: #FFF;
+          border-radius: 12px;
+          margin-top: 2rem;
+          margin-right: 248px;
+          padding: 27px 2rem;
+          text-align: center;
+          width: 380px;
         }
       }
     }
@@ -244,6 +351,70 @@ export default {
   .setting-icon{
     width: 24px;
     height: 24px;
+  }
+  .pwd-div {
+    margin-bottom: 26px;
+    text-align: center;
+    .old-pwd {
+      font-weight: 400;
+      font-size: 14px;
+      color: #7161EF;
+      text-align: left;
+      width: 90%;
+      margin: auto;
+      padding-left: 7px;
+    }
+    .pwd-css {
+      background: #FAF6FF;
+      border-radius: 12px;
+
+      border: none;
+      width: 90%;
+
+      padding-left: 1rem;
+      height: 48px;
+      min-height: 48px;
+      margin: 0 auto;
+      font-size: 1.5rem;
+    }
+    .pwd-css:focus {
+      outline: none;
+    }
+    .pwd-css::placeholder {
+    }
+    .pwd-css {
+      margin-top: 5px;
+    }
+    input[type='password'] {
+      
+    }
+  }
+  .confirm-block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 75px;
+    .confirm-btn, .update-btn {
+      border-radius: 6px;
+
+      width: 100px;
+      height: 36px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .confirm-btn {
+      background: #7161EF;
+      cursor: pointer;
+    }
+    .update-btn {
+      background: #B2ADD7; 
+    }
+    .confirm-text {
+      font-weight: 700;
+      font-size: 14px;
+      color: #FFF;
+    }
   }
 }
 </style>

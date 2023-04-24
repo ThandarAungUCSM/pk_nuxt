@@ -46,7 +46,7 @@
 </div>
 </template>
 <script>
-import { mapActions } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 export default {
   name: 'MyLogin',
   data() {
@@ -56,13 +56,18 @@ export default {
       pName: 'login'
     }
   },
+  computed: {
+    ...mapGetters('user', {
+      userdata: 'userNamePassword'
+    })
+  },
   methods: {
     ...mapActions("user", ["updateLogin"]),
     register() {
       this.$router.push('/register')
     },
     loginProcess() {
-      if(this.accNo === 'firefly' && this.password === '123456') {
+      if(this.accNo === this.userdata.name && this.password === this.userdata.password) {
         alert('Success !!')
         this.updateLogin(true);
         this.$router.push('/')
