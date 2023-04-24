@@ -64,7 +64,7 @@
                   <span>追蹤清單</span>
                 </NuxtLink>
                 <NuxtLink
-                  to="/myGame"
+                  to="/connectedGame"
                   class="dropdown-item"
                 >
                   <img class="menu-usercss" alt="shield" src="../assets/pc/active-shield.png" />
