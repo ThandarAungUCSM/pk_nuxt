@@ -5,7 +5,7 @@
     <div class="content-css">
       <div class="banner-block1">
         <Carousel :caro-item="regularBannerBlock1" :current-slide="slide" :caro-name="1" @activeSlide="activeSlide" />
-        <img class="banner-btn" alt="mobile banner" src="../assets/mobile/btnNewsList.png" />
+        <!-- <img class="banner-btn" alt="mobile banner" src="../assets/mobile/btnNewsList.png" /> -->
       </div>
 
       <div class="banner-block2">
@@ -124,20 +124,18 @@ export default {
     margin-left: 0;
     margin-right: 0;
   }
-  .banner-btn {
-    // display: none;
-    position: absolute;
-    width: 36px;
-    height: 36px;
-    bottom: 5px;
-    right: 76px;
-    @media screen and (max-width: 768px) {
-      // display: block;
-      bottom: 0;
-      right: 9px;
+  // .banner-btn {
+  //   position: absolute;
+  //   width: 36px;
+  //   height: 36px;
+  //   bottom: 5px;
+  //   right: 76px;
+  //   @media screen and (max-width: 768px) {
+  //     bottom: 0;
+  //     right: 9px;
       
-    }
-  }
+  //   }
+  // }
 }
 .banner-block2 {
   background: #FFF;
