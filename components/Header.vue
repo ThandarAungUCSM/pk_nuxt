@@ -673,7 +673,7 @@ export default {
     .m-shopping-css {
       width: 24px;
       height: 24px;
-      margin-left: 3rem;
+      margin-left: 72px;
       @media screen and (max-width: 768px) {
         margin-left: 0;
       }
@@ -688,7 +688,7 @@ export default {
     .user-css {
       width: 24px;
       height: 24px;
-      margin-left: 12px;
+      margin-left: 23px;
       cursor: pointer;
     }
     .member-center-part {
