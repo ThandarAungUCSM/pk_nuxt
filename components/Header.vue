@@ -229,27 +229,23 @@
               </div>
 
               <div class="each-item">
-                <p class="color-txt">新品上市</p>
+                <p class="color-txt" @click="gotoCategory('限時優惠')">限時優惠</p>
                 <img class="arrow-css" src="../assets/mobile/rightArrActive.png" />
               </div>
               <div class="each-item">
-                <p class="color-txt">限時優惠</p>
-                <img class="arrow-css" src="../assets/mobile/rightArrActive.png" />
-              </div>
-              <div class="each-item">
-                <p class="item-txt1">所有商品</p>
+                <p class="item-txt1" @click="gotoCategory('全部商品')">全部商品</p>
                 <img class="arrow-css" alt="user" src="../assets/mobile/rightArr.png" />
               </div>
               <div class="each-item">
-                <p class="item-txt1">日用雜貨</p>
+                <p class="item-txt1" @click="gotoCategory('日用雜貨')">日用雜貨</p>
                 <img class="arrow-css" alt="user" src="../assets/mobile/rightArr.png" />
               </div>
               <div class="each-item">
-                <p class="item-txt1">零食飲料</p>
+                <p class="item-txt1" @click="gotoCategory('零食飲料')">零食飲料</p>
                 <img class="arrow-css" alt="user" src="../assets/mobile/rightArr.png" />
               </div>
               <div class="each-item">
-                <p class="item-txt1">玩具公仔</p>
+                <p class="item-txt1" @click="gotoCategory('玩具公仔')">玩具公仔</p>
                 <img class="arrow-css" alt="user" src="../assets/mobile/rightArr.png" />
               </div>
 
@@ -268,11 +264,11 @@
       </b-sidebar>
     </div>
     <div class="head-css">
-      <div class="each-menu"><span @click="gotoPage('category')">限時優惠</span></div>
-      <div class="each-menu"><span>全部商品</span></div>
-      <div class="each-menu"><span>日用雜貨</span></div>
-      <div class="each-menu"><span>零食飲料</span></div>
-      <div class="each-menu"><span>玩具公仔</span></div>
+      <div class="each-menu"><span @click="gotoCategory('限時優惠')">限時優惠</span></div>
+      <div class="each-menu"><span @click="gotoCategory('全部商品')">全部商品</span></div>
+      <div class="each-menu"><span @click="gotoCategory('日用雜貨')">日用雜貨</span></div>
+      <div class="each-menu"><span @click="gotoCategory('零食飲料')">零食飲料</span></div>
+      <div class="each-menu"><span @click="gotoCategory('玩具公仔')">玩具公仔</span></div>
     </div>
   </div>
 </template>
@@ -297,6 +293,68 @@ export default {
       showgamepadData: false,
       showpokerData: false,
       showHeadsetData: false,
+      title: '',
+      items1: [
+        {name: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒1", imagePath: require("../assets/mobile/newArrival.png"), price: "99999", originalPrice: "99,999", bid: 1},
+        {name: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒1", imagePath: require("../assets/mobile/newArrival.png"), price: "99999", originalPrice: "99,999", bid: 2},
+        {name: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒1", imagePath: require("../assets/mobile/newArrival.png"), price: "99999", originalPrice: "99,999", bid: 3},
+        {name: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒1", imagePath: require("../assets/mobile/newArrival.png"), price: "99999", originalPrice: "99,999", bid: 4},
+        {name: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒1", imagePath: require("../assets/mobile/newArrival.png"), price: "99999", originalPrice: "99,999", bid: 5},
+        {name: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒1", imagePath: require("../assets/mobile/newArrival.png"), price: "99999", originalPrice: "99,999", bid: 6},
+        {name: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒1", imagePath: require("../assets/mobile/newArrival.png"), price: "99999", originalPrice: "99,999", bid: 7},
+        {name: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒1", imagePath: require("../assets/mobile/newArrival.png"), price: "99999", originalPrice: "99,999", bid: 8},
+        {name: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒1", imagePath: require("../assets/mobile/newArrival.png"), price: "99999", originalPrice: "99,999", bid: 9},
+        {name: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒1", imagePath: require("../assets/mobile/newArrival.png"), price: "99999", originalPrice: "99,999", bid: 10}
+      ],
+      items2: [
+        {name: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒2", imagePath: require("../assets/mobile/newArrival.png"), price: "99999", originalPrice: "99,999", bid: 11},
+        {name: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒2", imagePath: require("../assets/mobile/newArrival.png"), price: "99999", originalPrice: "99,999", bid: 12},
+        {name: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒2", imagePath: require("../assets/mobile/newArrival.png"), price: "99999", originalPrice: "99,999", bid: 13},
+        {name: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒2", imagePath: require("../assets/mobile/newArrival.png"), price: "99999", originalPrice: "99,999", bid: 14},
+        {name: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒2", imagePath: require("../assets/mobile/newArrival.png"), price: "99999", originalPrice: "99,999", bid: 15},
+        {name: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒2", imagePath: require("../assets/mobile/newArrival.png"), price: "99999", originalPrice: "99,999", bid: 16},
+        {name: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒2", imagePath: require("../assets/mobile/newArrival.png"), price: "99999", originalPrice: "99,999", bid: 17},
+        {name: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒2", imagePath: require("../assets/mobile/newArrival.png"), price: "99999", originalPrice: "99,999", bid: 18},
+        {name: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒2", imagePath: require("../assets/mobile/newArrival.png"), price: "99999", originalPrice: "99,999", bid: 19},
+        {name: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒2", imagePath: require("../assets/mobile/newArrival.png"), price: "99999", originalPrice: "99,999", bid: 20}
+      ],
+      items3: [
+        {name: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒3", imagePath: require("../assets/mobile/newArrival.png"), price: "99999", originalPrice: "99,999", bid: 21},
+        {name: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒3", imagePath: require("../assets/mobile/newArrival.png"), price: "99999", originalPrice: "99,999", bid: 22},
+        {name: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒3", imagePath: require("../assets/mobile/newArrival.png"), price: "99999", originalPrice: "99,999", bid: 23},
+        {name: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒3", imagePath: require("../assets/mobile/newArrival.png"), price: "99999", originalPrice: "99,999", bid: 24},
+        {name: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒3", imagePath: require("../assets/mobile/newArrival.png"), price: "99999", originalPrice: "99,999", bid: 25},
+        {name: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒3", imagePath: require("../assets/mobile/newArrival.png"), price: "99999", originalPrice: "99,999", bid: 26},
+        {name: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒3", imagePath: require("../assets/mobile/newArrival.png"), price: "99999", originalPrice: "99,999", bid: 27},
+        {name: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒3", imagePath: require("../assets/mobile/newArrival.png"), price: "99999", originalPrice: "99,999", bid: 28},
+        {name: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒3", imagePath: require("../assets/mobile/newArrival.png"), price: "99999", originalPrice: "99,999", bid: 29},
+        {name: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒3", imagePath: require("../assets/mobile/newArrival.png"), price: "99999", originalPrice: "99,999", bid: 30}
+      ],
+      items4: [
+        {name: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒4", imagePath: require("../assets/mobile/newArrival.png"), price: "99999", originalPrice: "99,999", bid: 31},
+        {name: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒4", imagePath: require("../assets/mobile/newArrival.png"), price: "99999", originalPrice: "99,999", bid: 32},
+        {name: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒4", imagePath: require("../assets/mobile/newArrival.png"), price: "99999", originalPrice: "99,999", bid: 33},
+        {name: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒4", imagePath: require("../assets/mobile/newArrival.png"), price: "99999", originalPrice: "99,999", bid: 34},
+        {name: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒4", imagePath: require("../assets/mobile/newArrival.png"), price: "99999", originalPrice: "99,999", bid: 35},
+        {name: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒4", imagePath: require("../assets/mobile/newArrival.png"), price: "99999", originalPrice: "99,999", bid: 36},
+        {name: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒4", imagePath: require("../assets/mobile/newArrival.png"), price: "99999", originalPrice: "99,999", bid: 37},
+        {name: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒4", imagePath: require("../assets/mobile/newArrival.png"), price: "99999", originalPrice: "99,999", bid: 38},
+        {name: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒4", imagePath: require("../assets/mobile/newArrival.png"), price: "99999", originalPrice: "99,999", bid: 39},
+        {name: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒4", imagePath: require("../assets/mobile/newArrival.png"), price: "99999", originalPrice: "99,999", bid: 40}
+      ],
+      items5: [
+        {name: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒5", imagePath: require("../assets/mobile/newArrival.png"), price: "99999", originalPrice: "99,999", bid: 41},
+        {name: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒5", imagePath: require("../assets/mobile/newArrival.png"), price: "99999", originalPrice: "99,999", bid: 42},
+        {name: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒5", imagePath: require("../assets/mobile/newArrival.png"), price: "99999", originalPrice: "99,999", bid: 43},
+        {name: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒5", imagePath: require("../assets/mobile/newArrival.png"), price: "99999", originalPrice: "99,999", bid: 44},
+        {name: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒5", imagePath: require("../assets/mobile/newArrival.png"), price: "99999", originalPrice: "99,999", bid: 45},
+        {name: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒5", imagePath: require("../assets/mobile/newArrival.png"), price: "99999", originalPrice: "99,999", bid: 46},
+        {name: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒5", imagePath: require("../assets/mobile/newArrival.png"), price: "99999", originalPrice: "99,999", bid: 47},
+        {name: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒5", imagePath: require("../assets/mobile/newArrival.png"), price: "99999", originalPrice: "99,999", bid: 48},
+        {name: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒5", imagePath: require("../assets/mobile/newArrival.png"), price: "99999", originalPrice: "99,999", bid: 49},
+        {name: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒5", imagePath: require("../assets/mobile/newArrival.png"), price: "99999", originalPrice: "99,999", bid: 50}
+      ],
+      results: []
     }
   },
   computed: {
@@ -417,7 +475,29 @@ export default {
     },
     gotoPage(val) {
       this.$router.push(val)
-    }
+    },
+    showItems() {
+      if(this.title === '限時優惠') {
+        this.results = this.items1; 
+      } else if(this.title === '全部商品') {
+        this.results = this.items2; 
+      } else if(this.title === '日用雜貨') {
+        this.results = this.items3; 
+      } else if(this.title === '零食飲料') {
+        this.results = this.items4; 
+      } else {
+        this.results = this.items5; 
+      }
+    },
+    gotoCategory(val) {
+      this.title = val;
+      this.showItems();
+      // this.$router.push({ name: "category" });
+      this.$router.push({
+        path: "category",
+        query: { cateName: val, prodLists: JSON.stringify(this.results) },
+      });
+    },
   }
 }
 </script>
