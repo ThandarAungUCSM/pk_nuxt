@@ -1,6 +1,6 @@
 <template>
-  <div class="header-block" :class="page && (page == 'category' || page == 'prodDetail') ? 'dropshadow' : ''">
-    <b-navbar toggleable="lg" type="dark" variant="info" class="bg-info1">
+  <div class="header-block">
+    <b-navbar toggleable="lg" type="dark" variant="info" class="bg-info1" :class="page && (page == 'category' || page == 'prodDetail' || page == 'customer-service' || page == 'QA') ? 'dropshadow' : ''">
       <div class="nav-logo">
         <div class="head-left">
           <div class="head-price">
@@ -159,10 +159,10 @@
               <img class="headsetdbtn user-css" alt="headset" src="../assets/mobile/fi-rr-headset.png" @click="myHeadset" />
               <div v-if="showHeadsetData" id="headsetDropdown" class="headsetdd-content"></div>
               <div v-if="showHeadsetData" class="child-dropdown">
-                <div class="dropdown-item textcss">
+                <!-- <div class="dropdown-item textcss" @click="$router.push('/customer-service')">
                   <span>聯繫客服</span>
-                </div>
-                <div class="dropdown-item textcss">
+                </div> -->
+                <div class="dropdown-item textcss" @click="$router.push('/question-answer')">
                   <span>常見問題</span>
                 </div>
                 <div class="dropdown-item textcss" @click="$router.push('/customer-service')">
@@ -259,7 +259,7 @@
                 <h2>
                 </h2>
               </div>
-              <div class="each-item">
+              <div class="each-item" @click="$router.push('/question-answer')">
                 <p class="item-txt1">常見問題</p>
                 <img class="arrow-css" alt="user" src="../assets/mobile/rightArr.png" />
               </div>
@@ -676,9 +676,11 @@ export default {
 }
 </style>
 <style lang="scss" scoped>
-// .dropshadow {
-//   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.15));
-// }
+.dropshadow {
+  @media screen and (max-width: 768px) {
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.15));
+  }
+}
 .header-block {
   position: fixed;
   width: 100%;

@@ -1,7 +1,7 @@
 <template>
   <div>
     <div>
-      <Header class="headcss" />
+      <Header page="QA" />
       <div id="QAId" class="QACSS">
         <div class="title-block">
           <img src="../assets/pc/qa-icon.png" class="qa-icon">
@@ -85,9 +85,6 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.headcss {
-  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.15));
-}
 .QACSS {
   padding-top: 140px;
   background: #eae9f4;

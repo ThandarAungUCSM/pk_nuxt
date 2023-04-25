@@ -1,7 +1,7 @@
 <template>
   <div>
     <div>
-      <Header class="headcss" />
+      <Header page="customer-service" />
       <div class="customer-service">
         <div>
           <img src="../assets/pc/service-img.png" class="service-icon">
@@ -46,9 +46,6 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.headcss {
-  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.15));
-}
 .customer-service {
   padding-top: 140px;
   background: #eae9f4;
