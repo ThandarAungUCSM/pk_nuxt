@@ -95,6 +95,7 @@ export default {
   background: linear-gradient(180deg, #210A67 0%, #7161EF 100%);
   @media screen and (max-width: 768px) {
     padding-top: 100px;
+    padding-top: 65px;
     background: #471ebb;
   }
   .game-container {

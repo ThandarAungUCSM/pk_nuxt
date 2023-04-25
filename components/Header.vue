@@ -64,10 +64,12 @@
                   <span>追蹤清單</span>
                 </NuxtLink>
                 <NuxtLink
-                  to="/connectedGame"
+                  to="/myGame"
                   class="dropdown-item"
                 >
-                  <img class="menu-usercss" alt="shield" src="../assets/pc/active-shield.png" />
+                  <!-- <img class="menu-usercss" alt="shield" src="../assets/pc/active-shield.png" /> -->
+                  <img class="menu-usercss" alt="shield" src="../assets/pc/gamepad-active.png" />
+                  <img class="menu-usercss2" alt="shield" src="../assets/pc/plus-small.png" />
                   <span>遊戲連動</span>
                 </NuxtLink>
                 <NuxtLink
@@ -123,7 +125,7 @@
               <img
                 :src="
                   showgamepadData
-                    ? require('../assets/pc/fi-rr-gamepad-active.png')
+                    ? require('../assets/pc/gamepad-active.png')
                     : require('../assets/mobile/fi-rr-gamepad.png')
                 " class="gamedbtn user-css" alt="gamepad" @click="myGamepad" />
               <div v-if="showgamepadData" id="gamepadDropdown" class="gamedd-content"></div>
@@ -146,7 +148,7 @@
               <div v-if="showpokerData" id="pokerchipDropdown" class="pokerdd-content"></div>
               <div v-if="showpokerData" class="child-dropdown">
                 <div class="dropdown-item textcss">
-                  <span @click="gotoPage('myWallet')">我的代幣</span>
+                  <span @click="gotoPage('/myWallet')">我的代幣</span>
                 </div>
                 <div class="dropdown-item textcss1">
                   <span>查看PK遊戲幣值比率</span>
@@ -207,16 +209,16 @@
               <div class="each-item">
                 <!-- <p :class="authVal ? 'item-txt' : 'noLog-txt'">我的會員</p> -->
                 <p v-if="authVal" :class="authVal ? 'item-txt' : 'noLog-txt'">我的會員</p>
-                <p v-else :class="authVal ? 'item-txt' : 'noLog-txt'" @click="gotoPage('member')">我的會員</p>
+                <p v-else :class="authVal ? 'item-txt' : 'noLog-txt'" @click="gotoPage('/member')">我的會員</p>
                 <img v-if="authVal" class="arrow-css" src="../assets/mobile/rightArr.png" />
                 <img v-if="!authVal" class="arrow-css" src="../assets/mobile/noactiveArr.png" />
               </div>
               <div class="each-item">
-                <p class="item-txt" @click="gotoPage('myWallet')">我的代幣</p>
+                <p class="item-txt" @click="gotoPage('/myWallet')">我的代幣</p>
                 <img class="arrow-css" src="../assets/mobile/rightArr.png" />
                 <!-- <img v-if="!authVal" class="arrow-css" src="../assets/mobile/noactiveArr.png" /> -->
               </div>
-              <div class="each-item">
+              <div class="each-item" @click="gotoPage('/myGame')">
                 <p class="item-txt">合作遊戲</p>
                 <img class="arrow-css" src="../assets/mobile/rightArr.png" />
                 <!-- <img v-if="!authVal" class="arrow-css" src="../assets/mobile/noactiveArr.png" /> -->
@@ -814,6 +816,19 @@ export default {
         width: 1rem;
         height: 1rem;
         margin-right: 10px;
+      }
+      .menu-usercss1 {
+        width: 1rem;
+        height: 1rem;
+        margin-right: 10px;
+
+        position: relative;
+      }
+      .menu-usercss2 {
+        width: 11px;
+        height: 11px;
+        margin-top: -10px;
+        margin-left: -13px;
       }
       .noactivetext {
         color: #C5C5C5;
