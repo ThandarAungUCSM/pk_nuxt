@@ -165,6 +165,9 @@
                 <div class="dropdown-item textcss">
                   <span>常見問題</span>
                 </div>
+                <div class="dropdown-item textcss" @click="$router.push('/customer-service')">
+                  <span>客服聯繫</span>
+                </div>
               </div>
             </div>
           </div>
@@ -258,6 +261,10 @@
               </div>
               <div class="each-item">
                 <p class="item-txt1">常見問題</p>
+                <img class="arrow-css" alt="user" src="../assets/mobile/rightArr.png" />
+              </div>
+              <div class="each-item" @click="$router.push('/customer-service')">
+                <p class="item-txt1">客服聯繫</p>
                 <img class="arrow-css" alt="user" src="../assets/mobile/rightArr.png" />
               </div>
             </div>

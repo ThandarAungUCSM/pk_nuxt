@@ -26,7 +26,7 @@
           </div>
         </div>
         <div class="btn-block">
-          <p class="btn-text">返回商城</p>
+          <p class="btn-text" @click="$router.push('/')">返回商城</p>
         </div>
       </div>
       <Footer class="mobile-false" />
@@ -137,6 +137,7 @@ export default {
       font-weight: 400;
       font-size: 14px;
       color: #7161EF;
+      cursor: pointer;
       @media screen and (max-width: 768px) {
         margin-bottom: 0;
       }
