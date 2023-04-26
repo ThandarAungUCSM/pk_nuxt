@@ -41,12 +41,8 @@
         <p class="fill-receive">請先填選是否收到包裹</p>
       </div>
       <div class="refund-price-row">
-        <div class="inner-line">
-          <div class="inner-1line">
-            <p class="package-receive">退款合計(PK幣)</p>
-            <p class="price-number">108,900</p>
-          </div>
-        </div>
+        <p class="package-receive">退款合計(PK幣)</p>
+        <p class="price-number">108,900</p>
       </div>
     </div>
     <div class="btn-div" @click="nextPage(3)">
@@ -354,25 +350,21 @@ export default {
     // padding-left: 18px;
     // padding-right: 18px;
     // margin-left: 18px;
-    .inner-line {
-      .inner-1line {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        height: 48px;
-        background: #FFF;
-        padding-left: 18px;
-        padding-right: 18px;
-        margin-bottom: 5px;
-        border-bottom: 1px solid #B79CED;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 48px;
+    background: #FFF;
+    padding-left: 18px;
+    padding-right: 18px;
+    margin-bottom: 5px;
+    border-bottom: 1px solid #B79CED;
 
-        .price-number {
-          font-weight: 700;
-          font-size: 20px;
-          color: #7161EF;
-          margin-bottom: 0;
-        }
-      }
+    .price-number {
+      font-weight: 700;
+      font-size: 20px;
+      color: #7161EF;
+      margin-bottom: 0;
     }
   }
   .package-receive {
