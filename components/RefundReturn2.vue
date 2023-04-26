@@ -34,20 +34,37 @@
       </div>
       <div class="refund-row">
         <p class="package-receive">退貨/退款方案</p>
-        <p class="fill-receive">請先填選是否收到包裹</p>
+        <p v-if="radioData == 3" class="fill-receive">請先填選是否收到包裹</p>
+        <p v-else-if="radioData == 1" class="package-receive">退貨後退款</p>
+        <p v-else-if="radioData == 2" class="package-receive">審核後退款</p>
       </div>
       <div class="refund-row">
         <p class="package-receive">退貨原因</p>
-        <p class="fill-receive">請先填選是否收到包裹</p>
+        <p v-if="radioData == 3" class="fill-receive">請先填選是否收到包裹</p>
+        <div v-else-if="(radioData == 1 || radioData == 2) && !afterSelect" class="right-div" @click="showModal = true">
+          <p class="fill-receive-color">請選擇退貨原因</p>
+          <img src="../assets/pc/right-arr.png" class="rightarr-icon">
+        </div>
+        <div v-else-if="afterSelect" class="right-div" @click="showModal = true">
+          <p class="fill-receive-color">{{showData}}</p>
+          <img src="../assets/pc/right-arr.png" class="rightarr-icon">
+        </div>
       </div>
-      <div class="refund-price-row">
-        <p class="package-receive">退款合計(PK幣)</p>
-        <p class="price-number">108,900</p>
+      <div class="two-row">
+        <div class="refund-price-row1">
+          <p class="package-receive">退款合計(PK幣)</p>
+          <p class="price-number">108,900</p>
+        </div>
+        <div class="refund-price-row2">
+          <p class="package-receive">退款至</p>
+          <p class="package-receive">PK 錢包</p>
+        </div>
       </div>
     </div>
     <div class="btn-div" @click="nextPage(3)">
       <p class="btn-text">下一步，選擇退貨物流</p>
     </div>
+    <RefundModal v-if="showModal" :show="showModal" @close="showModal = false" @selectedData="selectedData" />
   </div>
 </template>
 <script>
@@ -58,7 +75,22 @@ export default {
     return {
       cartLists: [],
       radioData: 3,
+      showModal: false,
+      afterSelect: false,
+      showData: ''
     }
+  },
+  watch: {
+    radioData(val) {
+      this.afterSelect = false
+    },
+    userPassword(val) {
+      if(this.userPassword !== '') {
+        if(this.currentPassword !== '' && this.confirmPassword !== '' && (this.currentPassword === this.confirmPassword)) {
+          this.updateConfirm = true
+        }
+      }
+    },
   },
   created() {
     this.cartLists = this.productData
@@ -66,6 +98,10 @@ export default {
   methods: {
     nextPage(val) {
       this.$emit("nextcompo", val)
+    },
+    selectedData(val) {
+      this.showData = val
+      this.afterSelect = true
     }
   }
 }
@@ -345,26 +381,56 @@ export default {
       color: #F35A90;
       margin-bottom: 0;
     }
+    .right-div {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      .fill-receive-color {
+        font-weight: 400;
+        font-size: 16px;
+        color: #B79CED;
+        margin-bottom: 0;
+      }
+      .rightarr-icon {
+        width: 5px;
+        height: 10px;
+        margin-left: 10px;
+      }
+    }
   }
-  .refund-price-row {
-    // padding-left: 18px;
-    // padding-right: 18px;
-    // margin-left: 18px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 48px;
+  .two-row {
+    padding: 0 18px;
     background: #FFF;
-    padding-left: 18px;
-    padding-right: 18px;
-    margin-bottom: 5px;
-    border-bottom: 1px solid #B79CED;
-
-    .price-number {
-      font-weight: 700;
-      font-size: 20px;
-      color: #7161EF;
+    .refund-price-row1 {
+      // padding-left: 18px;
+      // padding-right: 18px;
+      // margin-left: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 48px;
+      background: #FFF;
+      // padding-left: 18px;
+      // padding-right: 18px;
       margin-bottom: 0;
+      border-bottom: 1px solid #B79CED;
+  
+      .price-number {
+        font-weight: 700;
+        font-size: 20px;
+        color: #7161EF;
+        margin-bottom: 0;
+      }
+    }
+    .refund-price-row2 {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 48px;
+      background: #FFF;
+      // padding-left: 18px;
+      // padding-right: 18px;
+      margin-bottom: 5px;
     }
   }
   .package-receive {
@@ -380,7 +446,7 @@ export default {
   border-radius: 12px;
   width: 393px;
   height: 48px;
-  margin: 80px auto 0;
+  margin: 80px auto 80px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -424,8 +490,8 @@ export default {
     height: 18px;
   }
   .el-radio__inner::after {
-    width: 7px;
-    height: 7px;
+    width: 12px;
+    height: 12px;
     background: #7161EF;
   }
   .el-radio__input.is-checked + .el-radio__label {

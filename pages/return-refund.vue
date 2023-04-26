@@ -9,7 +9,7 @@
       <RefundReturn1 v-if="activeStep == 1" :product-data="cartLists" @nextcompo="nextcompo" />
       <RefundReturn2 v-else-if="activeStep == 2" :product-data="cartLists" @nextcompo="nextcompo" />
     </div>
-    <Footer page="productDetail" class="" />
+    <Footer class="" />
   </div>
 </template>
 <script>
@@ -48,8 +48,9 @@ export default {
 <style lang="scss" scoped>
 .order-list {
   padding-top: 140px;
+  padding-bottom: 100px;
   background: #eae9f4;
-  height: 100vh;
+  // height: 100vh;
   min-height: 100vh;
   @media screen and (max-width: 768px) {
     padding-top: 70px; 
