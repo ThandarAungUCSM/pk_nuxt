@@ -2,14 +2,16 @@
   <div>
     <Header />
     <div id="refundId" class="order-list">
-      <div class="dollar-row">
+      <div v-if="activeStep !== 4" class="dollar-row">
         <img src="../assets/pc/dollar-icon.png" class="dollar-icon">
         <span class="refund-title">申請退貨退款</span>
       </div>
       <RefundReturn1 v-if="activeStep == 1" :product-data="cartLists" @nextcompo="nextcompo" />
       <RefundReturn2 v-else-if="activeStep == 2" :product-data="cartLists" @nextcompo="nextcompo" />
+      <RefundReturn3 v-else-if="activeStep == 3" :product-data="cartLists" @nextcompo="nextcompo" />
+      <RefundReturn4 v-else-if="activeStep == 4" :product-data="cartLists" @nextcompo="nextcompo" />
     </div>
-    <Footer class="" />
+    <Footer page="refund" />
   </div>
 </template>
 <script>
@@ -20,7 +22,7 @@ export default {
       checkAll: false,
       checkedCities: [],
       isIndeterminate: true,
-      activeStep: 2,
+      activeStep: 1,
       cartLists: [
         {name: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒1", imagePath: require("../assets/mobile/newArrival.png"), count: 20, price: "99999", bid: 1},
         {name: "Product Name 1", imagePath: require("../assets/mobile/newArrival.png"), count: 10, price: "99999", bid: 2},
@@ -59,7 +61,7 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 2.5rem 0 3rem;
+    margin: 36px 0;
     .dollar-icon {
       width: 24px;
       height: 24px;

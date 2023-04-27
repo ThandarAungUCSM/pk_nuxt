@@ -61,7 +61,10 @@
         </div>
       </div>
     </div>
-    <div class="btn-div" @click="nextPage(3)">
+    <div v-if="!afterSelect" class="btn-div">
+      <p class="btn-text">下一步，選擇退貨物流</p>
+    </div>
+    <div v-else class="active-btn-div" @click="nextPage(3)">
       <p class="btn-text">下一步，選擇退貨物流</p>
     </div>
     <RefundModal v-if="showModal" :show="showModal" @close="showModal = false" @selectedData="selectedData" />
@@ -97,7 +100,11 @@ export default {
   },
   methods: {
     nextPage(val) {
-      this.$emit("nextcompo", val)
+      if(this.radioData === 2 && this.showData !== '') {
+        this.$emit("nextcompo", 4)
+      } else  {
+        this.$emit("nextcompo", val)
+      }
     },
     selectedData(val) {
       this.showData = val
@@ -440,9 +447,7 @@ export default {
     margin-bottom: 0;
   }
 }
-.btn-div {
-  background: #E9B531;
-  background: #DFCDA0;
+.btn-div, .active-btn-div {
   border-radius: 12px;
   width: 393px;
   height: 48px;
@@ -457,6 +462,12 @@ export default {
     color: #FFF;
     margin-bottom: 0;
   }
+}
+.btn-div {
+  background: #DFCDA0;
+}
+.active-btn-div {
+  background: #E9B531;
 }
 </style>
 <style lang="scss">

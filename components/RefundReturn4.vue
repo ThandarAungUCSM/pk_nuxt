@@ -1,31 +1,27 @@
 <template>
   <div>
-    <Header class="forPC" />
     <div id="" class="convertCart">
-      <div class="" :class="!enoughtCoin ? 'nocoin-row' : 'first-row'">
+      <div class="first-row">
         <div class="convertCart-block">
-          <img v-if="!enoughtCoin" class="convert-icon" src="../assets/mobile/nocoin.png" />
-          <img v-else class="convert-icon" src="../assets/pc/convert-cart.png" />
+          <img class="convert-icon true" src="../assets/pc/convert-cart.png" />
           <div class="mo-css">
-            <p v-if="!enoughtCoin" class="order-sent">訂單送出失敗</p>
-            <p v-else class="order-sent">訂單送出~</p>
-            <p v-if="!enoughtCoin" class="more-info">請檢查網路連線是否正常</p>
-            <p v-else class="more-info">詳情可至兌換清單查看更多資訊</p>
+            <p class="order-sent">申請已送出~</p>
+            <p class="more-info">詳情可至兌換清單查看更多資訊</p>
             <div class="btn-group">
-              <p class="btn1">
+              <p class="btn1" @click="routeTo('/')">
                 回商城
               </p>
-              <p class="btn1 btn2">
+              <p class="btn1 btn2" @click="routeTo('/convert-history')">
                 兌換清單
               </p>
             </div>
           </div>
         </div>
         <div class="btn-group1">
-          <p class="btn1">
+          <p class="btn1" @click="routeTo('/')">
             回商城
           </p>
-          <p class="btn1 btn2" :class="!enoughtCoin ? 'hidebtn' : ''">
+          <p class="btn1 btn2" @click="routeTo('/convert-history')">
             兌換清單
           </p>
         </div>
@@ -52,12 +48,11 @@
         </div>
       </div>
     </div>
-    <Footer page="productDetail" />
   </div>
 </template>
 <script>
 export default {
-  name: 'ConvertCart',
+  name: 'RefundReturn4',
   data() {
     return {
       recommendItems: [
@@ -72,36 +67,21 @@ export default {
         {name: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒1", imagePath: require("../assets/mobile/newArrival.png"), price: "99999", originalPrice: "99,999", bid: 9},
         {name: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒1", imagePath: require("../assets/mobile/newArrival.png"), price: "99999", originalPrice: "99,999", bid: 10}
       ],
-      enoughtCoin: true
     }
   },
   created() {
-    if(this.$route.query && this.$route.query.item) {
-      this.enoughtCoin = false
-    } else {
-      this.enoughtCoin = true
-    }
   },
   methods: {
-    
+    routeTo(val) {
+      this.$router.push(val)
+    }
   }
 }
 </script>
-<style lang="scss">
-.forPC {
-  @media screen and (max-width: 768px) {
-    display: none;
-  }
-}
-</style>
 <style lang="scss" scoped>
 .convertCart {
-  padding-top: 140px;
-  @media screen and (max-width: 768px) {
-    padding-top: 0;
-  }
   .first-row {
-    background: #7161EF;
+    background: #00A0FF;
     border-radius: 0 0 24px 24px;
   }
   .nocoin-row {
@@ -165,6 +145,7 @@ export default {
         width: 136px;
         text-align: center;
         margin-bottom: 0;
+        cursor: pointer;
       }
       .btn2 {
         margin-left: 29px;
@@ -196,9 +177,6 @@ export default {
       @media screen and (max-width: 768px) {
         margin-left: 0;
       }
-    }
-    .hidebtn {
-      visibility: hidden;
     }
   }
   
