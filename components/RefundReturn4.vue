@@ -104,11 +104,12 @@ export default {
       margin-right: 39px;
       @media screen and (max-width: 768px) {
         width: 120px;
+        margin-right: 19px;
       }
     }
     .mo-css {
       @media screen and (max-width: 768px) {
-        margin-left: 19px;
+        margin-left: 0;
       }
     }
     .order-sent {
@@ -127,6 +128,7 @@ export default {
       margin-bottom: 24px;
       @media screen and (max-width: 768px) {
         font-size: 12px;
+        margin-bottom: 7px;
       }
     }
     .btn-group {
@@ -184,6 +186,7 @@ export default {
     width: 100%;
     margin-bottom: 3rem;
     @media screen and (max-width: 768px) {
+      margin-bottom: 0;
     }
     .top-seller-title {
       display: flex;
@@ -212,6 +215,9 @@ export default {
         cursor: pointer;
         display: flex;
         align-items: center;
+        @media screen and (max-width: 768px) {
+          display: none;
+        }
       }
       .see-text {
         padding-right: 5px;

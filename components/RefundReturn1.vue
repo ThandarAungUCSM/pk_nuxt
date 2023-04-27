@@ -70,6 +70,9 @@ export default {
 .refund-div {
   width: 393px;
   margin: auto;
+  @media screen and (max-width: 768px) {
+    width: 100%;
+  }
   .retund-title {
     font-weight: 700;
     font-size: 12px;
@@ -80,7 +83,7 @@ export default {
     background: #FFF;
     padding: 1.2rem 0;
     @media screen and (max-width: 768px) {
-      margin-top: 70px;
+      margin-top: 0;
     }
   }
   .row-div {
@@ -135,8 +138,6 @@ export default {
             margin-bottom: 0;
             @media screen and (max-width: 768px) {
               font-size: 14px;
-              width: 60%;
-              word-wrap:break-word;
               white-space:normal;
             }
           }
@@ -249,6 +250,9 @@ export default {
     border-radius: 6px;
     margin-bottom: 2px;
     cursor: pointer;
+    @media screen and (max-width: 768px) {
+      margin-bottom: 0;
+    }
   }
   .title-row {
     height: 44px;
@@ -256,6 +260,10 @@ export default {
     align-items: center;
     background: #FFF;
     margin-bottom: 2px;
+    @media screen and (max-width: 768px) {
+      margin-bottom: 0;
+      border-bottom: 1px solid #E3D4FF;
+    }
   }
 }
 .btn-div {
@@ -268,6 +276,10 @@ export default {
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  @media screen and (max-width: 768px) {
+    border-radius: 0;
+    width: 100%;
+  }
   .btn-text {
     font-weight: 700;
     font-size: 1rem;

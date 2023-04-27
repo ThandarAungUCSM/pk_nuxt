@@ -118,6 +118,9 @@ export default {
 .refund-div {
   width: 393px;
   margin: auto;
+  @media screen and (max-width: 768px) {
+    width: 100%;
+  }
   .product-row {
     background: #FFF;
     padding: 1rem 1.5rem;
@@ -174,7 +177,7 @@ export default {
               margin-bottom: 0;
               @media screen and (max-width: 768px) {
                 font-size: 14px;
-                width: 60%;
+                // width: 60%;
                 word-wrap:break-word;
                 white-space:normal;
               }
@@ -456,6 +459,11 @@ export default {
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  @media screen and (max-width: 768px) {
+    width: 100%;
+    margin-bottom: 0;
+    border-radius: 0;
+  }
   .btn-text {
     font-weight: 700;
     font-size: 1rem;

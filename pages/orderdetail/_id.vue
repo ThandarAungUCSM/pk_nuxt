@@ -92,7 +92,7 @@
               </div>
             </div>
           </div> -->
-          <div class="apply-block">
+          <div class="apply-block" @click="routeTo('/return-refund')">
             <p class="apply-txt">申請退貨退款</p>
           </div>
           <div class="apply-block">
@@ -183,6 +183,9 @@ export default {
     backBtn() {
       this.$router.go(-1)
     },
+    routeTo(val) {
+      this.$router.push(val)
+    }
   },
 };
 </script>

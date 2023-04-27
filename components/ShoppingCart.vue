@@ -556,242 +556,244 @@ export default {
 }
 </style>
 <style lang="scss">
-.row-div {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  .collapse-items1 {
-    padding: 1rem 2rem 0 1rem;
-    font-size: 0.813rem;
-    font-weight: 400;
-    color: #4f4f4f;
-    background: #fff;
-    width: 95%;
-    @media screen and (max-width: 768px) {
-      padding-left: 1rem;
-      padding-right: 1rem;
-    }
-    .menu-left {
-      display: flex;
-      align-items: flex-start;
-      padding-bottom: 1rem;
-      // border-bottom: 2px solid #f9f8f8;
+#eachId {
+  .row-div {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    .collapse-items1 {
+      padding: 1rem 2rem 0 1rem;
+      font-size: 0.813rem;
+      font-weight: 400;
+      color: #4f4f4f;
+      background: #fff;
+      width: 95%;
       @media screen and (max-width: 768px) {
-        padding-bottom: 0px;
+        padding-left: 1rem;
+        padding-right: 1rem;
       }
-      .orderFalse {
-        position: relative;
-        text-align: center;
-        color: #fff;
-      }
-      .menu-img {
-        width: 89px;
-        height: 89px;
-        border-radius: 5px;
-  
-        background: #FFFFFF;
-        border-radius: 12px;
-        filter: drop-shadow(0px 2px 10px rgba(0, 0, 0, 0.1));
-      }
-      .menu-txt {
+      .menu-left {
         display: flex;
-        flex-direction: column;
-        margin-left: 1rem;
-        width: 100%;
-        .menu-name {
+        align-items: flex-start;
+        padding-bottom: 1rem;
+        // border-bottom: 2px solid #f9f8f8;
+        @media screen and (max-width: 768px) {
+          padding-bottom: 0px;
         }
-        .deleteBtn {
-          .deleteimg {
-            width: 18px;
-            height: 18px;
-          }
+        .orderFalse {
+          position: relative;
+          text-align: center;
+          color: #fff;
         }
-        .title-row {
+        .menu-img {
+          width: 89px;
+          height: 89px;
+          border-radius: 5px;
+    
+          background: #FFFFFF;
+          border-radius: 12px;
+          filter: drop-shadow(0px 2px 10px rgba(0, 0, 0, 0.1));
+        }
+        .menu-txt {
           display: flex;
-          justify-content: space-between;
-        }
-        .common-menu-name {
-          padding-bottom: 7px;
-          color: #151515;
-          font-weight: 400;
-          font-size: 1rem;
-          margin-bottom: 0;
-          @media screen and (max-width: 768px) {
-            font-size: 14px;
-            width: 60%;
-            word-wrap:break-word;
-            white-space:normal;
+          flex-direction: column;
+          margin-left: 1rem;
+          width: 100%;
+          .menu-name {
           }
-        }
-        .limited-css {
-          color: #828282;
-          font-weight: 400;
-          font-size: 0.875rem;
-          .text1-limit {
+          .deleteBtn {
+            .deleteimg {
+              width: 18px;
+              height: 18px;
+            }
+          }
+          .title-row {
+            display: flex;
+            justify-content: space-between;
+          }
+          .common-menu-name {
+            padding-bottom: 7px;
+            color: #151515;
+            font-weight: 400;
+            font-size: 1rem;
+            margin-bottom: 0;
+            @media screen and (max-width: 768px) {
+              font-size: 14px;
+              width: 60%;
+              word-wrap:break-word;
+              white-space:normal;
+            }
+          }
+          .limited-css {
             color: #828282;
             font-weight: 400;
             font-size: 0.875rem;
+            .text1-limit {
+              color: #828282;
+              font-weight: 400;
+              font-size: 0.875rem;
+            }
+            .limited-div {
+              display: flex;
+              .place-div {
+                display: flex;
+                align-items: center;
+                padding-left: 15px;
+                cursor: pointer;
+              }
+            }
+            .placeofuse {
+              color: #244c5a;
+              font-weight: 500;
+              padding-right: 5px;
+              font-size: 0.875rem;
+            }
+            .arrow-css {
+              width: 8px;
+            }
           }
-          .limited-div {
-            display: flex;
-            .place-div {
+          .delivery-parent {
+            width: 100%;
+            padding-top: 2px;
+            padding-bottom: 2px;
+            .delivery {
+              background: #f9f8f8;
+              color: #bdbdbd;
+            }
+            .delivery1 {
+              background: #fdfcfc;
+              color: #e5e5e5;
+            }
+            .common-deli {
               display: flex;
               align-items: center;
-              padding-left: 15px;
+              border-radius: 20px;
+              padding: 0;
+              margin: 0;
+              font-weight: normal;
+              width: 40%;
+              @media screen and (max-width: 768px) {
+                width: 55%;
+              }
+            }
+            .meal-delivery {
+              color: #E1460E;
+              border: 2px solid #E1460E;
+    
+              background: #ffffff;
+              box-sizing: border-box;
+              box-shadow: 0px 0px 4px 2px rgba(206, 177, 125, 0.3);
+            }
+            .meal-delivery1 {
+              color: #e7e0d1;
+              border: 2px solid #f5efe5;
+    
+              background: #ffffff;
+              box-sizing: border-box;
+              box-shadow: 0px 0px 4px 2px rgba(206, 177, 125, 0.3);
+            }
+            .common-meal-deli {
+              text-align: center;
+              font-weight: 500;
+              font-size: 0.875rem;
+              border-radius: 18px;
+              padding: 3px 5px;
+    
+              width: 50%;
               cursor: pointer;
             }
-          }
-          .placeofuse {
-            color: #244c5a;
-            font-weight: 500;
-            padding-right: 5px;
-            font-size: 0.875rem;
-          }
-          .arrow-css {
-            width: 8px;
-          }
-        }
-        .delivery-parent {
-          width: 100%;
-          padding-top: 2px;
-          padding-bottom: 2px;
-          .delivery {
-            background: #f9f8f8;
-            color: #bdbdbd;
-          }
-          .delivery1 {
-            background: #fdfcfc;
-            color: #e5e5e5;
-          }
-          .common-deli {
-            display: flex;
-            align-items: center;
-            border-radius: 20px;
-            padding: 0;
-            margin: 0;
-            font-weight: normal;
-            width: 40%;
-            @media screen and (max-width: 768px) {
-              width: 55%;
+            .takeaway {
+              padding: 3px 5px;
+              font-size: 0.875rem;
             }
           }
-          .meal-delivery {
-            color: #E1460E;
-            border: 2px solid #E1460E;
-  
-            background: #ffffff;
-            box-sizing: border-box;
-            box-shadow: 0px 0px 4px 2px rgba(206, 177, 125, 0.3);
-          }
-          .meal-delivery1 {
-            color: #e7e0d1;
-            border: 2px solid #f5efe5;
-  
-            background: #ffffff;
-            box-sizing: border-box;
-            box-shadow: 0px 0px 4px 2px rgba(206, 177, 125, 0.3);
-          }
-          .common-meal-deli {
-            text-align: center;
-            font-weight: 500;
-            font-size: 0.875rem;
-            border-radius: 18px;
-            padding: 3px 5px;
-  
-            width: 50%;
-            cursor: pointer;
-          }
-          .takeaway {
-            padding: 3px 5px;
-            font-size: 0.875rem;
-          }
         }
       }
-    }
-    .menu-price {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 10px 0 0;
-      @media screen and (max-width: 768px) {
-        padding: 0;
-      }
-      .row-price {
+      .menu-price {
         display: flex;
+        justify-content: space-between;
         align-items: center;
-        
-      }
-      .gold-price {
-        font-weight: 700;
-        font-size: 16px;
-        color: #000;
-        margin-right: 7px;
-      }
-      .gold-icon {
-        width: 18px;
-        height: 18px;
-      }
-      .signSize {
-        width: 12px;
-        height: 2px;
-        background: #ccb170;
-      }
-      .common-circle {
-        width: 30px;
-        height: 30px;
-        border-radius: 15px;
-        text-align: center;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-      .circleMinus {
-        cursor: pointer;
-        background: #fff;
-        border: 1.6px solid #ceb17d;
-        color: #ceb17d;
-        margin-right: 1rem;
-      }
-      .circleMinus1 {
-        cursor: pointer;
-        background: #f2f2f2;
-        border: 1.6px solid #f2f2f2;
-        color: #ccb170;
-        margin-right: 1rem;
-      }
-      .circleMinus2 {
-        cursor: pointer;
-        background: #f2f2f2;
-        border: 1.6px solid #f2f2f2;
-        color: #8f8f8f;
-        margin-right: 1rem;
-      }
-      .circleAdd {
-        cursor: pointer;
-        background: #ceb17d;
-        color: #fff;
-        margin-left: 1rem;
-      }
-      .circleAdd1 {
-        cursor: pointer;
-        background: #fff;
-        border: 1.6px solid #ceb17d;
-        color: #ceb17d;
-        margin-left: 1rem;
-      }
-      .circleAdd2 {
-        cursor: pointer;
-        background: #f2f2f2;
-        border: 1.6px solid #f2f2f2;
-        color: #8f8f8f;
-        margin-left: 1rem;
-      }
-      .plusSign {
-        font-size: 1.2rem;
-      }
-      .count {
-        display: flex;
-        align-items: center;
+        padding: 10px 0 0;
+        @media screen and (max-width: 768px) {
+          padding: 0;
+        }
+        .row-price {
+          display: flex;
+          align-items: center;
+          
+        }
+        .gold-price {
+          font-weight: 700;
+          font-size: 16px;
+          color: #000;
+          margin-right: 7px;
+        }
+        .gold-icon {
+          width: 18px;
+          height: 18px;
+        }
+        .signSize {
+          width: 12px;
+          height: 2px;
+          background: #ccb170;
+        }
+        .common-circle {
+          width: 30px;
+          height: 30px;
+          border-radius: 15px;
+          text-align: center;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+        .circleMinus {
+          cursor: pointer;
+          background: #fff;
+          border: 1.6px solid #ceb17d;
+          color: #ceb17d;
+          margin-right: 1rem;
+        }
+        .circleMinus1 {
+          cursor: pointer;
+          background: #f2f2f2;
+          border: 1.6px solid #f2f2f2;
+          color: #ccb170;
+          margin-right: 1rem;
+        }
+        .circleMinus2 {
+          cursor: pointer;
+          background: #f2f2f2;
+          border: 1.6px solid #f2f2f2;
+          color: #8f8f8f;
+          margin-right: 1rem;
+        }
+        .circleAdd {
+          cursor: pointer;
+          background: #ceb17d;
+          color: #fff;
+          margin-left: 1rem;
+        }
+        .circleAdd1 {
+          cursor: pointer;
+          background: #fff;
+          border: 1.6px solid #ceb17d;
+          color: #ceb17d;
+          margin-left: 1rem;
+        }
+        .circleAdd2 {
+          cursor: pointer;
+          background: #f2f2f2;
+          border: 1.6px solid #f2f2f2;
+          color: #8f8f8f;
+          margin-left: 1rem;
+        }
+        .plusSign {
+          font-size: 1.2rem;
+        }
+        .count {
+          display: flex;
+          align-items: center;
+        }
       }
     }
   }

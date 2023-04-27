@@ -385,9 +385,6 @@ export default {
 }
 .mobile-css {
   display: none;
-  @media screen and (max-width: 768px) {
-    display: block;
-  }
 }
 .return-css {
   width: 18px;

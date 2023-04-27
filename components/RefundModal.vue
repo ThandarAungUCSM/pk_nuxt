@@ -106,6 +106,7 @@ export default {
     border-radius: 42px;
     @media screen and (max-width: 768px) {
       width: 100%;
+      height: 100%;
       border-radius: 0;
       padding-left: 0;
       padding-right: 0;
@@ -207,6 +208,9 @@ export default {
     padding-left: 0;
     padding-right: 0;
     width: unset;
+    @media screen and (max-width: 768px) {
+      padding: 0 2.5rem !important;
+    }
   }
   .el-radio__inner {
     margin-top: 4px;
@@ -218,6 +222,9 @@ export default {
 #refundModalId1 {
   .el-textarea {
     height: 182px !important;
+    @media screen and (max-width: 768px) {
+      padding: 1rem 2rem 0;
+    }
   }
   .el-textarea__inner {
     background: #F2EFFF !important;
@@ -236,6 +243,9 @@ export default {
     font-size: 10px;
     color: #000;
     background: #F2EFFF;
+    @media screen and (max-width: 768px) {
+      margin-right: 2rem;
+    }
   }
 }
 </style>
@@ -377,9 +387,6 @@ export default {
 }
 .mobile-css {
   display: none;
-  @media screen and (max-width: 768px) {
-    display: block;
-  }
 }
 .return-css {
   width: 18px;

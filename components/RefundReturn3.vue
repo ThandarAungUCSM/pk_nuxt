@@ -121,6 +121,9 @@ export default {
 .refund-div {
   width: 393px;
   margin: auto;
+  @media screen and (max-width: 768px) {
+    width: 100%;
+  }
   .product-row {
     background: #FFF;
     padding: 1rem 1.5rem;
@@ -148,6 +151,9 @@ export default {
     padding-left: 18px;
     padding-right: 18px;
     margin-bottom: 5px;
+    @media screen and (max-width: 768px) {
+      padding: 0 19px 0 1.5rem;
+    }
     .fill-receive {
       font-weight: 400;
       font-size: 14px;
@@ -169,7 +175,8 @@ export default {
       margin: auto;
       text-align: right;
       @media screen and (max-width: 768px) {
-        width: 68%;
+        // width: 68%;
+        padding-left: 0;
         margin: unset;
       }
     }
@@ -185,6 +192,10 @@ export default {
       display: flex;
       align-items: center;
       cursor: pointer;
+      @media screen and (max-width: 768px) {
+        justify-content: flex-end;
+        width: 75%;
+      }
       .fill-receive-color, .fill-receive-color1 {
         font-weight: 400;
         font-size: 16px;
@@ -223,6 +234,13 @@ export default {
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  @media screen and (max-width: 768px) {
+    width: 100%;
+    margin-bottom: 0;
+    position: absolute;
+    bottom: 0;
+    border-radius: 0;
+  }
   .btn-text {
     font-weight: 700;
     font-size: 1rem;

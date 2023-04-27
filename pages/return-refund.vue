@@ -1,17 +1,33 @@
 <template>
   <div>
-    <Header />
-    <div id="refundId" class="order-list">
-      <div v-if="activeStep !== 4" class="dollar-row">
+    <Header class="pc-css" />
+    <div v-if="activeStep !== 4" class="formobile titlem">
+      <div class="pc-back" @click="backBtn">
+        <img src="../assets/mobile/btn-return.png" class="back-icon">
+      </div>
+      <div class="title-div">
+        <img src="../assets/mobile/m-dollar.png" class="mdollar-icon">
+        <span class="setting-title">申請退貨退款</span>
+      </div>
+      <div class="visibleHidden">hi</div>
+    </div>
+    <div v-if="activeStep !== 4" id="refundId" class="order-list">
+      <div class="dollar-row">
         <img src="../assets/pc/dollar-icon.png" class="dollar-icon">
         <span class="refund-title">申請退貨退款</span>
       </div>
       <RefundReturn1 v-if="activeStep == 1" :product-data="cartLists" @nextcompo="nextcompo" />
       <RefundReturn2 v-else-if="activeStep == 2" :product-data="cartLists" @nextcompo="nextcompo" />
       <RefundReturn3 v-else-if="activeStep == 3" :product-data="cartLists" @nextcompo="nextcompo" />
-      <RefundReturn4 v-else-if="activeStep == 4" :product-data="cartLists" @nextcompo="nextcompo" />
     </div>
-    <Footer page="refund" />
+    <div v-else-if="activeStep == 4" id="refundId" class="order-list1">
+      <div class="dollar-row">
+        <img src="../assets/pc/dollar-icon.png" class="dollar-icon">
+        <span class="refund-title">申請退貨退款</span>
+      </div>
+      <RefundReturn4 :product-data="cartLists" @nextcompo="nextcompo" />
+    </div>
+    <Footer page="refund" class="pc-css" />
   </div>
 </template>
 <script>
@@ -43,25 +59,85 @@ export default {
     },
     nextcompo(val) {
       this.activeStep = val
-    }
+    },
+    backBtn() {
+      this.$router.push('/member')
+    },
   }
 }
 </script>
 <style lang="scss" scoped>
-.order-list {
+.pc-css {
+  display: block;
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
+}
+.formobile {
+  display: none;
+  @media screen and (max-width: 768px) {
+    display: block;
+  }
+  .pc-back {
+    @media screen and (max-width: 768px) {
+      display: flex;
+    }
+    .back-icon {
+      width: 36px;
+      height: 36px;
+    }
+  }
+  .title-div {
+    @media screen and (max-width: 768px) {
+      text-align: left;
+      padding: 0;
+    }
+    .setting-title {
+      @media screen and (max-width: 768px) {
+        font-weight: 400;
+        font-size: 16px;
+        color: #FFF;
+        padding-left: 5px;
+      }
+    }
+    .mdollar-icon {
+      width: 24px;
+    }
+  }
+}
+.titlem {
+  @media screen and (max-width: 768px) {
+    background: #7161EF;
+    height: 114px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    padding: 1rem;
+  }
+  .visibleHidden {
+    visibility: hidden;
+  }
+}
+.order-list, .order-list1 {
   padding-top: 140px;
   padding-bottom: 100px;
   background: #eae9f4;
   // height: 100vh;
   min-height: 100vh;
   @media screen and (max-width: 768px) {
-    padding-top: 70px; 
+    padding-top: 0; 
+    padding-bottom: 0;
+    min-height: unset; 
+    min-height: calc(100vh - 114px - 48px); // for RefundReturn3
   }
   .dollar-row {
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 36px 0;
+    @media screen and (max-width: 768px) {
+      display: none;
+    }
     .dollar-icon {
       width: 24px;
       height: 24px;
@@ -72,6 +148,11 @@ export default {
       color: #7161EF;
       margin-left: 1.5rem;
     }
+  }
+}
+.order-list1 {
+  @media screen and (max-width: 768px) {
+    min-height: 100vh;
   }
 }
 </style>
@@ -130,7 +211,8 @@ export default {
       
       @media screen and (max-width: 768px) {
         padding: 0 10px;
-        border-bottom: 3px solid #b79ced;
+        padding: 0 7px 0 17px;
+        border-bottom: 1px solid #E3D4FF;
       }
     }
 
@@ -160,7 +242,6 @@ export default {
       border-bottom: 3px solid #f9f8f8;
       @media screen and (max-width: 768px) {
         padding: 0 10px;
-
         margin-bottom: 0rem; 
         width: 3%;
         margin-right: 1rem;
@@ -173,7 +254,7 @@ export default {
       width: 10%;
       visibility: hidden;
       @media screen and (max-width: 768px) {
-        padding-left: 0;
+        display: none;
       }
     }
   }
