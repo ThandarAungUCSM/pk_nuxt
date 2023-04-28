@@ -227,7 +227,7 @@ export default {
   .modal-mask {
     position: fixed;
     z-index: 9998;
-    z-index: 98;
+    z-index: 999;
     top: 0;
     left: 0;
     width: 100%;
@@ -378,7 +378,8 @@ export default {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 25px 5% 12px;
+    // padding: 25px 5% 12px;
+    padding: 25px 5%;
     background: #FFF;
     box-shadow: 10px -10px 1px rgba(0, 0, 0, 0.1);
     margin-bottom: 1px;

@@ -255,7 +255,8 @@ export default {
   @media screen and (max-width: 768px) {
     align-items: center;
     box-shadow: 0px -1px 11px rgba(0, 0, 0, 0.1);
-    padding: 25px 5% 12px;
+    // padding: 25px 5% 12px;
+    padding: 25px 5%;
   }
   .title-text {
     font-weight: 400;
