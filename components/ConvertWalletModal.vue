@@ -275,9 +275,7 @@ export default {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-top: 25px;
-    padding-left: 5%;
-    padding-right: 5%;
+    padding: 25px 5% 12px;
     background: #FFF;
     box-shadow: 10px -10px 1px rgba(0, 0, 0, 0.1);
     margin-bottom: 1px;
