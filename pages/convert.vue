@@ -406,7 +406,8 @@
                     <p class="coupon-txt">優惠券</p>
                   </div>
                   <div class="coupon-right">
-                    <p class="cou-rightxt">請選擇優惠券或輸入優惠代碼</p>
+                    <p v-if="disCoupon !== ''" class="cou-rightxt">{{disCoupon}}</p>
+                    <p v-else class="cou-rightxt">請選擇優惠券或輸入優惠代碼</p>
                     <img id="show-modal" class="right-icon" src="../assets/pc/right-arr.png" @click="showModal = true" />
                   </div>
                 </div>
@@ -489,12 +490,12 @@
                     <p class="coupon-txt">優惠券</p>
                   </div>
                   <div class="coupon-right">
-                    <p v-if="!toselect" class="cou-rightxt">請選擇優惠券或輸入優惠代碼</p>
-                    <p v-else class="cou-rightxt1">折$5 PK幣</p>
+                    <p v-if="disCoupon !== ''" class="cou-rightxt1">{{disCoupon}}</p>
+                    <p v-else class="cou-rightxt">請選擇優惠券或輸入優惠代碼</p>
                     <img id="show-modal" class="right-icon" src="../assets/pc/right-arr.png" @click="showModal = true" />
                   </div>
                 </div>
-                <convertModal v-if="showModal" :show="showModal" @close="showModal = false" />
+                <convertModal v-if="showModal" :dis-coupon="disCoupon" :show="showModal" @close="showModal = false" @selectData="selectData" />
                 <convertServiceModal v-if="showServiceModal" :show="showServiceModal" @close="showServiceModal = false" />
                 <convertWalletModal v-if="showWalletModal" :show="showWalletModal" @close="showWalletModal = false" />
               </div>
@@ -666,7 +667,9 @@ export default {
       activeNames: ['1'],
       activeWallet: ['1'],
       activeCart: ['1'],
-      selectWallet: false
+      selectWallet: false,
+
+      disCoupon: ''
     }
   },
   methods: {
@@ -716,6 +719,9 @@ export default {
     },
     confirmFunc() {
       this.activeNames = []
+    },
+    selectData(val) {
+      this.disCoupon = val
     }
   }
 }

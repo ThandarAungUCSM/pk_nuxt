@@ -31,8 +31,8 @@
                       <p class="hide-text1">hi</p>
                       <div class="right-inner">
                         <p class="hide-text2">hi</p>
-                        <p v-if="!(isCheck[0])" class="circle-css" @click="checkFunc(0)"></p>
-                        <p v-else class="circle-color-css" @click="checkFunc(0)">
+                        <p v-if="!(isCheck[0])" class="circle-css" @click="checkFunc(0, '折$5 PK幣')"></p>
+                        <p v-else class="circle-color-css" @click="checkFunc(0, 'empty')">
                           <img class="correct-check" src="../assets/mobile/check-white.png" />
                         </p>
                         <p class="rule-use">使用規則</p>
@@ -53,8 +53,8 @@
                       <p class="hide-text1">hi</p>
                       <div class="right-inner">
                         <p class="hide-text2">hi</p>
-                        <p v-if="!isCheck[1]" class="circle-css" @click="checkFunc(1)"></p>
-                        <p v-else class="circle-color-css" @click="checkFunc(1)">
+                        <p v-if="!isCheck[1]" class="circle-css" @click="checkFunc(1, '折$10 PK幣')"></p>
+                        <p v-else class="circle-color-css" @click="checkFunc(1, 'empty')">
                           <img class="correct-check" src="../assets/mobile/check-white.png" />
                         </p>
                         <p class="rule-use">使用規則</p>
@@ -124,7 +124,7 @@
                   <input v-model="couponCode" type="text" class="coupon-code" onfocus="this.placeholder=''" placeholder="輸入優惠券代碼" />
                   <p class="useBtn">使用</p>
                 </div>
-                <div class="m-bottom mobile-css">
+                <div class="m-bottom mobile-css" @click="closePopup">
                   <span>確認</span>
                 </div>
               </slot>
@@ -137,19 +137,28 @@
 </template>
 <script>
 export default {
-  props: ["show"],
+  props: ["show", "disCoupon"],
   data() {
     return {
       couponCode: '',
-      isCheck: [false, false]
+      isCheck: [false, false],
+      selectedData: ''
     }
   },
   created() {
+    if(this.disCoupon) {
+      this.selectedData = this.disCoupon
+    }
   },
   methods: {
-    checkFunc(val) {
+    checkFunc(val, valstr) {
       this.isCheck[val] = !this.isCheck[val];
+      this.selectedData = valstr
       this.$forceUpdate();
+    },
+    closePopup() {
+      this.$emit('selectData', this.selectedData);
+      this.$emit('close');
     }
   }
 }
@@ -287,7 +296,7 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  position: fixed;
+  // position: fixed;
   bottom: 0;
   width: 100%;
   z-index: 999;
@@ -296,7 +305,7 @@ export default {
   @media screen and (max-width: 768px) {
     margin-top: 0;
     
-    height: calc(100vh - 173px);
+    height: calc(100vh - 173px - 24px);
     overflow-y: scroll;
   }
   .each-block {
