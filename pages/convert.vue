@@ -444,62 +444,62 @@
             <div class="price-block1 hide-m">
               <p class="price-title">確認兌換</p>
             </div>
-            <div class="cart-block">
-              <div class="title-row">
-                <div class="left-title">
+
+            <el-collapse v-model="activeCart" @change="cartChange">
+              <el-collapse-item name="1" class="p-item">
+                <template slot="title">
                   <img class="shopping-icon" src="../assets/mobile/shopping-cart.png" />
                   <span class="shipping-text">4項商品</span>
-                </div>
-                <div class="right-title">
-                  <img class="minus-icon" src="../assets/pc/minus-black.png" />
-                </div>
-              </div>
-              <div class="each-row" @click="gotoPage()">
-                <div class="orderFalse">
-                  <img class="menu-img" src="../assets/pc/product.png" />
-                </div>
-                <div class="each-right">
-                  <p class="product-text">奶油椰子口味玉米脆條 (造句包)</p>
-                  <div class="each-brow">
-                    <div class="each-price">
-                      <img class="gold-icon" src="../assets/mobile/itemicon_gold.png" />
-                      <span class="gold-price">100</span>
+                </template>
+                <div class="cart-block">
+                  <div class="each-row" @click="gotoPage()">
+                    <div class="orderFalse">
+                      <img class="menu-img" src="../assets/pc/product.png" />
                     </div>
-                    <p class="each-count">x1</p>
+                    <div class="each-right">
+                      <p class="product-text">奶油椰子口味玉米脆條 (造句包)</p>
+                      <div class="each-brow">
+                        <div class="each-price">
+                          <img class="gold-icon" src="../assets/mobile/itemicon_gold.png" />
+                          <span class="gold-price">100</span>
+                        </div>
+                        <p class="each-count">x1</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="each-row" @click="gotoPage()">
+                    <div class="orderFalse">
+                      <img class="menu-img" src="../assets/pc/product1.png" />
+                    </div>
+                    <div class="each-right">
+                      <p class="product-text">奇多隨口脆-家常起司(28G/12入)</p>
+                      <div class="each-brow">
+                        <div class="each-price">
+                          <img class="gold-icon" src="../assets/mobile/itemicon_gold.png" />
+                          <span class="gold-price">400</span>
+                        </div>
+                        <p class="each-count">x2</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="each-row" @click="gotoPage()">
+                    <div class="orderFalse">
+                      <img class="menu-img" src="../assets/pc/product2.png" />
+                    </div>
+                    <div class="each-right">
+                      <p class="product-text">Monster魔爪能量碳酸飲料355mL(24...</p>
+                      <div class="each-brow">
+                        <div class="each-price">
+                          <img class="gold-icon" src="../assets/mobile/itemicon_gold.png" />
+                          <span class="gold-price">1,400</span>
+                        </div>
+                        <p class="each-count">x1</p>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="each-row" @click="gotoPage()">
-                <div class="orderFalse">
-                  <img class="menu-img" src="../assets/pc/product1.png" />
-                </div>
-                <div class="each-right">
-                  <p class="product-text">奇多隨口脆-家常起司(28G/12入)</p>
-                  <div class="each-brow">
-                    <div class="each-price">
-                      <img class="gold-icon" src="../assets/mobile/itemicon_gold.png" />
-                      <span class="gold-price">400</span>
-                    </div>
-                    <p class="each-count">x2</p>
-                  </div>
-                </div>
-              </div>
-              <div class="each-row" @click="gotoPage()">
-                <div class="orderFalse">
-                  <img class="menu-img" src="../assets/pc/product2.png" />
-                </div>
-                <div class="each-right">
-                  <p class="product-text">Monster魔爪能量碳酸飲料355mL(24...</p>
-                  <div class="each-brow">
-                    <div class="each-price">
-                      <img class="gold-icon" src="../assets/mobile/itemicon_gold.png" />
-                      <span class="gold-price">1,400</span>
-                    </div>
-                    <p class="each-count">x1</p>
-                  </div>
-                </div>
-              </div>
-            </div>
+              </el-collapse-item>
+            </el-collapse>
             <div class="show-m">
               <div class="price-block">
                 <div class="price-row">
@@ -684,6 +684,7 @@ export default {
       cityTown: [{name: 'aaaaa', label: 'aaaaa'}, {name: 'bbbbb', label: 'bbbbb'}, {name: 'ccccc', label: 'ccccc'}],
       activeNames: ['1'],
       activeWallet: ['1'],
+      activeCart: ['1'],
       selectWallet: false
     }
   },
@@ -692,6 +693,9 @@ export default {
       console.log(val);
     },
     walletChange(val) {
+      console.log(val);
+    },
+    cartChange(val) {
       console.log(val);
     },
     toCheck(val) {
@@ -1397,6 +1401,7 @@ export default {
           display: flex;
           align-items: center;
           justify-content: center;
+          margin-bottom: 44px;
           .price-title {
             font-weight: 700;
             font-size: 20px;
@@ -1404,9 +1409,18 @@ export default {
             margin-bottom: 0;
           } 
         }
+        .shopping-icon {
+          width: 1rem;
+          height: 1rem;
+        }
+        .shipping-text {
+          font-weight: 400;
+          font-size: 14px;
+          color: #000;
+          margin-left: 7px;
+        }
         .cart-block {
           background: #FFF;
-          margin-top: 44px;
           padding-bottom: 33px;
           @media screen and (max-width: 768px) {
             margin-top: 3px;
@@ -1417,13 +1431,6 @@ export default {
             align-items: center;
             justify-content: space-between;
             padding: 1rem;
-            .shopping-icon {
-              width: 1rem;
-              height: 1rem;
-            }
-            .left-title {
-              
-            }
             .right-title {
               .minus-icon {
                 width: 12px;
@@ -1845,9 +1852,10 @@ export default {
       font-weight: 600;
       transition: border-bottom-color 0.3s;
       outline: 0;
-      // padding: 1rem 2rem 2rem 2.5rem;
-      padding-right: 2rem;
-      padding-left: 2.5rem;
+      padding-right: 1rem;
+      padding-left: 1rem;
+      @media screen and (max-width: 768px) {
+      }
     }
   }
   .el-collapse {
