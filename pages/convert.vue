@@ -423,7 +423,7 @@
                 </el-radio>
               </el-radio-group>
             </div>
-            <div class="price-block1 hide-m">
+            <div class="hide-m" :class="allSelected ? 'active-price-btn' : 'price-block1'">
               <p class="price-title">確認兌換</p>
             </div>
 
@@ -642,7 +642,7 @@ export default {
   name: 'OrderList',
   data() {
     return {
-      radioData: 12,
+      radioData: 0,
       oneData: 0,
       ifData: true,
       checkClick: false,
@@ -671,7 +671,31 @@ export default {
 
       disCoupon: '',
       deliName: '',
-      walletName: ''
+      walletName: '',
+      allSelected: false
+    }
+  },
+  watch: {
+    radioData() {
+      if((this.radioData !== 0) && (this.checkClick === true && this.activeId !== 0) && this.oneData !== 0) {
+        this.allSelected = true
+      } else {
+        this.allSelected = false
+      }
+    }, 
+    checkClick() {
+      if((this.radioData !== 0) && (this.checkClick === true && this.activeId !== 0) && this.oneData !== 0) {
+        this.allSelected = true
+      } else {
+        this.allSelected = false
+      }
+    },
+    oneData() {
+      if((this.radioData !== 0) && (this.checkClick === true && this.activeId !== 0) && this.oneData !== 0) {
+        this.allSelected = true
+      } else {
+        this.allSelected = false
+      }
     }
   },
   methods: {
@@ -696,9 +720,9 @@ export default {
       }
     },
     walletCollapse() {
-      this.checkClick = false
-      this.activeId = 0
-      this.selectWallet = false
+      // this.checkClick = false
+      // this.activeId = 0
+      // this.selectWallet = false
       this.activeWallet = []
     },
     gotoPage(val) {
@@ -715,7 +739,7 @@ export default {
       this.showLocation = false
     },
     nochoiceRadioFunc() {
-      this.radioData = 7
+      // this.radioData = 0
       this.showLocation = false
       this.activeNames = []
     },
@@ -1377,8 +1401,7 @@ export default {
             }
           }
         }
-        .price-block1 {
-          background: #B2ADD7;
+        .price-block1, .active-price-btn {
           border-radius: 12px;
           height: 60px;
           display: flex;
@@ -1391,6 +1414,13 @@ export default {
             color: #DAD5FF;
             margin-bottom: 0;
           } 
+        }
+        .price-block1 {
+          background: #B2ADD7;
+        }
+        .active-price-btn {
+          background: #7161EF;
+          cursor: pointer;
         }
         .shopping-icon {
           width: 1rem;
