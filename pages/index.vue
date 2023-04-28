@@ -1,7 +1,8 @@
 <template>
   <div>
     <!-- @checkAuth="checkAuth" -->
-    <Header page="prodDetail" />
+    <!-- page="prodDetail" // sidebar bugs -->
+    <Header />
     <div class="content-css">
       <div class="banner-block1">
         <Carousel :caro-item="regularBannerBlock1" :current-slide="slide" :caro-name="1" @activeSlide="activeSlide" />

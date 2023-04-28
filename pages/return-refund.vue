@@ -20,7 +20,7 @@ export default {
       checkAll: false,
       checkedCities: [],
       isIndeterminate: true,
-      activeStep: 2,
+      activeStep: 1,
       cartLists: [
         {name: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒1", imagePath: require("../assets/mobile/newArrival.png"), count: 20, price: "99999", bid: 1},
         {name: "Product Name 1", imagePath: require("../assets/mobile/newArrival.png"), count: 10, price: "99999", bid: 2},
