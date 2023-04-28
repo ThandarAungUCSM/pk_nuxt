@@ -119,7 +119,7 @@ export default {
   width: 393px;
   margin: auto;
   @media screen and (max-width: 768px) {
-    width: 100%;
+    // width: 100%;
   }
   .product-row {
     background: #FFF;
@@ -177,7 +177,7 @@ export default {
               margin-bottom: 0;
               @media screen and (max-width: 768px) {
                 font-size: 14px;
-                // width: 60%;
+                width: 60%;
                 word-wrap:break-word;
                 white-space:normal;
               }
@@ -460,9 +460,9 @@ export default {
   justify-content: center;
   cursor: pointer;
   @media screen and (max-width: 768px) {
-    width: 100%;
-    margin-bottom: 0;
-    border-radius: 0;
+    // width: 100%;
+    // margin-bottom: 0;
+    // border-radius: 0;
   }
   .btn-text {
     font-weight: 700;

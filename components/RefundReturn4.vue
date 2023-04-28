@@ -186,7 +186,7 @@ export default {
     width: 100%;
     margin-bottom: 3rem;
     @media screen and (max-width: 768px) {
-      margin-bottom: 0;
+      // margin-bottom: 0;
     }
     .top-seller-title {
       display: flex;
@@ -216,7 +216,7 @@ export default {
         display: flex;
         align-items: center;
         @media screen and (max-width: 768px) {
-          display: none;
+          // display: none;
         }
       }
       .see-text {
