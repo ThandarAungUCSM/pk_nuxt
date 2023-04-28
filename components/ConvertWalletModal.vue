@@ -7,7 +7,7 @@
             <div class="modal-body">
               <slot name="body">
                 <div class="title-row">
-                  <img class="return-css" src="../assets/mobile/btn-return1.png" @click="$emit('close')" />
+                  <img class="return-css" src="../assets/mobile/btn-return1.png" @click="gotoConvert" />
                   <p class="title-text">選擇遊戲幣</p>
                   <img class="return-css hide-text" src="../assets/mobile/btn-return1.png" @click="$emit('close')" />
                 </div>
@@ -133,6 +133,12 @@ export default {
       this.checkClick = !this.checkClick
       this.activeId = val
     },
+    gotoConvert() {
+      // if(this.checkClick === true) {
+      // } 
+      this.$emit("walletData", this.checkClick)
+      this.$emit('close');
+    }
   }
 }
 </script>

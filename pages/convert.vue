@@ -496,8 +496,8 @@
                   </div>
                 </div>
                 <convertModal v-if="showModal" :dis-coupon="disCoupon" :show="showModal" @close="showModal = false" @selectData="selectData" />
-                <convertServiceModal v-if="showServiceModal" :show="showServiceModal" @close="showServiceModal = false" />
-                <convertWalletModal v-if="showWalletModal" :show="showWalletModal" @close="showWalletModal = false" />
+                <convertServiceModal v-if="showServiceModal" :show="showServiceModal" @close="showServiceModal = false" @serviceData="serviceData" />
+                <convertWalletModal v-if="showWalletModal" :show="showWalletModal" @close="showWalletModal = false" @walletData="walletData" />
               </div>
             </div>
             <div class="show-m">
@@ -508,7 +508,7 @@
                     <span class="shipping-text">寄送方式</span>
                   </div>
                   <div class="right-title">
-                    <span v-if="!toselect" class="ship-name-txt1">請選擇配送方式</span>
+                    <span v-if="deliName === ''" class="ship-name-txt1">請選擇配送方式</span>
                     <span v-else class="ship-name">7-11超商取貨-OX門市$1,500</span>
                   </div>
                 </div>
@@ -544,18 +544,18 @@
                     <span class="shipping-text3">使用遊戲幣</span>
                   </div>
                   <div class="right-title">
-                    <span v-if="!toselect" class="ship-name-txt1">請選擇兌換用遊戲幣</span>
+                    <span v-if="!walletName" class="ship-name-txt1">請選擇兌換用遊戲幣</span>
                     <span v-else class="ship-name1">米茲塔爾</span>
                   </div>
                 </div>
                 <div class="right-divm">
                   <img id="show-modal" class="right-icon" src="../assets/pc/right-arr.png" @click="showWalletModal = true" />
                 </div>
-                <div v-if="!toselect" class="visible-hide">
+                <div v-if="!walletName" class="visible-hide">
                   hide
                 </div>
                 
-                <div v-if="toselect" class="m-bus-row1">
+                <div v-if="walletName" class="m-bus-row1">
                   <div class="left-title">
                     <span class="shipping-text1">將提領</span>
                   </div>
@@ -563,7 +563,7 @@
                     <span class="ship-name2">256,000</span>
                   </div>
                 </div>
-                <div v-if="toselect" class="m-bus-row1">
+                <div v-if="walletName" class="m-bus-row1">
                   <div class="left-title">
                     <span class="shipping-text1">換算後等值PK幣</span>
                   </div>
@@ -669,7 +669,9 @@ export default {
       activeCart: ['1'],
       selectWallet: false,
 
-      disCoupon: ''
+      disCoupon: '',
+      deliName: '',
+      walletName: ''
     }
   },
   methods: {
@@ -722,6 +724,12 @@ export default {
     },
     selectData(val) {
       this.disCoupon = val
+    },
+    serviceData(val) {
+      this.deliName = val
+    },
+    walletData(val) {
+      this.walletName = val
     }
   }
 }

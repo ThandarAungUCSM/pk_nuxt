@@ -100,7 +100,7 @@
                           </div>
                         </div>
                       </div>
-                      <div v-if="radioData == 12 && !showLocation" class="btn-css">
+                      <div v-if="radioData == 12 && !showLocation" class="btn-css" @click="selectedFunc()">
                         <p class="confirm-btn">確認</p>
                       </div>
                       <div v-else-if="radioData == 12 && showLocation">
@@ -218,6 +218,10 @@ export default {
     },
     backLocation() {
       this.showLocation = false
+    },
+    selectedFunc() {
+      this.$emit("serviceData", this.radioData);
+      this.$emit("close");
     }
   }
 }
