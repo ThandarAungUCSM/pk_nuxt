@@ -122,7 +122,7 @@ export default {
   width: 393px;
   margin: auto;
   @media screen and (max-width: 768px) {
-    // width: 100%;
+    width: 100%;
   }
   .product-row {
     background: #FFF;
@@ -152,7 +152,7 @@ export default {
     padding-right: 18px;
     margin-bottom: 5px;
     @media screen and (max-width: 768px) {
-      // padding: 0 19px 0 1.5rem;
+      padding: 0 19px 0 1.5rem;
     }
     .fill-receive {
       font-weight: 400;
@@ -193,8 +193,8 @@ export default {
       align-items: center;
       cursor: pointer;
       @media screen and (max-width: 768px) {
-        // justify-content: flex-end;
-        // width: 75%;
+        justify-content: flex-end;
+        width: 75%;
       }
       .fill-receive-color, .fill-receive-color1 {
         font-weight: 400;
@@ -235,11 +235,11 @@ export default {
   justify-content: center;
   cursor: pointer;
   @media screen and (max-width: 768px) {
-    // width: 100%;
-    // margin-bottom: 0;
-    // position: absolute;
-    // bottom: 0;
-    // border-radius: 0;
+    width: 100%;
+    margin-bottom: 0;
+    position: absolute;
+    bottom: 0;
+    border-radius: 0;
   }
   .btn-text {
     font-weight: 700;
