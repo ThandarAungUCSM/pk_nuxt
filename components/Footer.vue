@@ -1,5 +1,5 @@
 <template>
-  <div :class="page && (page == 'login' || page == 'front' || page == 'category' || page == 'productDetail' || page == 'QA') ? 'loginfooter-div' : 'footer-div'">
+  <div :class="page && (page == 'login' || page == 'front' || page == 'category' || page == 'productDetail' || page == 'QA' || page == 'refund') ? 'loginfooter-div' : 'footer-div'">
     <div v-if="page && page == 'login'" class="loginfooter-block-m">
       <div class="loginfootest-block">
         <div class="m-center">

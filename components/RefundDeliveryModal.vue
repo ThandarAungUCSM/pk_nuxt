@@ -11,23 +11,21 @@
                   <p class="title-text">選擇退貨原因</p>
                   <p class="hide-text mobile-css">hi</p>
                 </div>
-                <div id="refundModalId" class="">
-                  <el-radio-group v-model="radioData">
-                    <el-radio v-for="(list, ind) in lists" :key="ind" :label="list" class="facts" >
+                <div v-if="tochoicepopup && tochoicepopup === 'delivery'" id="refundModalId" class="">
+                  <el-radio-group v-model="deliData">
+                    <el-radio v-for="(list, ind) in delilists" :key="ind" :label="list" class="facts" >
                       <p class="yes-css">{{list}}</p>
                     </el-radio>
-                    <!-- <el-radio :label="2" class="facts">
-                      <p class="yes-css">退貨原因2</p>
-                    </el-radio>
-                    <el-radio :label="3" class="facts">
-                      <p class="yes-css">退貨原因3</p>
-                    </el-radio>
-                    <el-radio :label="4" class="facts">
-                      <p class="yes-css">其他原因</p>
-                    </el-radio> -->
                   </el-radio-group>
                 </div>
-                <div id="refundModalId1" >
+                <div v-else-if="tochoicepopup && tochoicepopup === 'calendar'" id="refundModalId" class="">
+                  <el-radio-group v-model="calenData">
+                    <el-radio v-for="(list, ind) in calenlists" :key="ind" :label="list" class="facts" >
+                      <p class="yes-css">{{list}}</p>
+                    </el-radio>
+                  </el-radio-group>
+                </div>
+                <!-- <div id="refundModalId1" >
                   <el-input
                     v-model="textcontent" 
                     type="textarea"
@@ -36,7 +34,7 @@
                     show-word-limit
                   >
                   </el-input>
-                </div>
+                </div> -->
                 <div class="confirm-btn" @click="selectedRefund()">
                   <p class="confirm-text">確認</p>
                 </div>
@@ -50,17 +48,26 @@
 </template>
 <script>
 export default {
-  props: ["show"],
+  props: ["show", "choice", "tochoicepopup"],
   data() {
     return {
       couponCode: '',
-      radioData: 5,
+      deliData: 5,
+      calenData: 5,
       isCheck: [false, false],
       textcontent: '',
-      lists: ['退貨原因1', '退貨原因2', '退貨原因3', '其他原因']
+      delilists: ['delivery1', 'delivery2', 'delivery3', 'delivery4'],
+      calenlists: ['calendar1', 'calendar2', 'calendar3', 'calendar4']
     }
   },
   created() {
+    if(this.choice !== '') {
+      if(this.tochoicepopup === 'delivery') {
+        this.deliData = this.choice;
+      } else {
+        this.calenData = this.choice
+      }
+    }
   },
   methods: {
     checkFunc(val) {
@@ -68,7 +75,8 @@ export default {
       this.$forceUpdate();
     },
     selectedRefund() { 
-      this.$emit('selectedData', this.radioData)
+      this.$emit('selectedDelivery', this.deliData)
+      this.$emit('selectedCalendar', this.calenData)
       this.$emit('close')
     }
   }
@@ -106,7 +114,6 @@ export default {
     border-radius: 42px;
     @media screen and (max-width: 768px) {
       width: 100%;
-      height: 100%;
       border-radius: 0;
       padding-left: 0;
       padding-right: 0;
@@ -208,9 +215,6 @@ export default {
     padding-left: 0;
     padding-right: 0;
     width: unset;
-    @media screen and (max-width: 768px) {
-      padding: 0 2.5rem !important;
-    }
   }
   .el-radio__inner {
     margin-top: 4px;
@@ -222,9 +226,6 @@ export default {
 #refundModalId1 {
   .el-textarea {
     height: 182px !important;
-    @media screen and (max-width: 768px) {
-      padding: 1rem 2rem 0;
-    }
   }
   .el-textarea__inner {
     background: #F2EFFF !important;
@@ -243,9 +244,6 @@ export default {
     font-size: 10px;
     color: #000;
     background: #F2EFFF;
-    @media screen and (max-width: 768px) {
-      margin-right: 2rem;
-    }
   }
 }
 </style>
