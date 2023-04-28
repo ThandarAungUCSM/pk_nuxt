@@ -12,20 +12,20 @@
             <p v-if="!enoughtCoin" class="more-info">請檢查網路連線是否正常</p>
             <p v-else class="more-info">詳情可至兌換清單查看更多資訊</p>
             <div class="btn-group">
-              <p class="btn1">
+              <p class="btn1" @click="routeTo('/')">
                 回商城
               </p>
-              <p class="btn1 btn2">
+              <p class="btn1 btn2" @click="routeTo('/convert-history')">
                 兌換清單
               </p>
             </div>
           </div>
         </div>
         <div class="btn-group1">
-          <p class="btn1">
+          <p class="btn1" @click="routeTo('/')">
             回商城
           </p>
-          <p class="btn1 btn2" :class="!enoughtCoin ? 'hidebtn' : ''">
+          <p class="btn1 btn2" :class="!enoughtCoin ? 'hidebtn' : ''" @click="routeTo('/convert-history')">
             兌換清單
           </p>
         </div>
@@ -33,7 +33,7 @@
       <div class="top-seller-parent">
         <div class="top-seller-title">
           <span class="topSellerTitle">新品上市</span>
-          <span class="topSellerSeeMore">
+          <span class="topSellerSeeMore" @click="routeTo('新品上市')">
             <span class="see-text">更多</span>
             <img src="../assets/mobile/seemore.png" class="seemore" />
           </span>
@@ -72,6 +72,18 @@ export default {
         {name: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒1", imagePath: require("../assets/mobile/newArrival.png"), price: "99999", originalPrice: "99,999", bid: 9},
         {name: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒1", imagePath: require("../assets/mobile/newArrival.png"), price: "99999", originalPrice: "99,999", bid: 10}
       ],
+      items6: [
+        {name: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒5", imagePath: require("../assets/mobile/newArrival.png"), price: "99999", originalPrice: "99,999", bid: 51},
+        {name: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒5", imagePath: require("../assets/mobile/newArrival.png"), price: "99999", originalPrice: "99,999", bid: 52},
+        {name: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒5", imagePath: require("../assets/mobile/newArrival.png"), price: "99999", originalPrice: "99,999", bid: 53},
+        {name: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒5", imagePath: require("../assets/mobile/newArrival.png"), price: "99999", originalPrice: "99,999", bid: 54},
+        {name: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒5", imagePath: require("../assets/mobile/newArrival.png"), price: "99999", originalPrice: "99,999", bid: 55},
+        {name: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒5", imagePath: require("../assets/mobile/newArrival.png"), price: "99999", originalPrice: "99,999", bid: 56},
+        {name: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒5", imagePath: require("../assets/mobile/newArrival.png"), price: "99999", originalPrice: "99,999", bid: 57},
+        {name: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒5", imagePath: require("../assets/mobile/newArrival.png"), price: "99999", originalPrice: "99,999", bid: 58},
+        {name: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒5", imagePath: require("../assets/mobile/newArrival.png"), price: "99999", originalPrice: "99,999", bid: 59},
+        {name: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒5", imagePath: require("../assets/mobile/newArrival.png"), price: "99999", originalPrice: "99,999", bid: 60}
+      ],
       enoughtCoin: true
     }
   },
@@ -83,7 +95,16 @@ export default {
     }
   },
   methods: {
-    
+    routeTo(val) {
+      if(val === '新品上市') {
+        this.$router.push({
+          path: "category",
+          query: { cateName: val, prodLists: JSON.stringify(this.items6) },
+        });
+      } else {
+        this.$router.push(val)
+      }
+    },
   }
 }
 </script>
@@ -124,6 +145,7 @@ export default {
       margin-right: 39px;
       @media screen and (max-width: 768px) {
         width: 120px;
+        margin-right: 0;
       }
     }
     .mo-css {
@@ -138,6 +160,7 @@ export default {
       margin-bottom: 0;
       @media screen and (max-width: 768px) {
         font-size: 20px;
+        margin-bottom: 10px;
       }
     }
     .more-info {
@@ -147,6 +170,7 @@ export default {
       margin-bottom: 24px;
       @media screen and (max-width: 768px) {
         font-size: 12px;
+        margin-bottom: 5px;
       }
     }
     .btn-group {

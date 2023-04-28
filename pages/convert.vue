@@ -249,16 +249,6 @@
                   </div>
                 </el-collapse-item>
               </el-collapse>
-
-              <!-- <div class="title-row">
-                <div class="left-title">
-                  <img class="shipping-icon" src="../assets/pc/school-bus.png" />
-                  <span class="shipping-text">寄送方式</span>
-                </div>
-                <div class="right-title">
-                  <img class="minus-icon" src="../assets/pc/minus-black.png" />
-                </div>
-              </div> -->
             </div>
             <div class="Llower-block">
               <el-collapse v-model="activeWallet" @change="walletChange">
@@ -384,15 +374,6 @@
                   </div>
                 </el-collapse-item>
               </el-collapse>
-              <!-- <div class="title-row">
-                <div class="left-title">
-                  <img class="dollar-icon" src="../assets/pc/dollar.png" />
-                  <span class="shipping-text">使用遊戲幣</span>
-                </div>
-                <div class="right-title">
-                  <img class="minus-icon" src="../assets/pc/minus-black.png" />
-                </div>
-              </div> -->
             </div>
           </div>
           <div class="right-block">
@@ -559,7 +540,7 @@
               <div class="bg-mo">
                 <div class="m-bus-row">
                   <div class="left-title">
-                    <span class="shipping-text">使用遊戲幣</span>
+                    <span class="shipping-text3">使用遊戲幣</span>
                   </div>
                   <div class="right-title">
                     <span v-if="!toselect" class="ship-name-txt1">請選擇兌換用遊戲幣</span>
@@ -595,7 +576,7 @@
               <div class="bg-m">
                 <div class="m-bus-row">
                   <div class="left-title">
-                    <span class="shipping-text">兌換詳情</span>
+                    <span class="shipping-text3">兌換詳情</span>
                   </div>
                 </div>
                 <div class="m-bus-row1">
@@ -624,7 +605,7 @@
                 </div>
                 <div class="m-bus-row1">
                   <div class="left-title">
-                    <span class="shipping-text">合計</span>
+                    <span class="shipping-text3">合計</span>
                   </div>
                   <div class="right-title">
                     <span class="ship-name4">1,900</span>
@@ -673,7 +654,7 @@ export default {
       filledUp: true,
       enoughCoins: true,
       allfilled: true,
-      toselect: true,
+      toselect: false,
       showLocation: false,
 
       nameText: '',
@@ -796,12 +777,6 @@ export default {
           .shipping-icon {
             width: 14px;
             height: 14px;
-          }
-          .shipping-text {
-            font-weight: 500;
-            font-size: 14px;
-            color: #000;
-            margin-left: 7px;
           }
           .facts {
             font-weight: 400;
@@ -1117,12 +1092,6 @@ export default {
             width: 8px;
             height: 14px;
           }
-          .shipping-text {
-            font-weight: 500;
-            font-size: 14px;
-            color: #000;
-            margin-left: 7px;
-          }
           .items-block {
             padding: 0 4rem 2rem 6rem;
             .name-block {
@@ -1413,12 +1382,6 @@ export default {
           width: 1rem;
           height: 1rem;
         }
-        .shipping-text {
-          font-weight: 400;
-          font-size: 14px;
-          color: #000;
-          margin-left: 7px;
-        }
         .cart-block {
           background: #FFF;
           padding-bottom: 33px;
@@ -1440,12 +1403,6 @@ export default {
           .shipping-icon {
             width: 14px;
             height: 14px;
-          }
-          .shipping-text {
-            font-weight: 400;
-            font-size: 14px;
-            color: #000;
-            margin-left: 7px;
           }
           .each-row {
             display: flex;
@@ -1649,8 +1606,13 @@ export default {
             width: 14px;
             height: 14px;
           }
-          
           .shipping-text {
+            font-weight: 500;
+            font-size: 14px;
+            color: #000;
+            margin-left: 7px;
+          }
+          .shipping-text3 {
             font-weight: 500;
             font-size: 14px;
             color: #000;
