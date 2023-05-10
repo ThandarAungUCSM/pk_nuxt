@@ -130,7 +130,7 @@
                 " class="gamedbtn user-css" alt="gamepad" @click="myGamepad" />
               <div v-if="showgamepadData" id="gamepadDropdown" class="gamedd-content"></div>
               <div v-if="showgamepadData" class="child-dropdown">
-                <div class="dropdown-item textcss">
+                <div class="dropdown-item textcss" @click="$router.push('/myGame')">
                   <span>PK合作遊戲</span>
                 </div>
                 <div class="dropdown-item textcss1">
