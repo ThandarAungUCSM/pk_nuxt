@@ -8,11 +8,11 @@
             <img src="../assets/mobile/itemicon_gold.png" class="gold-icon">
             <span>999,999,999</span>
           </div>
-          <div class="list-div">
+          <!-- <div class="list-div">
             <img src="../assets/mobile/list-icon.png" class="list-icon">
-          </div>
+          </div> -->
         </div>
-        <div class="home-div">
+        <div class="home-div" @click="$router.push('/')">
           <img src="../assets/mobile/home-icon.png" class="home-icon">
         </div>
       </div>
@@ -118,20 +118,20 @@ export default {
             margin-right: 1rem;
           }
         }
-        .list-div {
-          width: 30px;
-          height: 30px;
-          background: #3E2BDA;
-          border-radius: 6px;
-          margin-left: 10px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          .list-icon {
-            width: 18px;
-            height: 18px;
-          }
-        }
+        // .list-div {
+        //   width: 30px;
+        //   height: 30px;
+        //   background: #3E2BDA;
+        //   border-radius: 6px;
+        //   margin-left: 10px;
+        //   display: flex;
+        //   align-items: center;
+        //   justify-content: center;
+        //   .list-icon {
+        //     width: 18px;
+        //     height: 18px;
+        //   }
+        // }
       }
       .home-div {
         .home-icon {
