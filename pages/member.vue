@@ -33,7 +33,7 @@
         </div>
         <img class="rightarr-icon" src="../assets/mobile/rightarr-blue.png" />
       </div>
-      <div class="each-menu-row" @click="gotoPage('/tracking-products')">
+      <div class="each-menu-row" @click="gotoPage('/member-tracking')">
         <div class="left-side">
           <img class="menu-usercss" alt="heart" src="../assets/pc/active-heart.png" />
           <span class="menu-text">追蹤清單</span>

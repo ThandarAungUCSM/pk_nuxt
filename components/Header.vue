@@ -57,7 +57,7 @@
                   <span>兌換清單</span>
                 </NuxtLink>
                 <NuxtLink
-                  to="/tracking-products"
+                  to="/member-tracking"
                   class="dropdown-item"
                 >
                   <img class="menu-usercss" alt="heart" src="../assets/pc/active-heart.png" />

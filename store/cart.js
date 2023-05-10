@@ -12,7 +12,7 @@ const state = () => {
 };
 
 const actions = {
-  // tracking-products
+  // member-tracking
   // addProductToCart({ state, commit }, product) {
   //   if (product != null) {
   //     const cartItem = state.cartLists.find(item => item.bid === product.bid);
@@ -74,7 +74,7 @@ const actions = {
 };
 
 const mutations = {
-  // tracking-products
+  // member-tracking
   // pushProductToCart(state, product) {
   //   state.cartLists.push({
   //     data: product,

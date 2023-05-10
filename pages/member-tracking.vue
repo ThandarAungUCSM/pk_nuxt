@@ -98,12 +98,14 @@ export default {
   padding: 156px 81px 24px 81px;
   background: #eae9f4;
   @media screen and (max-width: 768px) {
-    padding: 118px 24px 24px 24px;
+    padding: 99px 24px 24px 24px;
     background: #FFF;
   }
   .path-div {
+    display: none;
     margin-left: 0.5%;
     @media screen and (max-width: 768px) {
+      display: block;
       margin-left: 0;
     }
     .user-img {
