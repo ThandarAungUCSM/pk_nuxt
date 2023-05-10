@@ -190,11 +190,9 @@ export default {
       scrollbar-width: none; 
       overflow-x: scroll;
 
-      margin-left: 67px;
-      width: 96.5%;
-
       margin-left: calc(81px + 0.5%);
       width: 95.2%;
+      width: calc(100% - (81px + 0.5%));
       @media screen and (max-width: 768px) {
         display: block;
         overflow: auto;
