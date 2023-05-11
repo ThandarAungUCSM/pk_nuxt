@@ -21,10 +21,10 @@
       <RefundReturn3 v-else-if="activeStep == 3" :product-data="cartLists" @nextcompo="nextcompo" />
     </div>
     <div v-else-if="activeStep == 4" id="refundId" class="order-list1">
-      <div class="dollar-row">
+      <!-- <div class="dollar-row">
         <img src="../assets/pc/dollar-icon.png" class="dollar-icon">
         <span class="refund-title">申請退貨退款</span>
-      </div>
+      </div> -->
       <RefundReturn4 :product-data="cartLists" @nextcompo="nextcompo" />
     </div>
     <Footer page="refund" class="pc-css" />
