@@ -7,7 +7,7 @@
         <div class="one-row">
           <div class="left-block">
             <div class="Lupper-block">
-              <el-collapse v-model="activeNames" @change="handleChange">
+              <el-collapse v-model="activeNames" @change="handleChange1">
                 <el-collapse-item name="1" class="p-item">
                   <template slot="title">
                     <img class="shipping-icon" src="../assets/pc/school-bus.png" />
@@ -434,7 +434,37 @@
                   <span class="shipping-text">4項商品</span>
                 </template>
                 <div class="cart-block">
-                  <div class="each-row" @click="gotoPage()">
+                  <!-- .self -->
+                  <div v-for="(eachproduct, idx) in cartItems" :key="idx" class="each-row" @click="gotoPage()">
+                    <div class="orderFalse">
+                      <img class="menu-img" src="../assets/pc/product.png" />
+                    </div>
+                    <div class="each-right">
+                      <div class="title-row">
+                        <p class="common-menu-name">
+                          奶油椰子口味玉米脆條 (造句包)
+                        </p>
+                        <span class="deleteBtn" @click="doRemoveItem(eachproduct)">
+                          <img class="deleteimg" src="../assets/pc/trash.png" />
+                        </span>
+                      </div>
+                      <div id="shoppingId" class="menu-price" @click.stop>
+                        <el-input-number 
+                          v-model="showArr[idx]"
+                          :min="1"
+                          :max="5"
+                          @change="(currentVal, oldVal) => {handleChange(currentVal, oldVal, eachproduct)}" ></el-input-number>
+                        <div class="each-brow">
+                          <div class="each-price">
+                            <img class="gold-icon" src="../assets/mobile/itemicon_gold.png" />
+                            <span class="gold-price">100</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- <div class="each-row" @click="gotoPage()">
                     <div class="orderFalse">
                       <img class="menu-img" src="../assets/pc/product.png" />
                     </div>
@@ -478,7 +508,7 @@
                         <p class="each-count">x1</p>
                       </div>
                     </div>
-                  </div>
+                  </div> -->
                 </div>
               </el-collapse-item>
             </el-collapse>
@@ -638,6 +668,7 @@
   </div>
 </template>
 <script>
+import { mapActions, mapGetters } from "vuex";
 export default {
   name: 'OrderList',
   data() {
@@ -675,6 +706,15 @@ export default {
       allSelected: false
     }
   },
+  computed: {
+    ...mapGetters("cart", {
+      cartItems: "cartProducts"
+    }),
+    showArr() {
+      const temp = this.cartItems.map(n => n.quantity)
+      return temp;
+    }
+  },
   watch: {
     radioData() {
       if((this.radioData !== 0) && (this.checkClick === true && this.activeId !== 0) && this.oneData !== 0) {
@@ -699,8 +739,27 @@ export default {
     }
   },
   methods: {
-    handleChange(val) {
+    ...mapActions("cart", ["removeProductFromCart"]),
+    ...mapActions("cart", ["incProductQty"]),
+    ...mapActions("cart", ["decProductQty"]),
+    doRemoveItem(product) {
+      console.log("doRemoveItem(bid=", product.bid, ")");
+      this.removeProductFromCart(product.bid);
+      this.$emit("deleteItem", this.selecttype, product);
+    },
+    handleChange1(val) {
       console.log(val);
+    },
+    handleChange(current, old, value) {
+      console.log('current ', current);
+      console.log('old ', old);
+      console.log('data ', value);
+      if (current > old) {
+        this.incProductQty(value);
+      } else {
+        this.decProductQty(value);
+      }
+      this.$emit("activeVal", value.bid)
     },
     walletChange(val) {
       console.log(val);
@@ -797,21 +856,6 @@ export default {
         .Lupper-block {
           background: #FFF;
           margin-bottom: 1rem;
-          // padding-bottom: 1rem;
-          .title-row {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 1rem 2rem 2rem 2.5rem;
-            .left-title {
-              // display: flex;
-            }
-            .right-title {
-              .minus-icon {
-                width: 12px;
-              }
-            }
-          }
           .shipping-icon {
             width: 14px;
             height: 14px;
@@ -1113,19 +1157,6 @@ export default {
         }
         .Llower-block {
           background: #FFF;
-          .title-row {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 1rem 2rem 2rem 2.5rem;
-            .left-title {
-            }
-            .right-title {
-              .minus-icon {
-                width: 12px;
-              }
-            }
-          }
           .dollar-icon {
             width: 8px;
             height: 14px;
@@ -1433,17 +1464,7 @@ export default {
             margin-top: 3px;
             padding-bottom: 12px;
           }
-          .title-row {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 1rem;
-            .right-title {
-              .minus-icon {
-                width: 12px;
-              }
-            }
-          }
+          
           .shipping-icon {
             width: 14px;
             height: 14px;
@@ -1451,7 +1472,8 @@ export default {
           .each-row {
             display: flex;
             padding: 1rem;
-            background: #F5F2FF;
+            // background: #F5F2FF;
+            background: #FBF7FF;
             backdrop-filter: blur(3px);
             margin: 0 1rem 3px;
             @media screen and (max-width: 768px) {
@@ -1489,6 +1511,103 @@ export default {
                   margin-bottom: 10px;
                 }
               }
+              .title-row {
+                display: flex;
+                align-items: flex-start;
+                justify-content: space-between;
+                padding: 0;
+                .right-title {
+                  .minus-icon {
+                    width: 12px;
+                  }
+                }
+              }
+              .menu-price {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 10px 0 0;
+                @media screen and (max-width: 768px) {
+                  padding: 0;
+                }
+                .row-price {
+                  display: flex;
+                  align-items: center;
+                  
+                }
+                .gold-price {
+                  font-weight: 700;
+                  font-size: 16px;
+                  color: #000;
+                  margin-left: 5px;
+                }
+                .gold-icon {
+                  width: 18px;
+                  height: 18px;
+                }
+                .signSize {
+                  width: 12px;
+                  height: 2px;
+                  background: #ccb170;
+                }
+                .common-circle {
+                  width: 30px;
+                  height: 30px;
+                  border-radius: 15px;
+                  text-align: center;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                }
+                .circleMinus {
+                  cursor: pointer;
+                  background: #fff;
+                  border: 1.6px solid #ceb17d;
+                  color: #ceb17d;
+                  margin-right: 1rem;
+                }
+                .circleMinus1 {
+                  cursor: pointer;
+                  background: #f2f2f2;
+                  border: 1.6px solid #f2f2f2;
+                  color: #ccb170;
+                  margin-right: 1rem;
+                }
+                .circleMinus2 {
+                  cursor: pointer;
+                  background: #f2f2f2;
+                  border: 1.6px solid #f2f2f2;
+                  color: #8f8f8f;
+                  margin-right: 1rem;
+                }
+                .circleAdd {
+                  cursor: pointer;
+                  background: #ceb17d;
+                  color: #fff;
+                  margin-left: 1rem;
+                }
+                .circleAdd1 {
+                  cursor: pointer;
+                  background: #fff;
+                  border: 1.6px solid #ceb17d;
+                  color: #ceb17d;
+                  margin-left: 1rem;
+                }
+                .circleAdd2 {
+                  cursor: pointer;
+                  background: #f2f2f2;
+                  border: 1.6px solid #f2f2f2;
+                  color: #8f8f8f;
+                  margin-left: 1rem;
+                }
+                .plusSign {
+                  font-size: 1.2rem;
+                }
+                .count {
+                  display: flex;
+                  align-items: center;
+                }
+              }
               .each-brow {
                 display: flex;
                 align-items: center;
@@ -1501,17 +1620,126 @@ export default {
                     width: 18px;
                     height: 18px;
                   }
-                  .gold-price {
-                    font-weight: 400;
-                    font-size: 16px;
-                    color: #000;
-                  }
                 }
                 .each-count {
                   font-weight: 400;
                   font-size: 16px;
                   color: #000;
                   margin-bottom: 0;
+                }
+              }
+            }
+          }
+          .deleteBtn {
+            .deleteimg {
+              width: 18px;
+              height: 18px;
+            }
+          }
+          .row-div {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            .menu-txt {
+              display: flex;
+              flex-direction: column;
+              margin-left: 1rem;
+              width: 100%;
+              
+              .common-menu-name {
+                padding-bottom: 7px;
+                color: #151515;
+                font-weight: 400;
+                font-size: 1rem;
+                margin-bottom: 0;
+                @media screen and (max-width: 768px) {
+                  font-size: 14px;
+                  width: 60%;
+                  word-wrap:break-word;
+                  white-space:normal;
+                }
+              }
+              .limited-css {
+                color: #828282;
+                font-weight: 400;
+                font-size: 0.875rem;
+                .text1-limit {
+                  color: #828282;
+                  font-weight: 400;
+                  font-size: 0.875rem;
+                }
+                .limited-div {
+                  display: flex;
+                  .place-div {
+                    display: flex;
+                    align-items: center;
+                    padding-left: 15px;
+                    cursor: pointer;
+                  }
+                }
+                .placeofuse {
+                  color: #244c5a;
+                  font-weight: 500;
+                  padding-right: 5px;
+                  font-size: 0.875rem;
+                }
+                .arrow-css {
+                  width: 8px;
+                }
+              }
+              .delivery-parent {
+                width: 100%;
+                padding-top: 2px;
+                padding-bottom: 2px;
+                .delivery {
+                  background: #f9f8f8;
+                  color: #bdbdbd;
+                }
+                .delivery1 {
+                  background: #fdfcfc;
+                  color: #e5e5e5;
+                }
+                .common-deli {
+                  display: flex;
+                  align-items: center;
+                  border-radius: 20px;
+                  padding: 0;
+                  margin: 0;
+                  font-weight: normal;
+                  width: 40%;
+                  @media screen and (max-width: 768px) {
+                    width: 55%;
+                  }
+                }
+                .meal-delivery {
+                  color: #E1460E;
+                  border: 2px solid #E1460E;
+        
+                  background: #ffffff;
+                  box-sizing: border-box;
+                  box-shadow: 0px 0px 4px 2px rgba(206, 177, 125, 0.3);
+                }
+                .meal-delivery1 {
+                  color: #e7e0d1;
+                  border: 2px solid #f5efe5;
+        
+                  background: #ffffff;
+                  box-sizing: border-box;
+                  box-shadow: 0px 0px 4px 2px rgba(206, 177, 125, 0.3);
+                }
+                .common-meal-deli {
+                  text-align: center;
+                  font-weight: 500;
+                  font-size: 0.875rem;
+                  border-radius: 18px;
+                  padding: 3px 5px;
+        
+                  width: 50%;
+                  cursor: pointer;
+                }
+                .takeaway {
+                  padding: 3px 5px;
+                  font-size: 0.875rem;
                 }
               }
             }
@@ -1805,6 +2033,9 @@ export default {
 </style>
 <style lang="scss">
 #orderlistId {
+  .el-input-number .el-input__inner {
+    background: #fcf7ff;
+  }
   .p-item {
     .el-icon-arrow-right:before {
       // color: #ceb17d;
