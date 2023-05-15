@@ -444,7 +444,7 @@
                         <p class="common-menu-name">
                           奶油椰子口味玉米脆條 (造句包)
                         </p>
-                        <span class="deleteBtn" @click="doRemoveItem(eachproduct)">
+                        <span class="deleteBtn" @click.stop="doRemoveItem(eachproduct)">
                           <img class="deleteimg" src="../assets/pc/trash.png" />
                         </span>
                       </div>
