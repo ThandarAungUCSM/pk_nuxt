@@ -786,9 +786,9 @@ export default {
     },
     gotoPage(val) {
       if(val && val === 'nocoin') {
-        this.$router.push({name: 'convertCart', query: {item: val}})
+        this.$router.push({name: '/convertCart', query: {item: val}})
       } else {
-        this.$router.push('convertCart')
+        this.$router.push('/convertCart')
       }
     },
     locationFunc() {
