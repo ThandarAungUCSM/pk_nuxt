@@ -3,9 +3,9 @@
     <Header page='category' />
     <div class="tracking-product" :class="!productData ? 'tracking-null' : ''">
       <div class="path-div">
-        <img v-if="!productData" src="../assets/pc/fi-rr-user-login.png" alt="" class="user-img1" />
-        <img v-else src="../assets/pc/fi-rr-user-login.png" alt="" class="user-img" />
-        <span class="home-txt">我的會員</span>
+        <img v-if="!productData" src="../assets/pc/fi-rr-user-login.png" class="user-img1" />
+        <img v-else src="../assets/pc/fi-rr-user-login.png" class="user-img" />
+        <span class="home-txt" @click="$router.push('/member')">我的會員</span>
         <span class="cate-txt"> / 追蹤清單</span>
       </div>
       <p class="cate-name">追蹤清單</p>
