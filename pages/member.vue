@@ -1,7 +1,7 @@
 <template>
   <div class="mobile-member">
     <div class="head-css">
-      <p class="user-acc">jason1234</p>
+      <!-- <p class="user-acc">jason1234</p> -->
       <div class="head-row">
         <div class="inner-head">
           <div class="head-price">
@@ -92,12 +92,13 @@ export default {
   .head-css {
     background: #7161EF;
     padding: 3rem 10px 12px 10px;
-    .user-acc {
-      font-weight: 700;
-      font-size: 14px;
-      color: #FFF;
-      margin-bottom: 7px;
-    }
+    padding: 3rem 10px 1rem;
+    // .user-acc {
+    //   font-weight: 700;
+    //   font-size: 14px;
+    //   color: #FFF;
+    //   margin-bottom: 7px;
+    // }
     .head-row {
       display: flex;
       justify-content: space-between;
