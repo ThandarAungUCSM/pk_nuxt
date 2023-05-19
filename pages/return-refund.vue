@@ -57,7 +57,7 @@ export default {
       this.activeStep = val
     },
     backBtn() {
-      this.$router.push('/member')
+      this.$router.go(-1)
     },
   }
 }

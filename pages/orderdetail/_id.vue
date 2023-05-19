@@ -95,7 +95,7 @@
           <div class="apply-block" @click="routeTo('/return-refund')">
             <p class="apply-txt">申請退貨退款</p>
           </div>
-          <div class="apply-block">
+          <div class="apply-block" @click="routeTo('/customer-service')">
             <p class="apply-txt">如有疑問請和我們聯絡</p>
           </div>
         </div>
@@ -530,6 +530,7 @@ export default {
       background: #FFF;
       margin-top: 7px;
       padding: 10px 2rem;
+      cursor: pointer;
       @media screen and (max-width: 768px) {
         margin-top: 2px;
         padding: 10px 1rem;
