@@ -23,7 +23,15 @@
               :min="1"
               :max="5"
               @change="(currentVal, oldVal) => {updateNum(currentVal, oldVal, productData)}" ></el-input-number>
-            <div class="two-btn product-count">
+            <div v-if="productCondition" class="two-btn product-count">
+              <p class="pre-sell-btn" @click="buyNow">上架時間：2024-02-02 00:00</p>
+              <loginModal :show="showModal" class="formobile" @close="showModal = false" />
+            </div>
+            <div v-else-if="!productCondition" class="two-btn product-count">
+              <p class="sold-out-btn" @click="addtoCart">售完</p>
+              <loginModal :show="showModal" class="formobile" @close="showModal = false" />
+            </div>
+            <div v-else class="two-btn product-count">
               <p class="to-cart" @click="addtoCart">加入購物車</p>
               <p class="buy-now" @click="buyNow">立即購買</p>
               <loginModal :show="showModal" class="formobile" @close="showModal = false" />
@@ -76,7 +84,15 @@
     </div>
     <Footer page="productDetail" />
     <div id="mscrollshowId" class="upder-footer">
-      <div class="two-btn product-count">
+      <div v-if="productCondition" class="two-btn product-count">
+        <p class="pre-sell-btn" @click="buyNow">上架時間：2024-02-02 00:00</p>
+        <loginModal :show="showModal" class="formobile" @close="showModal = false" />
+      </div>
+      <div v-else-if="!productCondition" class="two-btn product-count">
+        <p class="sold-out-btn" @click="addtoCart">售完</p>
+        <loginModal :show="showModal" class="formobile" @close="showModal = false" />
+      </div>
+      <div v-else class="two-btn product-count">
         <p class="to-cart" @click="addtoCart">加入購物車</p>
         <p class="buy-now" @click="buyNow">立即購買</p>
         <loginModal :show="showModal" class="formobile" @close="showModal = false" />
@@ -105,7 +121,8 @@ export default {
       totalPrice: 0,
       redheart: true,
       tempProduct: {},
-      currentVal: 1
+      currentVal: 1,
+      productCondition: true // true => pre-sell, false => sold out
     }
   },
   computed: {
@@ -243,9 +260,10 @@ export default {
 .product-page {
   padding-top: 156px;
   width: 60%;
+  width: 962px;
   margin: auto auto 96px;
   @media screen and (max-width: 768px) {
-    padding-top: 100px;
+    padding-top: 67px;
     width: 100%;
   }
   .formobile {
@@ -609,6 +627,24 @@ export default {
   }
   .buy-now {
     background: #E9B531;
+  }
+  .pre-sell-btn, .sold-out-btn {
+    font-weight: 500;
+    font-size: 20px;
+    color: #FFF;
+    width: 100%;
+    height: 54px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 0;
+    cursor: pointer;
+  }
+  .pre-sell-btn {
+    background: #E9B531;
+  }
+  .sold-out-btn {
+    background: #B79CED;
   }
 }
 </style>
