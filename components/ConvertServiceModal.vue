@@ -7,9 +7,9 @@
             <div class="modal-body">
               <slot name="body">
                 <div class="title-row">
-                  <img class="return-css" src="../assets/mobile/btn-return1.png" @click="$emit('close')" />
+                  <img class="return-css" src="../assets/mobile/btn-return1.png" @click="selectedFunc()" />
                   <p class="title-text">運送方式</p>
-                  <img class="return-css hide-text" src="../assets/mobile/btn-return1.png" @click="$emit('close')" />
+                  <img class="return-css hide-text" src="../assets/mobile/btn-return1.png" />
                 </div>
                 <div class="radio-block">
                   <el-radio-group v-model="radioData">
@@ -220,7 +220,9 @@ export default {
       this.showLocation = false
     },
     selectedFunc() {
-      this.$emit("serviceData", this.radioData);
+      if(this.radioData !== 7) {
+        this.$emit("serviceData", this.radioData);
+      } 
       this.$emit("close");
     }
   }

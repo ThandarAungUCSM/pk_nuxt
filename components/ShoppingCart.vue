@@ -23,7 +23,7 @@
             </div>
           </div>
           <div class="right-div">
-            <b-button v-if="checkedCities.length > 0" size="sm" class="btn-css" @click="gotoPage('convert')">前往兌換({{checkedCities.length}})</b-button>
+            <b-button v-if="checkedCities.length > 0" size="sm" class="btn-css" @click="gotoPage('/convert')">前往兌換({{checkedCities.length}})</b-button>
             <b-button v-else size="sm" class="empty-btn-css">前往兌換({{checkedCities.length}})</b-button>
           </div>
         </div>

@@ -657,8 +657,11 @@
           <img src="../assets/mobile/itemicon_gold.png" class="gold-icon">
         </div>
       </div>
-      <div class="right-div">
+      <!-- <div class="right-div">
         <b-button v-if="!filledUp" size="sm" class="nfilledup-btn-css">兌換(3)</b-button>
+      </div> -->
+      <div class="right-div">
+        <b-button v-if="!filledUp" size="sm" class="nfilledup-btn-css">確認兌換</b-button>
         <b-button v-else-if="filledUp && enoughCoins && !allfilled" size="sm" class="allfill-btn-css">兌換(3)</b-button>
         <b-button v-else-if="filledUp && !enoughCoins" size="sm" class="nenough-btn-css" @click="gotoPage('nocoin')">額度不足</b-button>
         <b-button v-else size="sm" class="allfill-btn-css" @click="gotoPage">確認兌換</b-button>
@@ -683,7 +686,8 @@ export default {
       showWalletModal: false,
 
       connectedGame: true,
-      filledUp: true,
+
+      filledUp: false,
       enoughCoins: true,
       allfilled: true,
       toselect: false,
@@ -735,6 +739,20 @@ export default {
         this.allSelected = true
       } else {
         this.allSelected = false
+      }
+    },
+    deliName() {
+      if((this.deliName !== '') && (this.walletName !== '' && this.walletName !== false)) {
+        this.filledUp = true
+      } else {
+        this.filledUp = false
+      }
+    },
+    walletName() {
+      if((this.deliName !== 0) && (this.walletName !== '' && this.walletName !== false)) {
+        this.filledUp = true
+      } else {
+        this.filledUp = false
       }
     }
   },
