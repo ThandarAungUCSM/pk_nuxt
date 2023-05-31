@@ -60,6 +60,13 @@ export default {
       lists: ['退貨原因1', '退貨原因2', '退貨原因3', '其他原因']
     }
   },
+  watch: {
+    textcontent() {
+      if(this.textcontent !== '') {
+        this.radioData = '其他原因'
+      }
+    }
+  },
   created() {
   },
   methods: {

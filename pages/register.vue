@@ -199,26 +199,26 @@
           <p class="lable1">地址</p>
           <div class="address">
             <select id="select1Id" v-model="cityName" class="member-address-city">
-              <option value="">新北市</option>
+              <option value="">選擇縣市</option>
               <option v-for="(city, index) in counties" :key="index" :value="city">
                 {{ city }}
               </option>
             </select>
             <select v-if="seleDist.length > 0" v-model="distinctName" class="member-address-city">
-              <option value="">三重區</option>
+              <option value="">選擇區域</option>
               <option v-for="(city, index) in seleDist[0]" :key="index" :value="city">
                 {{ city }}
               </option>
             </select>
             <select v-else v-model="distinctName" class="member-address-city">
-              <option value="">三重區</option>
+              <option value="">選擇區域</option>
               <option v-for="(city, index) in seleDist" :key="index" :value="city">
                 {{ city }}
               </option>
             </select>
           </div>
           
-          <input v-model="myaddress" placeholder="光復南路三段156巷24號" onfocus="this.placeholder=''" class="accountCss6" />
+          <input v-model="myaddress" placeholder="請輸入地址" onfocus="this.placeholder=''" class="accountCss6" />
 
           <div class="btn-div">
             <div class="register-btn" @click="registerFun">下一步</div>
@@ -250,26 +250,26 @@
         <p class="lable1">地址</p>
         <div class="address">
           <select id="select2Id" v-model="cityName" class="member-address-city">
-            <option value="">新北市</option>
+            <option value="">選擇縣市</option>
             <option v-for="(city, index) in counties" :key="index" :value="city">
               {{ city }}
             </option>
           </select>
           <select v-if="seleDist.length > 0" v-model="distinctName" class="member-address-city">
-            <option value="">三重區</option>
+            <option value="">選擇區域</option>
             <option v-for="(city, index) in seleDist[0]" :key="index" :value="city">
               {{ city }}
             </option>
           </select>
           <select v-else v-model="distinctName" class="member-address-city">
-            <option value="">三重區</option>
+            <option value="">選擇區域</option>
             <option v-for="(city, index) in seleDist" :key="index" :value="city">
               {{ city }}
             </option>
           </select>
         </div>
         
-        <input v-model="myaddress" placeholder="光復南路三段156巷24號" onfocus="this.placeholder=''" class="accountCss6" />
+        <input v-model="myaddress" placeholder="請輸入地址" onfocus="this.placeholder=''" class="accountCss6" />
 
         <div class="btn-div">
           <div class="register-btn" @click="registerFun">下一步</div>
@@ -801,8 +801,8 @@ export default {
   },
   watch: {
     cityName() {
-      let tempcount1 = document.getElementById("select1Id").selectedIndex - 1;
-      let tempcount2 = document.getElementById("select2Id").selectedIndex - 1;
+      const tempcount1 = document.getElementById("select1Id").selectedIndex - 1;
+      const tempcount2 = document.getElementById("select2Id").selectedIndex - 1;
       this.distinctName = ''
       if(tempcount1 === -1) {
         this.seleDist = this.districts[tempcount2]

@@ -2,7 +2,8 @@ const state = () => {
   return {
     loginState: false,
     loginData: {name: 'firefly', password: '123456'},
-    profile: {name: '王大明', mobile: '0966-330-678', birthDay: '1990/02/18', email: 'example@gmail.com', cityName: '新北市', district: '三重區', genderCode: 'other', street: '光復南路三段156巷24號'},
+    // cityName: '新北市', district: '三重區', 
+    profile: {name: '王大明', mobile: '0966-330-678', birthDay: '1990/02/18', email: 'example@gmail.com', cityName: '', district: '', genderCode: 'other', street: '光復南路三段156巷24號'},
   };
 };
 
