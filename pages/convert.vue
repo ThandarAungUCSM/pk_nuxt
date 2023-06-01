@@ -182,7 +182,8 @@
                         </div> -->
                       </el-radio>
                     </el-radio-group>
-                    <div v-if="radioData == 12 && !showLocation" class="btn-css">
+                    <!-- confirmFunc nochoiceRadioFunc  -->
+                    <div v-if="radioData == 12 && !showLocation" class="btn-css" @click="confirmFunc">
                       <p class="confirm-btn">確認</p>
                     </div>
                     <div v-else-if="radioData == 12 && showLocation" class="locale-info">
@@ -989,6 +990,7 @@ export default {
             width: 80px;
             height: 36px;
             margin: 30px auto 0;
+            cursor: pointer;
           }
           .confirm-btn {
             font-weight: 700;
