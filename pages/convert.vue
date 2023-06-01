@@ -406,10 +406,10 @@
                     <img class="star-icon" src="../assets/pc/star-icon.png" />
                     <p class="coupon-txt">優惠券</p>
                   </div>
-                  <div class="coupon-right">
+                  <div class="coupon-right" @click="showModal = true">
                     <p v-if="disCoupon !== ''" class="cou-rightxt">{{disCoupon}}</p>
                     <p v-else class="cou-rightxt">請選擇優惠券或輸入優惠代碼</p>
-                    <img id="show-modal" class="right-icon" src="../assets/pc/right-arr.png" @click="showModal = true" />
+                    <img id="show-modal" class="right-icon" src="../assets/pc/right-arr.png" />
                   </div>
                 </div>
                 <convertModal v-if="showModal" :show="showModal" @close="showModal = false" />
@@ -424,8 +424,8 @@
                 </el-radio>
               </el-radio-group>
             </div>
-            <div class="hide-m" :class="allSelected ? 'active-price-btn' : 'price-block1'">
-              <p class="price-title">確認兌換</p>
+            <div class="hide-m" :class="allSelected ? 'active-price-btn' : 'price-block1'" @click="gotoPage()">
+              <p :class="allSelected ? 'price2-title' : 'price1-title'">確認兌換</p>
             </div>
 
             <el-collapse v-model="activeCart" @change="cartChange">
@@ -520,10 +520,10 @@
                     <img class="star-icon" src="../assets/pc/star-icon.png" />
                     <p class="coupon-txt">優惠券</p>
                   </div>
-                  <div class="coupon-right">
+                  <div class="coupon-right" @click="showModal = true">
                     <p v-if="disCoupon !== ''" class="cou-rightxt1">{{disCoupon}}</p>
                     <p v-else class="cou-rightxt">請選擇優惠券或輸入優惠代碼</p>
-                    <img id="show-modal" class="right-icon" src="../assets/pc/right-arr.png" @click="showModal = true" />
+                    <img id="show-modal" class="right-icon" src="../assets/pc/right-arr.png" />
                   </div>
                 </div>
                 <convertModal v-if="showModal" :dis-coupon="disCoupon" :show="showModal" @close="showModal = false" @selectData="selectData" />
@@ -1402,10 +1402,10 @@ export default {
           .coupon-right {
             display: flex;
             align-items: center;
+            cursor: pointer;
             .right-icon {
               width: 7px;
               height: 14px;
-              cursor: pointer;
             }
             .cou-rightxt {
               font-weight: 500;
@@ -1459,12 +1459,15 @@ export default {
           align-items: center;
           justify-content: center;
           margin-bottom: 44px;
-          .price-title {
+          .price1-title, .price2-title {
             font-weight: 700;
             font-size: 20px;
             color: #DAD5FF;
             margin-bottom: 0;
           } 
+          .price2-title {
+            color: #FFF;
+          }
         }
         .price-block1 {
           background: #B2ADD7;
