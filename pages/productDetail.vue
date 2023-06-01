@@ -23,11 +23,11 @@
               :min="1"
               :max="5"
               @change="(currentVal, oldVal) => {updateNum(currentVal, oldVal, productData)}" ></el-input-number>
-            <div v-if="productCondition" class="two-btn product-count">
+            <div v-if="tempProduct.state && tempProduct.state === 1" class="two-btn product-count">
               <p class="pre-sell-btn" @click="buyNow">上架時間：2024-02-02 00:00</p>
               <loginModal :show="showModal" class="formobile" @close="showModal = false" />
             </div>
-            <div v-else-if="!productCondition" class="two-btn product-count">
+            <div v-else-if="tempProduct.state && tempProduct.state === 2" class="two-btn product-count">
               <p class="sold-out-btn" @click="addtoCart">售完</p>
               <loginModal :show="showModal" class="formobile" @close="showModal = false" />
             </div>
@@ -84,11 +84,11 @@
     </div>
     <Footer page="productDetail" />
     <div id="mscrollshowId" class="upder-footer">
-      <div v-if="productCondition" class="two-btn product-count">
+      <div v-if="tempProduct.state && tempProduct.state === 1" class="two-btn product-count">
         <p class="pre-sell-btn" @click="buyNow">上架時間：2024-02-02 00:00</p>
         <loginModal :show="showModal" class="formobile" @close="showModal = false" />
       </div>
-      <div v-else-if="!productCondition" class="two-btn product-count">
+      <div v-else-if="tempProduct.state && tempProduct.state === 2" class="two-btn product-count">
         <p class="sold-out-btn" @click="addtoCart">售完</p>
         <loginModal :show="showModal" class="formobile" @close="showModal = false" />
       </div>
@@ -122,7 +122,6 @@ export default {
       redheart: true,
       tempProduct: {},
       currentVal: 1,
-      productCondition: true // true => pre-sell, false => sold out
     }
   },
   computed: {

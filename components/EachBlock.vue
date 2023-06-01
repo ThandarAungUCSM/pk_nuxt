@@ -10,7 +10,15 @@
       </div>
       <div class="top-seller-items">
         <div v-for="item in showItems" :key="item.bid" class="each-item" @click="gotoProductDetail(item)">
-          <img :src="item.imagePath" alt="" class="top-seller-img" />
+          <div class="toinsert-txt">
+            <img :src="item.imagePath" alt="" class="top-seller-img" />
+            <div v-if="item.state && item.state === 1" class="datetime-orange">
+              <p class="date-time">上架時間：2024-02-02 00:00</p>
+            </div>
+            <div v-if="item.state && item.state === 2" class="datetime-purple">
+              <p class="date-time">售完</p>
+            </div>
+          </div>
           <div class="top-seller-textdiv">
             <span class="top-seller-name">{{ item.name }}</span>
             <span class="top-seller-price">
@@ -30,14 +38,15 @@ export default {
   props: {
     title: {
       type: String,
-      default: 'title'
+      default: 'title',
+      // 1 => orange (pre-sell), 2 => purple (sold out)
     }
   },
   data() {
     return {
       items1: [
-        {name: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒1", imagePath: require("../assets/mobile/newArrival.png"), price: "99999", originalPrice: "99,999", bid: 1},
-        {name: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒1", imagePath: require("../assets/mobile/newArrival.png"), price: "99999", originalPrice: "99,999", bid: 2},
+        {name: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒1", imagePath: require("../assets/mobile/newArrival.png"), price: "99999", originalPrice: "99,999", bid: 1, state: 1},
+        {name: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒1", imagePath: require("../assets/mobile/newArrival.png"), price: "99999", originalPrice: "99,999", bid: 2, state: 2},
         {name: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒1", imagePath: require("../assets/mobile/newArrival.png"), price: "99999", originalPrice: "99,999", bid: 3},
         {name: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒1", imagePath: require("../assets/mobile/newArrival.png"), price: "99999", originalPrice: "99,999", bid: 4},
         {name: "山丘藍台灣藍莓 5盒裝單盒淨重 100公克 ×5 盒1", imagePath: require("../assets/mobile/newArrival.png"), price: "99999", originalPrice: "99,999", bid: 5},
@@ -228,16 +237,44 @@ export default {
           margin-bottom: 1rem;
           border-radius: 6px;
         }
-        .top-seller-img {
+        .toinsert-txt {
+          position: relative;
           width: 100%;
-          border-top-left-radius: 7px;
-          border-top-right-radius: 7px;
-          @media screen and (min-width: 1441px) {
-            // width: 11.3em; // comment after using container
+          .top-seller-img {
+            width: 100%;
+            border-top-left-radius: 7px;
+            border-top-right-radius: 7px;
+            @media screen and (min-width: 1441px) {
+              // width: 11.3em; // comment after using container
+            }
+            @media screen and (max-width: 768px) {
+              border-top-left-radius: 4px;
+              border-top-right-radius: 4px;
+            }
           }
-          @media screen and (max-width: 768px) {
-            border-top-left-radius: 4px;
-            border-top-right-radius: 4px;
+          .datetime-orange, .datetime-purple {
+            position: absolute;
+            border-radius: 0px 0px 6px 6px;
+            padding: 6px 0;
+            bottom: 0px;
+            width: 100%;
+            text-align: center;
+            background: #E9B531;
+            .date-time {
+              font-weight: 500;
+              font-size: 16px;
+              color: #FFF;
+              margin-bottom: 0;
+              @media screen and (max-width: 768px) {
+                font-size: 8px;
+              }
+            }
+          }
+          .datetime-purple {
+            background: #B79CED;
+            @media screen and (max-width: 768px) {
+              font-size: 10px;
+            }
           }
         }
         .top-seller-name {
