@@ -37,7 +37,7 @@
         </div>
         <p class="welcome-back">註冊</p>
 
-        <input v-model="mypassword" placeholder="請輸入帳號" onfocus="this.placeholder=''" class="accountCss2" />
+        <input v-model="myaccount" placeholder="請輸入帳號" onfocus="this.placeholder=''" class="accountCss2" />
 
         <div class="btn-div">
           <div class="register-btn" @click="registerFun">下一步</div>
@@ -123,8 +123,8 @@
             oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');"
           />
 
-          <input v-model="dateofBirth" placeholder="1990/04/18" onfocus="this.placeholder=''" class="accountCss4" />
-          <p class="pwd-valid">請輸入正確生日，以免影響使用權益。</p>
+          <input v-model="dateofBirth" placeholder="請輸入生日" onfocus="this.placeholder=''" class="accountCss4" />
+          <p class="pwd-valid">請輸入正確生日，以免影響使用權益。格式：2000-01-01</p>
 
           <div>
             <div class="gender-group">
@@ -161,8 +161,8 @@
         <input v-model="phoneNo" type="number" name="mobile" pattern="[0-9]{4} [0-9]{3} [0-9]{3}" maxlength="12" placeholder="請輸入手機號碼" class="accountCss3" required />
         <!-- if (!(/^1[34578]\d{9}$/.test(this.list.mobile))) { -->
 
-        <input v-model="dateofBirth" placeholder="1990/04/18" onfocus="this.placeholder=''" class="accountCss4" />
-        <p class="pwd-valid">請輸入正確生日，以免影響使用權益。</p>
+        <input v-model="dateofBirth" placeholder="請輸入生日" onfocus="this.placeholder=''" class="accountCss4" />
+        <p class="pwd-valid">請輸入正確生日，以免影響使用權益。格式：2000-01-01</p>
 
         <div>
           <div class="gender-group">
@@ -414,11 +414,12 @@ export default {
     return{
       myaccount: '',
       pName: 'login',
-      step: 4,
+      step: 1,
       mypassword: '',
       myconfirmpwd: '',
       phoneNo: '',
       dateofBirth: '',
+      checkDOB: false,
       myaddress: '',
       genderData: '',
       myemail: '',
@@ -820,9 +821,11 @@ export default {
       } else if(this.step === 2 && (this.mypassword !== '' && this.myconfirmpwd !== '' && (this.mypassword === this.myconfirmpwd))) {
         // alert('go to step3')
         this.step++;
-      } else if(this.step === 3 && this.phoneNo !== '' && this.dateofBirth !== '' && this.genderData !== '') {
-        // alert('go to step4')
-        this.step++;
+      } else if(this.step === 3 && this.dateofBirth !== '') {
+        this.isValidDate(this.dateofBirth);
+        if(this.phoneNo !== '' && this.checkDOB && this.genderData !== '') {
+          this.step++;
+        }
       } else if(this.step === 4 && this.myemail !== '' && this.cityName !== '' && this.distinctName !== '' && this.myaddress !== '') {
         // alert('go to step5')
         this.step++;
@@ -851,6 +854,37 @@ export default {
       } else {
         this.activeBtn = false
       }
+    },
+    isValidDate(date) {
+      // Date format: YYYY-MM-DD
+      const datePattern = /^([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))/;
+
+      // Check if the date string format is a match
+      const matchArray = date.match(datePattern);
+      if (matchArray == null) {
+          return false;
+      }
+
+      // Remove any non digit characters
+      const dateString = date.replace(/\D/g, ''); 
+
+      // Parse integer values from the date string
+      const year = parseInt(dateString.substr(0, 4));
+      const month = parseInt(dateString.substr(4, 2));
+      const day = parseInt(dateString.substr(6, 2));
+    
+      // Define the number of days per month
+      const daysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
+      // Leap years
+      if (year % 400 === 0 || (year % 100 !== 0 && year % 4 === 0)) {
+          daysInMonth[1] = 29;
+      }
+
+      if (month < 1 || month > 12 || day < 1 || day > daysInMonth[month - 1]) {
+          this.checkDOB = false
+      }
+      this.checkDOB = true
     }
   }
 }
