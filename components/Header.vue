@@ -133,7 +133,7 @@
                 <div class="dropdown-item textcss" @click="$router.push('/myGame')">
                   <span>PK合作遊戲</span>
                 </div>
-                <div class="dropdown-item textcss1">
+                <div class="dropdown-lastitem textcss1">
                   <span>去玩更多遊戲賺更多吧!!</span>
                 </div>
               </div>
@@ -150,7 +150,7 @@
                 <div class="dropdown-item textcss">
                   <span @click="gotoPage('/myWallet')">我的代幣</span>
                 </div>
-                <div class="dropdown-item textcss1">
+                <div class="dropdown-lastitem textcss1">
                   <span>查看PK遊戲幣值比率</span>
                 </div>
               </div>
@@ -809,7 +809,7 @@ export default {
       opacity: 1;
     }
 
-    .dropdown-item {
+    .dropdown-item, .dropdown-lastitem {
       padding: 7px 15px;
       text-decoration: none;
       display: block;
