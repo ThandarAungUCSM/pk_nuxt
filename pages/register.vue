@@ -198,7 +198,7 @@
 
           <p class="lable1">地址</p>
           <div class="address">
-            <select id="select1Id" v-model="cityName" class="member-address-city">
+            <select id="select1Id" v-model="city1Name" class="member-address-city">
               <option value="">選擇縣市</option>
               <option v-for="(city, index) in counties" :key="index" :value="city">
                 {{ city }}
@@ -249,7 +249,7 @@
 
         <p class="lable1">地址</p>
         <div class="address">
-          <select id="select2Id" v-model="cityName" class="member-address-city">
+          <select id="select2Id" v-model="city2Name" class="member-address-city">
             <option value="">選擇縣市</option>
             <option v-for="(city, index) in counties" :key="index" :value="city">
               {{ city }}
@@ -423,7 +423,8 @@ export default {
       myaddress: '',
       genderData: '',
       myemail: '',
-      cityName: '',
+      city1Name: '',
+      city2Name: '',
       distinctName: '',
       verifycode: '',
       activeBtn: false,
@@ -797,19 +798,37 @@ export default {
 
       seleDist: [
 
-      ]
+      ],
+      noupdate1: false,
+      noupdate2: false
     }
   },
   watch: {
-    cityName() {
-      const tempcount1 = document.getElementById("select1Id").selectedIndex - 1;
-      const tempcount2 = document.getElementById("select2Id").selectedIndex - 1;
-      this.distinctName = ''
-      if(tempcount1 === -1) {
-        this.seleDist = this.districts[tempcount2]
-      } else if(tempcount2 === -1) {
+    city1Name() {
+      if(this.noupdate1 === false) {
+        const tempcount1 = document.getElementById("select1Id").selectedIndex - 1;
+        this.distinctName = ''
+        // alert(tempcount1 + " if")
+        if(this.city1Name !== this.city2Name) {
+          this.noupdate2 = true
+          this.city2Name = this.city1Name
+        } 
         this.seleDist = this.districts[tempcount1]
       }
+      this.noupdate1 = false
+    },
+    city2Name() { 
+      if(this.noupdate2 === false) {
+        const tempcount2 = document.getElementById("select2Id").selectedIndex - 1;
+        this.distinctName = ''
+        // alert(tempcount2 + " else")
+        if(this.city1Name !== this.city2Name) {
+          this.noupdate1 = true
+          this.city1Name = this.city2Name
+        } 
+        this.seleDist = this.districts[tempcount2]
+      }
+      this.noupdate2 = false
     }
   },
   methods: {
@@ -826,7 +845,7 @@ export default {
         if(this.phoneNo !== '' && this.checkDOB && this.genderData !== '') {
           this.step++;
         }
-      } else if(this.step === 4 && this.myemail !== '' && this.cityName !== '' && this.distinctName !== '' && this.myaddress !== '') {
+      } else if(this.step === 4 && this.myemail !== '' && (this.city1Name !== '' || this.city2Name !== '') && this.distinctName !== '' && this.myaddress !== '') {
         // alert('go to step5')
         this.step++;
       } else if(this.step === 5) {

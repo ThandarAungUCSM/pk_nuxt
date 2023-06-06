@@ -10,7 +10,15 @@
       <p class="cate-name">{{cateName}}</p>
       <div v-if="prodLists" class="category-items" >
         <div v-for="item in prodLists" :key="item.bid" class="each-item">
-          <img :src="item.imagePath" alt="" class="cate-img" />
+          <div class="toinsert-txt">
+            <img :src="item.imagePath" alt="" class="cate-img" />
+            <div v-if="item.state && item.state === 1" class="datetime-orange">
+              <p class="date-time">上架時間：2024-02-02 00:00</p>
+            </div>
+            <div v-if="item.state && item.state === 2" class="datetime-purple">
+              <p class="date-time">售完</p>
+            </div>
+          </div>
           <div class="cate-textdiv">
             <span class="cate-title">{{ item.name }}</span>
             <span class="cate-price">
@@ -124,54 +132,41 @@ export default {
         margin-bottom: 1rem;
         border-radius: 6px;
       }
-      .cate-img {
+
+      .toinsert-txt {
+        position: relative;
         width: 100%;
-        border-top-left-radius: 7px;
-        border-top-right-radius: 7px;
-        @media screen and (max-width: 768px) {
-          border-top-left-radius: 6px;
-          border-top-right-radius: 6px;
-        }
-      }
-      .cate-title {
-        color: #3C3C3C;
-        font-weight: 400;
-        font-size: 1rem;
-        display: block;
-
-        height: 50px;
-        line-height: 25px;
-
-        display: -webkit-box;
-        overflow: hidden;
-        white-space: normal !important;
-        text-overflow: ellipsis;
-        word-wrap: break-word;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
-        @media screen and (max-width: 768px) {
-          font-size: 14px;
-          line-height: 14px;
-        }
-      }
-      .cate-price {
-        font-weight: 600;
-        font-size: 1rem;
-        color: #E1460E;
-        position: absolute;
-        bottom: 1rem;
-        @media screen and (max-width: 768px) {
-          display: flex;
-          align-items: center;
-          justify-content: flex-start;
-          position: unset;
-        }
-        .gold-icon {
+        .cate-img {
+          width: 100%;
+          border-top-left-radius: 7px;
+          border-top-right-radius: 7px;
           @media screen and (max-width: 768px) {
-            width:21px;
-            height: 21px;
-
-            margin-right: 6px;
+            border-top-left-radius: 6px;
+            border-top-right-radius: 6px;
+          }
+        }
+        .datetime-orange, .datetime-purple {
+          position: absolute;
+          border-radius: 0px 0px 6px 6px;
+          padding: 6px 0;
+          bottom: 0px;
+          width: 100%;
+          text-align: center;
+          background: #E9B531;
+          .date-time {
+            font-weight: 500;
+            font-size: 16px;
+            color: #FFF;
+            margin-bottom: 0;
+            @media screen and (max-width: 768px) {
+              font-size: 8px;
+            }
+          }
+        }
+        .datetime-purple {
+          background: #B79CED;
+          @media screen and (max-width: 768px) {
+            font-size: 10px;
           }
         }
       }
@@ -185,11 +180,53 @@ export default {
         height: 150px;
         position: relative;
         @media screen and (min-width: 1441px) {
-        }
+          }
         @media screen and (max-width: 768px) {
           padding: 10px 10px 8px;
           height: unset;
           position: unset;
+        }
+        .cate-title {
+          color: #3C3C3C;
+          font-weight: 400;
+          font-size: 1rem;
+          display: block;
+  
+          height: 50px;
+          line-height: 25px;
+  
+          display: -webkit-box;
+          overflow: hidden;
+          white-space: normal !important;
+          text-overflow: ellipsis;
+          word-wrap: break-word;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+          @media screen and (max-width: 768px) {
+            font-size: 14px;
+            line-height: 14px;
+          }
+        }
+        .cate-price {
+          font-weight: 600;
+          font-size: 1rem;
+          color: #E1460E;
+          position: absolute;
+          bottom: 1rem;
+          @media screen and (max-width: 768px) {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            position: unset;
+          }
+          .gold-icon {
+            @media screen and (max-width: 768px) {
+              width:21px;
+              height: 21px;
+  
+              margin-right: 6px;
+            }
+          }
         }
       }
     }

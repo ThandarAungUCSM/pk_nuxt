@@ -19,17 +19,16 @@
           </span>
           <div id="mProductId" class="bottom-block">
             <el-input-number
+              v-if="tempProduct.state && tempProduct.state === 3"
               v-model="showArr"
               :min="1"
               :max="5"
               @change="(currentVal, oldVal) => {updateNum(currentVal, oldVal, productData)}" ></el-input-number>
             <div v-if="tempProduct.state && tempProduct.state === 1" class="two-btn product-count">
-              <p class="pre-sell-btn" @click="buyNow">上架時間：2024-02-02 00:00</p>
-              <loginModal :show="showModal" class="formobile" @close="showModal = false" />
+              <p class="pre-sell-btn">上架時間：2024-02-02 00:00</p>
             </div>
             <div v-else-if="tempProduct.state && tempProduct.state === 2" class="two-btn product-count">
-              <p class="sold-out-btn" @click="addtoCart">售完</p>
-              <loginModal :show="showModal" class="formobile" @close="showModal = false" />
+              <p class="sold-out-btn">售完</p>
             </div>
             <div v-else class="two-btn product-count">
               <p class="to-cart" @click="addtoCart">加入購物車</p>
@@ -85,12 +84,10 @@
     <Footer page="productDetail" />
     <div id="mscrollshowId" class="upder-footer">
       <div v-if="tempProduct.state && tempProduct.state === 1" class="two-btn product-count">
-        <p class="pre-sell-btn" @click="buyNow">上架時間：2024-02-02 00:00</p>
-        <loginModal :show="showModal" class="formobile" @close="showModal = false" />
+        <p class="pre-sell-btn">上架時間：2024-02-02 00:00</p>
       </div>
       <div v-else-if="tempProduct.state && tempProduct.state === 2" class="two-btn product-count">
-        <p class="sold-out-btn" @click="addtoCart">售完</p>
-        <loginModal :show="showModal" class="formobile" @close="showModal = false" />
+        <p class="sold-out-btn">售完</p>
       </div>
       <div v-else class="two-btn product-count">
         <p class="to-cart" @click="addtoCart">加入購物車</p>
