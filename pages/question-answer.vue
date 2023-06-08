@@ -90,7 +90,7 @@ export default {
   background: #eae9f4;
   text-align: center;
   // height: calc(100vh - 80px);
-  // min-height: calc(100vh - 80px);
+  min-height: calc(100vh - 80px);
   // position: relative;
   padding-bottom: 100px;
   @media screen and (max-width: 768px) {
