@@ -13,7 +13,7 @@
           <div class="toinsert-txt">
             <img :src="item.imagePath" alt="" class="top-seller-img" />
             <div v-if="item.state && item.state === 1" class="datetime-orange">
-              <p class="date-time">上架時間：2024-02-02 00:00</p>
+              <p class="date-time">上架時間 <br> 2024-02-02 00:00</p>
             </div>
             <div v-if="item.state && item.state === 2" class="datetime-purple">
               <p class="date-time">售完</p>
@@ -260,6 +260,8 @@ export default {
             width: 100%;
             text-align: center;
             background: #E9B531;
+            background: rgba(233, 181, 49, 0.6);
+            backdrop-filter: blur(2px);
             .date-time {
               font-weight: 500;
               font-size: 16px;
@@ -272,6 +274,8 @@ export default {
           }
           .datetime-purple {
             background: #B79CED;
+            background: rgba(183, 156, 237, 0.6);
+            backdrop-filter: blur(2px);
             @media screen and (max-width: 768px) {
               font-size: 10px;
             }
