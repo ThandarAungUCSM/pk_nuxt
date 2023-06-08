@@ -287,7 +287,7 @@
             <p class="hideright">hi</p>
           </div>
 
-          <p id="scrollId" class="termofservice ppp" @scroll="onScroll">
+          <p id="scrollId" class="termofservice" @scroll="onScroll">
             會員條款 <br>
             歡迎您加入我們的電商平台會員！為了保障您的權益與維護平台的秩序，請您務必詳細閱 <br>
             讀以下條款： <br>
@@ -313,8 +313,9 @@
             1.平台尊重並保護知識產權，會員在平台上傳輸的內容不得侵犯他人<br>
           </p>
           <div class="btn-div">
-            <div v-if="activeBtn" class="registerActive" @click="registerFun">我已閱讀並同意</div>
-            <div v-else class="register-btn2">我已閱讀並同意</div>
+            <div class="registerActive" @click="registerFun">我已閱讀並同意</div>
+            <!-- v-if="activeBtn" 
+            <div v-else class="register-btn2">我已閱讀並同意</div> -->
           </div>
         </div>
       </div>
