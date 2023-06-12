@@ -2,10 +2,13 @@
 <div>
   <div v-if="step == 1" class="register-css">
     <div class="register-child">
-      <div class="left-block">
+      <!-- <div class="left-block">
         <p class="big-discount">PK開幕大大大優惠</p>
         <p class="vis-reality">將虛擬化為現實</p>
         <p class="limited-time">年度首檔限時優惠</p>
+      </div> -->
+      <div class="left1-block">
+        <img class="advertise-css" src="../assets/pc/advertise.png" />
       </div>
       <div class="right-block">
         <div class="right-inner">
@@ -50,12 +53,10 @@
   </div>
   <div v-else-if="step == 2" class="register-css">
     <div class="register-child">
-      <div class="left-block">
-        <p class="big-discount">PK開幕大大大優惠</p>
-        <p class="vis-reality">將虛擬化為現實</p>
-        <p class="limited-time">年度首檔限時優惠</p>
+      <div class="left1-block">
+        <img class="advertise-css" src="../assets/pc/advertise.png" />
       </div>
-      <div class="right-block">
+      <div class="right2-block">
         <div class="right-inner">
           <div class="row-regi">
             <img class="back-css" src="../assets/mobile/back-btn.png" @click="backFun(2)" />
@@ -82,7 +83,7 @@
           <p class="limited-time">年度首檔限時優惠</p>
         </div>
       </div>
-      <div class="right-block">
+      <div class="right2-block">
         <div class="stage-div">
           <p class="stage-css">2/4</p>
         </div>
@@ -105,12 +106,10 @@
   </div>
   <div v-else-if="step == 3" class="register-css">
     <div class="register-child">
-      <div class="left-block">
-        <p class="big-discount">PK開幕大大大優惠</p>
-        <p class="vis-reality">將虛擬化為現實</p>
-        <p class="limited-time">年度首檔限時優惠</p>
+      <div class="left1-block">
+        <img class="advertise-css" src="../assets/pc/advertise.png" />
       </div>
-      <div class="right-block">
+      <div class="right2-block">
         <div class="right-inner">
           <div class="row-regi">
             <img class="back-css" src="../assets/mobile/back-btn.png" @click="backFun(3)" />
@@ -180,12 +179,10 @@
   </div>
   <div v-else-if="step == 4" class="register-css">
     <div class="register-child">
-      <div class="left-block">
-        <p class="big-discount">PK開幕大大大優惠</p>
-        <p class="vis-reality">將虛擬化為現實</p>
-        <p class="limited-time">年度首檔限時優惠</p>
+      <div class="left1-block">
+        <img class="advertise-css" src="../assets/pc/advertise.png" />
       </div>
-      <div class="right-block">
+      <div class="right2-block">
         <div class="right-inner">
           <div class="row-regi">
             <img class="back-css" src="../assets/mobile/back-btn.png" @click="backFun(4)" />
@@ -234,7 +231,7 @@
           <p class="limited-time">年度首檔限時優惠</p>
         </div>
       </div>
-      <div class="right-block">
+      <div class="right4-block">
         <div class="stage-div">
           <p class="stage-css">4/4</p>
         </div>
@@ -271,7 +268,7 @@
         
         <input v-model="myaddress" placeholder="請輸入地址" onfocus="this.placeholder=''" class="accountCss6" />
 
-        <div class="btn-div">
+        <div class="btn4-div">
           <div class="register-btn" @click="registerFun">下一步</div>
         </div>
       </div>
@@ -279,7 +276,7 @@
   </div>
   <div v-else-if="step == 5" class="register-css"> 
     <div class="register-child">
-      <div class="right-block1">
+      <div class="right5-block">
         <div class="right-inner">
           <div class="row-regi">
             <img class="back-css" src="../assets/mobile/back-btn.png" @click="backFun(5)" />
@@ -315,7 +312,7 @@
           <div class="btn-div">
             <div class="registerActive" @click="registerFun">我已閱讀並同意</div>
             <!-- v-if="activeBtn" 
-            <div v-else class="register-btn2">我已閱讀並同意</div> -->
+            <div v-else class="register5-btn">我已閱讀並同意</div> -->
           </div>
         </div>
       </div>
@@ -329,7 +326,7 @@
         </div>
       </div> -->
       <div class="lower-block">
-        <div class="right-block">
+        <div class="right5-block">
           <div class="row-regi">
             <img class="back-css" src="../assets/mobile/back-btn.png" @click="backFun(5)" />
             <p class="welcome-back">會員服務條款</p>
@@ -355,7 +352,7 @@
           </p>
           <div class="btn-div">
             <div v-if="activeBtn" class="registerActive" @click="registerFun">我已閱讀並同意</div>
-            <div v-else class="register-btn2">我已閱讀並同意</div>
+            <div v-else class="register5-btn">我已閱讀並同意</div>
           </div>
         </div>
       </div>
@@ -363,20 +360,18 @@
   </div>
   <div v-else-if="step == 6" class="register-css"> 
     <div class="register-child">
-      <div class="left-block">
-        <p class="big-discount">PK開幕大大大優惠</p>
-        <p class="vis-reality">將虛擬化為現實</p>
-        <p class="limited-time">年度首檔限時優惠</p>
+      <div class="left1-block">
+        <img class="advertise-css" src="../assets/pc/advertise.png" />
       </div>
-      <div class="right-block">
-        <div class="right-inner">
+      <div class="right2-block">
+        <div class="right6-inner">
           <p class="welcome-back">驗證電話號碼</p>
 
           <input v-model="verifycode" placeholder="請輸入驗證碼" onfocus="this.placeholder=''" class="accountCss4" />
           <p class="pwd-valid">您若有拒收企業簡訊，將有可能導致無法收到驗證碼。</p>
 
-          <div class="btn-div">
-            <div class="register-btn1" @click="registerFun">登入</div>
+          <div class="btn6-div">
+            <div class="register6-btn" @click="registerFun">登入</div>
             <div class="resend-css">重新發送(10)</div>
           </div>
         </div>
@@ -390,14 +385,14 @@
           <p class="limited-time">年度首檔限時優惠</p>
         </div>
       </div>
-      <div class="right-block">
+      <div class="right6-block">
         <p class="welcome-back">驗證電話號碼</p>
 
         <input v-model="verifycode" placeholder="請輸入驗證碼" onfocus="this.placeholder=''" class="accountCss4" />
         <p class="pwd-valid">您若有拒收企業簡訊，將有可能導致無法收到驗證碼。</p>
 
-        <div class="btn-div">
-          <div class="register-btn1" @click="registerFun">登入</div>
+        <div class="btn6-div">
+          <div class="register6-btn" @click="registerFun">登入</div>
           <div class="resend-css">重新發送(10)</div>
         </div>
       </div>
@@ -415,7 +410,7 @@ export default {
     return{
       myaccount: '',
       pName: 'login',
-      step: 1,
+      step: 6,
       mypassword: '',
       myconfirmpwd: '',
       phoneNo: '',
@@ -927,6 +922,9 @@ export default {
     justify-content: space-between;
 
     width: 55%;
+    width: 85%;
+    max-width: 1440px;
+    max-width: 1130px;
     margin: 0 auto;
     @media screen and (max-width: 768px) {
       display: none;
@@ -956,32 +954,68 @@ export default {
     @media screen and (max-width: 768px) {
       width: 67%;
       margin: 0px auto;
-      height: unset;
+      height: 154px;
+      padding: 1rem 0;
     }
     .big-discount, .limited-time {
       font-weight: 700;
       font-size: 20px;
       color: #FFF;
+      @media screen and (max-width: 768px) {
+        margin-bottom: 5px;
+      }
     }
     .vis-reality {
       font-weight: 700;
       font-size: 32px;
       color: #F3DD65;
+      @media screen and (max-width: 768px) {
+        margin-bottom: 5px;
+      }
     }
-    .limited-time {
-
+  }
+  .left1-block {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 53%;
+    // min-width: 630px;
+    max-width: 630px;
+    height: 70vh;
+    max-height: 669px;
+    @media screen and (max-width: 768px) {
+      display: unset;
+      width: 67%;
+      margin: 0px auto;
+      // min-width: unset;
+      max-width: unset;
+      height: unset;
+      max-height: unset;
+    }
+    .advertise-css {
+      width: 100%;
+      height: 100%;
     }
   }
   .lower-block {
     padding: 44px 0 0;
   }
-  .right-block, .right-block1 {
-    width: 30%;
+  .right-block, .right2-block, .right4-block, .right5-block, .right6-block {
+    width: 40%;
     // margin: 0 auto;
     display: flex;
     flex-direction: column;
-    margin-right: 100px;
+    justify-content: flex-end;
+    // padding-bottom: 130px;
+    max-width: 360px;
+    height: 486px;
     @media screen and (max-width: 768px) {
+      // min-width: unset;
+      max-width: unset;
+      height: 488px;
+      justify-content: unset;
+      padding-bottom: 0;
+
       width: 90%;
       margin: -5px auto 0;
 
@@ -989,11 +1023,11 @@ export default {
       background: #F2F1F7;
       box-shadow: 0px 4px 4px rgba(33, 66, 116, 0.25);
       border-radius: 12px;
-      padding: 10px 10px 1.5rem 1rem;
+      padding: 10px 10px 27px 1rem;
       display: flex;
       flex-direction: column;
     }
-    .right-inner {
+    .right-inner, .right6-inner {
       border: 2px solid #FFFFFF;
       background: #F2F1F7;
       box-shadow: 0px 4px 4px rgba(33, 66, 116, 0.25);
@@ -1001,6 +1035,12 @@ export default {
       padding: 1rem 1rem 1.5rem;
       display: flex;
       flex-direction: column;
+      height: 486px;
+      position: relative;
+    }
+    .right6-inner {
+      position: relative;
+      padding-bottom: 0;
     }
     .stage-div {
       position: relative;
@@ -1021,6 +1061,9 @@ export default {
       display: flex;
       align-items: center;
       justify-content: space-between;
+      @media screen and (max-width: 768px) {
+        width: 100%;
+      }
       .back-css {
         width: 18px;
         height: 18px;
@@ -1036,6 +1079,7 @@ export default {
       color: #7161EF;
       width: 90%;
       margin: 0 auto 5px;
+      margin: 10px auto;
     }
     .address {
       display: flex;
@@ -1133,6 +1177,9 @@ export default {
       font-size: 20px;
       color: #FFF;
     }
+    .accountCss2 {
+      margin: 55px auto 107px;
+    }
     .accountCss3 {
       margin: 1rem auto 3px;
     }
@@ -1140,10 +1187,10 @@ export default {
       margin: 2rem auto 3px;
     }
     .accountCss5 {
-      margin: 0rem auto 3px;
+      margin: 0rem auto 0;
     }
     .accountCss6 {
-      margin: 1rem auto 4rem;
+      margin: 23px auto 4rem;
     }
     .termofservice {
       font-weight: 500;
@@ -1166,10 +1213,12 @@ export default {
     .termofservice::-webkit-scrollbar {
       display: none;
     }
-    .btn-div {
+    .btn-div, .btn4-div, .btn6-div {
       width: 90%;
       margin: 0 auto;
       text-align: center;
+      position: absolute;
+      bottom: 27px;
       .register-btn {
         background: #E9B531;
         border-radius: 24px;
@@ -1182,11 +1231,11 @@ export default {
         justify-content: center;
         align-items: center;
         width: 90%;
-        width: 100%;
+        // width: 100%;
         margin: 0 auto;
         cursor: pointer;
       }
-      .register-btn2 {
+      .register5-btn {
         background: #E4D4AB;
         border-radius: 24px;
         height: 56px;
@@ -1218,7 +1267,7 @@ export default {
         margin: 0 auto;
         cursor: pointer;
       }
-      .register-btn1 {
+      .register6-btn {
         background: #E9B531;
         border-radius: 24px;
         height: 56px;
@@ -1230,8 +1279,8 @@ export default {
         justify-content: center;
         align-items: center;
         width: 90%;
-        width: 100%;
-        margin: 4rem auto 1.5rem;
+        // width: 100%;
+        margin: 4rem auto 30px;
         cursor: pointer;
       }
       .resend-css {
@@ -1244,18 +1293,50 @@ export default {
         align-items: center;
         justify-content: center;
         height: 40px;
+        width: 90%;
+        margin: auto;
       }
     }
+    .btn6-div {
+      position: absolute;
+      bottom: 39px;
+    }
   }
-  .right-block1 {
+  .right2-block {
+    // padding-bottom: 75px;
+  }
+  .right4-block {
+    @media screen and (max-width: 768px) {
+      position: relative;
+    }
+  }
+  .right6-block {
+    @media screen and (max-width: 768px) {
+      height: 486px;
+      position: relative;
+    }
+  }
+  .right5-block {
     width: 50%;
     min-width: 646px;
+    max-width: 646px;
+    height: 637px;
     margin: auto;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 0;
+    position: relative;
+    @media screen and (max-width: 768px) {
+      min-width: 360px;
+      max-width: 360px;
+      justify-content: unset;
+      width: 90%;
+      padding: 41px 10px 27px 1rem;
+    }
     .right-inner {
       padding: 2rem 2rem 1.5rem;
-    }
-    .row-regi {
-      // justify-content: center;
+      min-width: 646px;
+      height: 637px;
     }
   }
   .newer-css {

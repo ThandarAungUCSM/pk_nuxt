@@ -2,21 +2,26 @@
 <div>
   <div class="login-css">
     <div class="login-child">
-      <div class="left-block">
+      <!-- <div class="left-block">
         <p class="big-discount">PK開幕大大大優惠</p>
         <p class="vis-reality">將虛擬化為現實</p>
         <p class="limited-time">年度首檔限時優惠</p>
+      </div> -->
+      <div class="left1-block">
+        <img class="advertise-css" src="../assets/pc/advertise.png" />
       </div>
       <div class="right-block">
-        <p class="welcome-back">歡迎回來</p>
+        <div class="right-inner">
+          <p class="welcome-back">歡迎回來</p>
 
-        <input v-model="accNo" placeholder="帳號" class="accountCss1" />
-        <input v-model="password" placeholder="密碼" class="accountCss2" />
-        <p class="forget-pwd">忘記密碼?</p>
+          <input v-model="accNo" placeholder="帳號" class="accountCss1" />
+          <input v-model="password" placeholder="密碼" class="accountCss2" />
+          <p class="forget-pwd">忘記密碼?</p>
 
-        <div class="btn-div">
-          <p class="newer-css">新玩家？<span class="register-css" @click="register">註冊</span></p>
-          <div class="ss register-btn" @click="loginProcess">登入</div>
+          <div class="btn-div">
+            <p class="newer-css">新玩家？<span class="register-css" @click="register">註冊</span></p>
+            <div class="ss register-btn" @click="loginProcess">登入</div>
+          </div>
         </div>
       </div>
     </div>
@@ -82,6 +87,7 @@ export default {
   min-height: calc(100vh - 80px);
   max-height: calc(100vh - 80px);
   background: linear-gradient(180deg, #6759FF 0%, #957FEF 100%);
+  display: flex;
   @media screen and (max-width: 768px) {
     min-height: unset;
     max-height: unset;
@@ -90,9 +96,10 @@ export default {
   .login-child {
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: space-between;
 
-    width: 80%;
+    width: 85%;
+    max-width: 1130px;
     margin: 0 auto;
     @media screen and (max-width: 768px) {
       display: none;
@@ -135,22 +142,52 @@ export default {
 
     }
   }
+  .left1-block {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 53%;
+    // min-width: 630px;
+    max-width: 630px;
+    height: 70vh;
+    max-height: 669px;
+    @media screen and (max-width: 768px) {
+      display: unset;
+      width: 67%;
+      margin: 0px auto;
+      // min-width: unset;
+      max-width: unset;
+      height: unset;
+      max-height: unset;
+    }
+    .advertise-css {
+      width: 100%;
+      height: 100%;
+    }
+  }
   .right-block {
-    border: 2px solid #FFFFFF;
-    border-radius: 6px; 
-    width: 20%;
-
-    background: #F2F1F7;
-    box-shadow: 0px 4px 4px rgba(33, 66, 116, 0.25);
-    border-radius: 12px;
-    padding: 1rem 1rem 1.5rem;
-
+    width: 40%;
     // margin: 0 auto;
     display: flex;
     flex-direction: column;
+    justify-content: flex-end;
+    padding-bottom: 75px;
+    max-width: 360px;
+    height: 669px;
     @media screen and (max-width: 768px) {
       width: 90%;
       margin: -5px auto 0;
+    }
+    .right-inner {
+      border: 2px solid #FFFFFF;
+      background: #F2F1F7;
+      box-shadow: 0px 4px 4px rgba(33, 66, 116, 0.25);
+      border-radius: 12px;
+      padding: 1rem 1rem 33px;
+      display: flex;
+      flex-direction: column;
+      height: 486px;
+      position: relative;
     }
     .welcome-back {
       font-weight: 700;
@@ -196,6 +233,8 @@ export default {
       width: 90%;
       margin: 0 auto;
       text-align: center;
+      position: absolute;
+      bottom: 33px;
       .newer-css {
         font-weight: 400;
         font-size: 1rem;

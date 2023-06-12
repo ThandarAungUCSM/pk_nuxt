@@ -208,7 +208,7 @@ export default {
     width: 30%;
   }
   .footest-block {
-    width: 30%;
+    width: 35%;
     text-align: center;
     margin-top: 0;
     .m-center {
@@ -216,6 +216,8 @@ export default {
       justify-content: space-between;
       align-items: center;
       width: 37%;
+      width: 230px;
+      max-width: 230px;
       margin: 0 auto;
       .center-top {
         font-weight: 400;
