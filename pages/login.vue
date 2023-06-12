@@ -34,7 +34,11 @@
         </div>
       </div>
       <div class="right-block">
-        <p class="welcome-back">歡迎回來</p>
+        <div class="row-regi">
+          <img class="back-css" src="../assets/mobile/back-btn.png" @click="backFun(2)" />
+          <p class="welcome-back">歡迎回來</p>
+          <p class="hideright">hi</p>
+        </div>
 
         <input v-model="accNo" placeholder="帳號" class="accountCss1" />
         <input v-model="password" placeholder="密碼" class="accountCss2" />
@@ -77,7 +81,9 @@ export default {
         this.updateLogin(true);
         this.$router.push('/')
       }
-    }
+    },
+    backFun(val) {
+    },
   }
 }
 </script>
@@ -108,7 +114,9 @@ export default {
   .mlogin-child {
     display: none;
     @media screen and (max-width: 768px) {
-      display: block;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
       padding-bottom: 5%;
     }
   }
@@ -125,18 +133,26 @@ export default {
     padding-top: 2rem;
     height: 70vh;
     @media screen and (max-width: 768px) {
+      width: 67%;
       margin: 0px auto;
-      height: unset;
+      height: 154px;
+      padding: 1rem 0;
     }
     .big-discount, .limited-time {
       font-weight: 700;
       font-size: 20px;
       color: #FFF;
+      @media screen and (max-width: 768px) {
+        margin-bottom: 5px;
+      }
     }
     .vis-reality {
       font-weight: 700;
       font-size: 32px;
       color: #F3DD65;
+      @media screen and (max-width: 768px) {
+        margin-bottom: 5px;
+      }
     }
     .limited-time {
 
@@ -170,13 +186,43 @@ export default {
     // margin: 0 auto;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content: center;
     padding-bottom: 75px;
+    padding-bottom: 0;
     max-width: 360px;
-    height: 669px;
+    height: 451px;
     @media screen and (max-width: 768px) {
       width: 90%;
       margin: -5px auto 0;
+
+      max-width: initial;
+      justify-content: initial;
+      padding-bottom: 0;
+      border: 2px solid #FFFFFF;
+      background: #F2F1F7;
+      box-shadow: 0px 4px 4px rgba(33, 66, 116, 0.25);
+      border-radius: 12px;
+      padding: 1rem 10px 27px 1rem;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+    .row-regi {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      @media screen and (max-width: 768px) {
+        width: 100%;
+        margin-bottom: 1rem;
+      }
+      .back-css {
+        width: 18px;
+        height: 18px;
+        cursor: pointer;
+      }
+      .hideright {
+        visibility: hidden;
+      }
     }
     .right-inner {
       border: 2px solid #FFFFFF;
@@ -186,7 +232,7 @@ export default {
       padding: 1rem 1rem 33px;
       display: flex;
       flex-direction: column;
-      height: 486px;
+      height: 451px;
       position: relative;
     }
     .welcome-back {
@@ -194,6 +240,9 @@ export default {
       font-size: 20px;
       color: #957FEF;
       text-align: center;
+      @media screen and (max-width: 768px) {
+        margin-bottom: 0;
+      }
     }
     .accountCss1, .accountCss2 {
       font-weight: 500;
