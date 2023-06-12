@@ -11,7 +11,7 @@
         <img class="advertise-css" src="../assets/pc/advertise.png" />
       </div>
       <div class="right-block">
-        <div class="right-inner">
+        <div class="right1-inner">
           <p class="welcome-back">註冊</p>
 
           <input v-model="myaccount" placeholder="請輸入帳號" onfocus="this.placeholder=''" class="accountCss2" />
@@ -34,7 +34,7 @@
           <p class="limited-time">年度首檔限時優惠</p>
         </div>
       </div>
-      <div class="right-block">
+      <div class="right1-block">
         <div class="stage-div">
           <p class="stage-css">1/4</p>
         </div>
@@ -410,7 +410,7 @@ export default {
     return{
       myaccount: '',
       pName: 'login',
-      step: 6,
+      step: 1,
       mypassword: '',
       myconfirmpwd: '',
       phoneNo: '',
@@ -1000,7 +1000,7 @@ export default {
   .lower-block {
     padding: 44px 0 0;
   }
-  .right-block, .right2-block, .right4-block, .right5-block, .right6-block {
+  .right-block, .right1-block, .right2-block, .right4-block, .right5-block, .right6-block {
     width: 40%;
     // margin: 0 auto;
     display: flex;
@@ -1027,7 +1027,7 @@ export default {
       display: flex;
       flex-direction: column;
     }
-    .right-inner, .right6-inner {
+    .right-inner, .right1-inner, .right6-inner {
       border: 2px solid #FFFFFF;
       background: #F2F1F7;
       box-shadow: 0px 4px 4px rgba(33, 66, 116, 0.25);
@@ -1037,6 +1037,15 @@ export default {
       flex-direction: column;
       height: 486px;
       position: relative;
+    }
+    .right1-inner {
+      height: 369px;
+      @media screen and (max-width: 768px) {
+        border: 2px solid #FFFFFF;
+        background: #F2F1F7;
+        box-shadow: 0px 4px 4px rgba(33, 66, 116, 0.25);
+        width: 100%;
+      }
     }
     .right6-inner {
       position: relative;
@@ -1302,10 +1311,13 @@ export default {
       bottom: 39px;
     }
   }
-  .right2-block {
-    // padding-bottom: 75px;
+  .right1-block {
+    @media screen and (max-width: 768px) {
+      height: 369px;
+      position: relative;
+    }
   }
-  .right4-block {
+  .right-block, .right2-block, .right4-block {
     @media screen and (max-width: 768px) {
       position: relative;
     }
